@@ -2,13 +2,13 @@
 	// @ts-nocheck
 	import EmptyHome from './icons/emptyhome.svelte';
 
-	import { supabase } from '$lib/supabaseClient';
-	async function load() {
-		return await supabase.from('test').select('*');
-	}
-	load().then((x) => {
-		console.log('data', x);
-	});
+	// import { supabase } from '$lib/supabaseClient';
+	// async function load() {
+	// 	return await supabase.from('test').select('*');
+	// }
+	// load().then((x) => {
+	// 	console.log('data', x);
+	// });
 	import FullNav from './components/fullNav.svelte';
 	import AgentCard from './components/agentCard.svelte';
 	import Footer from './components/compressedFooter.svelte';
