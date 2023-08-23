@@ -1,10 +1,6 @@
 <script>
-	// @ts-nocheck
-
 	import Footer from '../components/fullFooter.svelte';
 	import MiniNav from '../components/miniNav.svelte';
-
-
 </script>
 <MiniNav />
 

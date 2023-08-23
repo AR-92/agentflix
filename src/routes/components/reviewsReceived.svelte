@@ -1,5 +1,4 @@
 <script>
-	// @ts-nocheck
 	import { RangeSlider } from '@skeletonlabs/skeleton';
 
 	import Model from '../components/model.svelte';

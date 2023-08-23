@@ -1,6 +1,4 @@
 <script>
-	// @ts-nocheck
-
 	import Model from '../components/model.svelte';
 	import Empty from '../icons/empty.svelte';
 	import Events from '../icons/events.svelte';

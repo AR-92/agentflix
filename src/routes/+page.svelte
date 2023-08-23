@@ -1,5 +1,4 @@
 <script>
-	// @ts-nocheck
 	import EmptyHome from './icons/emptyhome.svelte';
 
 	// import { supabase } from '$lib/supabaseClient';

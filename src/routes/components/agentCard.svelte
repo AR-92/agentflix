@@ -1,5 +1,4 @@
 <script>
-	// @ts-nocheck
 	import { goto } from '$app/navigation';
 	export let dp;
 	export let agentName;

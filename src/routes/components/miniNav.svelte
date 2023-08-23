@@ -1,6 +1,4 @@
 <script>
-	// @ts-nocheck
-
 	import { goto } from '$app/navigation';
 	import Model from './model.svelte';
 	import { LightSwitch, popup, ListBox } from '@skeletonlabs/skeleton';
