@@ -3,7 +3,6 @@
 	import FooterLinks from './footerLinks.svelte';
 	import Draw from './draw.svelte';
 
-	// @ts-ignore
 	function trigger(position) {
 		const s = { id: 'footerLinks', position };
 		drawerStore.open(s);

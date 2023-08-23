@@ -1,5 +1,4 @@
 <script>
-	// @ts-ignore
 	import Footer from '../components/compressedFooter.svelte';
 	import MiniNav from '../components/miniNav.svelte';
 	import ReviewsReceived from '../components/reviewsReceived.svelte';
