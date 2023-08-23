@@ -16,7 +16,7 @@
 		<!-- <AgentEvents /> -->
 		<div class="text-sm card p-4 mt-4 gap-2 flex flex-col">
 			<div class="my-2">
-				<div class="font-semibold mb-2">ABOU</div>
+				<div class="font-semibold mb-2">ABOUT</div>
 				<div>
 					Tonya is one of the top producing agents in South Central Texas with her extensive work
 					throughout Washington, Austin, Grimes, Montgomery, Waller,
