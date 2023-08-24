@@ -5,6 +5,8 @@
 	// import AgentEvents from '../components/agentEvents.svelte';
 	import AgentProfileCard from '../components/agentProfileCard.svelte';
 	import AgentInfo from '../components/agentInfo.svelte';
+	// import '../../lib/testService.js';
+
 </script>
 
 <MiniNav />

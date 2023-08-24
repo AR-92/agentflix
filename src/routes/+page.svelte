@@ -1,16 +1,10 @@
 <script>
 	import EmptyHome from './icons/emptyhome.svelte';
-
-	// import { supabase } from '$lib/supabaseClient';
-	// async function load() {
-	// 	return await supabase.from('test').select('*');
-	// }
-	// load().then((x) => {
-	// 	console.log('data', x);
-	// });
 	import FullNav from './components/fullNav.svelte';
 	import AgentCard from './components/agentCard.svelte';
 	import Footer from './components/compressedFooter.svelte';
+	export let data;
+	console.log(data)
 	const agentsList = [
 		{
 			dp: './t1.jpg',
@@ -69,8 +63,13 @@
 			number: '334 585-0748'
 		}
 	];
-</script>
 
+</script>
+<!-- <ul>
+    {#each data.countries as country}
+      <li>{country.name}</li>
+    {/each}
+  </ul> -->
 <FullNav />
 {#if agentsList.length < 1}
 	<div class="w-full h-[500px] grid place-items-center">
