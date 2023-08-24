@@ -768,7 +768,7 @@
 						<textarea
 							class="textarea placeholder:text-sm"
 							rows="3"
-							placeholder="Add Event Discription here !"
+							placeholder="Add Event Description here !"
 						/>
 					</label>
 					<label class="label text-sm">

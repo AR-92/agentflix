@@ -272,7 +272,7 @@
 									<textarea
 										class="textarea placeholder:text-sm"
 										rows="4"
-										placeholder="Add Event Discription here !"
+										placeholder="Add Event Description here !"
 									/>
 								</label>
 							</div>

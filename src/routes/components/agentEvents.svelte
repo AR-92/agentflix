@@ -172,8 +172,8 @@
 						<input class="input rounded-md" placeholder="Please Add Address Here ... !" type="text" />
 					</label>
 					<label class="label text-sm">
-						<span>Discription</span>
-						<textarea class="textarea" rows="5" placeholder="Add Event Discription here !" />
+						<span>Description</span>
+						<textarea class="textarea" rows="5" placeholder="Add Event Description here !" />
 					</label>
 				
 					<div class="w-full text-right">
