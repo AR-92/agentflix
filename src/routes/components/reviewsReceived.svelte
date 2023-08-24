@@ -94,7 +94,7 @@
 	{/each}
 </div>
 <Model bind:show={openAddReview} width="w-1/2">
-	<div slot="title">Add Event</div>
+	<div slot="title">Add Reviews</div>
 	<div slot="body">
 		<div class="grid grid-cols-12">
 			<div class="col-span-5 h-full">
