@@ -273,7 +273,7 @@
 						}}
 						on:keypress
 					>
-						SignUp
+					Join Now
 					</div>
 					<div
 						class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
@@ -282,7 +282,7 @@
 						}}
 						on:keypress
 					>
-						login
+						Login
 					</div>
 					<hr />
 					<div
@@ -292,7 +292,7 @@
 						}}
 						on:keypress
 					>
-						Are You An Agent ?
+					I am an Agent
 					</div>
 					<div
 						class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
@@ -301,12 +301,12 @@
 						}}
 						on:keypress
 					>
-						Help Center
+					Our Solution
 					</div>
 					<div
 						class="flex justify-between hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 					>
-						Color Mode
+					Dark Mode
 						<LightSwitch />
 					</div>
 				</ListBox>

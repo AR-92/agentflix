@@ -154,7 +154,7 @@
 					}}
 					on:keypress
 				>
-					SignUp
+				Join Now
 				</div>
 				<div
 					class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
@@ -163,7 +163,7 @@
 					}}
 					on:keypress
 				>
-					login
+				Login
 				</div>
 				<hr />
 				<div
@@ -173,7 +173,7 @@
 					}}
 					on:keypress
 				>
-					Are You An Agent ?
+				I am an Agent
 				</div>
 				<div
 					class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
@@ -182,12 +182,12 @@
 					}}
 					on:keypress
 				>
-					Help Center
+				Our Solution
 				</div>
 				<div
 					class="flex justify-between hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 				>
-					Color Mode
+				Dark Mode
 					<LightSwitch />
 				</div>
 			</ListBox>
@@ -196,15 +196,15 @@
 	</div>
 </nav>
 <Model bind:show={openlogin} width="w-1/4">
-	<span slot="title">Log in or sign up</span>
+	<span slot="title">Login or Join Now</span>
 	<div slot="body">
 		<div class="m-4 flex flex-col gap-4">
 			<div>
 				<div class="text-lg font-bold">Welcome to Agentflix</div>
-				<div class="text-sm text-gray-500">Welcome to Agentflix</div>
+				<div class="text-sm text-gray-500">Signing up takes a minute</div>
 			</div>
 			<label class="label text-sm">
-				<span>UserName</span>
+				<span>Email</span>
 				<input
 					class="input rounded-md"
 					title="Input (email)"
