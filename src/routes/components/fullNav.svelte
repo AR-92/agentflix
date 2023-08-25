@@ -196,7 +196,7 @@
 			<input
 				type="search"
 				class="col-span-11 px-4 placeholder:text-sm"
-				placeholder="Search By Name | Location | Language | Brokerage..."
+				placeholder="Search By Name I Location I Brokerage…"
 			/>
 			<button class="variant-filled-primary col-span-1">
 				<img class="w-8 text-white" src="./search-outline.svg" alt="" srcset="" />

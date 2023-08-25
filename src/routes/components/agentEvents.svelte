@@ -59,9 +59,9 @@
 			>
 		</button>
 		<div class="my-auto w-full ml-4">
-			<div class="font-semibold text-lg">Open Housing</div>
+			<div class="font-semibold text-lg">My Open Houses</div>
 			<div class="text-sm text-surface-900 dark:text-surface-100">
-				Following are the house opening events created by this agent
+				Here you can view and attend my open houses
 			</div>
 		</div>
 	</div>
@@ -111,7 +111,7 @@
 
 <Model bind:show={openevent} width="w-1/3">
 	<div slot="title" class="flex justify-between">
-		<div class="my-auto text-left">John Baker Event</div>
+		<div class="my-auto text-left">You’re Invited!</div>
 		<div class="text-sm text-surface-900 dark:text-surface-100 font-normal my-auto text-right">
 			On 06/01/2021 At 12:30 pm
 		</div>
@@ -126,7 +126,11 @@
 				<div class="text-xs my-4 text-surface-900 dark:text-surface-100">
 					Lifestyle Ranch & Home Group Compass 105 Main St. Suite 200A Brenham, TX 77833
 				</div>
-				<button class="btn variant-filled-primary btn-sm float-right px-10">Join</button>
+				<div class="flex gap-2 float-right">
+					<button class="btn variant-filled-primary btn-sm  px-5">I'm coming</button>
+					<button class="btn variant-filled-primary btn-sm  px-5">Maybe</button>
+					<button class="btn variant-filled-primary btn-sm  px-5">Next Time</button>
+				</div>
 			</div>
 		</div>
 	</div>

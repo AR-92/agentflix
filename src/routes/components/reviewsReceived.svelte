@@ -41,9 +41,9 @@
 
 <div class="text-sm card p-4">
 	<div class="w-full my-4 justify-between">
-		<div class="font-semibold text-lg">Reviews</div>
+		<div class="font-semibold text-lg">Reviews Given By Clients</div>
 		<div class="text-sm text-surface-900 dark:text-surface-100">
-			Following are the reviews given by clients that interacted
+			Leave a Review
 		</div>
 		<button
 			on:click={() => {
@@ -58,7 +58,7 @@
 			<div class="bg-primary-200 dark:bg-primary-500 p-4 rounded-lg m-4">
 				<EmptyReviews />
 			</div>
-			<p class="m-auto mt-6 text-xs dark:text-primary-300 text-primary-500">No Reviews Yet Given</p>
+			<p class="m-auto mt-6 text-xs dark:text-primary-300 text-primary-500">No Reviews Yet</p>
 		</div>
 	{/if}
 	{#each reviews as r, i}
@@ -107,22 +107,22 @@
 				
 
 					<label class="label text-sm">
-						<span class="font-semibold text-sm">Reviews</span>
+						<span class="font-semibold text-sm">The Experience</span>
 						<textarea
 							class="textarea placeholder:text-sm"
 							rows="3"
-							placeholder="Add Your Reviews Here !"
+							placeholder="How was your experience?"
 						/>
 					</label>
 					<RangeSlider name="range-slider" bind:value max={5} step={1} ticked>
 						<div class="flex justify-between items-center">
-							<div class="font-semibold text-sm">Give Rating</div>
+							<div class="font-semibold text-sm">Leave a rating</div>
 							<div class="text-xs">{value} / {max}</div>
 						</div>
 					</RangeSlider>
 					<div class="w-full text-right">
 						<button type="button" class="btn variant-filled-primary w-fit btn-sm"
-							>Add An Event</button
+							>Submit Review</button
 						>
 					</div>
 				</div>

@@ -194,7 +194,7 @@
 				<img class="w-4" src="./chatbox.svg" alt="" srcset="" /><span> Lets Chat</span>
 			</button>
 			<a href={agentData.link} target="_blank" class="btn variant-filled-primary btn-sm w-full"
-				>External Listings</a
+				>View My Listings</a
 			>
 		</div>
 	</div>

@@ -67,23 +67,14 @@
 			<div>{data.brokerage}</div>
 		</div>
 		<div>
-			<div class="font-semibold my-2">REAL ESTATE LICENSE</div>
-			<div>{data.license}</div>
-		</div>
-	</div>
-
-	<div class="grid grid-cols-2 gap-4">
-		<div>
-			<div class="font-semibold my-2">DESIGNATIONS</div>
-			<div>{data.designations}</div>
-		</div>
-		<div>
 			<div class="font-semibold my-2">LANGUAGES</div>
 			{#each data.languages as l}
 				<div>{l}</div>
 			{/each}
 		</div>
 	</div>
+
+
 
 	<div class="">
 		<div>
