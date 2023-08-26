@@ -117,7 +117,7 @@
 	<div class="flex gap-2">
 		<a
 			href="./agentlanding"
-			class="m-auto hover:bg-primary-100 px-3 py-1 rounded-full font-bold text-sm cursor-pointer text-gray-400 hover:text-primary-900"
+			class="m-auto max-sm:hidden hover:bg-primary-100 px-3 py-1 rounded-full font-bold text-sm cursor-pointer text-gray-400 hover:text-primary-900"
 		>
 			Are you An Agent ?
 		</a>

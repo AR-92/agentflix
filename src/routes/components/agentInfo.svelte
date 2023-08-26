@@ -1,5 +1,5 @@
 <script>
-	import AgentEvents from '../components/agentEvents.svelte';
+	// import AgentEvents from '../components/agentEvents.svelte';
 
 	var data = {
 		about:
@@ -46,20 +46,8 @@
 			"2021 RealTrends America's Best Real Estate Professionals, 2022 RealTrends America's Best Real Estate Professionals, Brenham Banner Real Estate Professional of the Year, 2020 Coldwell Banker Sterling Award for Top Producing Agent, 2019 Coldwell Banker President's Award for Top Producing Agent"
 	};
 </script>
-<AgentEvents />
-<!-- <div class="text-sm card p-4">
-	<div class="font-semibold mb-2">ABOUT</div>
-	<div>{data.about}</div>
+<!-- <AgentEvents /> -->
 
-	<div class="font-semibold my-2">HOBBIES</div>
-	<div class="grid grid-cols-3 gap-2 py-2">
-		{#each data.hobbies as h}
-			<div>{h}</div>
-		{/each}
-	</div>
-	<div class="font-semibold my-2">EDUCATION</div>
-	<div>{data.education}</div>
-</div> -->
 <div class="text-sm card p-4 mt-4">
 	<div class="grid grid-cols-2 gap-4">
 		<div>
@@ -91,17 +79,4 @@
 		<img src={data.map} alt="" srcset="" />
 	</div>
 </div>
-<!-- <div class="text-sm card p-4 mt-4">
-	<div class="">
-		<div class="font-semibold mb-4">OVERVIEW & AWARDS</div>
-		<div>{data.overview}</div>
-		<div class="font-semibold my-4">SPECIALTIES</div>
-		<div class="grid grid-cols-4 gap-2 gap-2">
-			{#each data.specialties as l}
-				<div class="rounded-full px-4 py-1 bg-primary-500 text-white">{l}</div>
-			{/each}
-		</div>
-		<div class="font-semibold my-4">AWARDS</div>
-		<div>{data.awards}</div>
-	</div>
-</div> -->
+
