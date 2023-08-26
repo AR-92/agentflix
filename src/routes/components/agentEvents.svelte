@@ -109,10 +109,10 @@
 	{/each}
 </div>
 
-<Model bind:show={openevent} width="w-1/3">
-	<div slot="title" class="flex justify-between">
+<Model bind:show={openevent} width="w-fit max-md:mx-5">
+	<div slot="title" class="flex w-full justify-between">
 		<div class="my-auto text-left">You’re Invited!</div>
-		<div class="text-sm text-surface-900 dark:text-surface-100 font-normal my-auto text-right">
+		<div class="text-sm text-surface-900 dark:text-surface-100 font-normal">
 			On 06/01/2021 At 12:30 pm
 		</div>
 	</div>
@@ -135,7 +135,7 @@
 		</div>
 	</div>
 </Model>
-<Model bind:show={openAddEvent} width="w-1/2">
+<Model bind:show={openAddEvent} width="w-fit max-md:mx-5">
 	<div slot="title">Add Event</div>
 	<div slot="body">
 		<div class="grid grid-cols-12">

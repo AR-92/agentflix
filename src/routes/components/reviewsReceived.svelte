@@ -7,30 +7,30 @@
 	let value = 4;
 	let max = 5;
 	var reviews = [
-		// {
-		// 	name: 'John Baker',
-		// 	date: '06/01/2021',
-		// 	ratings: '4.5',
-		// 	comment:
-		// 		'Tonya Currie & her team resides in Washington & Grimes County areas and represent some of the most fascinating properties throughout Texas which have been featured in the Wall Street Journal, Paper City, Houston Luxury, & Houston Chronicle.',
-		// 	type: 'Highly likely to recommend'
-		// },
-		// {
-		// 	name: 'John Baker',
-		// 	date: '06/01/2021',
-		// 	ratings: '4.5',
-		// 	comment:
-		// 		'Tonya Currie & her team resides in Washington & Grimes County areas and represent some of the most fascinating properties throughout Texas which have been featured in the Wall Street Journal, Paper City, Houston Luxury, & Houston Chronicle.',
-		// 	type: 'Highly likely to recommend'
-		// },
-		// {
-		// 	name: 'John Baker',
-		// 	date: '06/01/2021',
-		// 	ratings: '4.5',
-		// 	comment:
-		// 		'Tonya Currie & her team resides in Washington & Grimes County areas and represent some of the most fascinating properties throughout Texas which have been featured in the Wall Street Journal, Paper City, Houston Luxury, & Houston Chronicle.',
-		// 	type: 'Highly likely to recommend'
-		// }
+		{
+			name: 'John Baker',
+			date: '06/01/2021',
+			ratings: '4.5',
+			comment:
+				'Tonya Currie & her team resides in Washington & Grimes County areas and represent some of the most fascinating properties throughout Texas which have been featured in the Wall Street Journal, Paper City, Houston Luxury, & Houston Chronicle.',
+			type: 'Highly likely to recommend'
+		},
+		{
+			name: 'John Baker',
+			date: '06/01/2021',
+			ratings: '4.5',
+			comment:
+				'Tonya Currie & her team resides in Washington & Grimes County areas and represent some of the most fascinating properties throughout Texas which have been featured in the Wall Street Journal, Paper City, Houston Luxury, & Houston Chronicle.',
+			type: 'Highly likely to recommend'
+		},
+		{
+			name: 'John Baker',
+			date: '06/01/2021',
+			ratings: '4.5',
+			comment:
+				'Tonya Currie & her team resides in Washington & Grimes County areas and represent some of the most fascinating properties throughout Texas which have been featured in the Wall Street Journal, Paper City, Houston Luxury, & Houston Chronicle.',
+			type: 'Highly likely to recommend'
+		}
 	];
 	let openAddReview = false;
 
@@ -93,7 +93,7 @@
 		{/if}
 	{/each}
 </div>
-<Model bind:show={openAddReview} width="w-1/2">
+<Model bind:show={openAddReview} width="w-fit max-md:mx-5">
 	<div slot="title">Add Reviews</div>
 	<div slot="body">
 		<div class="grid grid-cols-12">
