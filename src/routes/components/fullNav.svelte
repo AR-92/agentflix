@@ -101,7 +101,9 @@
 
 <div class="top-0 sticky flex flex-col card rounded-none z-40">
 	<nav class="flex p-4 mx-8 justify-between">
-		<Logo />
+		<div>
+			<Logo />
+		</div>
 		<div class="input-group input-group-divider grid-cols-12 w-1/2 max-lg:hidden m-auto">
 			<input
 				type="search"
