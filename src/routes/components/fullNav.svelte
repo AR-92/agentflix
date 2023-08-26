@@ -12,6 +12,8 @@
 	} from '@skeletonlabs/skeleton';
 	import Model from './model.svelte';
 	import FilterIcon from '../icons/filterIcon.svelte';
+	import Logo from './logo.svelte';
+
 	let value = 2;
 	let max = 5;
 	let showSearch = true;
@@ -76,7 +78,6 @@
 	function OpenSignupAgent() {
 		openSignupAgent = true;
 		openSignup = false;
-
 	}
 	let openfilter = false;
 	function Openfilter() {
@@ -100,137 +101,21 @@
 
 <div class="top-0 sticky flex flex-col card rounded-none z-40">
 	<nav class="flex p-4 mx-8 justify-between">
-		<svg
-			on:click={() => {
-				goto('./');
-			}}
-			on:keydown
-			style="width: 150px"
-			class="cursor-pointer dark:text-primary-200 text-primary-500"
-			version="1.0"
-			xmlns="http://www.w3.org/2000/svg"
-			viewBox="0 0 1250.000000 324.000000"
-			preserveAspectRatio="xMidYMid meet"
-		>
-			<g
-				transform="translate(0.000000,324.000000) scale(0.100000,-0.100000)"
-				fill="currentColor"
-				stroke="none"
-			>
-				<path
-					d="M9280 2213 c1 -899 2 -922 60 -1039 42 -86 117 -153 212 -189 97 -36
-   264 -46 382 -21 44 9 80 17 81 19 2 2 -23 342 -24 342 -1 0 -49 0 -107 0 -103
-   0 -106 1 -129 28 -13 15 -29 44 -34 65 -7 24 -11 310 -11 825 l0 787 -215 0
-   -215 0 0 -817z"
-				/>
-				<path
-					d="M8637 3004 c-90 -21 -166 -63 -237 -131 -99 -93 -145 -193 -159 -347
-   l-6 -71 -112 -3 -113 -3 0 -174 0 -175 115 0 115 0 0 -565 0 -565 215 0 215 0
-   -1 518 c0 284 -4 538 -8 565 l-8 47 96 0 96 0 90 166 c50 92 92 170 93 175 2
-   5 -78 9 -177 9 l-181 0 0 58 c0 107 54 152 193 160 l77 5 90 149 90 149 -27
-   10 c-103 39 -341 51 -456 23z"
-				/>
-				<path
-					d="M722 2968 c-27 -47 -162 -305 -162 -312 0 -3 44 -7 98 -8 l99 -3
-   -234 -730 c-128 -401 -249 -778 -267 -838 l-34 -107 228 0 227 0 48 167 c26
-   93 52 183 57 201 l9 32 308 0 308 0 37 -132 c21 -73 46 -163 57 -200 l20 -68
-   239 0 c162 0 240 3 240 11 0 5 -140 454 -310 997 -171 543 -313 995 -316 1005
-   -5 16 -29 17 -319 17 l-313 0 -20 -32z m477 -861 c50 -181 91 -333 91 -338 0
-   -5 -82 -9 -196 -9 -181 0 -195 1 -190 18 26 91 188 640 192 651 2 8 6 12 8 10
-   2 -2 45 -152 95 -332z"
-				/>
-				<path d="M10230 2770 l0 -190 215 0 215 0 0 190 0 190 -215 0 -215 0 0 -190z" />
-				<path
-					d="M7100 2655 l0 -205 -90 0 -90 0 0 -175 0 -175 89 0 89 0 5 -387 c4
-   -417 8 -446 62 -553 29 -57 111 -135 170 -160 116 -50 320 -64 486 -34 l89 17
-   -1 31 c0 17 -8 96 -17 176 l-17 145 -45 -5 c-25 -3 -84 -5 -132 -5 -78 0 -89
-   2 -113 25 -15 14 -32 36 -38 50 -7 16 -14 144 -18 340 -3 173 -10 325 -14 337
-   -7 22 -5 22 81 25 l89 3 92 165 c51 91 93 168 93 173 0 4 -76 7 -170 7 l-170
-   0 0 205 0 205 -215 0 -215 0 0 -205z"
-				/>
-				<path
-					d="M3326 2451 l-160 -58 -41 18 c-202 90 -496 74 -680 -36 -91 -55 -151
-   -119 -196 -210 -77 -157 -72 -321 16 -494 26 -53 113 -149 169 -188 l29 -20
-   -32 -47 c-48 -70 -61 -108 -61 -183 0 -84 22 -134 78 -185 79 -71 148 -91 380
-   -113 230 -20 272 -41 280 -139 4 -45 1 -56 -22 -83 -41 -49 -108 -67 -225 -60
-   -139 7 -291 63 -431 157 -30 20 -60 40 -67 44 -8 4 -46 -39 -108 -121 l-97
-   -128 52 -48 c102 -93 220 -162 370 -214 129 -46 209 -58 360 -57 254 3 413 73
-   520 229 50 72 65 136 65 270 0 114 -2 123 -32 187 -56 118 -141 191 -279 238
-   -33 12 -126 27 -213 36 -160 17 -217 31 -227 59 -9 23 33 64 70 69 17 3 69 10
-   115 16 302 41 491 251 491 546 0 44 -7 103 -15 130 -8 27 -15 52 -15 56 0 3
-   20 31 45 61 l45 56 0 135 c0 102 -3 136 -12 135 -7 0 -85 -26 -172 -58z m-393
-   -313 c85 -43 116 -210 59 -319 -38 -74 -93 -103 -177 -95 -116 12 -174 80
-   -175 207 0 132 48 204 155 230 40 9 91 1 138 -23z"
-				/>
-				<path
-					d="M4255 2456 c-205 -40 -337 -137 -420 -310 -60 -127 -77 -209 -83
-   -406 -7 -264 33 -431 138 -572 102 -138 237 -201 465 -214 283 -16 507 111
-   633 362 l21 41 -160 53 c-91 30 -163 49 -168 44 -4 -5 -22 -28 -40 -52 -45
-   -59 -97 -83 -191 -89 -172 -12 -255 51 -275 207 l-7 55 434 0 433 0 3 100 c6
-   200 -34 408 -104 532 -66 118 -175 199 -319 238 -83 22 -272 28 -360 11z m251
-   -371 c57 -28 91 -77 100 -146 l6 -44 -217 0 -216 0 6 35 c12 64 54 128 99 149
-   60 28 66 29 122 30 35 1 65 -7 100 -24z"
-				/>
-				<path
-					d="M6046 2459 c-61 -15 -160 -67 -216 -115 -28 -24 -55 -44 -60 -44 -4
-   0 -11 17 -14 38 -4 20 -12 54 -17 75 l-10 37 -207 0 -207 0 -91 -173 -92 -172
-   119 -3 119 -3 0 -564 0 -565 215 0 215 0 0 465 c0 398 2 471 16 503 34 83 110
-   131 207 132 69 0 120 -19 165 -63 60 -58 62 -80 62 -584 l0 -453 216 0 215 0
-   -3 543 c-4 517 -5 546 -25 619 -53 187 -147 281 -324 323 -70 16 -221 18 -283
-   4z"
-				/>
-				<path
-					d="M10108 2278 l-95 -173 122 -3 121 -3 -7 -52 c-4 -29 -8 -283 -8 -564
-   l-1 -513 215 0 215 0 0 740 0 740 -234 0 -234 0 -94 -172z"
-				/>
-				<path
-					d="M10868 2418 c46 -75 273 -462 336 -570 l68 -118 -226 -373 c-124
-   -206 -226 -377 -226 -381 0 -3 101 -6 224 -6 l224 0 142 225 c78 124 145 225
-   149 225 4 0 65 -101 136 -225 l130 -225 233 0 234 0 -20 33 c-118 196 -432
-   726 -432 730 0 3 99 165 219 361 l220 356 -252 0 -252 0 -90 -156 c-49 -86
-   -98 -170 -108 -186 l-18 -30 -113 183 -112 184 -243 3 -243 2 20 -32z"
-				/>
-			</g>
-		</svg>
-		<div class="input-group input-group-divider grid-cols-12 w-1/2 m-auto">
+		<Logo />
+		<div class="input-group input-group-divider grid-cols-12 w-1/2 max-lg:hidden m-auto">
 			<input
 				type="search"
 				class="col-span-11 px-4 placeholder:text-sm"
 				placeholder="Search By Name | Location | Brokerage…"
 			/>
-			<button class="variant-filled-primary col-span-1">
-				<img class="w-8 text-white" src="./search-outline.svg" alt="" srcset="" />
+			<button class="variant-filled-primary col-span-1 ">
+				<img class="text-white" src="./search-outline.svg" alt="" srcset="" />
 			</button>
 		</div>
-		<!-- <img style="width: 150px" class="cursor-pointer" src="./Agentflix.svg" alt="" /> -->
-		<!-- {#if showSearch}
-			<div
-				on:click={search}
-				on:keypress
-				class="border flex rounded-full pl-4 hover:shadow-md shadow-gray-300/50 cursor-pointer"
-			>
-				<div class="border-r px-3 font-semibold m-auto">Explore Brokerages</div>
-				<div class="border-r px-3 font-semibold m-auto">by Location</div>
-				<div class="pl-3 pr-1 m-auto flex">
-					<div class="m-auto font-semibold">by Experience</div>
-					<div class="variant-filled-primary p-2 rounded-full ml-4">
-						<img class="w-4 text-white" src="./search-outline.svg" alt="" srcset="" />
-					</div>
-				</div>
-			</div>
-		{:else}
-			<div class="flex gap-4">
-				<div
-					class="p-2 border-b-2 border-primary-500 font-semibold text-primary-700 cursor-pointer"
-				>
-					Connecting With Great People
-				</div>
-			</div>
-		{/if} -->
 		<div class="flex gap-2">
 			<a
 				href="./agentlanding"
-				class="m-auto dark:hover:bg-primary-100 hover:bg-primary-300 px-3 py-1 rounded-full font-bold text-sm cursor-pointer text-gray-400 hover:text-primary-600"
+				class="m-auto dark:hover:bg-primary-100 hover:bg-primary-300 px-3 py-1 rounded-full font-bold text-sm cursor-pointer text-gray-400 hover:text-primary-600 max-lg:hidden"
 			>
 				Are you An Agent ?
 			</a>
@@ -273,7 +158,7 @@
 						}}
 						on:keypress
 					>
-					Join Now
+						Join Now
 					</div>
 					<div
 						class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
@@ -292,7 +177,7 @@
 						}}
 						on:keypress
 					>
-					I am an Agent
+						I am an Agent
 					</div>
 					<div
 						class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
@@ -301,12 +186,12 @@
 						}}
 						on:keypress
 					>
-					Our Solution
+						Our Solution
 					</div>
 					<div
 						class="flex justify-between hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 					>
-					Dark Mode
+						Dark Mode
 						<LightSwitch />
 					</div>
 				</ListBox>
@@ -314,7 +199,6 @@
 			</div>
 		</div>
 	</nav>
-	{#if showSearch}
 		<hr />
 		<nav class="flex gap-2 px-2 justify-around">
 			<button
@@ -389,69 +273,12 @@
 						stroke-width="32"
 					/></svg
 				>
-				<!-- <img class="w-10" src="./options-outline.svg" alt="" srcset="" /> -->
-				<!-- <div class="">Filter</div> -->
+			
 			</button>
 		</nav>
-	{:else}
-		<nav class="">
-			<div class="flex gap-2 p-2 justify-around">
-				{#if showSearchBox}
-					<div
-						class="border flex rounded-full pl-4 mb-4 h-16 hover:shadow-md shadow-gray-300/50 cursor-pointer"
-					>
-						<div class="border-r px-2 m-auto">
-							<input type="search" class="rounded-full w-[400px] input" placeholder="Search..." />
-						</div>
 
-						<div class="pl-3 pr-1 m-auto flex">
-							<div class="bg-primary-500 p-4 rounded-full flex font-bold">
-								<div class="text-sm text-gray-500 text-white mr-4">Search</div>
-								<img class="w-4 text-white" src="./search-outline.svg" alt="" srcset="" />
-							</div>
-						</div>
-					</div>
-				{:else}
-					<div
-						class="border flex rounded-full pl-4 mb-4 h-16 hover:shadow-md shadow-gray-300/50 cursor-pointer"
-					>
-						<div class="border-r px-10 m-auto">
-							<div class="font-bold">Explore Brokerages</div>
-							<div class="text-sm text-gray-500">Search Brokerages</div>
-						</div>
-						<div class="border-r px-10 m-auto">
-							<div class="font-bold">Explore by Location</div>
-							<div class="text-sm text-gray-500">Search Location</div>
-						</div>
-						<div class="border-r px-10 m-auto">
-							<div class="font-bold">Explore by Experience</div>
-							<div class="text-sm text-gray-500">Search Experience</div>
-						</div>
-
-						<div class="pl-3 pr-1 m-auto flex">
-							<div
-								class="bg-primary-500 p-4 rounded-full flex font-bold"
-								on:click={seachBox}
-								on:keypress
-							>
-								<div class="text-sm text-gray-500 text-white mr-4">Search</div>
-								<img class="w-4 text-white" src="./search-outline.svg" alt="" srcset="" />
-							</div>
-						</div>
-					</div>
-				{/if}
-			</div>
-			<hr />
-			<!-- <div class="backdrop-opacity-10 bg-black/50 h-screen" /> -->
-			<div
-				on:click={search}
-				on:keypress
-				class="fixed bg-black bg-opacity-20 overflow-y-auto h-screen w-full"
-			/>
-		</nav>
-	{/if}
 </div>
-<Model bind:show={openlogin} width="w-1/4">
+<Model bind:show={openlogin} width="w-1/4 max-lg:w-1/2">
 	<span slot="title">Login</span>
 	<div slot="body">
 		<div class="m-4 flex flex-col gap-4">
@@ -555,8 +382,8 @@
 		</div>
 	</div>
 </Model>
-<Model bind:show={openSignup} width="w-1/4">
-	<span slot="title">SignUp</span>
+<Model bind:show={openSignup} width="w-1/4 max-lg:w-1/2">
+	<span slot="title">Join Now</span>
 	<div slot="body">
 		<div class="m-4 flex flex-col gap-4">
 			<div>
@@ -592,9 +419,13 @@
 				<p>Stay signed in for a week</p>
 			</label>
 			<button type="button" class="btn variant-filled-primary w-full rounded-md">Continue</button>
-			<button type="button" on:click={() => {
-				OpenSignupAgent();
-			}} class="btn variant-filled-primary w-full rounded-md">SignUp as an Agent</button>
+			<button
+				type="button"
+				on:click={() => {
+					OpenSignupAgent();
+				}}
+				class="btn variant-filled-primary w-full rounded-md">SignUp as an Agent</button
+			>
 		</div>
 		<div class="relative flex py-2 items-center">
 			<div class="flex-grow border-t border-gray-300" />
@@ -662,7 +493,7 @@
 		</div>
 	</div>
 </Model>
-<Model bind:show={openSignupAgent} width="w-1/3">
+<Model bind:show={openSignupAgent} width="w-1/3 max-lg:w-fit max-lg:mx-10">
 	<span slot="title">Sign up</span>
 	<div slot="body">
 		<div class="p-4">
@@ -679,7 +510,6 @@
 							>next</u
 						> to proceed to the next step.
 					</p>
-					<!-- <svelte:fragment slot="navigation"><button class="btn variant-ghost-error">Abort</button></svelte:fragment> -->
 				</Step>
 				<Step>
 					<svelte:fragment slot="header">Upload Your Profile Photo.</svelte:fragment>
@@ -688,22 +518,6 @@
 					</p>
 					<FileDropzone class="" name="files" />
 				</Step>
-				<!-- <Step {locked}>
-					<svelte:fragment slot="header">A Locked Step.</svelte:fragment>
-					<p>
-						This Step component uses the <code class="code">locked</code> property to prevent progress.
-						This is ideal for multi-step forms, such as registration. For now we'll simulate a successful
-						validation condition using the toggle below.
-					</p>
-					<aside class="alert variant-ghost-warning">
-						<div class="alert-message">
-							<p>This step is <u>{locked ? 'Locked' : 'Unlocked'}</u></p>
-						</div>
-						<div class="alert-actions">
-							<SlideToggle name="locked-state" bind:checked={locked} active="bg-warning-500" />
-						</div>
-					</aside>
-				</Step> -->
 				<Step>
 					<svelte:fragment slot="header">Enter Your Display Name and DOB.</svelte:fragment>
 					<p>
@@ -884,23 +698,19 @@
 		</div>
 	</div>
 </Model>
-<Model width="w-1/2" bind:show={openfilter}>
+<Model width="w-1/2  max-lg:w-fit max-lg:mx-10" bind:show={openfilter}>
 	<div slot="title">Filter</div>
 	<div slot="body">
 		<div class="grid grid-cols-12 p-4 h-[500px] overflow-y-auto">
-			<div class="col-span-6 m-6">
+			<div class="col-span-6 m-6 max-md:col-span-12">
 				<div
 					class="p-4 bg-primary-200 dark:bg-primary-500 p-4 rounded-lg grid place-items-center h-full"
 				>
 					<FilterIcon />
 				</div>
 			</div>
-			<div class="col-span-6 p-4">
+			<div class="col-span-6 p-4 max-md:col-span-12">
 				<div class="flex flex-col gap-2">
-					<!-- <label class="label text-sm">
-						<span class="font-semibold">Brokerage</span>
-						<input class="input rounded-md" type="text" placeholder="Select Brokerage"/>
-					</label> -->
 					<label class="label">
 						<span class="font-semibold text-sm">Brokerage</span>
 						<select class="select">
@@ -911,25 +721,12 @@
 							<option value="5">Brokerage 5</option>
 						</select>
 					</label>
-					<!-- <label class="label text-sm"> -->
-					<!-- <span>Rating</span> -->
-					<!-- <Ratings value={2.5} max={5}>
-							<svelte:fragment slot="empty"><Rating type="empty" /></svelte:fragment>
-							<svelte:fragment slot="half"><Rating type="half" /></svelte:fragment>
-							<svelte:fragment slot="full"><Rating type="full" /></svelte:fragment>
-						</Ratings> -->
 					<RangeSlider name="range-slider" bind:value max={5} step={1} ticked>
 						<div class="flex justify-between items-center">
 							<div class="font-semibold text-sm">Select Rating</div>
 							<div class="text-xs">{value} / {max}</div>
 						</div>
 					</RangeSlider>
-					<!-- <input class="input" type="range" /> -->
-					<!-- </label> -->
-					<!-- <label class="label text-sm">
-						<span class="font-semibold">Location</span>
-						<input class="input rounded-md" type="text" placeholder="Select Location"/>
-					</label> -->
 					<label class="label">
 						<span class="font-semibold text-sm">Location</span>
 						<select class="select">
@@ -940,10 +737,6 @@
 							<option value="5">Location 5</option>
 						</select>
 					</label>
-					<!-- <label class="label text-sm">
-						<span class="font-semibold">Language</span>
-						<input class="input rounded-md" type="text" placeholder="Select Language"/>
-					</label> -->
 					<label class="label">
 						<span class="font-semibold">Language</span>
 						<select class="select">
@@ -964,16 +757,6 @@
 						>Apply Filter</button
 					>
 				</div>
-				<!-- <div class="font-semibold">Brokerage</div> -->
-				<!-- <div class="text-primary-500 dark:text-surface-300">
-					<Ratings value={2.5} max={5}>
-						<svelte:fragment slot="empty"><Rating type="empty" /></svelte:fragment>
-						<svelte:fragment slot="half"><Rating type="half" /></svelte:fragment>
-						<svelte:fragment slot="full"><Rating type="full" /></svelte:fragment>
-					</Ratings>
-					<hr class="my-6" />
-					<div class="flex" />
-				</div> -->
 			</div>
 		</div>
 	</div>

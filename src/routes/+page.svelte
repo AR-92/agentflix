@@ -4,7 +4,7 @@
 	import AgentCard from './components/agentCard.svelte';
 	import Footer from './components/compressedFooter.svelte';
 	export let data;
-	console.log(data)
+	console.log(data);
 	const agentsList = [
 		{
 			dp: './t1.jpg',
@@ -63,13 +63,8 @@
 			number: '334 585-0748'
 		}
 	];
-
 </script>
-<!-- <ul>
-    {#each data.countries as country}
-      <li>{country.name}</li>
-    {/each}
-  </ul> -->
+
 <FullNav />
 {#if agentsList.length < 1}
 	<div class="w-full h-[500px] grid place-items-center">
@@ -78,7 +73,7 @@
 		</div>
 	</div>
 {:else}
-	<div class="grid grid-cols-5 gap-6 m-8 pb-16">
+	<div class="grid grid-cols-5 max-sm:grid-cols-2 max-md:grid-cols-3 max-lg:grid-cols-4 gap-6 m-8 pb-16">
 		{#each agentsList as agent}
 			<AgentCard {...agent} />
 		{/each}
