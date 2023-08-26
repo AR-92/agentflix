@@ -67,9 +67,9 @@
 	<div class="">
 		<div>
 			<div class="font-semibold my-2">SERVICE AREAS</div>
-			<div class="grid grid-cols-4 gap-2">
+			<div class="grid grid-cols-4 max-md:grid-cols-2 gap-2">
 				{#each data.serviceAreas as l}
-					<div class="rounded-full px-4 py-1 bg-primary-500 text-white">{l}</div>
+					<div class="rounded-full px-2 py-1 bg-primary-500 text-white text-center">{l}</div>
 				{/each}
 			</div>
 		</div>
