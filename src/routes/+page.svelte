@@ -8,7 +8,7 @@
 	const agentsList = [
 		{
 			dp: './t1.jpg',
-			agentName: 'John Baker',
+			agentName: ' Baker',
 			ratings: 4.48,
 			agency: 'Baker Realty INC',
 			sales: 42,
