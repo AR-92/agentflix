@@ -6,32 +6,67 @@
 <MiniNav />
 <main class="flex flex-col gap-4 p-10">
 	<h2 class="h3 font-medium">Privacy Policy</h2>
-	<p>
-		Our Privacy Policy explains what personal information we collect, how we use personal
-		information, how personal information is shared, and privacy rights.
-	</p>
-	<p>
-		Donec id elit non mi porta gravida at eget metus. Praesent commodo cursus magna, vel scelerisque
-		nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit
-		amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam quis risus
-		eget urna mollis ornare vel eu leo. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-	</p>
-	<p>
-		Sed posuere consectetur est at lobortis. Maecenas faucibus mollis interdum. Cum sociis natoque
-		penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec id elit non mi porta
-		gravida at eget metus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cum sociis
-		natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-	</p>
-	<p>
-		Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas sed diam eget risus varius
-		blandit sit amet non magna. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-		Nullam id dolor id nibh ultricies vehicula ut id elit. Donec ullamcorper nulla non metus auctor
-		fringilla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porta sem malesuada
-		magna mollis euismod. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nulla
-		vitae elit libero, a pharetra augue. Curabitur blandit tempus porttitor. Cras justo odio,
-		dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor
-		mauris condimentum nibh, ut fermentum massa justo sit amet risus. Aenean eu leo quam.
-		Pellentesque ornare sem.
-	</p>
+	<p class="dark:text-primary-100 text-sm text-primary-500">Last Updated: August 30, 2023</p>
+	<div class="flex flex-col gap-6">
+		<p>
+			Welcome to Agentflix! This privacy policy outlines how we collect, use, and protect your
+			personal information when you interact with our website and services.
+		</p>
+		<div>
+			<p class="font-semibold">Information We Collect</p>
+			<p>
+				We may collect personal information, such as your name, email address, contact details, and
+				location, when you register on our platform, subscribe to our services, or interact with our
+				website.
+			</p>
+		</div>
+		<div>
+			<p class="font-semibold">How We Use Your Information</p>
+			<p>
+				We use the collected information to provide and improve our services, respond to inquiries,
+				send updates, and personalize your experience. We may also use non-identifiable data for
+				analytics and marketing purposes.
+			</p>
+		</div>
+		<div>
+			<p class="font-semibold">Data Security</p>
+			<p>
+				We take security measures to protect your personal information from unauthorized access,
+				alteration, or disclosure. However, no method of transmission over the internet or
+				electronic storage is completely secure.
+			</p>
+		</div>
+		<div>
+			<p class="font-semibold">Sharing Your Information</p>
+			<p>
+				We do not sell, trade, or rent your personal information to third parties. We may share data
+				with trusted service providers who assist us in operating our website and services, but they
+				are required to keep the information confidential.
+			</p>
+		</div>
+		<div>
+			<p class="font-semibold">Cookies and Tracking</p>
+			<p>
+				We use cookies and similar technologies to enhance your experience, analyze trends, and
+				administer the website. You can manage your preferences for cookies in your browser settings
+			</p>
+		</div>
+		<div>
+			<p class="font-semibold">Your Choices</p>
+			<p>
+				You can choose to opt-out of certain data collection and processing. You have the right to
+				access, correct, and delete your personal information. Please contact us for assistance.
+			</p>
+		</div>
+		<div>
+			<p class="font-semibold">Changes to Privacy Policy</p>
+			<p>
+				This policy may be updated periodically to reflect changes in our practices and services. We
+				encourage you to review this page for the latest information. By using Agentflix, you
+				consent to our privacy policy. If you have any questions or concerns, please reach out to us
+				and we will get back to you soon.
+			</p>
+		</div>
+	</div>
 </main>
 <Footer />
