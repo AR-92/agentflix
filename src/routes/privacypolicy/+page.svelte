@@ -4,7 +4,7 @@
 </script>
 
 <MiniNav />
-<main class="flex flex-col gap-4 p-10">
+<main class="flex flex-col gap-4 mx-44 my-16 p-8 card">
 	<h2 class="h3 font-medium">Privacy Policy</h2>
 	<p class="dark:text-primary-100 text-sm text-primary-500">Last Updated: August 30, 2023</p>
 	<div class="flex flex-col gap-6">
