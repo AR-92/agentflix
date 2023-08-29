@@ -55,6 +55,85 @@
 		<div class="col-span-5 bg-gray-200 max-md:hidden" style="height: 500px;" />
 	</div>
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
+		<div class="col-span-12">
+			<div class="text-5xl max-md:text-4xl mt-10 font-semibold">
+				A Comprehensive Analysis: Our Website Service Compared to Competitors
+			</div>
+			<p class="mt-16">
+				Agentflix makes marketing more cost effective and easy than ever thought possible. By
+				combining and improving on existing techniques, we incorporate all our features in one
+				dedicated space online free for users to explore. It's more efficient than billboards and
+				flyers!
+			</p>
+<!-- Responsive Container (recommended) -->
+<div class="table-container mt-16 " >
+	<!-- Native Table Element -->
+	<table class="table table-hover ">
+		<thead>
+			<tr>
+				<th>Traditional Marketing</th>
+				<th>What Top Agents Pay on
+					Average</th>
+				<th>Agentflix</th>
+			</tr>
+		</thead>
+
+		<tbody >
+				<tr>
+					<td>Calendly</td>
+					<td>$60/month</td>
+					<td>Included</td>
+				</tr>
+				<tr>
+					<td>Website SEO</td>
+					<td>$1500/month</td>
+					<td>Included</td>
+				</tr>
+				<tr>
+					<td>Social Media Marketing</td>
+					<td>$500/month</td>
+					<td>Included</td>
+				</tr>
+				<tr>
+					<td>Google Ads</td>
+					<td>$1500/month</td>
+					<td>Included</td>
+				</tr>
+				<tr>
+					<td>Digital Marketing Management</td>
+					<td>$1000/month</td>
+					<td>Included</td>
+				</tr>
+				<tr>
+					<td>CRM</td>
+					<td>$80/month</td>
+					<td>Coming Soon</td>
+				</tr>
+				<tr>
+					<td>Mailchimp</td>
+					<td>$60/month</td>
+					<td>Coming Soon</td>
+				</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th >Calculated Total</th>
+				<td>$4700/month</td>
+				<td>$$64.99/month</td>
+			</tr>
+		</tfoot>
+	</table>
+</div>
+
+			<p class="mt-16">
+				Agentflix makes marketing more cost effective and easy than ever thought possible. By
+				combining and improving on existing techniques, we incorporate all our features in one
+				dedicated space online free for users to explore. It's more efficient than billboards and
+				flyers!
+			</p>
+		</div>
+	</div>
+	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
 		<div class="col-span-7">
 			<div class="text-5xl max-md:text-4xl mt-10 font-semibold">
 				The modern way to market yourself in real estate
