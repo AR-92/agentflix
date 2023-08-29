@@ -57,9 +57,9 @@
 			<div>{data.brokerage}</div>
 		</div>
 		<div>
-			<div class="font-semibold my-2">LANGUAGES</div>
-			{#each data.languages as l}
-				<div>{l}</div>
+			<div class="font-semibold my-2 mx-36">LANGUAGES</div>
+			{#each data.languages as lang}
+				<div class="mx-36">{lang}</div>
 			{/each}
 		</div>
 	</div>
