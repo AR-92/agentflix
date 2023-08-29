@@ -148,19 +148,19 @@
 	</div>
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12 text-center">
 		<div class="col-span-3">
-			<div class="text-lg font-bold">100% Free</div>
+			<div class="text-lg font-bold text-3xl">100% Free</div>
 			<p class="">Users enjoy connecting with you for free with no ads</p>
 		</div>
 		<div class="col-span-3">
-			<div class="text-lg font-bold">6+</div>
+			<div class="text-lg font-bold text-3xl">6+</div>
 			<p class="">Multiple online marketing features all combined into one site</p>
 		</div>
 		<div class="col-span-3">
-			<div class="text-lg font-bold">94%</div>
+			<div class="text-lg font-bold text-3xl">94%</div>
 			<p class="">Amount saved compared to the average marketing budget per month</p>
 		</div>
 		<div class="col-span-3">
-			<div class="text-lg font-bold">1000+</div>
+			<div class="text-lg font-bold text-3xl">1000+</div>
 			<p class="">Active users within the first week of launch looking for agents</p>
 		</div>
 	</div>
@@ -184,15 +184,15 @@
 		<div class="col-span-3">
 			<div class="flex flex-col gap-12 my-20">
 				<div>
-					<div class="font-semibold text-2xl">Simpler connections</div>
+					<div class="font-semibold text-3xl">Simpler connections</div>
 					<p>We make it easy for your brokerage to bring in new business</p>
 				</div>
 				<div>
-					<div class="font-semibold text-2xl">88%</div>
+					<div class="font-semibold text-3xl">88%</div>
 					<p>More efficient than traditional outdated marketing</p>
 				</div>
 				<div>
-					<div class="font-semibold text-2xl">Inbound System</div>
+					<div class="font-semibold text-3xl">Inbound System</div>
 					<p>Agentflix is an inbound system for Agents to save time and money</p>
 				</div>
 			</div>
@@ -238,17 +238,17 @@
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12 text-center">
 		<div class="col-span-4">
 			<div class=" bg-gray-200 h-72 mb-10" />
-			<div class="text-lg font-bold mb-2">Open houses</div>
+			<div class="text-3xl font-bold mb-2">Open houses</div>
 			<p class="">Fill up open houses easier than ever before</p>
 		</div>
 		<div class="col-span-4">
 			<div class=" bg-gray-200 h-72 mb-10" />
-			<div class="text-lg font-bold mb-2">Busier Schedule</div>
+			<div class="text-3xl font-bold mb-2">Busier Schedule</div>
 			<p class="">An easy way for clients to find time to talk to you</p>
 		</div>
 		<div class="col-span-4">
 			<div class=" bg-gray-200 h-72 mb-10" />
-			<div class="text-lg font-bold mb-2">Ondisplay Profile</div>
+			<div class="text-3xl font-bold mb-2">Ondisplay Profile</div>
 			<p class="">Let your professional and personal side shine through</p>
 		</div>
 	</div>
