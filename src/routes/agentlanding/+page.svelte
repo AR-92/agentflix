@@ -57,7 +57,7 @@
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full text-center">
 		<div class="col-span-12">
 			<div class="text-5xl max-md:text-4xl mt-10 font-semibold">
-				A Comprehensive Analysis: Our Website Service Compared to Competitors
+				Comprehensive Analysis: Our Website Service Compared to Competitors
 			</div>
 			<p class="mt-16">
 				Agentflix makes marketing more cost effective and easy than ever thought possible. By
