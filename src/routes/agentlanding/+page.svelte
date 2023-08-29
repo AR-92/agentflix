@@ -2,7 +2,7 @@
 	import FooterLinks from '../components/footerLinks.svelte';
 	import Logo from '../components/logo.svelte';
 </script>
-
+<!-- <style></style> -->
 <div class="pb-20 px-10">
 	<div class="flex px-4 font-semibold justify-between">
 		<div class="m-8">
