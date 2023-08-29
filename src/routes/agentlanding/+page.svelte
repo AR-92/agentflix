@@ -54,7 +54,7 @@
 		</div>
 		<div class="col-span-5 bg-gray-200 max-md:hidden" style="height: 500px;" />
 	</div>
-	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
+	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full text-center">
 		<div class="col-span-12">
 			<div class="text-5xl max-md:text-4xl mt-10 font-semibold">
 				A Comprehensive Analysis: Our Website Service Compared to Competitors
@@ -66,9 +66,9 @@
 				flyers!
 			</p>
 <!-- Responsive Container (recommended) -->
-<div class="table-container mt-16 " >
+<div class="table-container mt-16 w-2/3 mx-auto" >
 	<!-- Native Table Element -->
-	<table class="table table-hover ">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>Traditional Marketing</th>
@@ -81,45 +81,45 @@
 		<tbody >
 				<tr>
 					<td>Calendly</td>
-					<td>$60/month</td>
+					<td><b>$60</b>/month</td>
 					<td>Included</td>
 				</tr>
 				<tr>
 					<td>Website SEO</td>
-					<td>$1500/month</td>
+					<td><b>$1500</b>/month</td>
 					<td>Included</td>
 				</tr>
 				<tr>
 					<td>Social Media Marketing</td>
-					<td>$500/month</td>
+					<td><b>$500</b>/month</td>
 					<td>Included</td>
 				</tr>
 				<tr>
 					<td>Google Ads</td>
-					<td>$1500/month</td>
+					<td><b>$1500</b>/month</td>
 					<td>Included</td>
 				</tr>
 				<tr>
 					<td>Digital Marketing Management</td>
-					<td>$1000/month</td>
+					<td><b>$1000</b>/month</td>
 					<td>Included</td>
 				</tr>
 				<tr>
 					<td>CRM</td>
-					<td>$80/month</td>
+					<td><b>$80</b>/month</td>
 					<td>Coming Soon</td>
 				</tr>
 				<tr>
 					<td>Mailchimp</td>
-					<td>$60/month</td>
+					<td><b>$60</b>/month</td>
 					<td>Coming Soon</td>
 				</tr>
 		</tbody>
 		<tfoot>
 			<tr>
 				<th >Calculated Total</th>
-				<td>$4700/month</td>
-				<td>$$64.99/month</td>
+				<th>$4700/month</th>
+				<th>$$64.99/month</th>
 			</tr>
 		</tfoot>
 	</table>
