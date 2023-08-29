@@ -71,10 +71,10 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th>Traditional Marketing</th>
-				<th>What Top Agents Pay on
+				<th class='text-center'>Traditional Marketing</th>
+				<th class='text-center'>What Top Agents Pay on
 					Average</th>
-				<th>Agentflix</th>
+				<th class='text-center'>Agentflix</th>
 			</tr>
 		</thead>
 
@@ -117,9 +117,9 @@
 		</tbody>
 		<tfoot>
 			<tr>
-				<th >Calculated Total</th>
-				<th>$4700/month</th>
-				<th>$$64.99/month</th>
+				<th class='text-center' >Calculated Total</th>
+				<th class='text-center'>$4700/month</th>
+				<th class='text-center'>$$64.99/month</th>
 			</tr>
 		</tfoot>
 	</table>
