@@ -1,4 +1,6 @@
 <script>
+	import { supabase } from '$lib/supabaseClient';
+
 	import { goto } from '$app/navigation';
 	import {
 		LightSwitch,
@@ -7,19 +9,15 @@
 		ListBox,
 		RangeSlider,
 		Stepper,
-		Step,
-		SlideToggle
+		Step
 	} from '@skeletonlabs/skeleton';
 	import Model from './model.svelte';
 	import FilterIcon from '../icons/filterIcon.svelte';
 	import Logo from './logo.svelte';
-
+	let username = 'electro.electra@gmail.com';
+	let password = '5p#2d43tMaL6';
 	let value = 2;
 	let max = 5;
-	let showSearch = true;
-	let showSearchBox = false;
-	// Local
-	let locked = true;
 	const filterList = [
 		'All',
 		'Alberta',
@@ -44,13 +42,7 @@
 		placement: 'bottom',
 		closeQuery: '.listbox-item'
 	};
-	function search() {
-		showSearch = !showSearch;
-		showSearchBox = false;
-	}
-	function seachBox() {
-		showSearchBox = !showSearchBox;
-	}
+
 	let elemList;
 
 	function multiColumnLeft() {
@@ -95,8 +87,23 @@
 	}
 	function onCompleteHandler(e) {
 		console.log('event:complete', e.detail);
-		// alert('Complete!');
 	}
+
+	const handle_signup = async () => {
+		console.log(username, password);
+		// const { user, error } = await supabase.auth.signUp({
+		// 	username,
+		// 	password
+		// });
+		// console.log(user,error,"return")
+		// await supabase.auth.signUp({
+		// 	email,
+		// 	password,
+		// 	options: {
+		// 		emailRedirectTo: `http://localhost:5173/profile`
+		// 	}
+		// });
+	};
 </script>
 
 <div class="top-0 sticky flex flex-col card rounded-none z-40">
@@ -110,7 +117,7 @@
 				class="col-span-11 px-4 placeholder:text-sm"
 				placeholder="Search By Name | Location | Brokerage…"
 			/>
-			<button class="variant-filled-primary col-span-1 ">
+			<button class="variant-filled-primary col-span-1">
 				<img class="text-white" src="./search-outline.svg" alt="" srcset="" />
 			</button>
 		</div>
@@ -201,84 +208,82 @@
 			</div>
 		</div>
 	</nav>
-		<hr />
-		<nav class="flex gap-2 px-2 justify-around">
-			<button
-				type="button"
-				class="px-4 text-2xl text-primary-500 dark:text-primary-100 font-bold"
-				on:click={multiColumnLeft}
-			>
-				«
-			</button>
-			<div
-				bind:this={elemList}
-				class="snap-x snap-mandatory scroll-px-4 scroll-smooth flex gap-4 overflow-hidden"
-			>
-				{#each filterList as item}
-					<button
-						class="snap-start shrink-0 p-2 hover:border-b-2 hover:border-primary-500 hover:text-primary-700 dark:hover:border-primary-200 dark:hover:text-primary-200 cursor-pointer"
-					>
-						{item}
-					</button>
-				{/each}
-			</div>
-			<button
-				type="button"
-				class="px-4 text-2xl text-primary-500 dark:text-primary-100 font-bold"
-				on:click={multiColumnRight}
-			>
-				»
-			</button>
-			<button
-				class="btn btn-sm m-1"
-				on:click={() => {
-					Openfilter();
-				}}
-			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					class="ionicon w-6 text-primary-500 dark:text-primary-100"
-					viewBox="0 0 512 512"
-					><path
-						fill="currentColor"
-						stroke="currentColor"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="32"
-						d="M368 128h80M64 128h240M368 384h80M64 384h240M208 256h240M64 256h80"
-					/><circle
-						cx="336"
-						cy="128"
-						r="32"
-						fill="none"
-						stroke="currentColor"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="32"
-					/><circle
-						cx="176"
-						cy="256"
-						r="32"
-						fill="none"
-						stroke="currentColor"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="32"
-					/><circle
-						cx="336"
-						cy="384"
-						r="32"
-						fill="none"
-						stroke="currentColor"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="32"
-					/></svg
+	<hr />
+	<nav class="flex gap-2 px-2 justify-around">
+		<button
+			type="button"
+			class="px-4 text-2xl text-primary-500 dark:text-primary-100 font-bold"
+			on:click={multiColumnLeft}
+		>
+			«
+		</button>
+		<div
+			bind:this={elemList}
+			class="snap-x snap-mandatory scroll-px-4 scroll-smooth flex gap-4 overflow-hidden"
+		>
+			{#each filterList as item}
+				<button
+					class="snap-start shrink-0 p-2 hover:border-b-2 hover:border-primary-500 hover:text-primary-700 dark:hover:border-primary-200 dark:hover:text-primary-200 cursor-pointer"
 				>
-			
-			</button>
-		</nav>
-
+					{item}
+				</button>
+			{/each}
+		</div>
+		<button
+			type="button"
+			class="px-4 text-2xl text-primary-500 dark:text-primary-100 font-bold"
+			on:click={multiColumnRight}
+		>
+			»
+		</button>
+		<button
+			class="btn btn-sm m-1"
+			on:click={() => {
+				Openfilter();
+			}}
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="ionicon w-6 text-primary-500 dark:text-primary-100"
+				viewBox="0 0 512 512"
+				><path
+					fill="currentColor"
+					stroke="currentColor"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="32"
+					d="M368 128h80M64 128h240M368 384h80M64 384h240M208 256h240M64 256h80"
+				/><circle
+					cx="336"
+					cy="128"
+					r="32"
+					fill="none"
+					stroke="currentColor"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="32"
+				/><circle
+					cx="176"
+					cy="256"
+					r="32"
+					fill="none"
+					stroke="currentColor"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="32"
+				/><circle
+					cx="336"
+					cy="384"
+					r="32"
+					fill="none"
+					stroke="currentColor"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="32"
+				/></svg
+			>
+		</button>
+	</nav>
 </div>
 <Model bind:show={openlogin} width="w-1/4 max-lg:w-1/2">
 	<span slot="title">Login</span>
@@ -387,48 +392,54 @@
 <Model bind:show={openSignup} width="w-1/4 max-lg:w-1/2">
 	<span slot="title">Join Now</span>
 	<div slot="body">
-		<div class="m-4 flex flex-col gap-4">
-			<div>
-				<div class="text-lg font-bold">Welcome to Agentflix</div>
-				<div class="text-sm text-gray-500">Welcome to Agentflix</div>
-			</div>
-			<label class="label text-sm">
-				<span>UserName</span>
-				<input
-					class="input rounded-md"
-					title="Input (email)"
-					type="email"
-					placeholder="john@example.com"
-					autocomplete="email"
-				/>
-			</label>
-
-			<label class="label text-sm">
-				<div class="flex justify-between">
-					<span>Password</span>
-					<span class="text-primary-500">Forgot your Password ?</span>
+		<form on:submit|preventDefault={handle_signup}>
+			<div class="m-4 flex flex-col gap-4">
+				<div>
+					<div class="text-lg font-bold">Welcome to Agentflix</div>
+					<div class="text-sm text-gray-500">Welcome to Agentflix</div>
 				</div>
-				<!-- (input here) -->
-				<input
-					class="input rounded-md"
-					title="Input (password)"
-					type="password"
-					placeholder="password"
-				/>
-			</label>
-			<label class="flex items-center space-x-2 text-sm">
-				<input class="checkbox" type="checkbox" />
-				<p>Stay signed in for a week</p>
-			</label>
-			<button type="button" class="btn variant-filled-primary w-full rounded-md">Continue</button>
-			<button
-				type="button"
-				on:click={() => {
-					OpenSignupAgent();
-				}}
-				class="btn variant-filled-primary w-full rounded-md">SignUp as an Agent</button
-			>
-		</div>
+				<label class="label text-sm">
+					<span>UserName</span>
+					<input
+						bind:value={username}
+						name="username"
+						class="input rounded-md"
+						title="Input (email)"
+						type="email"
+						placeholder="john@example.com"
+						autocomplete="email"
+					/>
+				</label>
+
+				<label class="label text-sm">
+					<div class="flex justify-between">
+						<span>Password</span>
+						<span class="text-primary-500">Forgot your Password ?</span>
+					</div>
+					<!-- (input here) -->
+					<input
+						bind:value={password}
+						name="password"
+						class="input rounded-md"
+						title="Input (password)"
+						type="password"
+						placeholder="password"
+					/>
+				</label>
+				<label class="flex items-center space-x-2 text-sm">
+					<input class="checkbox" type="checkbox" />
+					<p>Stay signed in for a week</p>
+				</label>
+				<button type="submit" class="btn variant-filled-primary w-full rounded-md">Continue</button>
+				<button
+					type="button"
+					on:click={() => {
+						OpenSignupAgent();
+					}}
+					class="btn variant-filled-primary w-full rounded-md">SignUp as an Agent</button
+				>
+			</div>
+		</form>
 		<div class="relative flex py-2 items-center">
 			<div class="flex-grow border-t border-gray-300" />
 			<span class="flex-shrink mx-4 text-gray-400">or</span>

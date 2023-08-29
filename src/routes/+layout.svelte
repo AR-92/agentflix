@@ -1,6 +1,5 @@
 <script>
 	import '../theme.postcss';
-	// import '@skeletonlabs/skeleton/styles';
 	import '@skeletonlabs/skeleton/styles/skeleton.css';
 	import '../app.postcss';
 	import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';

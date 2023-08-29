@@ -1,21 +1,22 @@
 <script>
 	import FooterLinks from '../components/footerLinks.svelte';
 	import Logo from '../components/logo.svelte';
-
 </script>
+
 <div class="pb-20 px-10">
 	<div class="flex px-4 font-semibold justify-between">
 		<div class="m-8">
-			
-			<Logo/>
+			<Logo />
 		</div>
 
 		<div class="flex gap-6">
 			<button>Login</button>
-			<button type="button" class="bg-primary-500 text-white py-2 px-4 rounded-full m-auto">SignUp</button>
+			<button type="button" class="bg-primary-500 text-white py-2 px-4 rounded-full m-auto"
+				>SignUp</button
+			>
 		</div>
 	</div>
-	<div class="grid grid-cols-12 max-md:grid-cols-1  gap-4 m-8 h-full">
+	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
 		<div class="col-span-7">
 			<div class="text-7xl max-md:text-5xl mt-10">
 				The social network for agents to seamlessly connect with clients
@@ -37,7 +38,7 @@
 		<div class="col-span-3 bg-gray-200 h-20" />
 		<div class="col-span-3 bg-gray-200 h-20" />
 	</div>
-	<div class="grid grid-cols-12 max-md:grid-cols-1  gap-4 m-8 h-full">
+	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
 		<div class="col-span-7">
 			<div class="text-5xl max-md:text-4xl mt-10 font-semibold">
 				An all in one suite of inbound marketing for agents to display themselves online
@@ -53,7 +54,7 @@
 		</div>
 		<div class="col-span-5 bg-gray-200 max-md:hidden" style="height: 500px;" />
 	</div>
-	<div class="grid grid-cols-12 max-md:grid-cols-1  gap-4 m-8 h-full">
+	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
 		<div class="col-span-7">
 			<div class="text-5xl max-md:text-4xl mt-10 font-semibold">
 				The modern way to market yourself in real estate
@@ -84,9 +85,11 @@
 			<p class="">Active users within the first week of launch looking for agents</p>
 		</div>
 	</div>
-	<div class="grid grid-cols-12 max-md:grid-cols-1  gap-4 m-8 h-full">
+	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
 		<div class="col-span-7">
-			<div class="text-5xl max-md:text-4xl mt-10 font-semibold">Empower your brokerage and expand the team</div>
+			<div class="text-5xl max-md:text-4xl mt-10 font-semibold">
+				Empower your brokerage and expand the team
+			</div>
 			<p class="mt-16">
 				Through Agentflix, brokerages can directly increase their presence and host new clients
 				through key branding and smart connections with users. Home buyers and sellers can easily
@@ -98,7 +101,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="grid grid-cols-12 max-md:grid-cols-1  max-md:grid-cols-1   gap-4 m-8 h-full">
+	<div class="grid grid-cols-12 max-md:grid-cols-1 max-md:grid-cols-1 gap-4 m-8 h-full">
 		<div class="col-span-3">
 			<div class="flex flex-col gap-12 my-20">
 				<div>
@@ -115,17 +118,19 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-span-9 bg-gray-200  max-md:hidden" style="height: 500px;" />
+		<div class="col-span-9 bg-gray-200 max-md:hidden" style="height: 500px;" />
 	</div>
-	<div class="grid grid-cols-12 max-md:grid-cols-1  gap-x-16 gap-y-6 mx-8 my-12">
+	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12">
 		<div class="col-span-3 bg-gray-200 h-20" />
 		<div class="col-span-3 bg-gray-200 h-20" />
 		<div class="col-span-3 bg-gray-200 h-20" />
 		<div class="col-span-3 bg-gray-200 h-20" />
 	</div>
-	<div class="grid grid-cols-12 max-md:grid-cols-1  gap-4 m-8 h-full">
+	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
 		<div class="col-span-7">
-			<div class="text-5xl max-md:text-4xl mt-10 font-semibold">Take your career to a new level</div>
+			<div class="text-5xl max-md:text-4xl mt-10 font-semibold">
+				Take your career to a new level
+			</div>
 			<p class="mt-16">
 				Whether starting your career or a seasoned professional, integrating yourself to the digital
 				world is key to unlocking a new audience of potential clients. To achieve this, there needs
@@ -134,13 +139,13 @@
 			</p>
 		</div>
 	</div>
-	<div class="grid grid-cols-12 max-md:grid-cols-1  gap-x-16 gap-y-6 mx-8 my-12">
+	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12">
 		<div class="col-span-6 bg-gray-200 h-[300px]" />
 		<div class="col-span-6 bg-gray-200 h-[300px]" />
 		<div class="col-span-6 bg-gray-200 h-[300px]" />
 		<div class="col-span-6 bg-gray-200 h-[300px]" />
 	</div>
-	<div class="grid grid-cols-12 max-md:grid-cols-1  gap-4 m-8 h-full">
+	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
 		<div class="col-span-7">
 			<div class="text-5xl max-md:text-4xl mt-10 font-semibold">Smart and efficient automation</div>
 			<p class="mt-16">
@@ -151,7 +156,7 @@
 		</div>
 	</div>
 
-	<div class="grid grid-cols-12 max-md:grid-cols-1  gap-x-16 gap-y-6 mx-8 my-12 text-center">
+	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12 text-center">
 		<div class="col-span-4">
 			<div class=" bg-gray-200 h-72 mb-10" />
 			<div class="text-lg font-bold mb-2">Open houses</div>
@@ -170,6 +175,5 @@
 	</div>
 </div>
 <div class="card text-sm text-left">
-	<FooterLinks  />
-
+	<FooterLinks />
 </div>

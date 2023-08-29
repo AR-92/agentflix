@@ -37,7 +37,6 @@
 							Account and Billing Policy</a
 						>
 					</li>
-
 				</ul>
 			</nav>
 			<!-- /nav -->
@@ -450,7 +449,7 @@
 			</div>
 			<!--/.card -->
 		</section>
-		<div class="flex mt-20"></div>
+		<div class="flex mt-20" />
 	</div>
 	<!-- /column -->
 </div>

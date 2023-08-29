@@ -122,7 +122,10 @@
 			Are you An Agent ?
 		</a>
 		<button use:popup={popupCombobox} class="btn variant-ringed-primary btn-sm">
-			<svg xmlns="http://www.w3.org/2000/svg" class="ionicon w-6  text-primary-500 dark:text-primary-100" viewBox="0 0 512 512"
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="ionicon w-6 text-primary-500 dark:text-primary-100"
+				viewBox="0 0 512 512"
 				><path
 					fill="none"
 					stroke="currentColor"
@@ -132,7 +135,10 @@
 					d="M96 304h320M96 208h320M96 112h320M96 400h320"
 				/></svg
 			>
-			<svg xmlns="http://www.w3.org/2000/svg" class="ionicon w-6 text-primary-500  dark:text-primary-100" viewBox="0 0 512 512"
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="ionicon w-6 text-primary-500 dark:text-primary-100"
+				viewBox="0 0 512 512"
 				><path
 					fill="currentColor"
 					stroke="currentColor"
@@ -154,7 +160,7 @@
 					}}
 					on:keypress
 				>
-				Join Now
+					Join Now
 				</div>
 				<div
 					class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
@@ -163,7 +169,7 @@
 					}}
 					on:keypress
 				>
-				Login
+					Login
 				</div>
 				<hr />
 				<div
@@ -173,7 +179,7 @@
 					}}
 					on:keypress
 				>
-				I am an Agent
+					I am an Agent
 				</div>
 				<div
 					class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
@@ -182,12 +188,12 @@
 					}}
 					on:keypress
 				>
-				Our Solution
+					Our Solution
 				</div>
 				<div
 					class="flex justify-between hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 				>
-				Dark Mode
+					Dark Mode
 					<LightSwitch />
 				</div>
 			</ListBox>

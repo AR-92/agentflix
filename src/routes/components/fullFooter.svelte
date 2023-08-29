@@ -1,19 +1,29 @@
 <script>
 	import FooterLinks from './footerLinks.svelte';
 	// Open the drawer:
-
 </script>
-<div class="p-14 card rounded-none">
 
-    <FooterLinks  />
+<div class="p-14 card rounded-none">
+	<FooterLinks />
 </div>
-<footer class="border-t flex justify-between px-6 text-sm  card rounded-none">
+<footer class="border-t flex justify-between px-6 text-sm card rounded-none">
 	<div class="flex gap-4 p-2">
-		<a class="hover:text-primary-500 dark:hover:text-primary-300 cursor-pointer" href="./">© 2023 Agentflix</a>
-		<a class="hover:text-primary-500 dark:hover:text-primary-300 cursor-pointer" href="./termsofuse">Terms</a>
-		<a class="hover:text-primary-500 dark:hover:text-primary-300 cursor-pointer" href="./sitemap">Sitemap</a>
-		<a class="hover:text-primary-500 dark:hover:text-primary-300 cursor-pointer" href="./privacypolicy">Privacy</a>
-		<a class="hover:text-primary-500 dark:hover:text-primary-300 cursor-pointer flex gap-x-2" href="./privacyOptions"
+		<a class="hover:text-primary-500 dark:hover:text-primary-300 cursor-pointer" href="./"
+			>© 2023 Agentflix</a
+		>
+		<a class="hover:text-primary-500 dark:hover:text-primary-300 cursor-pointer" href="./termsofuse"
+			>Terms</a
+		>
+		<a class="hover:text-primary-500 dark:hover:text-primary-300 cursor-pointer" href="./sitemap"
+			>Sitemap</a
+		>
+		<a
+			class="hover:text-primary-500 dark:hover:text-primary-300 cursor-pointer"
+			href="./privacypolicy">Privacy</a
+		>
+		<a
+			class="hover:text-primary-500 dark:hover:text-primary-300 cursor-pointer flex gap-x-2"
+			href="./privacyOptions"
 			>Your Privacy Choices
 			<span class=" m-auto">
 				<svg width="26" height="12" fill="none"
@@ -33,5 +43,4 @@
 			</span>
 		</a>
 	</div>
-
 </footer>

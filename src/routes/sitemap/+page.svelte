@@ -1,7 +1,7 @@
 <script>
 	import MiniNav from '../components/miniNav.svelte';
 	import Footer from '../components/fullFooter.svelte';
-    const links=[1,1,1,1,1,1,1,1,1,1,1,1]
+	const links = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 </script>
 
 <MiniNav />
@@ -10,22 +10,38 @@
 	<div class="grid grid-cols-4 max-md:grid-cols-2">
 		<ul class="flex flex-col gap-2">
 			{#each links as link}
-				<li><a href="./" class="hover:underline underline-offset-1 hover:text-primary-500">Nullam quis risus eget urna mollis </a></li>
+				<li>
+					<a href="./" class="hover:underline underline-offset-1 hover:text-primary-500"
+						>Nullam quis risus eget urna mollis
+					</a>
+				</li>
 			{/each}
 		</ul>
-        <ul class="flex flex-col gap-2">
+		<ul class="flex flex-col gap-2">
 			{#each links as link}
-				<li><a href="./" class="hover:underline underline-offset-1 hover:text-primary-500">Nullam quis risus eget urna mollis </a></li>
+				<li>
+					<a href="./" class="hover:underline underline-offset-1 hover:text-primary-500"
+						>Nullam quis risus eget {link} urna mollis
+					</a>
+				</li>
 			{/each}
 		</ul>
-        <ul class="flex flex-col gap-2">
+		<ul class="flex flex-col gap-2">
 			{#each links as link}
-				<li><a href="./" class="hover:underline underline-offset-1 hover:text-primary-500">Nullam quis risus eget urna mollis </a></li>
+				<li>
+					<a href="./" class="hover:underline underline-offset-1 hover:text-primary-500"
+						>Nullam quis risus eget urna mollis
+					</a>
+				</li>
 			{/each}
 		</ul>
-        <ul class="flex flex-col gap-2">
+		<ul class="flex flex-col gap-2">
 			{#each links as link}
-				<li><a href="./" class="hover:underline underline-offset-1 hover:text-primary-500">Nullam quis risus eget urna mollis </a></li>
+				<li>
+					<a href="./" class="hover:underline underline-offset-1 hover:text-primary-500"
+						>Nullam quis risus eget urna mollis
+					</a>
+				</li>
 			{/each}
 		</ul>
 	</div>

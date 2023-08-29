@@ -42,9 +42,7 @@
 <div class="text-sm card p-4">
 	<div class="w-full my-4 justify-between">
 		<div class="font-semibold text-lg">Reviews Given By Clients</div>
-		<div class="text-sm text-surface-900 dark:text-surface-100">
-			Leave a Review
-		</div>
+		<div class="text-sm text-surface-900 dark:text-surface-100">Leave a Review</div>
 		<button
 			on:click={() => {
 				AddReview();
@@ -104,8 +102,6 @@
 			</div>
 			<div class="col-span-7">
 				<div class="m-4 flex flex-col gap-4">
-				
-
 					<label class="label text-sm">
 						<span class="font-semibold text-sm">The Experience</span>
 						<textarea

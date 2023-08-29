@@ -16,15 +16,15 @@
 				<div class="p-4 font-bold my-auto col-span-10"><slot name="title" /></div>
 				<div class="my-auto col-span-2 cursor-pointer place-self-end mx-4">
 					<svg
-					on:click={close}
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 32 32"
-					class="hover:text-primary-500"
-					aria-hidden="true"
-					role="presentation"
-					focusable="false"
-					style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;"
-					><path d="m6 6 20 20M26 6 6 26" /></svg
+						on:click={close}
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 32 32"
+						class="hover:text-primary-500"
+						aria-hidden="true"
+						role="presentation"
+						focusable="false"
+						style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;"
+						><path d="m6 6 20 20M26 6 6 26" /></svg
 					>
 				</div>
 			</div>

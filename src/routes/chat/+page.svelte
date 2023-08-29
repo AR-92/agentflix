@@ -5,7 +5,7 @@
 </script>
 
 <MiniNav />
-<hr>
+<hr />
 <div class="chat w-full flex">
 	<div class="flex flex-col border-r border-surface-500/30 max-md:hidden">
 		<header class="border-b border-surface-500/30 p-4">

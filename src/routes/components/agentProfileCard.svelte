@@ -1,7 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
 	import Model from './model.svelte';
-	import { TabGroup, Tab, TabAnchor, Avatar, FileDropzone } from '@skeletonlabs/skeleton';
+	import { TabGroup, Tab, Avatar, FileDropzone } from '@skeletonlabs/skeleton';
 	let openreview = false;
 	let tabSet = 0;
 
@@ -219,7 +219,7 @@
 								<FileDropzone class="" name="files" />
 
 								<label class="label text-sm">
-									<span  class="font-semibold">Display Name</span>
+									<span class="font-semibold">Display Name</span>
 									<input
 										class="input rounded-md placeholder:text-sm"
 										placeholder="Please Enter Your Display Name Here .... !"
@@ -247,7 +247,7 @@
 									</select>
 								</label>
 								<label class="label text-sm">
-									<span  class="font-semibold">External Index Link</span>
+									<span class="font-semibold">External Index Link</span>
 									<input
 										class="input rounded-md placeholder:text-sm"
 										type="text"
@@ -255,7 +255,7 @@
 									/>
 								</label>
 								<label class="label text-sm">
-									<span  class="font-semibold">Website</span>
+									<span class="font-semibold">Website</span>
 									<input
 										class="input rounded-md placeholder:text-sm"
 										placeholder="Please Enter Your Website Link Here .... !"
@@ -268,7 +268,7 @@
 						<div class="grid grid-cols-2 gap-8 p-4">
 							<div class="flex flex-col gap-4">
 								<label class="label text-sm">
-									<span  class="font-semibold">About</span>
+									<span class="font-semibold">About</span>
 									<textarea
 										class="textarea placeholder:text-sm"
 										rows="4"
@@ -278,7 +278,7 @@
 							</div>
 							<div class="flex flex-col gap-4">
 								<label class="label text-sm">
-									<span  class="font-semibold">Education</span>
+									<span class="font-semibold">Education</span>
 
 									<input
 										class="input rounded-md placeholder:text-sm"
@@ -287,7 +287,7 @@
 									/>
 								</label>
 								<label class="label text-sm">
-									<span  class="font-semibold">Hobbies</span>
+									<span class="font-semibold">Hobbies</span>
 									<input
 										class="input rounded-md placeholder:text-sm"
 										placeholder="Please Enter Your Hobbies Here .... !"
@@ -314,7 +314,7 @@
 									</select>
 								</label>
 								<label class="label text-sm">
-									<span  class="font-semibold">Real Estate Licence</span>
+									<span class="font-semibold">Real Estate Licence</span>
 									<input
 										class="input rounded-md placeholder:text-sm"
 										placeholder="Please Enter Your Real Estate Licence Here .... !"
@@ -322,7 +322,7 @@
 									/>
 								</label>
 								<label class="label text-sm">
-									<span  class="font-semibold">Desgnations</span>
+									<span class="font-semibold">Desgnations</span>
 									<input
 										class="input rounded-md placeholder:text-sm"
 										placeholder="Please Enter Your Desgnations Here .... !"
@@ -362,15 +362,15 @@
 						<div class="grid grid-cols-2 gap-8 p-4">
 							<div class="flex flex-col gap-4">
 								<label class="label text-sm">
-									<span  class="font-semibold">Overview</span>
+									<span class="font-semibold">Overview</span>
 									<input
-										class="input rounded-md  placeholder:text-sm"
+										class="input rounded-md placeholder:text-sm"
 										placeholder="Please Enter Your Overview Here .... !"
 										type="text"
 									/>
 								</label>
 								<label class="label text-sm">
-									<span  class="font-semibold">Specialties</span>
+									<span class="font-semibold">Specialties</span>
 									<input
 										class="input rounded-md placeholder:text-sm"
 										placeholder="Please Enter Your Specialties Here .... !"
@@ -380,7 +380,7 @@
 							</div>
 							<div class="flex flex-col gap-4">
 								<label class="label text-sm">
-									<span  class="font-semibold">Awards</span>
+									<span class="font-semibold">Awards</span>
 									<input
 										class="input rounded-md placeholder:text-sm"
 										placeholder="Please Enter Your Awards Here .... !"

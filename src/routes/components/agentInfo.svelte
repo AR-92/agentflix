@@ -46,6 +46,7 @@
 			"2021 RealTrends America's Best Real Estate Professionals, 2022 RealTrends America's Best Real Estate Professionals, Brenham Banner Real Estate Professional of the Year, 2020 Coldwell Banker Sterling Award for Top Producing Agent, 2019 Coldwell Banker President's Award for Top Producing Agent"
 	};
 </script>
+
 <!-- <AgentEvents /> -->
 
 <div class="text-sm card p-4 mt-4">
@@ -62,8 +63,6 @@
 		</div>
 	</div>
 
-
-
 	<div class="">
 		<div>
 			<div class="font-semibold my-2">SERVICE AREAS</div>
@@ -79,4 +78,3 @@
 		<img src={data.map} alt="" srcset="" />
 	</div>
 </div>
-

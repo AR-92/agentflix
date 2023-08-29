@@ -71,7 +71,9 @@
 			<div class="bg-primary-200 dark:bg-primary-500 p-4 rounded-lg m-4">
 				<Empty />
 			</div>
-			<p class="m-auto mt-6 text-xs dark:text-primary-300 text-primary-500">No Events Yet Created</p>
+			<p class="m-auto mt-6 text-xs dark:text-primary-300 text-primary-500">
+				No Events Yet Created
+			</p>
 		</div>
 	{/if}
 	{#each events as e, i}
@@ -127,9 +129,9 @@
 					Lifestyle Ranch & Home Group Compass 105 Main St. Suite 200A Brenham, TX 77833
 				</div>
 				<div class="flex gap-2 float-right">
-					<button class="btn variant-filled-primary btn-sm  px-5">I'm coming</button>
-					<button class="btn variant-filled-primary btn-sm  px-5">Maybe</button>
-					<button class="btn variant-filled-primary btn-sm  px-5">Next Time</button>
+					<button class="btn variant-filled-primary btn-sm px-5">I'm coming</button>
+					<button class="btn variant-filled-primary btn-sm px-5">Maybe</button>
+					<button class="btn variant-filled-primary btn-sm px-5">Next Time</button>
 				</div>
 			</div>
 		</div>
@@ -141,11 +143,11 @@
 		<div class="grid grid-cols-12">
 			<div class="col-span-6">
 				<div class="p-4">
-						<label class="label text-sm w-full">
-							<span>Date</span>
-							<input class="input rounded-md" type="date" />
-						</label>
-						
+					<label class="label text-sm w-full">
+						<span>Date</span>
+						<input class="input rounded-md" type="date" />
+					</label>
+
 					<div class="bg-primary-200 dark:bg-primary-500 p-4 rounded-lg my-4">
 						<Events />
 					</div>
@@ -173,21 +175,24 @@
 					</label>
 					<label class="label text-sm">
 						<span>Address</span>
-						<input class="input rounded-md" placeholder="Please Add Address Here ... !" type="text" />
+						<input
+							class="input rounded-md"
+							placeholder="Please Add Address Here ... !"
+							type="text"
+						/>
 					</label>
 					<label class="label text-sm">
 						<span>Description</span>
 						<textarea class="textarea" rows="5" placeholder="Add Event Description here !" />
 					</label>
-				
+
 					<div class="w-full text-right">
 						<button type="button" class="btn variant-filled-primary w-fit btn-sm"
-						>Add An Event</button
+							>Add An Event</button
 						>
 					</div>
 				</div>
 			</div>
 		</div>
-	
 	</div>
 </Model>
