@@ -1,5 +1,5 @@
 <script>
-	// import { supabase } from '$lib/supabaseClient';
+	import { supabase } from '$lib/supabaseClient';
 
 	import { goto } from '$app/navigation';
 	import {
@@ -14,7 +14,7 @@
 	import Model from './model.svelte';
 	import FilterIcon from '../icons/filterIcon.svelte';
 	import Logo from './logo.svelte';
-	let username = 'electro.electra@gmail.com';
+	let username = 'electro@gmail.com';
 	let password = '5p#2d43tMaL6';
 	let value = 2;
 	let max = 5;
@@ -91,11 +91,11 @@
 
 	const handle_signup = async () => {
 		console.log(username, password);
-		// const { user, error } = await supabase.auth.signUp({
-		// 	username,
-		// 	password
-		// });
-		// console.log(user,error,"return")
+		const { user, error } = await supabase.auth.signUp({
+			email:username,
+			password:password
+		});
+		console.log(user,error,"return")
 		// await supabase.auth.signUp({
 		// 	email,
 		// 	password,
@@ -160,6 +160,7 @@
 			</button>
 			<div class="card w-48 shadow-xl py-2 z-50" data-popup="popupCombobox">
 				<ListBox rounded="rounded-none">
+					<!-- svelte-ignore a11y-no-static-element-interactions -->
 					<div
 						class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 						on:click={() => {
@@ -169,6 +170,7 @@
 					>
 						Join Now
 					</div>
+					<!-- svelte-ignore a11y-no-static-element-interactions -->
 					<div
 						class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 						on:click={() => {
@@ -179,6 +181,7 @@
 						Login
 					</div>
 					<hr />
+					<!-- svelte-ignore a11y-no-static-element-interactions -->
 					<div
 						class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 						on:click={() => {
@@ -188,6 +191,7 @@
 					>
 						I am an Agent
 					</div>
+					<!-- svelte-ignore a11y-no-static-element-interactions -->
 					<div
 						class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 						on:click={() => {

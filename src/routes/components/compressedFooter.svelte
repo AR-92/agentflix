@@ -1,15 +1,14 @@
 <script>
-	import { drawerStore } from '@skeletonlabs/skeleton';
-	import FooterLinks from './footerLinks.svelte';
-	import Draw from './draw.svelte';
+	// import { drawerStore, Drawer } from '@skeletonlabs/skeleton';
+	// import FooterLinks from './footerLinks.svelte';
 
-	function trigger(position) {
-		const s = { id: 'footerLinks', position };
-		drawerStore.open(s);
-	}
-	function close() {
-		drawerStore.close();
-	}
+	// function trigger(position) {
+	// 	const s = { id: 'footerLinks', position };
+	// 	drawerStore.open(s);
+	// }
+	// function close() {
+	// 	drawerStore.close(s);
+	// }
 </script>
 
 <footer class=" flex justify-between px-6 text-sm card rounded-none fixed inset-x-0 bottom-0">
@@ -51,6 +50,7 @@
 			</span>
 		</a>
 	</div>
+	<!-- svelte-ignore missing-declaration -->
 	<button
 		on:click={() => {
 			trigger('bottom');
@@ -70,7 +70,7 @@
 		</span>
 	</button>
 </footer>
-<Draw>
+<!-- <Drawer>
 	<div class="m-6 absolute hover:scale-150" on:click={close} on:keypress>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -84,6 +84,4 @@
 	</div>
 
 	<FooterLinks />
-</Draw>
-<!-- 
-<Drawer position="bottom" id="footerLinks" duration={500} rounded="0px" /> -->
+</Drawer> -->

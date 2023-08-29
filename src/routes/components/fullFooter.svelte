@@ -1,6 +1,5 @@
 <script>
 	import FooterLinks from './footerLinks.svelte';
-	// Open the drawer:
 </script>
 
 <div class="p-14 card rounded-none">

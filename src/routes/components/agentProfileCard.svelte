@@ -22,6 +22,7 @@
 		dp: './t1.jpg'
 	};
 </script>
+					<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <div class="card h-fit w-auto mt-[-280px] pb-5">
 	<div

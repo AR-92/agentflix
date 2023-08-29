@@ -37,6 +37,7 @@
 		}
 	];
 </script>
+					<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <div class="card text-sm p-4">
 	<div class="flex">

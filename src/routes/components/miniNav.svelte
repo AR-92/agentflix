@@ -14,6 +14,7 @@
 		openlogin = true;
 	}
 </script>
+					<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <nav class="flex p-4 mx-8 justify-between">
 	<!-- <img

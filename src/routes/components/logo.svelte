@@ -1,6 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
 </script>
+					<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <svg
 	on:click={() => {

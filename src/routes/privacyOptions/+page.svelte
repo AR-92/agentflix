@@ -1,6 +1,8 @@
 <script>
 	import MiniNav from '../components/miniNav.svelte';
 	import Footer from '../components/fullFooter.svelte';
+
+
 </script>
 
 <MiniNav />

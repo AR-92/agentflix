@@ -48,6 +48,7 @@
 </script>
 
 <!-- <AgentEvents /> -->
+					<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <div class="text-sm card p-4 mt-4">
 	<div class="grid grid-cols-2 gap-4">
