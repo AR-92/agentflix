@@ -59,7 +59,7 @@
 			<div class="text-5xl max-md:text-4xl mt-10 font-semibold">
 				A Comprehensive Analysis: Our Website Service Compared to Competitors
 			</div>
-			<p class="mt-16">
+			<p class="mt-16 w-2/3 mx-auto">
 				Agentflix makes marketing more cost effective and easy than ever thought possible. By
 				combining and improving on existing techniques, we incorporate all our features in one
 				dedicated space online free for users to explore. It's more efficient than billboards and
