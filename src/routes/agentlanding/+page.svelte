@@ -3,7 +3,7 @@
 	import Logo from '../components/logo.svelte';
 </script>
 <!-- <style></style> -->
-<div class="pb-20 px-10">
+<div class="pb-20 px-10 ">
 	<div class="flex px-4 font-semibold justify-between">
 		<div class="m-8">
 			<Logo />
@@ -40,7 +40,7 @@
 	</div>
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
 		<div class="col-span-7">
-			<div class="text-5xl max-md:text-4xl mt-10 font-semibold">
+			<div class="text-5xl max-md:text-4xl mt-10 font-semibold ">
 				An all in one suite of inbound marketing for agents to display themselves online
 			</div>
 			<p class="mt-16">

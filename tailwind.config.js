@@ -16,6 +16,10 @@ export default {
 			xl: '1280px',
 			'2xl': '1536px'
 		},
+		fontFamily:{
+			para:"'Gluten',serif",
+			header:"'Sedgwick Ave Display',serif",
+		},
 		extend: {}
 	},
 	plugins: [
