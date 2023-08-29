@@ -148,19 +148,19 @@
 	</div>
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12 text-center">
 		<div class="col-span-3">
-			<div class="text-lg font-bold text-3xl">100% Free</div>
+			<div class="font-bold text-3xl">100% Free</div>
 			<p class="">Users enjoy connecting with you for free with no ads</p>
 		</div>
 		<div class="col-span-3">
-			<div class="text-lg font-bold text-3xl">6+</div>
+			<div class="font-bold text-3xl">6+</div>
 			<p class="">Multiple online marketing features all combined into one site</p>
 		</div>
 		<div class="col-span-3">
-			<div class="text-lg font-bold text-3xl">94%</div>
+			<div class="font-bold text-3xl">94%</div>
 			<p class="">Amount saved compared to the average marketing budget per month</p>
 		</div>
 		<div class="col-span-3">
-			<div class="text-lg font-bold text-3xl">1000+</div>
+			<div class="font-bold text-3xl">1000+</div>
 			<p class="">Active users within the first week of launch looking for agents</p>
 		</div>
 	</div>
