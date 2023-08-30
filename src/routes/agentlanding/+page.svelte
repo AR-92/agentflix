@@ -9,11 +9,9 @@
 			<Logo />
 		</div>
 
-		<div class="flex gap-6">
-			<button class="font-bitten text-lg">Login</button>
-			<button type="button" class="bg-primary-500 text-white py-2 px-4 rounded-full m-auto font-bitten"
-				>Join Now</button
-			>
+		<div class="flex gap-6 my-auto">
+		<button class="btn variant-soft-primary w-fit font-bitten">Login</button>
+		<button class="btn variant-filled-primary w-fit font-bitten">Join Now</button>
 		</div>
 	</div>
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
