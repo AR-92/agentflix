@@ -92,10 +92,10 @@
 	const handle_signup = async () => {
 		console.log(username, password);
 		const { user, error } = await supabase.auth.signUp({
-			email:username,
-			password:password
+			email: username,
+			password: password
 		});
-		console.log(user,error,"return")
+		console.log(user, error, 'return');
 		// await supabase.auth.signUp({
 		// 	email,
 		// 	password,
@@ -103,6 +103,9 @@
 		// 		emailRedirectTo: `http://localhost:5173/profile`
 		// 	}
 		// });
+	};
+	const handle_login = async (username,password) => {
+
 	};
 </script>
 
@@ -440,7 +443,7 @@
 					on:click={() => {
 						OpenSignupAgent();
 					}}
-					class="btn variant-filled-primary w-full rounded-md">SignUp as an Agent</button
+					class="btn variant-filled-primary w-full rounded-md">Join Now as an Agent</button
 				>
 			</div>
 		</form>
