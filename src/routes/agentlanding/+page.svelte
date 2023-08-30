@@ -12,7 +12,7 @@
 		<div class="flex gap-6">
 			<button>Login</button>
 			<button type="button" class="bg-primary-500 text-white py-2 px-4 rounded-full m-auto"
-				>SignUp</button
+				>Join Now</button
 			>
 		</div>
 	</div>
@@ -22,7 +22,7 @@
 				The social network for agents to seamlessly connect with clients
 			</div>
 			<div class="flex gap-6 mt-16">
-				<button class="bg-primary-500 text-white p-2 px-4 rounded-full">Start Now</button>
+				<button class="bg-primary-500 text-white p-2 px-4 rounded-full">Join Now</button>
 				<button>Contact Us</button>
 			</div>
 		</div>

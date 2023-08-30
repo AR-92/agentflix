@@ -7,7 +7,7 @@
 <MiniNav />
 <hr />
 <div class="chat w-full flex">
-	<div class="flex flex-col border-r border-surface-500/30 max-md:hidden">
+	<div class="flex flex-col border-r border-surface-500/30 max-md:hidden ">
 		<header class="border-b border-surface-500/30 p-4">
 			<input class="input" type="search" placeholder="Search..." />
 		</header>
@@ -191,7 +191,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="">
+	<div class="w-1/2">
 		<section class="max-h-[470px] p-4 overflow-y-auto space-y-5 hover:overflow-y-scroll">
 			<div class="grid grid-cols-[auto_1fr] gap-2">
 				<figure
@@ -313,7 +313,7 @@
 			</div>
 		</section>
 	</div>
-	<div class="m-4 max-lg:hidden">
+	<div class="m-4 w-1/2 max-lg:hidden">
 		<ReviewsReceived />
 	</div>
 </div>

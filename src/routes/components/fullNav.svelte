@@ -440,7 +440,7 @@
 					on:click={() => {
 						OpenSignupAgent();
 					}}
-					class="btn variant-filled-primary w-full rounded-md">SignUp as an Agent</button
+					class="btn variant-filled-primary w-full rounded-md">Join Now as an Agent</button
 				>
 			</div>
 		</form>
