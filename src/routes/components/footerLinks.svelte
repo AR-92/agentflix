@@ -15,15 +15,15 @@
 				use to give you a connected feel.
 			</p>
 			<div class="flex gap-6 mt-4 max-md:justify-center">
-				<button class="bg-primary-500 text-white p-2 px-4 rounded-full font-bitten text-lg">Join Now</button>
-				<button class="font-bitten text-lg">Contact Us</button>
+				<button class="btn variant-filled-primary w-fit font-bitten">Join Now</button>
+				<button class="btn variant-soft-primary w-fit font-bitten">Contact Us</button>
 			</div>
 		</div>
 	</div>
 	<div class="col-span-3 max-md:col-span-12 m-4 p-4 max-lg:m-1">
 		<div class="text-lg font-bold mb-6 font-header">Are you an agent?</div>
 		<p class="font-para">See how we beat the odds when it comes to pricing</p>
-		<p class="text-primary-500 font-medium cursor-pointer mt-4 font-bitten">Compare Agentflix</p>
+		<button class="btn variant-soft-primary w-fit font-bitten mt-3">Compare Agentflix</button>
 	</div>
 	<div class="col-span-3 max-md:col-span-12 m-4 p-4 max-lg:m-1">
 		<div class="text-lg font-bold mb-6">Learn More</div>

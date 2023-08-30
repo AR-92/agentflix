@@ -125,9 +125,10 @@
 			</button>
 		</div>
 		<div class="flex gap-2">
+
 			<a
 				href="./agentlanding"
-				class="m-auto dark:hover:bg-primary-100 hover:bg-primary-300 px-3 py-1 rounded-full font-bold text-sm cursor-pointer text-gray-400 hover:text-primary-600 max-lg:hidden"
+				class="btn variant-soft-primary w-fit font-bitten max-lg:hidden"
 			>
 				Are you An Agent ?
 			</a>
