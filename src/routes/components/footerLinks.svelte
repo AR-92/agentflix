@@ -25,8 +25,8 @@
 		<p class="font-para">See how we beat the odds when it comes to pricing</p>
 		<button class="btn variant-soft-primary w-fit font-bitten mt-3">Compare Agentflix</button>
 	</div>
-	<div class="col-span-3 max-md:col-span-12 m-4 p-4 max-lg:m-1">
-		<div class="text-lg font-bold mb-6">Learn More</div>
+	<div class="col-span-3 max-md:col-span-12 m-4 p-4 max-lg:m-1 font-para">
+		<div class="text-lg font-bold mb-6 font-header">Learn More</div>
 		<ul class="flex flex-col gap-y-2">
 			<li class="hover:text-primary-500 dark:hover:text-primary-300 cursor-pointer">About Us</li>
 			<li class="hover:text-primary-500 dark:hover:text-primary-300 cursor-pointer">Why Us ?</li>

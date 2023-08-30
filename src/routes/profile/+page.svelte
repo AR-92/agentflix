@@ -10,7 +10,7 @@
 <MiniNav />
 
 <img src="./cover.webp" class="w-full h-80" alt="" srcset="" />
-<div class="grid max-sm:grid-cols-1 max-md:grid-cols-2 max-2xl:grid-cols-12 gap-4 m-8 pb-20">
+<div class="grid max-sm:grid-cols-1 max-md:grid-cols-2 max-2xl:grid-cols-12 gap-4 m-8 pb-20 font-bitten">
 	<div class="max-2xl:col-span-3">
 		<AgentProfileCard />
 		<div class="text-sm card p-4 mt-4 gap-2 flex flex-col">

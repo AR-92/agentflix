@@ -66,14 +66,14 @@
 
 <FullNav />
 {#if agentsList.length < 1}
-	<div class="w-full h-[500px] grid place-items-center">
-		<div class="bg-primary-200 dark:bg-primary-500 p-8 rounded-full w-[300px]">
+	<div class="w-full h-[500px] grid place-items-center ">
+		<div class="bg-primary-200 dark:bg-primary-500 p-8 rounded-full w-[300px] font-bitten">
 			<EmptyHome />
 		</div>
 	</div>
 {:else}
 	<div
-		class="grid grid-cols-5 max-sm:grid-cols-2 max-md:grid-cols-3 max-lg:grid-cols-4 gap-6 m-8 pb-16"
+		class="grid grid-cols-5 max-sm:grid-cols-2 max-md:grid-cols-3 max-lg:grid-cols-4 gap-6 m-8 pb-16 font-bitten"
 	>
 		{#each agentsList as agent}
 			<AgentCard {...agent} />

@@ -16,7 +16,7 @@
 </script>
 					<!-- svelte-ignore a11y-no-static-element-interactions -->
 
-<nav class="flex p-4 mx-8 justify-between">
+<nav class="flex p-4 mx-8 justify-between font-bitten">
 	<!-- <img
 		style="width: 150px"
 		class="cursor-pointer dark:text-primary-200"
@@ -202,7 +202,7 @@
 		</div>
 	</div>
 </nav>
-<Model bind:show={openlogin} width="w-1/4">
+<Model bind:show={openlogin} width="w-1/4 font-bitten">
 	<span slot="title">Login or Join Now</span>
 	<div slot="body">
 		<div class="m-4 flex flex-col gap-4">

@@ -109,7 +109,7 @@
 	};
 </script>
 
-<div class="top-0 sticky flex flex-col card rounded-none z-40">
+<div class="top-0 sticky flex flex-col card rounded-none z-40 font-bitten">
 	<nav class="flex p-4 mx-8 justify-between">
 		<div>
 			<Logo />
@@ -293,7 +293,7 @@
 		</button>
 	</nav>
 </div>
-<Model bind:show={openlogin} width="w-1/4 max-lg:w-1/2">
+<Model bind:show={openlogin} width="w-1/4 max-lg:w-1/2 font-bitten">
 	<span slot="title">Login</span>
 	<div slot="body">
 		<div class="m-4 flex flex-col gap-4">
@@ -397,7 +397,7 @@
 		</div>
 	</div>
 </Model>
-<Model bind:show={openSignup} width="w-1/4 max-lg:w-1/2">
+<Model bind:show={openSignup} width="w-1/4 max-lg:w-1/2 font-bitten">
 	<span slot="title">Join Now</span>
 	<div slot="body">
 		<form on:submit|preventDefault={handle_signup}>
@@ -514,7 +514,7 @@
 		</div>
 	</div>
 </Model>
-<Model bind:show={openSignupAgent} width="w-1/3 max-lg:w-fit max-lg:mx-10">
+<Model bind:show={openSignupAgent} width="w-1/3 max-lg:w-fit max-lg:mx-10 font-bitten">
 	<span slot="title">Sign up</span>
 	<div slot="body">
 		<div class="p-4">
@@ -719,7 +719,7 @@
 		</div>
 	</div>
 </Model>
-<Model width="w-1/2  max-lg:w-fit max-lg:mx-10" bind:show={openfilter}>
+<Model width="w-1/2  max-lg:w-fit max-lg:mx-10 font-bitten" bind:show={openfilter}>
 	<div slot="title">Filter</div>
 	<div slot="body">
 		<div class="grid grid-cols-12 p-4 h-[500px] overflow-y-auto">

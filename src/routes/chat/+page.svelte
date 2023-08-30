@@ -6,7 +6,7 @@
 
 <MiniNav />
 <hr />
-<div class="chat w-full flex">
+<div class="chat w-full flex font-header">
 	<div class="flex flex-col border-r border-surface-500/30 max-md:hidden ">
 		<header class="border-b border-surface-500/30 p-4">
 			<input class="input" type="search" placeholder="Search..." />
