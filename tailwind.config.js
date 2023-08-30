@@ -17,8 +17,10 @@ export default {
 			'2xl': '1536px'
 		},
 		fontFamily:{
-			para:"'Gluten',serif",
-			header:"'Sedgwick Ave Display',serif",
+			para:"'Changa', sans-serif;",
+			header:"'Quicksand', sans-serif;",
+			bitten:"'Jura', sans-serif;",
+			numeric:"'Mukta', sans-serif;"
 		},
 		extend: {}
 	},

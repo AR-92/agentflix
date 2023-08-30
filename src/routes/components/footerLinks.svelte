@@ -8,22 +8,22 @@
 	<div class="col-span-6 max-md:col-span-12 m-4 p-4 max-lg:m-1">
 		<div class="flex flex-col">
 			<Logo class="" />
-			<div class="text-lg font-bold mb-4">Ready to get started ?</div>
-			<p class="mt-1">
+			<div class="text-lg font-bold font-header mb-4">Ready to get started ?</div>
+			<p class="mt-1 font-para">
 				Explore Agentflix and enjoy an easy and stress free experience when on the search for your
 				next house. A smarter platform designed for you and inspired from social media apps we all
 				use to give you a connected feel.
 			</p>
 			<div class="flex gap-6 mt-4 max-md:justify-center">
-				<button class="bg-primary-500 text-white p-2 px-4 rounded-full">Start Now</button>
-				<button>Contact Us</button>
+				<button class="bg-primary-500 text-white p-2 px-4 rounded-full font-bitten text-lg">Start Now</button>
+				<button class="font-bitten text-lg">Contact Us</button>
 			</div>
 		</div>
 	</div>
 	<div class="col-span-3 max-md:col-span-12 m-4 p-4 max-lg:m-1">
-		<div class="text-lg font-bold mb-6">Are you an agent?</div>
-		<p class="">See how we beat the odds when it comes to pricing</p>
-		<p class="text-primary-500 font-medium cursor-pointer mt-4">Compare Agentflix</p>
+		<div class="text-lg font-bold mb-6 font-header">Are you an agent?</div>
+		<p class="font-para">See how we beat the odds when it comes to pricing</p>
+		<p class="text-primary-500 font-medium cursor-pointer mt-4 font-bitten">Compare Agentflix</p>
 	</div>
 	<div class="col-span-3 max-md:col-span-12 m-4 p-4 max-lg:m-1">
 		<div class="text-lg font-bold mb-6">Learn More</div>
