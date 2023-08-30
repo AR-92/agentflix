@@ -15,7 +15,7 @@
 				use to give you a connected feel.
 			</p>
 			<div class="flex gap-6 mt-4 max-md:justify-center">
-				<button class="bg-primary-500 text-white p-2 px-4 rounded-full font-bitten text-lg">Start Now</button>
+				<button class="bg-primary-500 text-white p-2 px-4 rounded-full font-bitten text-lg">Join Now</button>
 				<button class="font-bitten text-lg">Contact Us</button>
 			</div>
 		</div>

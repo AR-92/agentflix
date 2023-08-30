@@ -12,7 +12,7 @@
 		<div class="flex gap-6">
 			<button class="font-bitten text-lg">Login</button>
 			<button type="button" class="bg-primary-500 text-white py-2 px-4 rounded-full m-auto font-bitten"
-				>SignUp</button
+				>Join Now</button
 			>
 		</div>
 	</div>
@@ -22,7 +22,7 @@
 				The social network for agents to seamlessly connect with clients
 			</div>
 			<div class="flex gap-6 mt-16">
-				<button class="bg-primary-500 text-white p-2 px-4 rounded-full font-bitten">Start Now</button>
+				<button class="bg-primary-500 text-white p-2 px-4 rounded-full font-bitten">Join Now</button>
 				<button class="font-bitten text-lg">Contact Us</button>	
 			</div>
 		</div>
@@ -175,7 +175,7 @@
 				call, book appointments, view agent open houses, and listings all in one place.
 			</p>
 			<div class="flex gap-6 mt-16">
-				<button class="bg-primary-500 text-white p-2 px-4 rounded-full font-bitten">Start Now</button>
+				<button class="bg-primary-500 text-white p-2 px-4 rounded-full font-bitten">Join Now</button>
 				<button class="font-bitten text-lg">Contact Us</button>
 			</div>
 		</div>
