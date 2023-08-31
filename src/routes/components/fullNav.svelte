@@ -1,13 +1,16 @@
 <script>
-	import { supabase } from '$lib/supabaseClient';
-	import  Login  from './login.svelte';
-	import  Signup  from './signup.svelte';
-	
+	import Login from './login.svelte';
+	import Signup from './signup.svelte';
+	import { userdata } from '../store/userStore';
+
 	import { goto } from '$app/navigation';
 	import { LightSwitch, FileDropzone, popup, ListBox, Stepper, Step } from '@skeletonlabs/skeleton';
 	import Model from './model.svelte';
 	import Logo from './logo.svelte';
-	import  Filters  from './filters.svelte';
+	import Filters from './filters.svelte';
+
+	export let showSearchbar = true;
+	export let showSubbar = true;
 
 	const filterList = [
 		'All',
@@ -49,7 +52,8 @@
 			x = elemList.scrollLeft + elemList.clientWidth;
 		elemList.scroll(x, 0);
 	}
-	let openlogin = false;
+	let openlogin = false
+	if(!$userdata ) openlogin = $userdata 
 	function Openlogin() {
 		openlogin = true;
 	}
@@ -58,10 +62,10 @@
 		openSignup = true;
 	}
 	let openSignupAgent = false;
-	function OpenSignupAgent() {
-		openSignupAgent = true;
-		openSignup = false;
-	}
+	// function OpenSignupAgent() {
+	// 	openSignupAgent = true;
+	// 	openSignup = false;
+	// }
 	let openfilter = false;
 	function Openfilter() {
 		openfilter = true;
@@ -80,19 +84,23 @@
 		console.log('event:complete', e.detail);
 	}
 
-	const handle_logout = async (username, password) => {
-		let { error } = await supabase.auth.signOut();
-		if (!error) {
-			goto('./');
-		}
-		console.log(error, 'return');
-	};
-	const get_user = async () => {
-		const {
-			data: { user }
-		} = await supabase.auth.getUser();
-		console.log(user, 'return');
-	};
+	// const handle_logout = async () => {
+	// 	// let { error } = await supabase.auth.signOut();
+	// 	// if (!error) {
+	// 	// 	goto('./');
+	// 	// 	get_user();
+	// 	// }
+	// 	// console.log(error, 'return');
+	// };
+	// $: userlogin = false;
+	// const get_user = async () => {
+	// 	// const {
+	// 	// 	data: { user }
+	// 	// } = await supabase.auth.getUser();
+	// 	// userlogin = user !== null;
+		console.log('userlogin');
+		console.log('userlogin',$userdata);
+	// };
 	// get_user();
 </script>
 
@@ -101,16 +109,18 @@
 		<div>
 			<Logo />
 		</div>
-		<div class="input-group input-group-divider grid-cols-12 w-1/2 max-lg:hidden m-auto">
-			<input
-				type="search"
-				class="col-span-11 px-4 placeholder:text-sm"
-				placeholder="Search By Name | Location | Brokerage…"
-			/>
-			<button class="variant-filled-primary col-span-1">
-				<img class="text-white" src="./search-outline.svg" alt="" srcset="" />
-			</button>
-		</div>
+		{#if showSearchbar}
+			<div class="input-group input-group-divider grid-cols-12 w-1/2 max-lg:hidden m-auto">
+				<input
+					type="search"
+					class="col-span-11 px-4 placeholder:text-sm"
+					placeholder="Search By Name | Location | Brokerage…"
+				/>
+				<button class="variant-filled-primary col-span-1">
+					<img class="text-white" src="./search-outline.svg" alt="" srcset="" />
+				</button>
+			</div>
+		{/if}
 		<div class="flex gap-2">
 			<a href="./agentlanding" class="btn variant-soft-primary w-fit font-bitten max-lg:hidden">
 				Are you An Agent ?
@@ -148,34 +158,46 @@
 			<div class="card w-48 shadow-xl py-2 z-50" data-popup="popupCombobox">
 				<!-- svelte-ignore a11y-no-static-element-interactions -->
 				<ListBox rounded="rounded-none">
-					<div
-						class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
-						on:click={() => {
-							handle_logout();
-						}}
-						on:keypress
-					>
-						Logout
-					</div>
-					<div
-						class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
-						on:click={() => {
-							OpenSignup();
-						}}
-						on:keypress
-					>
-						Join Now
-					</div>
-					<!-- svelte-ignore a11y-no-static-element-interactions -->
-					<div
-						class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
-						on:click={() => {
-							Openlogin();
-						}}
-						on:keypress
-					>
-						Login
-					</div>
+					{#if !$userdata}
+						<div
+							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
+							on:click={() => {
+								goto('./your');
+							}}
+							on:keypress
+						>
+							Profile
+						</div>
+						<div
+							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
+							on:click={() => {
+								userdata.logout();
+							}}
+							on:keypress
+						>
+							Logout
+						</div>
+					{:else}
+						<div
+							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
+							on:click={() => {
+								OpenSignup();
+							}}
+							on:keypress
+						>
+							Join Now
+						</div>
+						<!-- svelte-ignore a11y-no-static-element-interactions -->
+						<div
+							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
+							on:click={() => {
+								Openlogin();
+							}}
+							on:keypress
+						>
+							Login
+						</div>
+					{/if}
 					<hr />
 					<!-- svelte-ignore a11y-no-static-element-interactions -->
 					<div
@@ -209,92 +231,94 @@
 		</div>
 	</nav>
 	<hr />
-	<nav class="flex gap-2 px-2 justify-around">
-		<button
-			type="button"
-			class="px-4 text-2xl text-primary-500 dark:text-primary-100 font-bold"
-			on:click={multiColumnLeft}
-		>
-			«
-		</button>
-		<div
-			bind:this={elemList}
-			class="snap-x snap-mandatory scroll-px-4 scroll-smooth flex gap-4 overflow-hidden"
-		>
-			{#each filterList as item}
-				<button
-					class="snap-start shrink-0 p-2 hover:border-b-2 hover:border-primary-500 hover:text-primary-700 dark:hover:border-primary-200 dark:hover:text-primary-200 cursor-pointer"
-				>
-					{item}
-				</button>
-			{/each}
-		</div>
-		<button
-			type="button"
-			class="px-4 text-2xl text-primary-500 dark:text-primary-100 font-bold"
-			on:click={multiColumnRight}
-		>
-			»
-		</button>
-		<button
-			class="btn btn-sm m-1"
-			on:click={() => {
-				Openfilter();
-			}}
-		>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				class="ionicon w-6 text-primary-500 dark:text-primary-100"
-				viewBox="0 0 512 512"
-				><path
-					fill="currentColor"
-					stroke="currentColor"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="32"
-					d="M368 128h80M64 128h240M368 384h80M64 384h240M208 256h240M64 256h80"
-				/><circle
-					cx="336"
-					cy="128"
-					r="32"
-					fill="none"
-					stroke="currentColor"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="32"
-				/><circle
-					cx="176"
-					cy="256"
-					r="32"
-					fill="none"
-					stroke="currentColor"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="32"
-				/><circle
-					cx="336"
-					cy="384"
-					r="32"
-					fill="none"
-					stroke="currentColor"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="32"
-				/></svg
+	{#if showSubbar}
+		<nav class="flex gap-2 px-2 justify-around">
+			<button
+				type="button"
+				class="px-4 text-2xl text-primary-500 dark:text-primary-100 font-bold"
+				on:click={multiColumnLeft}
 			>
-		</button>
-	</nav>
+				«
+			</button>
+			<div
+				bind:this={elemList}
+				class="snap-x snap-mandatory scroll-px-4 scroll-smooth flex gap-4 overflow-hidden"
+			>
+				{#each filterList as item}
+					<button
+						class="snap-start shrink-0 p-2 hover:border-b-2 hover:border-primary-500 hover:text-primary-700 dark:hover:border-primary-200 dark:hover:text-primary-200 cursor-pointer"
+					>
+						{item}
+					</button>
+				{/each}
+			</div>
+			<button
+				type="button"
+				class="px-4 text-2xl text-primary-500 dark:text-primary-100 font-bold"
+				on:click={multiColumnRight}
+			>
+				»
+			</button>
+			<button
+				class="btn btn-sm m-1"
+				on:click={() => {
+					Openfilter();
+				}}
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="ionicon w-6 text-primary-500 dark:text-primary-100"
+					viewBox="0 0 512 512"
+					><path
+						fill="currentColor"
+						stroke="currentColor"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="32"
+						d="M368 128h80M64 128h240M368 384h80M64 384h240M208 256h240M64 256h80"
+					/><circle
+						cx="336"
+						cy="128"
+						r="32"
+						fill="none"
+						stroke="currentColor"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="32"
+					/><circle
+						cx="176"
+						cy="256"
+						r="32"
+						fill="none"
+						stroke="currentColor"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="32"
+					/><circle
+						cx="336"
+						cy="384"
+						r="32"
+						fill="none"
+						stroke="currentColor"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="32"
+					/></svg
+				>
+			</button>
+		</nav>
+	{/if}
 </div>
 <Model bind:show={openlogin} width="w-1/4 max-lg:w-1/2 font-bitten">
 	<span slot="title">Login</span>
 	<div slot="body">
-		<Login/>
+		<Login />
 	</div>
 </Model>
 <Model bind:show={openSignup} width="w-1/4 max-lg:w-1/2 font-bitten">
 	<span slot="title">Join Now</span>
 	<div slot="body">
-	<Signup/>
+		<Signup />
 	</div>
 </Model>
 <Model bind:show={openSignupAgent} width="w-1/3 max-lg:w-fit max-lg:mx-10 font-bitten">
@@ -505,6 +529,6 @@
 <Model width="w-1/2  max-lg:w-fit max-lg:mx-10 font-bitten" bind:show={openfilter}>
 	<div slot="title">Filter</div>
 	<div slot="body">
-		<Filters/>
+		<Filters />
 	</div>
 </Model>

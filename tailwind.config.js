@@ -3,7 +3,7 @@ import { join } from 'path'
 import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
 import { skeleton } from '@skeletonlabs/tw-plugin'
-import { myCustomTheme } from './agentflix_theme'
+import { myCustomTheme } from './agentflix_theme.js'
 
 export default {
 	darkMode: 'class',

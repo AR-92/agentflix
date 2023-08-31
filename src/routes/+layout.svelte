@@ -3,7 +3,10 @@
 	import '../app.postcss';
 	// import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
 	// import '@skeletonlabs/skeleton/styles/skeleton.css';
+	import { Toast } from '@skeletonlabs/skeleton';
+	import { initializeStores } from '@skeletonlabs/skeleton';
 
+	initializeStores();
 	// Highlight JS
 	import hljs from 'highlight.js';
 	import 'highlight.js/styles/github-dark.css';
@@ -15,4 +18,7 @@
 	import { storePopup } from '@skeletonlabs/skeleton';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 </script>
+
+<Toast />
+
 <slot />

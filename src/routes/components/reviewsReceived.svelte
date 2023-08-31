@@ -4,6 +4,7 @@
 	import Model from '../components/model.svelte';
 	import Events from '../icons/emptyReviews.svelte';
 	import EmptyReviews from '../icons/emptyReviews.svelte';
+	export let addre=true;
 	let value = 4;
 	let max = 5;
 	var reviews = [
@@ -43,12 +44,14 @@
 	<div class="w-full my-4 justify-between">
 		<div class="font-semibold text-lg">Reviews Given By Clients</div>
 		<div class="text-sm text-surface-900 dark:text-surface-100">Leave a Review</div>
+		{#if addre}
 		<button
 			on:click={() => {
 				AddReview();
 			}}
 			class="btn variant-filled-primary btn-sm w-full mt-4">Give Reviews</button
 		>
+		{/if}
 	</div>
 	<hr />
 	{#if reviews.length < 1}

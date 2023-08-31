@@ -1,30 +1,24 @@
 <script>
-	// import { supabase } from '$lib/supabaseClient';
-	// import { goto } from '$app/navigation';
-	let username = 'electro.electra@gmail.com';
-	let password = '5p#2d43tMaL6';
-	const handle_signup = async () => {
-		// console.log(username, password);
-		// const { user, error } = await supabase.auth.signUp({
-		// 	email: username,
-		// 	password: password,
-		// 	options: {
-		// 		emailRedirectTo: `http://localhost:5173/your`
-		// 	}
-		// });
-		// console.log(user, error, 'return');
-	};
+	import { userdata } from '../store/userStore';
+	import { getToastStore } from '@skeletonlabs/skeleton';
+
+	const toastStore = getToastStore();
+
+	let username;
+	let password;
 </script>
 
 <div>
-	<form on:submit|preventDefault={handle_signup}>
+	<form on:submit|preventDefault={userdata.sigup(username, password, toastStore)}>
 		<div class="m-4 flex flex-col gap-4">
 			<div>
 				<div class="text-lg font-bold">Welcome to Agentflix</div>
-				<div class="text-sm dark:text-primary-100 text-primary-500">Welcome to Agentflix</div>
+				<div class="text-sm dark:text-primary-100 text-primary-500">Join Agentflix Now !</div>
 			</div>
 			<label class="label text-sm">
-				<span>UserName</span>
+				<div class="flex justify-between">
+					<span>UserName</span>
+				</div>
 				<input
 					bind:value={username}
 					name="username"
@@ -35,13 +29,10 @@
 					autocomplete="email"
 				/>
 			</label>
-
 			<label class="label text-sm">
 				<div class="flex justify-between">
 					<span>Password</span>
-					<span class="dark:text-primary-100 text-primary-500">Forgot your Password ?</span>
 				</div>
-				<!-- (input here) -->
 				<input
 					bind:value={password}
 					name="password"
@@ -51,20 +42,22 @@
 					placeholder="password"
 				/>
 			</label>
-			<label class="flex items-center space-x-2 text-sm">
+			<label class="flex items-center space-x-3 text-sm">
 				<input class="checkbox" type="checkbox" />
-				<p>Stay signed in for a week</p>
+				<p>Join Now As An Agent !</p>
 			</label>
-			<button type="submit" class="btn variant-filled-primary w-full rounded-md">Continue</button>
-			<button type="button" on:click={() => {}} class="btn variant-filled-primary w-full rounded-md"
-				>Join Now as an Agent</button
-			>
+
+			<button type="submit" class="btn variant-ringed-primary w-full rounded-md">Join Now</button>
 		</div>
 	</form>
+
 	<div class="relative flex py-2 items-center">
-		<div class="flex-grow border-t border-gray-300" />
-		<span class="flex-shrink mx-4 text-gray-400">or</span>
-		<div class="flex-grow border-t border-gray-300" />
+		<div class="flex-grow border-t border-primary-500 dark:border-primary-100" />
+		<span
+			class="flex-shrink mx-4 text-primary-500 dark:border-primary-100 dark:text-primary-100 text-primary-100"
+			>or</span
+		>
+		<div class="flex-grow border-t border-primary-500 dark:border-primary-100" />
 	</div>
 	<div class="flex flex-col gap-2 m-4 items-center">
 		<button type="button" class="btn variant-ringed-primary btn-sm w-full py-2 rounded-md">

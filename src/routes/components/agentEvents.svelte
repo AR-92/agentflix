@@ -1,7 +1,10 @@
 <script>
 	import Model from '../components/model.svelte';
+	// import { userdata } from '../store/userStore';
+
 	import Empty from '../icons/empty.svelte';
 	import Events from '../icons/events.svelte';
+	export let addeve = true;
 	let openevent = false;
 	let openAddEvent = false;
 	function OpenEvent() {
@@ -37,28 +40,31 @@
 		}
 	];
 </script>
-					<!-- svelte-ignore a11y-no-static-element-interactions -->
+
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <div class="card text-sm p-4">
 	<div class="flex">
-		<button
-			class="btn variant-ringed-primary h-[100px] btn-sm rounded-lg"
-			on:click={() => {
-				AddEvent();
-			}}
-		>
-			<svg xmlns="http://www.w3.org/2000/svg" class="ionicon w-4" viewBox="0 0 512 512"
-				><path
-					class="text-primary-600"
-					fill="none"
-					stroke="currentColor"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="32"
-					d="M256 112v288M400 256H112"
-				/></svg
+		{#if !addeve}
+			<button
+				class="btn variant-ringed-primary h-[100px] btn-sm rounded-lg"
+				on:click={() => {
+					AddEvent();
+				}}
 			>
-		</button>
+				<svg xmlns="http://www.w3.org/2000/svg" class="ionicon w-4" viewBox="0 0 512 512"
+					><path
+						class="text-primary-600"
+						fill="none"
+						stroke="currentColor"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="32"
+						d="M256 112v288M400 256H112"
+					/></svg
+				>
+			</button>
+		{/if}
 		<div class="my-auto w-full ml-4">
 			<div class="font-semibold text-lg">My Open Houses</div>
 			<div class="text-sm text-surface-900 dark:text-surface-100">
@@ -188,9 +194,7 @@
 					</label>
 
 					<div class="w-full text-right">
-						<button type="button" class="btn variant-soft-surface btn-sm w-fit mr-2"
-							>Cancel</button
-						>
+						<button type="button" class="btn variant-soft-surface btn-sm w-fit mr-2">Cancel</button>
 						<button type="button" class="btn variant-filled-primary w-fit btn-sm"
 							>Add An Event</button
 						>
