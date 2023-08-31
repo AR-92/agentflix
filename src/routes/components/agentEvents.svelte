@@ -1,12 +1,14 @@
 <script>
 	import Model from '../components/model.svelte';
-	// import { userdata } from '../store/userStore';
+	import { userdata } from '../store/userStore';
+	import Signup from './signup.svelte';
 
 	import Empty from '../icons/empty.svelte';
 	import Events from '../icons/events.svelte';
 	export let addeve = true;
 	let openevent = false;
 	let openAddEvent = false;
+	let openSignup = false;
 	function OpenEvent() {
 		openevent = true;
 	}
@@ -39,6 +41,17 @@
 			Address: 'Tonya Currie & her team resides in Washington'
 		}
 	];
+	function handle_join(value) {
+		if ($userdata) {
+			openSignup = true;
+		}
+		if (value === 'coming') {
+		}
+		if (value === 'maybe') {
+		}
+		if (value === 'next') {
+		}
+	}
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -136,9 +149,9 @@
 					Lifestyle Ranch & Home Group Compass 105 Main St. Suite 200A Brenham, TX 77833
 				</div>
 				<div class="flex gap-2 float-right">
-					<button class="btn variant-filled-primary btn-sm px-5">I'm coming</button>
-					<button class="btn variant-filled-primary btn-sm px-5">Maybe</button>
-					<button class="btn variant-filled-primary btn-sm px-5">Next Time</button>
+					<button on:click={()=>{handle_join('coming')}} class="btn variant-filled-primary btn-sm px-5">I'm coming</button>
+					<button on:click={()=>{handle_join('maybe')}} class="btn variant-filled-primary btn-sm px-5">Maybe</button>
+					<button on:click={()=>{handle_join('next')}} class="btn variant-filled-primary btn-sm px-5">Next Time</button>
 				</div>
 			</div>
 		</div>
@@ -202,5 +215,11 @@
 				</div>
 			</div>
 		</div>
+	</div>
+</Model>
+<Model bind:show={openSignup} width="w-1/4 max-lg:w-1/2 font-bitten">
+	<span slot="title">Join Now</span>
+	<div slot="body">
+		<Signup />
 	</div>
 </Model>

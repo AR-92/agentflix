@@ -1,5 +1,6 @@
 <script>
 	import { goto } from '$app/navigation';
+	export let width='150px'
 </script>
 					<!-- svelte-ignore a11y-no-static-element-interactions -->
 
@@ -8,7 +9,7 @@
 		goto('./');
 	}}
 	on:keydown
-	style="width: 150px"
+	style="width: {width}"
 	class="cursor-pointer dark:text-primary-200 text-primary-500 max-md:m-auto"
 	version="1.0"
 	xmlns="http://www.w3.org/2000/svg"

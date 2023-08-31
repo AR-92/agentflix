@@ -21,12 +21,12 @@
 
 <!-- <style></style> -->
 <div class="pb-20 px-10">
-	<div class="flex px-4 font-semibold justify-between">
+	<div class="flex px-4 font-semibold justify-between items-center">
 		<div class="m-8">
-			<Logo />
+			<Logo width='250px' />
 		</div>
 
-		<div class="flex gap-6 my-auto">
+		<div class="flex gap-6 ">
 			<button
 				class="btn variant-soft-primary w-fit font-bitten"
 				on:click={() => {

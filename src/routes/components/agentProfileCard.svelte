@@ -37,13 +37,13 @@
 		if ($userdata) {
 			openSignup = true;
 		} else {
-			window.location.href=url
+			window.location.href = url;
 		}
 	}
 	function handle_follow() {
 		if ($userdata) {
 			openSignup = true;
-		} 
+		}
 	}
 </script>
 
@@ -76,12 +76,16 @@
 	<div class="flex justify-around mt-[-90px]">
 		<img src={agentData.dp} class="rounded-full w-40" alt="" srcset="" />
 	</div>
-	<div class="flex justify-around mt-[-10px]">
-		<button on:click={()=>{
-			handle_follow();
-		}} class="btn variant-filled-primary btn-sm w-fit">Follow Me</button>
-	</div>
-
+	{#if $userdata}
+		<div class="flex justify-around mt-[-10px]">
+			<button
+				on:click={() => {
+					handle_follow();
+				}}
+				class="btn variant-filled-primary btn-sm w-fit">Follow Me</button
+			>
+		</div>
+	{/if}
 	<div class="px-4 mt-4 mb-4">
 		<div class="flex justify-between">
 			<div class="font-semibold">{agentData.name}</div>
@@ -96,7 +100,6 @@
 						d="M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z"
 					/></svg
 				>
-				<!-- <img class="w-4" src="./star.svg" alt="" srcset="" /> -->
 				<div class="m-auto">{agentData.ratings}</div>
 			</div>
 		</div>
@@ -223,10 +226,11 @@
 			>
 				<img class="w-4" src="./chatbox.svg" alt="" srcset="" /><span> Lets Chat</span>
 			</button>
-			<button on:click={()=>{
-				handle_listing(agentData.link);
-			}} class="btn variant-filled-primary btn-sm w-full"
-				>View My Listings</button
+			<button
+				on:click={() => {
+					handle_listing(agentData.link);
+				}}
+				class="btn variant-filled-primary btn-sm w-full">View My Listings</button
 			>
 		</div>
 	</div>

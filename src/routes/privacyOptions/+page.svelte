@@ -1,6 +1,8 @@
 <script>
 	import Footer from '../components/fullFooter.svelte';
 	import FullNav from '../components/fullNav.svelte';
+	import { userdata } from '../store/userStore';
+
 	let sbar = false;
 </script>
 
@@ -20,7 +22,9 @@
 		If you're a US user and want to opt out of such data sharing, you can do so by pressing the
 		button below.
 	</p>
-	<button class="btn variant-filled w-40">I want to opt put</button>
+	{#if !$userdata}
+		<button class="btn variant-filled w-40">I want to opt put</button>
+	{/if}
 	<p>
 		You can read more about how we use your personal information in our <a href="./"
 			>Privacy Policy.</a
