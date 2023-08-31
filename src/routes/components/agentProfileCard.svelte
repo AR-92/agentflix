@@ -396,7 +396,7 @@
 		</div>
 		<hr />
 		<div class="flex m-5 gap-4 place-content-end">
-			<button class="btn variant-filled-surface btn-sm w-fit">Cancel</button>
+			<button class="btn variant-soft-surface btn-sm w-fit">Cancel</button>
 			<button class="btn variant-filled-primary btn-sm w-fit">Update</button>
 		</div>
 	</div>

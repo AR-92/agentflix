@@ -30,7 +30,7 @@
 		>
 		<a
 			class="hover:text-primary-800 dark:hover:text-primary-300 cursor-pointer flex gap-x-2 max-lg:hidden"
-			href="./privacypolicy"
+			href="./privacyOptions"
 			>Your Privacy Choices
 			<span class=" m-auto">
 				<svg width="26" height="12" fill="none"

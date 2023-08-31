@@ -117,6 +117,9 @@
 						</div>
 					</RangeSlider>
 					<div class="w-full text-right">
+						<button type="button" class="btn variant-soft-surface btn-sm w-fit mr-2"
+							>Cancel</button
+						>
 						<button type="button" class="btn variant-filled-primary w-fit btn-sm"
 							>Submit Review</button
 						>

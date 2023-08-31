@@ -1,17 +1,44 @@
 <script>
 	import FooterLinks from '../components/footerLinks.svelte';
 	import Logo from '../components/logo.svelte';
+	import Login from '../components/login.svelte';
+	import Signup from '../components/signup.svelte';
+	import Model from '../components/model.svelte';
+	import Contact from '../components/contactus.svelte';
+	let openlogin = false;
+	function Openlogin() {
+		openlogin = true;
+	}
+	let openSignup = false;
+	function OpenSignup() {
+		openSignup = true;
+	}
+	let openContact = false;
+	function OpenContact() {
+		openContact = true;
+	}
 </script>
+
 <!-- <style></style> -->
-<div class="pb-20 px-10 ">
+<div class="pb-20 px-10">
 	<div class="flex px-4 font-semibold justify-between">
 		<div class="m-8">
 			<Logo />
 		</div>
 
 		<div class="flex gap-6 my-auto">
-		<button class="btn variant-soft-primary w-fit font-bitten">Login</button>
-		<button class="btn variant-filled-primary w-fit font-bitten">Join Now</button>
+			<button
+				class="btn variant-soft-primary w-fit font-bitten"
+				on:click={() => {
+					Openlogin();
+				}}>Login</button
+			>
+			<button
+				class="btn variant-filled-primary w-fit font-bitten"
+				on:click={() => {
+					OpenSignup();
+				}}>Join Now</button
+			>
 		</div>
 	</div>
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
@@ -20,25 +47,32 @@
 				The social network for agents to seamlessly connect with clients
 			</div>
 			<div class="flex gap-6 mt-16">
-				<button class="bg-primary-500 text-white p-2 px-4 rounded-full font-bitten">Join Now</button>
-				<button class="font-bitten text-lg">Contact Us</button>	
+				<button
+					class="bg-primary-500 text-white p-2 px-4 rounded-full font-bitten"
+					on:click={() => {
+						OpenSignup();
+					}}>Join Now</button
+				>
+				<button class="btn variant-soft-primary w-fit font-bitten" on:click={() => {
+					OpenContact();
+				}}>Contact Us</button>
 			</div>
 		</div>
-		<div class="col-span-5 bg-gray-200 max-md:hidden" style="height: 500px;" />
+		<div class="col-span-5 bg-secondary-200 max-md:hidden" style="height: 500px;" />
 	</div>
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12">
-		<div class="col-span-3 bg-gray-200 h-20" />
-		<div class="col-span-3 bg-gray-200 h-20" />
-		<div class="col-span-3 bg-gray-200 h-20" />
-		<div class="col-span-3 bg-gray-200 h-20" />
-		<div class="col-span-3 bg-gray-200 h-20" />
-		<div class="col-span-3 bg-gray-200 h-20" />
-		<div class="col-span-3 bg-gray-200 h-20" />
-		<div class="col-span-3 bg-gray-200 h-20" />
+		<div class="col-span-3 bg-secondary-200 h-20" />
+		<div class="col-span-3 bg-secondary-200 h-20" />
+		<div class="col-span-3 bg-secondary-200 h-20" />
+		<div class="col-span-3 bg-secondary-200 h-20" />
+		<div class="col-span-3 bg-secondary-200 h-20" />
+		<div class="col-span-3 bg-secondary-200 h-20" />
+		<div class="col-span-3 bg-secondary-200 h-20" />
+		<div class="col-span-3 bg-secondary-200 h-20" />
 	</div>
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
 		<div class="col-span-7">
-			<div class="text-5xl max-md:text-4xl mt-10 font-header ">
+			<div class="text-5xl max-md:text-4xl mt-10 font-header" id="whyus">
 				An all in one suite of inbound marketing for agents to display themselves online
 			</div>
 			<p class="mt-16 font-para">
@@ -47,12 +81,17 @@
 				attend open houses, and trust each other.
 			</p>
 			<div class="flex gap-6 mt-16">
-				<button class="bg-primary-500 text-white p-2 px-4 rounded-full font-bitten">Start With Us</button>
+				<button
+					class="bg-primary-500 text-white p-2 px-4 rounded-full font-bitten"
+					on:click={() => {
+						OpenSignup();
+					}}>Start With Us</button
+				>
 			</div>
 		</div>
-		<div class="col-span-5 bg-gray-200 max-md:hidden" style="height: 500px;" />
+		<div class="col-span-5 bg-secondary-200 max-md:hidden" style="height: 500px;" />
 	</div>
-	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full text-center">
+	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full text-center" id="compare">
 		<div class="col-span-12">
 			<div class="text-5xl max-md:text-4xl mt-10 font-header">
 				A Comprehensive Analysis: Our Website Service Compared to Competitors
@@ -63,65 +102,64 @@
 				dedicated space online free for users to explore. It's more efficient than billboards and
 				flyers!
 			</p>
-<!-- Responsive Container (recommended) -->
-<div class="table-container mt-16 w-2/3 mx-auto" >
-	<!-- Native Table Element -->
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th class='text-center'>Traditional Marketing</th>
-				<th class='text-center'>What Top Agents Pay on
-					Average</th>
-				<th class='text-center'>Agentflix</th>
-			</tr>
-		</thead>
+			<!-- Responsive Container (recommended) -->
+			<div class="table-container mt-16 w-2/3 mx-auto">
+				<!-- Native Table Element -->
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th class="text-center">Traditional Marketing</th>
+							<th class="text-center">What Top Agents Pay on Average</th>
+							<th class="text-center">Agentflix</th>
+						</tr>
+					</thead>
 
-		<tbody >
-				<tr>
-					<td>Calendly</td>
-					<td><b>$60</b>/month</td>
-					<td>Included</td>
-				</tr>
-				<tr>
-					<td>Website SEO</td>
-					<td><b>$1500</b>/month</td>
-					<td>Included</td>
-				</tr>
-				<tr>
-					<td>Social Media Marketing</td>
-					<td><b>$500</b>/month</td>
-					<td>Included</td>
-				</tr>
-				<tr>
-					<td>Google Ads</td>
-					<td><b>$1500</b>/month</td>
-					<td>Included</td>
-				</tr>
-				<tr>
-					<td>Digital Marketing Management</td>
-					<td><b>$1000</b>/month</td>
-					<td>Included</td>
-				</tr>
-				<tr>
-					<td>CRM</td>
-					<td><b>$80</b>/month</td>
-					<td>Coming Soon</td>
-				</tr>
-				<tr>
-					<td>Mailchimp</td>
-					<td><b>$60</b>/month</td>
-					<td>Coming Soon</td>
-				</tr>
-		</tbody>
-		<tfoot>
-			<tr>
-				<th class='text-center' >Calculated Total</th>
-				<th class='text-center'>$4700/month</th>
-				<th class='text-center'>$$64.99/month</th>
-			</tr>
-		</tfoot>
-	</table>
-</div>
+					<tbody>
+						<tr>
+							<td>Calendly</td>
+							<td><b>$60</b>/month</td>
+							<td>Included</td>
+						</tr>
+						<tr>
+							<td>Website SEO</td>
+							<td><b>$1500</b>/month</td>
+							<td>Included</td>
+						</tr>
+						<tr>
+							<td>Social Media Marketing</td>
+							<td><b>$500</b>/month</td>
+							<td>Included</td>
+						</tr>
+						<tr>
+							<td>Google Ads</td>
+							<td><b>$1500</b>/month</td>
+							<td>Included</td>
+						</tr>
+						<tr>
+							<td>Digital Marketing Management</td>
+							<td><b>$1000</b>/month</td>
+							<td>Included</td>
+						</tr>
+						<tr>
+							<td>CRM</td>
+							<td><b>$80</b>/month</td>
+							<td>Coming Soon</td>
+						</tr>
+						<tr>
+							<td>Mailchimp</td>
+							<td><b>$60</b>/month</td>
+							<td>Coming Soon</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<th class="text-center">Calculated Total</th>
+							<th class="text-center">$4700/month</th>
+							<th class="text-center">$$64.99/month</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
 
 			<p class="mt-16 font-para">
 				Agentflix makes marketing more cost effective and easy than ever thought possible. By
@@ -173,8 +211,15 @@
 				call, book appointments, view agent open houses, and listings all in one place.
 			</p>
 			<div class="flex gap-6 mt-16">
-				<button class="bg-primary-500 text-white p-2 px-4 rounded-full font-bitten">Join Now</button>
-				<button class="font-bitten text-lg">Contact Us</button>
+				<button
+					class="bg-primary-500 text-white p-2 px-4 rounded-full font-bitten"
+					on:click={() => {
+						OpenSignup();
+					}}>Join Now</button
+				>
+				<button class="btn variant-soft-primary w-fit font-bitten" on:click={() => {
+					OpenContact();
+				}}>Contact Us</button>
 			</div>
 		</div>
 	</div>
@@ -195,19 +240,17 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-span-9 bg-gray-200 max-md:hidden" style="height: 500px;" />
+		<div class="col-span-9 bg-secondary-200 max-md:hidden" style="height: 500px;" />
 	</div>
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12">
-		<div class="col-span-3 bg-gray-200 h-20" />
-		<div class="col-span-3 bg-gray-200 h-20" />
-		<div class="col-span-3 bg-gray-200 h-20" />
-		<div class="col-span-3 bg-gray-200 h-20" />
+		<div class="col-span-3 bg-secondary-200 h-20" />
+		<div class="col-span-3 bg-secondary-200 h-20" />
+		<div class="col-span-3 bg-secondary-200 h-20" />
+		<div class="col-span-3 bg-secondary-200 h-20" />
 	</div>
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
 		<div class="col-span-7">
-			<div class="text-5xl max-md:text-4xl mt-10 font-header">
-				Take your career to a new level
-			</div>
+			<div class="text-5xl max-md:text-4xl mt-10 font-header">Take your career to a new level</div>
 			<p class="mt-16 font-para">
 				Whether starting your career or a seasoned professional, integrating yourself to the digital
 				world is key to unlocking a new audience of potential clients. To achieve this, there needs
@@ -217,10 +260,10 @@
 		</div>
 	</div>
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12">
-		<div class="col-span-6 bg-gray-200 h-[300px]" />
-		<div class="col-span-6 bg-gray-200 h-[300px]" />
-		<div class="col-span-6 bg-gray-200 h-[300px]" />
-		<div class="col-span-6 bg-gray-200 h-[300px]" />
+		<div class="col-span-6 bg-secondary-200 h-[300px]" />
+		<div class="col-span-6 bg-secondary-200 h-[300px]" />
+		<div class="col-span-6 bg-secondary-200 h-[300px]" />
+		<div class="col-span-6 bg-secondary-200 h-[300px]" />
 	</div>
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
 		<div class="col-span-7">
@@ -235,17 +278,17 @@
 
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12 text-center">
 		<div class="col-span-4">
-			<div class=" bg-gray-200 h-72 mb-10" />
+			<div class=" bg-secondary-200 h-72 mb-10" />
 			<div class="text-3xl font-header text-primary-500 font-bold mb-2">Open houses</div>
 			<p class="font-para text-md">Fill up open houses easier than ever before</p>
 		</div>
 		<div class="col-span-4">
-			<div class=" bg-gray-200 h-72 mb-10" />
+			<div class=" bg-secondary-200 h-72 mb-10" />
 			<div class="text-3xl font-bold mb-2 font-header text-primary-500">Busier Schedule</div>
 			<p class="font-para text-md">An easy way for clients to find time to talk to you</p>
 		</div>
 		<div class="col-span-4">
-			<div class=" bg-gray-200 h-72 mb-10" />
+			<div class=" bg-secondary-200 h-72 mb-10" />
 			<div class="text-3xl font-bold font-header mb-2 text-primary-500">Ondisplay Profile</div>
 			<p class="font-para txt-md">Let your professional and personal side shine through</p>
 		</div>
@@ -254,3 +297,21 @@
 <div class="card text-sm text-left">
 	<FooterLinks />
 </div>
+<Model bind:show={openlogin} width="w-1/4 max-lg:w-1/2 font-bitten">
+	<span slot="title">Login</span>
+	<div slot="body">
+		<Login />
+	</div>
+</Model>
+<Model bind:show={openSignup} width="w-1/4 max-lg:w-1/2 font-bitten">
+	<span slot="title">Join Now</span>
+	<div slot="body">
+		<Signup />
+	</div>
+</Model>
+<Model bind:show={openContact} width="w-1/2 max-lg:w-1/2 font-bitten">
+	<span slot="title">Contact Us</span>
+	<div slot="body">
+		<Contact />
+	</div>
+</Model>

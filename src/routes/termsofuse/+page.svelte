@@ -7,9 +7,9 @@
 
 <div class="flex max-lg:flex-col px-20 max-md:px-5">
 	<aside
-		class="py-16 px-5 w-full h-screen sticky max-lg:relative max-lg:h-fit max-lg:pb-0 max-lg:px-0 top-0"
+		class="py-16 px-5 w-1/2 h-screen sticky max-lg:relative max-lg:h-fit max-lg:pb-0 max-lg:px-0 top-0"
 	>
-		<div class="card p-8">
+		<div class="card p-8 ">
 			<nav id="sidebar-nav">
 				<ul class="flex flex-col gap-y-6">
 					<li>
