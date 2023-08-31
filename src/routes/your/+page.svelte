@@ -1,18 +1,13 @@
 <script>
 	import Footer from '../components/compressedFooter.svelte';
-	// import MiniNav from '../components/miniNav.svelte';
 	import FullNav from '../components/fullNav.svelte';
 	import { userdata } from '../store/userStore';
-
 	import ReviewsReceived from '../components/reviewsReceived.svelte';
 	import AgentEvents from '../components/agentEvents.svelte';
 	import AgentProfileCard from '../components/agentProfileCard.svelte';
 	import AgentInfo from '../components/agentInfo.svelte';
 	let sbar=false
-
 </script>
-
-<!-- <MiniNav /> -->
 <FullNav showSearchbar={sbar} showSubbar={sbar}></FullNav>
 
 <img src="./cover.webp" class="w-full h-80" alt="" srcset="" />

@@ -1,12 +1,16 @@
 <script>
-	import MiniNav from '../components/miniNav.svelte';
 	import Footer from '../components/fullFooter.svelte';
+	import FullNav from '../components/fullNav.svelte';
+	let sbar = false;
 </script>
 
-<MiniNav />
+<FullNav showSearchbar={sbar} showSubbar={sbar}></FullNav>
+
 <main class="flex flex-col gap-4 mx-44 my-16 p-8 card">
 	<h2 class="h3 font-header font-bold">Privacy Policy</h2>
-	<p class="dark:text-primary-100 text-sm text-primary-500 font-para">Last Updated: August 30, 2023</p>
+	<p class="dark:text-primary-100 text-sm text-primary-500 font-para">
+		Last Updated: August 30, 2023
+	</p>
 	<div class="flex flex-col gap-6">
 		<p class="font-para">
 			Welcome to Agentflix! This privacy policy outlines how we collect, use, and protect your

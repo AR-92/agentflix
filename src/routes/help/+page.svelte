@@ -1,9 +1,10 @@
 <script>
-	import MiniNav from '../components/miniNav.svelte';
 	import Footer from '../components/fullFooter.svelte';
+	import FullNav from '../components/fullNav.svelte';
+	let sbar=false
 </script>
 
-<MiniNav />
+<FullNav showSearchbar={sbar} showSubbar={sbar}></FullNav>
 <main class="flex flex-col gap-4 p-10 text-center my-16">
 	<h2 class="h1 font-header">Hi, how can we help?</h2>
 	<h2 class="font-para mb-6 text-sm text-primary-500 dark:text-primary-100">

@@ -1,12 +1,16 @@
 <script>
 	import { RangeSlider } from '@skeletonlabs/skeleton';
+	import { userdata } from '../store/userStore';
+	import Signup from './signup.svelte';
 
 	import Model from '../components/model.svelte';
 	import Events from '../icons/emptyReviews.svelte';
 	import EmptyReviews from '../icons/emptyReviews.svelte';
-	export let addre=true;
+	export let addre = true;
 	let value = 4;
 	let max = 5;
+	let openSignup = false;
+
 	var reviews = [
 		{
 			name: 'John Baker',
@@ -36,8 +40,13 @@
 	let openAddReview = false;
 
 	function AddReview() {
-		openAddReview = true;
+		if ($userdata) {
+			openSignup = true;
+		} else {
+			openAddReview = true;
+		}
 	}
+
 </script>
 
 <div class="text-sm card p-4">
@@ -45,12 +54,12 @@
 		<div class="font-semibold text-lg">Reviews Given By Clients</div>
 		<div class="text-sm text-surface-900 dark:text-surface-100">Leave a Review</div>
 		{#if addre}
-		<button
-			on:click={() => {
-				AddReview();
-			}}
-			class="btn variant-filled-primary btn-sm w-full mt-4">Give Reviews</button
-		>
+			<button
+				on:click={() => {
+					AddReview();
+				}}
+				class="btn variant-filled-primary btn-sm w-full mt-4">Give Reviews</button
+			>
 		{/if}
 	</div>
 	<hr />
@@ -120,9 +129,7 @@
 						</div>
 					</RangeSlider>
 					<div class="w-full text-right">
-						<button type="button" class="btn variant-soft-surface btn-sm w-fit mr-2"
-							>Cancel</button
-						>
+						<button type="button" class="btn variant-soft-surface btn-sm w-fit mr-2">Cancel</button>
 						<button type="button" class="btn variant-filled-primary w-fit btn-sm"
 							>Submit Review</button
 						>
@@ -130,5 +137,11 @@
 				</div>
 			</div>
 		</div>
+	</div>
+</Model>
+<Model bind:show={openSignup} width="w-1/4 max-lg:w-1/2 font-bitten">
+	<span slot="title">Join Now</span>
+	<div slot="body">
+		<Signup />
 	</div>
 </Model>

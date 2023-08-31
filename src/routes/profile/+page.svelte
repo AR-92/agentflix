@@ -1,7 +1,6 @@
 <script>
 	import Footer from '../components/compressedFooter.svelte';
 	import FullNav from '../components/fullNav.svelte';
-	import { userdata } from '../store/userStore';
 
 	import ReviewsReceived from '../components/reviewsReceived.svelte';
 	import AgentEvents from '../components/agentEvents.svelte';

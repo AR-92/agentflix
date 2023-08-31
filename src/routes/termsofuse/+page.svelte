@@ -1,9 +1,10 @@
 <script>
 	import Footer from '../components/fullFooter.svelte';
-	import MiniNav from '../components/miniNav.svelte';
+	import FullNav from '../components/fullNav.svelte';
+	let sbar = false;
 </script>
 
-<MiniNav />
+<FullNav showSearchbar={sbar} showSubbar={sbar}></FullNav>
 
 <div class="flex max-lg:flex-col px-20 max-md:px-5">
 	<aside

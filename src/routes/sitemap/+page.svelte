@@ -1,10 +1,11 @@
 <script>
-	import MiniNav from '../components/miniNav.svelte';
-	import Footer from '../components/fullFooter.svelte';
 	const links = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+	import Footer from '../components/fullFooter.svelte';
+	import FullNav from '../components/fullNav.svelte';
+	let sbar = false;
 </script>
 
-<MiniNav />
+<FullNav showSearchbar={sbar} showSubbar={sbar}></FullNav>
 <main class="flex flex-col gap-4 p-10">
 	<h2 class="h3 font-bold font-header">Site Map</h2>
 	<div class="grid grid-cols-4 max-md:grid-cols-2">

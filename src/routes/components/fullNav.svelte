@@ -70,38 +70,6 @@
 	function Openfilter() {
 		openfilter = true;
 	}
-
-	function onNextHandler(e) {
-		console.log('event:next', e.detail);
-	}
-	function onBackHandler(e) {
-		console.log('event:prev', e.detail);
-	}
-	function onStepHandler(e) {
-		console.log('event:step', e.detail);
-	}
-	function onCompleteHandler(e) {
-		console.log('event:complete', e.detail);
-	}
-
-	// const handle_logout = async () => {
-	// 	// let { error } = await supabase.auth.signOut();
-	// 	// if (!error) {
-	// 	// 	goto('./');
-	// 	// 	get_user();
-	// 	// }
-	// 	// console.log(error, 'return');
-	// };
-	// $: userlogin = false;
-	// const get_user = async () => {
-	// 	// const {
-	// 	// 	data: { user }
-	// 	// } = await supabase.auth.getUser();
-	// 	// userlogin = user !== null;
-		console.log('userlogin');
-		console.log('userlogin',$userdata);
-	// };
-	// get_user();
 </script>
 
 <div class="top-0 sticky flex flex-col card rounded-none z-40 font-bitten">

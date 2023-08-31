@@ -9,11 +9,11 @@
 	let loginwithpass = false;
 
 	const WithPass = () => {
-		console.log(loginwithpass);
+		// console.log(loginwithpass);
 		loginwithpass = true;
 	};
 	const WithMagic = () => {
-		console.log(loginwithpass);
+		// console.log(loginwithpass);
 		loginwithpass = false;
 	};
 	const forget = () => {

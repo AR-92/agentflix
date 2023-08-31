@@ -1,10 +1,11 @@
 <script>
 	import Footer from '../components/compressedFooter.svelte';
-	import MiniNav from '../components/miniNav.svelte';
 	import ReviewsReceived from '../components/reviewsReceived.svelte';
+	import FullNav from '../components/fullNav.svelte';
+	let sbar=false
 </script>
 
-<MiniNav />
+<FullNav showSearchbar={sbar} showSubbar={sbar}></FullNav>
 <hr />
 <div class="chat w-full flex font-header">
 	<div class="flex w-1/3 flex-col border-r border-surface-500/30 max-md:hidden ">

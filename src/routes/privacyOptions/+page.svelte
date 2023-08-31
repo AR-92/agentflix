@@ -1,11 +1,11 @@
 <script>
-	import MiniNav from '../components/miniNav.svelte';
 	import Footer from '../components/fullFooter.svelte';
-
-
+	import FullNav from '../components/fullNav.svelte';
+	let sbar = false;
 </script>
 
-<MiniNav />
+<FullNav showSearchbar={sbar} showSubbar={sbar}></FullNav>
+
 <main class="flex flex-col gap-4 p-10 text-left card m-20">
 	<h2 class="h3 font-medium mb-6">Your privacy choices</h2>
 	<h2 class="h4 font-medium mb-3">Opt out of selling, sharing and targeted advertising</h2>

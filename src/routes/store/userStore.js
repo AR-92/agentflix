@@ -1,10 +1,7 @@
 import { supabase } from '$lib/supabaseClient';
 import { writable } from 'svelte/store';
 import { goto } from '$app/navigation';
-// import { getToastStore } from '@skeletonlabs/skeleton';
 
-// const toast=derived(toastStore,($getToastStore)=>toastStore=$getToastStore)
-// let toastStore =toast;
 async function check() {
     const { data: { user } } = await supabase.auth.getUser()
     return user !== null;
@@ -66,7 +63,6 @@ function user() {
                 goto('./');
             }
         }),
-
     }
 
 }
