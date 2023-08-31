@@ -1,6 +1,7 @@
 <script>
 	import Footer from '../components/compressedFooter.svelte';
 	import FullNav from '../components/fullNav.svelte';
+	import Banner from '../components/banner.svelte';
 	import { userdata } from '../store/userStore';
 	import ReviewsReceived from '../components/reviewsReceived.svelte';
 	import AgentEvents from '../components/agentEvents.svelte';
@@ -10,16 +11,7 @@
 </script>
 <FullNav showSearchbar={sbar} showSubbar={sbar}></FullNav>
 
-<!-- <img src="./cover.webp" class="w-full h-80" alt="" srcset="" /> -->
-<div  class="w-full h-80 card  rounded-none font-bitten">
-	<div class="grid grid-cols-12 py-11">
-		<div class="col-span-4"></div>
-		<div class="col-span-7 ">
-			<div class="text-5xl">Banner Space: Elevate Your Message with Impactful Design</div>
-			<div class="text-xs mt-5">Banner Space is your go-to destination for professional design services. Our team specializes in creating eye-catching banners that not only capture attention but also convey your message effectively. With a keen eye for aesthetics and a commitment to quality, we help businesses and individuals make a memorable impact. Whether it's for marketing campaigns, events, or promotions, trust Banner Space to elevate your visual communication and leave a lasting impression on your audience. Explore our expertise today and let your message shine.</div>
-		</div>
-	</div>
-</div>
+<Banner/>
 <div class="grid max-sm:grid-cols-1 max-md:grid-cols-2 max-2xl:grid-cols-12 gap-4 m-8 pb-20 font-bitten">
 	<div class="max-2xl:col-span-3">
 		<AgentProfileCard setset={!$userdata}/>
