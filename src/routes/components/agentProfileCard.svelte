@@ -74,10 +74,21 @@
 		{/if}
 	</div>
 	<div class="flex justify-around mt-[-90px]">
-		<img src={agentData.dp} class="rounded-full w-40" alt="" srcset="" />
+		{#if setset}
+			<Avatar
+				class="m-auto z-0"
+				initials="JD"
+				background="bg-primary-300 "
+				width="w-40"
+				rounded="rounded-full"
+			/>
+		{:else}
+			<Avatar class="m-auto z-0" src={agentData.dp} width="w-40" rounded="rounded-full" />
+		{/if}
+		<!-- <img src={agentData.dp} class="rounded-full w-40" alt="" srcset="" /> -->
 	</div>
 	{#if $userdata}
-		<div class="flex justify-around mt-[-10px]">
+		<div class="flex justify-around mt-[-10px] z-50">
 			<button
 				on:click={() => {
 					handle_follow();
@@ -436,5 +447,4 @@
 		</div>
 	</div>
 </Model>
-<Signup  bind:show={openSignup}/>
-
+<Signup bind:show={openSignup} />
