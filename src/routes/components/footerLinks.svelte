@@ -5,13 +5,9 @@
 	import Contact from '../components/contactus.svelte';
 
 	let openSignup = false;
-	function OpenSignup() {
-		openSignup = true;
-	}
+
 	let openContact = false;
-	function OpenContact() {
-		openContact = true;
-	}
+	
 </script>
 
 <div
@@ -30,13 +26,13 @@
 				<button
 					class="btn variant-filled-primary w-fit font-bitten"
 					on:click={() => {
-						OpenSignup();
+						openSignup = true;
 					}}>Join Now</button
 				>
 				<button
 					class="btn variant-soft-primary w-fit font-bitten"
 					on:click={() => {
-						OpenContact();
+						openContact = true;
 					}}>Contact Us</button
 				>
 			</div>
@@ -70,15 +66,6 @@
 		</ul>
 	</div>
 </div>
-<Model bind:show={openSignup} width="w-1/4 max-lg:w-1/2 font-bitten">
-	<span slot="title">Join Now</span>
-	<div slot="body">
-		<Signup />
-	</div>
-</Model>
-<Model bind:show={openContact} width="w-1/2 max-lg:w-1/2 font-bitten">
-	<span slot="title">Contact Us</span>
-	<div slot="body">
-		<Contact />
-	</div>
-</Model>
+<Signup  bind:show={openSignup}/>
+<Contact bind:show={openContact}/>
+

@@ -3,23 +3,12 @@
 	import Logo from '../components/logo.svelte';
 	import Login from '../components/login.svelte';
 	import Signup from '../components/signup.svelte';
-	import Model from '../components/model.svelte';
 	import Contact from '../components/contactus.svelte';
 	let openlogin = false;
-	function Openlogin() {
-		openlogin = true;
-	}
 	let openSignup = false;
-	function OpenSignup() {
-		openSignup = true;
-	}
 	let openContact = false;
-	function OpenContact() {
-		openContact = true;
-	}
 </script>
 
-<!-- <style></style> -->
 <div class="pb-20 px-10">
 	<div class="flex px-4 font-semibold justify-between items-center">
 		<div class="m-8">
@@ -30,13 +19,13 @@
 			<button
 				class="btn variant-soft-primary w-fit font-bitten"
 				on:click={() => {
-					Openlogin();
+					openlogin = true;
 				}}>Login</button
 			>
 			<button
 				class="btn variant-filled-primary w-fit font-bitten"
 				on:click={() => {
-					OpenSignup();
+					openSignup = true;
 				}}>Join Now</button
 			>
 		</div>
@@ -50,11 +39,11 @@
 				<button
 					class="bg-primary-500 text-white p-2 px-4 rounded-full font-bitten"
 					on:click={() => {
-						OpenSignup();
+						openSignup = true;
 					}}>Join Now</button
 				>
 				<button class="btn variant-soft-primary w-fit font-bitten" on:click={() => {
-					OpenContact();
+					openContact = true;
 				}}>Contact Us</button>
 			</div>
 		</div>
@@ -84,7 +73,7 @@
 				<button
 					class="bg-primary-500 text-white p-2 px-4 rounded-full font-bitten"
 					on:click={() => {
-						OpenSignup();
+						openSignup = true;
 					}}>Start With Us</button
 				>
 			</div>
@@ -214,11 +203,11 @@
 				<button
 					class="bg-primary-500 text-white p-2 px-4 rounded-full font-bitten"
 					on:click={() => {
-						OpenSignup();
+						openSignup = true;
 					}}>Join Now</button
 				>
 				<button class="btn variant-soft-primary w-fit font-bitten" on:click={() => {
-					OpenContact();
+					openContact = true;
 				}}>Contact Us</button>
 			</div>
 		</div>
@@ -297,21 +286,7 @@
 <div class="card text-sm text-left">
 	<FooterLinks />
 </div>
-<Model bind:show={openlogin} width="w-1/4 max-lg:w-1/2 font-bitten">
-	<span slot="title">Login</span>
-	<div slot="body">
-		<Login />
-	</div>
-</Model>
-<Model bind:show={openSignup} width="w-1/4 max-lg:w-1/2 font-bitten">
-	<span slot="title">Join Now</span>
-	<div slot="body">
-		<Signup />
-	</div>
-</Model>
-<Model bind:show={openContact} width="w-1/2 max-lg:w-1/2 font-bitten">
-	<span slot="title">Contact Us</span>
-	<div slot="body">
-		<Contact />
-	</div>
-</Model>
+
+<Login bind:show={openlogin}/>
+<Signup  bind:show={openSignup}/>
+<Contact bind:show={openContact}/>

@@ -4,8 +4,7 @@
 	import { userdata } from '../store/userStore';
 
 	import { goto } from '$app/navigation';
-	import { LightSwitch, FileDropzone, popup, ListBox, Stepper, Step } from '@skeletonlabs/skeleton';
-	import Model from './model.svelte';
+	import { LightSwitch, popup, ListBox } from '@skeletonlabs/skeleton';
 	import Logo from './logo.svelte';
 	import Filters from './filters.svelte';
 
@@ -52,24 +51,11 @@
 			x = elemList.scrollLeft + elemList.clientWidth;
 		elemList.scroll(x, 0);
 	}
-	let openlogin = false
-	if(!$userdata ) openlogin = $userdata 
-	function Openlogin() {
-		openlogin = true;
-	}
+	
+	let openlogin = false;
 	let openSignup = false;
-	function OpenSignup() {
-		openSignup = true;
-	}
-	let openSignupAgent = false;
-	// function OpenSignupAgent() {
-	// 	openSignupAgent = true;
-	// 	openSignup = false;
-	// }
 	let openfilter = false;
-	function Openfilter() {
-		openfilter = true;
-	}
+	if (!$userdata) openlogin = $userdata;
 </script>
 
 <div class="top-0 sticky flex flex-col card rounded-none z-40 font-bitten">
@@ -149,7 +135,7 @@
 						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							on:click={() => {
-								OpenSignup();
+								openSignup = true;
 							}}
 							on:keypress
 						>
@@ -159,7 +145,7 @@
 						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							on:click={() => {
-								Openlogin();
+								openlogin = true;
 							}}
 							on:keypress
 						>
@@ -230,7 +216,7 @@
 			<button
 				class="btn btn-sm m-1"
 				on:click={() => {
-					Openfilter();
+					openfilter = true;
 				}}
 			>
 				<svg
@@ -277,19 +263,12 @@
 		</nav>
 	{/if}
 </div>
-<Model bind:show={openlogin} width="w-1/4 max-lg:w-1/2 font-bitten">
-	<span slot="title">Login</span>
-	<div slot="body">
-		<Login />
-	</div>
-</Model>
-<Model bind:show={openSignup} width="w-1/4 max-lg:w-1/2 font-bitten">
-	<span slot="title">Join Now</span>
-	<div slot="body">
-		<Signup />
-	</div>
-</Model>
-<Model bind:show={openSignupAgent} width="w-1/3 max-lg:w-fit max-lg:mx-10 font-bitten">
+
+<Login bind:show={openlogin} />
+<Signup bind:show={openSignup} />
+<Filters bind:show={openfilter} />
+
+<!-- <Model bind:show={openSignupAgent} width="w-1/3 max-lg:w-fit max-lg:mx-10 font-bitten">
 	<span slot="title">Sign up</span>
 	<div slot="body">
 		<div class="p-4">
@@ -493,10 +472,4 @@
 			</Stepper>
 		</div>
 	</div>
-</Model>
-<Model width="w-1/2  max-lg:w-fit max-lg:mx-10 font-bitten" bind:show={openfilter}>
-	<div slot="title">Filter</div>
-	<div slot="body">
-		<Filters />
-	</div>
-</Model>
+</Model> -->

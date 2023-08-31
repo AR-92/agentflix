@@ -139,9 +139,4 @@
 		</div>
 	</div>
 </Model>
-<Model bind:show={openSignup} width="w-1/4 max-lg:w-1/2 font-bitten">
-	<span slot="title">Join Now</span>
-	<div slot="body">
-		<Signup />
-	</div>
-</Model>
+<Signup  bind:show={openSignup}/>
