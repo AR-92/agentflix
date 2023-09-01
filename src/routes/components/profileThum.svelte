@@ -4,12 +4,8 @@
 	export let agentName;
 	export let ratings;
 
-	// export let agency;
-	// export let sales;
-	// export let number;
-
 	function gotoProfile() {
-		console.log('agent is clicked');
+		// console.log('agent is clicked');
 	}
 </script>
 					<!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -38,10 +34,5 @@
 				{ratings}
 			</div>
 		</div>
-		<!-- <div class="mt-1 flex justify-between text-sm text-surface-800">
-			<div>{agency}</div>
-			<div>View Profile</div>
-			<div class="mt-1text-gray-500">{number}</div>
-		</div> -->
 	</div>
 </button>

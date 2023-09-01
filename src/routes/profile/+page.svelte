@@ -1,16 +1,16 @@
 <script>
-	import Footer from '../components/compressedFooter.svelte';
-	import FullNav from '../components/fullNav.svelte';
+	import Footer from '../components/footer.svelte';
+	import NavBar from '../components/navBar.svelte';
 	import Banner from '../components/banner.svelte';
 
-	import ReviewsReceived from '../components/reviewsReceived.svelte';
-	import AgentEvents from '../components/agentEvents.svelte';
-	import AgentProfileCard from '../components/agentProfileCard.svelte';
-	import AgentInfo from '../components/agentInfo.svelte';
+	import ReviewsReceived from '../components/reviews.svelte';
+	import AgentEvents from '../components/events.svelte';
+	import AgentProfileCard from '../components/profileCard.svelte';
+	import AgentInfo from '../components/profileInfo.svelte';
 	let sbar=false
 </script>
 
-<FullNav showSearchbar={sbar} showSubbar={sbar}></FullNav>
+<NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
 
 <Banner/>
 

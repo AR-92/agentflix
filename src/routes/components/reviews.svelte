@@ -1,9 +1,9 @@
 <script>
 	import { RangeSlider } from '@skeletonlabs/skeleton';
 	import { userdata } from '../store/userStore';
-	import Signup from './signup.svelte';
+	import Signup from './joinNow.svelte';
 
-	import Model from '../components/model.svelte';
+	import Model from './model.svelte';
 	import Events from '../icons/emptyReviews.svelte';
 	import EmptyReviews from '../icons/emptyReviews.svelte';
 	export let addre = true;

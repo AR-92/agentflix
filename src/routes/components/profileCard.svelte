@@ -1,7 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
 	import Model from './model.svelte';
-	import Signup from './signup.svelte';
+	import Signup from './joinNow.svelte';
 
 	import { userdata } from '../store/userStore';
 	import { TabGroup, Tab, Avatar, FileDropzone } from '@skeletonlabs/skeleton';

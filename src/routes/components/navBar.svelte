@@ -1,6 +1,6 @@
 <script>
 	import Login from './login.svelte';
-	import Signup from './signup.svelte';
+	import Signup from './joinNow.svelte';
 	import { userdata } from '../store/userStore';
 
 	import { goto } from '$app/navigation';

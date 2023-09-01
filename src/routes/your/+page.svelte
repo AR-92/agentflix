@@ -1,15 +1,15 @@
 <script>
-	import Footer from '../components/compressedFooter.svelte';
-	import FullNav from '../components/fullNav.svelte';
+	import Footer from '../components/footer.svelte';
+	import NavBar from '../components/navBar.svelte';
 	import Banner from '../components/banner.svelte';
 	import { userdata } from '../store/userStore';
-	import ReviewsReceived from '../components/reviewsReceived.svelte';
-	import AgentEvents from '../components/agentEvents.svelte';
-	import AgentProfileCard from '../components/agentProfileCard.svelte';
-	import AgentInfo from '../components/agentInfo.svelte';
+	import ReviewsReceived from '../components/reviews.svelte';
+	import AgentEvents from '../components/events.svelte';
+	import AgentProfileCard from '../components/profileCard.svelte';
+	import AgentInfo from '../components/profileInfo.svelte';
 	let sbar=false
 </script>
-<FullNav showSearchbar={sbar} showSubbar={sbar}></FullNav>
+<NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
 
 <Banner/>
 <div class="grid max-sm:grid-cols-1 max-md:grid-cols-2 max-2xl:grid-cols-12 gap-4 m-8 pb-20 font-bitten">

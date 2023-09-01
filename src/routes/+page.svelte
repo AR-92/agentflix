@@ -1,8 +1,8 @@
 <script>
 	import EmptyHome from './icons/emptyhome.svelte';
-	import FullNav from './components/fullNav.svelte';
-	import AgentCard from './components/agentCard.svelte';
-	import Footer from './components/compressedFooter.svelte';
+	import NavBar from './components/navBar.svelte';
+	import AgentCard from './components/profileThum.svelte';
+	import Footer from './components/footer.svelte';
 
 	const agentsList = [
 		{
@@ -64,7 +64,7 @@
 	];
 </script>
 
-<FullNav />
+<NavBar />
 {#if agentsList.length < 1}
 	<div class="w-full h-[500px] grid place-items-center ">
 		<div class="bg-primary-200 dark:bg-primary-500 p-8 rounded-full w-[300px] font-bitten">

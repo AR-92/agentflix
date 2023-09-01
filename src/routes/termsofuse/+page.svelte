@@ -1,10 +1,10 @@
 <script>
-	import Footer from '../components/fullFooter.svelte';
-	import FullNav from '../components/fullNav.svelte';
+	import Footer from '../components/exFooter.svelte';
+	import NavBar from '../components/navBar.svelte';
 	let sbar = false;
 </script>
 
-<FullNav showSearchbar={sbar} showSubbar={sbar}></FullNav>
+<NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
 
 <div class="flex max-lg:flex-col px-20 max-md:px-5">
 	<aside

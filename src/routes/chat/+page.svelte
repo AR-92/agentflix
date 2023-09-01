@@ -1,11 +1,11 @@
 <script>
-	import Footer from '../components/compressedFooter.svelte';
-	import ReviewsReceived from '../components/reviewsReceived.svelte';
-	import FullNav from '../components/fullNav.svelte';
+	import Footer from '../components/footer.svelte';
+	import ReviewsReceived from '../components/reviews.svelte';
+	import NavBar from '../components/navBar.svelte';
 	let sbar=false
 </script>
 
-<FullNav showSearchbar={sbar} showSubbar={sbar}></FullNav>
+<NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
 <hr />
 <div class="chat w-full flex font-header">
 	<div class="flex w-1/3 flex-col border-r border-surface-500/30 max-md:hidden ">

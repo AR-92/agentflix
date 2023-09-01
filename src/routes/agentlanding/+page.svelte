@@ -1,9 +1,9 @@
 <script>
-	import FooterLinks from '../components/footerLinks.svelte';
 	import Logo from '../components/logo.svelte';
 	import Login from '../components/login.svelte';
-	import Signup from '../components/signup.svelte';
+	import Signup from '../components/joinNow.svelte';
 	import Contact from '../components/contactus.svelte';
+	import FooterLinks from '../components/footerLinks.svelte';
 	let openlogin = false;
 	let openSignup = false;
 	let openContact = false;

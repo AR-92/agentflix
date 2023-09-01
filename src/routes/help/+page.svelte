@@ -1,10 +1,10 @@
 <script>
-	import Footer from '../components/fullFooter.svelte';
-	import FullNav from '../components/fullNav.svelte';
+	import Footer from '../components/exFooter.svelte';
+	import NavBar from '../components/navBar.svelte';
 	let sbar=false
 </script>
 
-<FullNav showSearchbar={sbar} showSubbar={sbar}></FullNav>
+<NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
 <main class="flex flex-col gap-4 p-10 text-center my-16">
 	<h2 class="h1 font-header">Hi, how can we help?</h2>
 	<h2 class="font-para mb-6 text-sm text-primary-500 dark:text-primary-100">

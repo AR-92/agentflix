@@ -1,10 +1,10 @@
 <script>
-	import Footer from '../components/fullFooter.svelte';
-	import FullNav from '../components/fullNav.svelte';
+	import Footer from '../components/exFooter.svelte';
+	import NavBar from '../components/navBar.svelte';
 	let sbar = false;
 </script>
 
-<FullNav showSearchbar={sbar} showSubbar={sbar}></FullNav>
+<NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
 
 <main class="flex flex-col gap-4 mx-44 my-16 p-8 card">
 	<h2 class="h3 font-header font-bold">Privacy Policy</h2>

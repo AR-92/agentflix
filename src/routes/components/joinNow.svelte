@@ -1,7 +1,7 @@
 <script>
 	import { userdata } from '../store/userStore';
 	import { getToastStore } from '@skeletonlabs/skeleton';
-	import Model from '../components/model.svelte';
+	import Model from './model.svelte';
 
 	const toastStore = getToastStore();
 	export let show=false;

@@ -1,7 +1,7 @@
 <script>
-	import Model from '../components/model.svelte';
+	import Model from './model.svelte';
 	import { userdata } from '../store/userStore';
-	import Signup from './signup.svelte';
+	import Signup from './joinNow.svelte';
 
 	import Empty from '../icons/empty.svelte';
 	import Events from '../icons/events.svelte';

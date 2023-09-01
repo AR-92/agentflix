@@ -1,6 +1,6 @@
 <script>
 	import Logo from './logo.svelte';
-	import Signup from './signup.svelte';
+	import Signup from './joinNow.svelte';
 	import Model from '../components/model.svelte';
 	import Contact from '../components/contactus.svelte';
 
