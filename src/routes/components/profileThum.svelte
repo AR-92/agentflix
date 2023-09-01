@@ -1,5 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
+	import { Avatar } from '@skeletonlabs/skeleton';
+
 	export let dp;
 	export let agentName;
 	export let ratings;
@@ -8,7 +10,8 @@
 		// console.log('agent is clicked');
 	}
 </script>
-					<!-- svelte-ignore a11y-no-static-element-interactions -->
+
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <button
 	on:click={() => {
@@ -17,7 +20,14 @@
 	class="rounded-lg card cursor-pointer text-left transform transition duration-150 hover:shadow-2xl hover:scale-110"
 	on:click={gotoProfile}
 >
-	<img src={dp} class="rounded-lg w-full" alt="" srcset="" />
+	<!-- <img src={dp} class="rounded-lg w-full" alt="" srcset="" /> -->
+	<Avatar
+		class="m-auto z-0"
+		initials="JD"
+		background="bg-primary-300 "
+		width="w-full"
+		rounded="rounded-lg"
+	/>
 	<div class="px-4 mt-4 mb-4">
 		<div class="flex justify-between">
 			<div>{agentName}</div>

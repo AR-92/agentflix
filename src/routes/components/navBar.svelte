@@ -123,6 +123,15 @@
 							Profile
 						</div>
 						<div
+						class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
+						on:click={() => {
+							goto('./chat');
+						}}
+						on:keypress
+					>
+						Chat
+					</div>
+						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							on:click={() => {
 								userdata.logout();

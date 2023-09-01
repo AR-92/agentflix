@@ -74,7 +74,14 @@
 		{/if}
 	</div>
 	<div class="flex justify-around mt-[-90px]">
-		{#if setset}
+		<Avatar
+				class="m-auto z-0"
+				initials="JD"
+				background="bg-primary-300 "
+				width="w-40"
+				rounded="rounded-full"
+			/>
+		<!-- {#if setset}
 			<Avatar
 				class="m-auto z-0"
 				initials="JD"
@@ -84,7 +91,7 @@
 			/>
 		{:else}
 			<Avatar class="m-auto z-0" src={agentData.dp} width="w-40" rounded="rounded-full" />
-		{/if}
+		{/if} -->
 		<!-- <img src={agentData.dp} class="rounded-full w-40" alt="" srcset="" /> -->
 	</div>
 	{#if $userdata}
@@ -262,7 +269,18 @@
 					{#if tabSet === 0}
 						<div class="grid grid-cols-2 gap-8 text-sm">
 							<div class="flex flex-col gap-4">
-								<Avatar class="m-auto" src="./t1.jpg" width="w-32" rounded="rounded-full" />
+								<!-- <Avatar class="m-auto" src="./t1.jpg" width="w-32" rounded="rounded-full" /> -->
+								{#if setset}
+								<Avatar
+									class="m-auto z-0"
+									initials="JD"
+									background="bg-primary-300 "
+									width="w-32"
+									rounded="rounded-full"
+								/>
+							{:else}
+								<Avatar class="m-auto z-0" src={agentData.dp} width="w-32" rounded="rounded-full" />
+							{/if}
 								<FileDropzone class="" name="files" />
 
 								<label class="label text-sm">
