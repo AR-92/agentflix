@@ -21,13 +21,25 @@
 	const backtologin = () => {
 		forgotpass = false;
 	};
+	function handle_login(){
+		userdata.login(username, password, toastStore);
+		show = false;
+	}
+	function handle_login_email(){
+		userdata.emailLogin(username, toastStore);
+		show = false;
+	}
+	function handle_forget(){
+		userdata.forgetPassword(username, toastStore);
+		show = false;
+	}
 </script>
 
 <Model bind:show={show} width="w-1/4 max-lg:w-1/2 font-bitten">
 	<span slot="title">Login</span>
 	<div slot="body">
 		<div>
-			<form on:submit|preventDefault={userdata.login(username, password, toastStore)}>
+			<form >
 				<div class="m-4 flex flex-col gap-4">
 					<div>
 						<div class="text-lg font-bold">Welcome to Agentflix</div>
@@ -42,7 +54,7 @@
 					<label class="label text-sm">
 						<div class="flex justify-between">
 							<span>Email</span>
-							{#if !loginwithpass}
+							{#if (!loginwithpass && !forgotpass)}
 								<button
 									class="dark:text-primary-100 text-primary-500"
 									on:click={() => {
@@ -98,7 +110,9 @@
 						</label>
 					{/if}
 					{#if forgotpass}
-						<button class="btn variant-filled-primary w-full rounded-md">Email me password</button>
+						<button on:click={() => {
+							handle_forget();
+						}} class="btn variant-filled-primary w-full rounded-md">Email me password</button>
 						<button
 							class="dark:text-primary-100 text-primary-500"
 							on:click={() => {
@@ -106,8 +120,13 @@
 							}}>Back to Login</button
 						>
 					{:else}
-						<button type="submit" class="btn variant-filled-primary w-full rounded-md">Login</button
+					{#if loginwithpass}
+						<button on:click={()=>{handle_login()}} class="btn variant-filled-primary w-full rounded-md">Login</button
 						>
+						{:else}
+						<button on:click={()=>{handle_login_email()}} class="btn variant-filled-primary w-full rounded-md">Login with Email</button
+							>
+						{/if}
 					{/if}
 				</div>
 			</form>

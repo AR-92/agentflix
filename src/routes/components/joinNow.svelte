@@ -7,12 +7,18 @@
 	export let show=false;
 	let username;
 	let password;
+	function handle_joinnow(){
+		userdata.sigup(username, password, toastStore)
+		show=false;
+		username=null;
+		password=null;
+	}
 </script>
 <Model bind:show={show} width="w-1/4 max-lg:w-1/2 font-bitten">
 	<span slot="title">Join Now</span>
 	<div slot="body">
 		<div>
-			<form on:submit|preventDefault={userdata.sigup(username, password, toastStore)}>
+			<form on:submit|preventDefault={handle_joinnow}>
 				<div class="m-4 flex flex-col gap-4">
 					<div>
 						<div class="text-lg font-bold">Welcome to Agentflix</div>

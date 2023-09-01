@@ -8,7 +8,6 @@
 	let openreview = false;
 	let tabSet = 0;
 	export let setset = false;
-	// export let setset = false;
 	function OpenReview() {
 		openreview = true;
 	}

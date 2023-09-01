@@ -2,19 +2,40 @@
 	import Footer from '../components/footer.svelte';
 	import NavBar from '../components/navBar.svelte';
 	import Banner from '../components/banner.svelte';
-	import { userdata } from '../store/userStore';
 	import ReviewsReceived from '../components/reviews.svelte';
 	import AgentEvents from '../components/events.svelte';
 	import AgentProfileCard from '../components/profileCard.svelte';
 	import AgentInfo from '../components/profileInfo.svelte';
-	let sbar=false
+	import Setup from '../components/profileSetup.svelte';
+	
+	import { getuser, profile } from './service';
+	import { userdata } from '../store/userStore';
+	let sbar = false;
+	let setup =false;
+	let page = false;
+	getuser().then((user) => {
+		console.log(user, 'this is the current user');
+		if(user){
+			profile(user.id).then((profile) => {
+				console.log(profile, 'profile with same id');
+				if(profile===null){
+					setup=true;
+					page=false;
+				}
+			});
+		}
+	});
 </script>
-<NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
-
-<Banner/>
-<div class="grid max-sm:grid-cols-1 max-md:grid-cols-2 max-2xl:grid-cols-12 gap-4 m-8 pb-20 font-bitten">
+<!-- <div> -->
+	<NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
+	
+	<Banner />
+	{#if page}
+	<div
+	class="grid max-sm:grid-cols-1 max-md:grid-cols-2 max-2xl:grid-cols-12 gap-4 m-8 pb-20 font-bitten"
+>
 	<div class="max-2xl:col-span-3">
-		<AgentProfileCard setset={!$userdata}/>
+		<AgentProfileCard setset={!$userdata} />
 		<div class="text-sm card p-4 mt-4 gap-2 flex flex-col">
 			<div class="my-2">
 				<div class="font-semibold mb-2">ABOUT</div>
@@ -52,8 +73,10 @@
 		</div>
 	</div>
 	<div class="max-2xl:col-span-3">
-		<ReviewsReceived addre={$userdata}/>
+		<ReviewsReceived addre={$userdata} />
 	</div>
 </div>
-
+{/if}
 <Footer />
+
+<Setup bind:show={setup}/>

@@ -2,7 +2,8 @@
 	import Login from './login.svelte';
 	import Signup from './joinNow.svelte';
 	import { userdata } from '../store/userStore';
-
+	import { getToastStore } from '@skeletonlabs/skeleton';
+ 
 	import { goto } from '$app/navigation';
 	import { LightSwitch, popup, ListBox } from '@skeletonlabs/skeleton';
 	import Logo from './logo.svelte';
@@ -10,6 +11,7 @@
 
 	export let showSearchbar = true;
 	export let showSubbar = true;
+	const toastStore = getToastStore();
 
 	const filterList = [
 		'All',
@@ -134,7 +136,7 @@
 						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							on:click={() => {
-								userdata.logout();
+								userdata.logout(toastStore);
 							}}
 							on:keypress
 						>

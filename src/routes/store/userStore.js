@@ -14,6 +14,7 @@ function user() {
     return {
         subscribe,
         sigup: (email, password, toast) => update(async (n) => {
+          
             let { data, error } = await supabase.auth.signUp({
             	email: email,
             	password: password
@@ -26,8 +27,9 @@ function user() {
                 };
                 toast.trigger(t);
             }else{
+                console.log('error from the signup ', error)
                 const t = {
-                    message: 'Sorry your are unable to Join',
+                    message: 'Sorry your are unable to Join ' + error,
                     timeout: 10000
                 };
                 toast.trigger(t);
@@ -50,19 +52,69 @@ function user() {
                 goto('./your');
             } else {
                 const f = {
-                    message: 'Your email or password is not valid ',
+                    message: 'Your email or password is not valid '+ error,
                     timeout: 10000
                 };
                 toast.trigger(f);
             }
 
         }),
-        logout: () => update(async (n) => {
+        emailLogin: (email, toast) => update(async (n) => {
+            let { data, error } = await supabase.auth.signInWithOtp({
+                email: email
+              })
+         
+            if (!error) {
+                const t = {
+                    message: 'Email is sent to ' + email+'. Login from there !',
+                    timeout: 10000
+                };
+                toast.trigger(t);
+                set(false)
+                // goto('./your');
+            } else {
+                console.log('error from login ', error)
+                const f = {
+                    message: 'Your email is not valid '+ error,
+                    timeout: 10000
+                };
+                toast.trigger(f);
+            }
+
+        }),
+        forgetPassword: (email, toast) => update(async (n) => {
+            let { data, error } = await supabase.auth.resetPasswordForEmail(email)
+         
+            if (!error) {
+                const t = {
+                    message: 'Email is sent to ' + email,
+                    timeout: 10000
+                };
+                toast.trigger(t);
+                set(false)
+                // goto('./your');
+            } else {
+                console.log('error from login ', error)
+                const f = {
+                    message: 'Your email is not valid '+ error,
+                    timeout: 10000
+                };
+                toast.trigger(f);
+            }
+
+        }),
+        logout: (toast) => update(async (n) => {
             let { error } = await supabase.auth.signOut();
             if (!error) {
                 goto('./');
+                const f = {
+                    message: 'You are now logged out !',
+                    timeout: 10000
+                };
+                toast.trigger(f);
             }
         }),
+        // getuser:()=> 
     }
 
 }
