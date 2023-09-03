@@ -71,6 +71,24 @@
 			openSignup = true;
 		}
 	}
+	function extractInitials(name) {
+		// Split the name into words
+		const words = name.split(' ');
+
+		// Initialize an array to store initials
+		const initials = [];
+
+		// Iterate through the words and extract the first letter of each
+		for (let i = 0; i < words.length; i++) {
+			if (words[i]) {
+				// Check if the word is not empty
+				initials.push(words[i][0].toUpperCase()); // Convert to uppercase for consistency
+			}
+		}
+
+		// Join the initials and return as a string
+		return initials.join('');
+	}
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -101,7 +119,7 @@
 	<div class="flex justify-around mt-[-90px]">
 		<Avatar
 			class="m-auto z-0"
-			initials="JD"
+			initials={extractInitials(profileData.name)}
 			src={ava}
 			background="bg-primary-300 "
 			width="w-40"

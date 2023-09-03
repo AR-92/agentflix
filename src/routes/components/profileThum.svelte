@@ -14,7 +14,24 @@
 	} else {
 		ava = false;
 	}
+	function extractInitials(name) {
+		// Split the name into words
+		const words = name.split(' ');
 
+		// Initialize an array to store initials
+		const initials = [];
+
+		// Iterate through the words and extract the first letter of each
+		for (let i = 0; i < words.length; i++) {
+			if (words[i]) {
+				// Check if the word is not empty
+				initials.push(words[i][0].toUpperCase()); // Convert to uppercase for consistency
+			}
+		}
+
+		// Join the initials and return as a string
+		return initials.join('');
+	}
 	// function gotoProfile() {
 	console.log('agent is clicked', profiles_id);
 	// }
@@ -33,7 +50,7 @@
 	<!-- <img src={dp} class="rounded-lg w-full" alt="" srcset="" /> -->
 	<Avatar
 		class="m-auto z-0"
-		initials="JD"
+		initials={extractInitials(name)}
 		src={ava}
 		background="bg-primary-300 "
 		width="w-full"
