@@ -9,9 +9,10 @@ async function get() {
     // //console.log('locations',locations)
     return locations;
 }
-var l= await get();
+// var l= await get();
 function locations() {
-    const { subscribe } = writable(l);
+    const { subscribe,set } = writable([]);
+    get().then(data => set(data));
 
     return {
         subscribe,

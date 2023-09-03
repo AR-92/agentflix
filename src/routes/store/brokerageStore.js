@@ -1,24 +1,32 @@
 import { supabase } from '$lib/supabaseClient';
 import { writable } from 'svelte/store';
-// import { goto } from '$app/navigation';
 
-async function get() {
-    let { data: brokerage, error } = await supabase
-    .from('brokerage')
-    .select('*')
-    // //console.log('locations',locations)
-    return brokerage;
-}
-var l= await get();
-function brokerage() {
-    const { subscribe } = writable(l);
-
-    return {
-        subscribe,
+async function getBrokerageData() {
+  try {
+    const { data, error } = await supabase
+      .from('brokerage')
+      .select('*');
+    
+    if (error) {
+      throw error;
     }
 
+    return data;
+  } catch (error) {
+    console.error('Error fetching brokerage data:', error);
+    throw error; // Rethrow the error if needed
+  }
 }
 
-export const brokerageData = brokerage();
+function createBrokerageStore() {
+  const { subscribe, set } = writable([]);
+  
+  // Fetch data when the store is created
+  getBrokerageData().then(data => set(data));
 
+  return {
+    subscribe,
+  };
+}
 
+export const brokerageData = createBrokerageStore();
