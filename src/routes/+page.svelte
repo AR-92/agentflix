@@ -1,87 +1,40 @@
 <script>
+	import { onMount } from 'svelte';
 	import EmptyHome from './icons/emptyhome.svelte';
 	import NavBar from './components/navBar.svelte';
 	import AgentCard from './components/profileThum.svelte';
 	import Footer from './components/footer.svelte';
 	import { profilesData } from './store/allusersStore';
-
-	let agentsList = [
-	// 	{
-	// 		dp: './t1.jpg',
-	// 		agentName: 'John Baker',
-	// 		ratings: 4.48,
-	// 		agency: 'Baker Realty INC',
-	// 		sales: 42,
-	// 		number: '334 585-0748'
-	// 	},
-	// 	{
-	// 		dp: './t2.jpg',
-	// 		agentName: 'John Baker',
-	// 		ratings: 4.48,
-	// 		agency: 'Baker Realty INC',
-	// 		sales: 42,
-	// 		number: '334 585-0748'
-	// 	},
-	// 	{
-	// 		dp: './t3.jpg',
-	// 		agentName: 'John Baker',
-	// 		ratings: 4.48,
-	// 		agency: 'Baker Realty INC',
-	// 		sales: 42,
-	// 		number: '334 585-0748'
-	// 	},
-	// 	{
-	// 		dp: './t4.jpg',
-	// 		agentName: 'John Baker',
-	// 		ratings: 4.48,
-	// 		agency: 'Baker Realty INC',
-	// 		sales: 42,
-	// 		number: '334 585-0748'
-	// 	},
-	// 	{
-	// 		dp: './t5.jpg',
-	// 		agentName: 'John Baker',
-	// 		ratings: 4.48,
-	// 		agency: 'Baker Realty INC',
-	// 		sales: 42,
-	// 		number: '334 585-0748'
-	// 	},
-	// 	{
-	// 		dp: './t6.jpg',
-	// 		agentName: 'John Baker',
-	// 		ratings: 4.48,
-	// 		agency: 'Baker Realty INC',
-	// 		sales: 42,
-	// 		number: '334 585-0748'
-	// 	},
-	// 	{
-	// 		dp: './t7.jpg',
-	// 		agentName: 'John Baker',
-	// 		ratings: 4.48,
-	// 		agency: 'Baker Realty INC',
-	// 		sales: 42,
-	// 		number: '334 585-0748'
-	// 	}
-	];
-	$profilesData.then(x=>{
-		agentsList=x
-	})
+	onMount(() => {
+		profilesData.all();
+	});
+	// let agentsList = [];
+	// $profilesData.then((x) => {
+	// 	agentsList = x;
+	// });
 </script>
 
 <NavBar />
-{#if agentsList.length < 1}
-	<div class="w-full h-[500px] grid place-items-center ">
-		<div class="bg-primary-200 dark:bg-primary-500 p-8 rounded-full w-[300px] font-bitten">
-			<EmptyHome />
+
+{#await $profilesData}
+	<div  class="fixed inset-0 flex items-center justify-center z-50 hidden">
+		<div class="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500">+</div>
+	</div>
+{:then}
+	{#if $profilesData.length < 1}
+		<div class="w-full h-[500px] grid place-items-center">
+			<div class="bg-primary-200 dark:bg-primary-500 p-8 rounded-full w-[300px] font-bitten">
+				<EmptyHome />
+			</div>
 		</div>
-	</div>
-{:else}
-	<div
-		class="grid grid-cols-5 max-sm:grid-cols-2 max-md:grid-cols-3 max-lg:grid-cols-4 gap-6 m-8 pb-16 font-bitten"
-	>
-		{#each agentsList as agent}
-			<AgentCard {...agent} />
-		{/each}
-	</div>
-{/if}
+	{:else}
+		<div
+			class="grid grid-cols-5 max-sm:grid-cols-2 max-md:grid-cols-3 max-lg:grid-cols-4 gap-6 m-8 pb-16 font-bitten"
+		>
+			{#each $profilesData as agent}
+				<AgentCard {...agent} />
+			{/each}
+		</div>
+	{/if}
+{/await}
 <Footer />

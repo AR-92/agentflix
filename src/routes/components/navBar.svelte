@@ -4,6 +4,7 @@
 	import { userdata } from '../store/userStore';
 	import { locationsData } from '../store/locationStore';
 	import { getToastStore } from '@skeletonlabs/skeleton';
+	import { profilesData } from '../store/allusersStore';
 
 	import { goto } from '$app/navigation';
 	import { LightSwitch, popup, ListBox } from '@skeletonlabs/skeleton';
@@ -47,6 +48,28 @@
 	let openSignup = false;
 	let openfilter = false;
 	// if ($userdata.id) openlogin = false;
+	let searchbar;
+	// $:{
+	// 	console.log("state ",$profilesData)
+	// }
+	function handle_search() {
+		// $profilesData.then(s=>{
+		// console.log(searchbar,$profilesData)
+		profilesData.searchFilter(searchbar);
+		// })
+	}
+	function searchCancel() {
+		if (searchbar.length > 1) {
+			profilesData.all();
+			searchbar = null;
+		}
+	}
+	function sCancel() {
+		profilesData.all();
+	}
+	function filterCity(value) {
+		profilesData.cityFilter(value);
+	}
 </script>
 
 <div class="top-0 sticky flex flex-col card rounded-none z-40 font-bitten">
@@ -57,11 +80,13 @@
 		{#if showSearchbar}
 			<div class="input-group input-group-divider grid-cols-12 w-1/2 max-lg:hidden m-auto">
 				<input
+					bind:value={searchbar}
+					on:click={searchCancel}
 					type="search"
 					class="col-span-11 px-4 placeholder:text-sm"
 					placeholder="Search By Name | Location | Brokerage…"
 				/>
-				<button class="variant-filled-primary col-span-1">
+				<button on:click={handle_search} class="variant-filled-primary col-span-1">
 					<img class="text-white" src="./search-outline.svg" alt="" srcset="" />
 				</button>
 			</div>
@@ -198,8 +223,16 @@
 				bind:this={elemList}
 				class="snap-x snap-mandatory scroll-px-4 scroll-smooth flex gap-4 overflow-hidden"
 			>
+				<button
+					on:click={()=>{sCancel()}}
+					class="snap-start shrink-0 p-2 hover:border-b-2 hover:border-primary-500 hover:text-primary-700 dark:hover:border-primary-200 dark:hover:text-primary-200 cursor-pointer"
+				>
+					All
+				</button>
 				{#each filterList as item}
-					<button id={item.location_id}
+					<button
+						id={item.location_id}
+						on:click={filterCity(item.location_id)}
 						class="snap-start shrink-0 p-2 hover:border-b-2 hover:border-primary-500 hover:text-primary-700 dark:hover:border-primary-200 dark:hover:text-primary-200 cursor-pointer"
 					>
 						{item.location}
