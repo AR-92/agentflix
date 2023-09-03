@@ -33,7 +33,7 @@
 		return initials.join('');
 	}
 	// function gotoProfile() {
-	console.log('agent is clicked', profiles_id);
+	//console.log('agent is clicked', profiles_id);
 	// }
 </script>
 

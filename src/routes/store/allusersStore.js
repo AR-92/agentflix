@@ -8,7 +8,7 @@ async function get() {
         .select('*')
         .eq('role', 'True')
 
-    // console.log('locations',locations)
+    // //console.log('locations',locations)
     return profile;
 }
 async function search(value) {
@@ -22,7 +22,7 @@ async function search(value) {
         //     { column3: { ilike: value } },
         //     // Add more columns as needed
         //   ]);
-    console.log(profile)
+    //console.log(profile)
     return profile
 }
 async function city(value) {
@@ -30,7 +30,7 @@ async function city(value) {
         .from('profile')
         .select("*")
         .eq('location_id', value)
-    console.log(profile)
+    //console.log(profile)
     return profile
 }
 async function filter(brokerage,rating,location,languages,experience) {
@@ -42,7 +42,7 @@ async function filter(brokerage,rating,location,languages,experience) {
         .eq('brokerage_id', brokerage)
         .gt('rating', rating)
         .gt('experience', experience)
-    console.log(profile)
+    //console.log(profile)
     return profile
 }
 

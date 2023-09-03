@@ -14,7 +14,7 @@
 	export let showSearchbar = true;
 	export let showSubbar = true;
 	const toastStore = getToastStore();
-	// console.log($locationsData, 'locationsData');
+	// //console.log($locationsData, 'locationsData');
 	// $locationsData.then((x) => {
 	// 	filterList = x;
 	// });
@@ -50,11 +50,11 @@
 	// if ($userdata.id) openlogin = false;
 	let searchbar;
 	// $:{
-	// 	console.log("state ",$profilesData)
+	// 	//console.log("state ",$profilesData)
 	// }
 	function handle_search() {
 		// $profilesData.then(s=>{
-		// console.log(searchbar,$profilesData)
+		// //console.log(searchbar,$profilesData)
 		profilesData.searchFilter(searchbar);
 		// })
 	}

@@ -41,15 +41,15 @@
 	}
 	getbrokerage().then((x) => {
 		brokerage = x.name;
-		// console.log(x, 'getbrokerage');
+		// //console.log(x, 'getbrokerage');
 	});
 	getLocation().then((x) => {
 		if (x) {
 			location = x[0];
-			console.log(location, 'location');
+			//console.log(location, 'location');
 		}
 	});
-	console.log(profileData);
+	//console.log(profileData);
 
 	let openSignup = false;
 	function handle_chat() {

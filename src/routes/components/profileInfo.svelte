@@ -4,7 +4,7 @@
 	export let profileData;
 	let brokerage_address;
 	let language;
-	// console.log(profileData, 'profileData');
+	// //console.log(profileData, 'profileData');
 	function getarray(value) {
 		return value.split(',');
 	}
@@ -24,11 +24,11 @@
 	}
 	getlanguage().then((x) => {
 		language = x.language;
-		// console.log(x, 'getlanguage');
+		// //console.log(x, 'getlanguage');
 	});
 	getbrokerage().then((x) => {
 		brokerage_address = x.adress;
-		// console.log(x, 'getbrokerage');
+		// //console.log(x, 'getbrokerage');
 	});
 </script>
 

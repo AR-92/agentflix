@@ -11,7 +11,7 @@
 	// $locationsData.then((x) => {
 	// 	filterList = x;
 	// });
-	console.log($locationsData);
+	//console.log($locationsData);
 	// let value = 2;
 	let max = 5;
 	let brokerage;
@@ -22,7 +22,7 @@
 
 	export let show = false;
 	function apply() {
-		console.log(brokerage,rating,location,languages,experience);
+		//console.log(brokerage,rating,location,languages,experience);
 		profilesData.filter(brokerage,rating,location,languages,experience)
 	}
 </script>

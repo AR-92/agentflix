@@ -6,7 +6,7 @@ async function get() {
     let { data: brokerage, error } = await supabase
     .from('brokerage')
     .select('*')
-    // console.log('locations',locations)
+    // //console.log('locations',locations)
     return brokerage;
 }
 var l= await get();

@@ -13,12 +13,12 @@
 	let sbar = false;
 	let setup =false;
 	let page = false;
-	console.log($userdata,$userdata.id,'userdata')
+	//console.log($userdata,$userdata.id,'userdata')
 	// getuser().then((user) => {
-	// 	console.log(user, 'this is the current user');
+	// 	//console.log(user, 'this is the current user');
 	// 	if(user){
 	// 		profile(user.id).then((profile) => {
-	// 			console.log(profile, 'profile with same id');
+	// 			//console.log(profile, 'profile with same id');
 	// 			if(profile===null){
 	// 				setup=true;
 	// 				page=false;

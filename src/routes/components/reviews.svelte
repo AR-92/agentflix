@@ -12,7 +12,7 @@
 	let max = 5;
 	let openSignup = false;
 	export let profileData;
-	// console.log(profileData, 'review profileData');
+	// //console.log(profileData, 'review profileData');
 	var reviews = [];
 	let openAddReview = false;
 
@@ -33,7 +33,7 @@
 	getreviews().then((x) => {
 		// brokerage_address = x.adress;
 		reviews = x;
-		console.log(x, 'getreviews');
+		//console.log(x, 'getreviews');
 	});
 </script>
 

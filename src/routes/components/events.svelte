@@ -8,7 +8,7 @@
 	import Events from '../icons/events.svelte';
 	export let addeve = true;
 	export let profile;
-	// console.log(profile, 'profile');
+	// //console.log(profile, 'profile');
 	let openevent = false;
 	let openAddEvent = false;
 	let openSignup = false;
@@ -32,7 +32,7 @@
 	getevents().then((x) => {
 		// brokerage_address = x.adress;
 		events = x;
-		console.log(x, 'getevents');
+		//console.log(x, 'getevents');
 	});
 	function handle_join(value) {
 		if ($userdata) {
