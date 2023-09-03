@@ -46,11 +46,12 @@ async function filter(brokerage,rating,location,languages,experience) {
     return profile
 }
 
-var d = await get()
+// var d = await get()
 function profile() {
     // let d= await get()
 
-    const { subscribe, set, update } = writable(d);
+    const { subscribe, set, update } = writable([]);
+    get().then(data => set(data));
 
     return {
         subscribe,
