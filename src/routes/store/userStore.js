@@ -4,32 +4,28 @@ import { goto } from '$app/navigation';
 
 async function check() {
     const { data: { user } } = await supabase.auth.getUser()
-    // //console.log(user,'user')
     return user;
 }
 function user() {
     const { subscribe, set, update } = writable(check());
     check().then((n) => {
-        // //console.log(n,'n')
         set(n);
     })
     return {
         subscribe,
         sigup: (email, password, toast) => update(async (n) => {
-          
             let { data, error } = await supabase.auth.signUp({
-            	email: email,
-            	password: password
+                email: email,
+                password: password
             });
-            if(!error){
+            if (!error) {
                 goto('./your');
                 const t = {
                     message: 'Welcome to Agentflix ' + email,
                     timeout: 10000
                 };
                 toast.trigger(t);
-            }else{
-                //console.log('error from the signup ', error)
+            } else {
                 const t = {
                     message: 'Sorry your are unable to Join ' + error,
                     timeout: 10000
@@ -39,7 +35,6 @@ function user() {
 
         }),
         login: (email, password, toast) => update(async (n) => {
-            // //console.log(email,password,n)
             let { data, error } = await supabase.auth.signInWithPassword({
                 email: email,
                 password: password
@@ -54,7 +49,7 @@ function user() {
                 goto('./your');
             } else {
                 const f = {
-                    message: 'Your email or password is not valid '+ error,
+                    message: 'Your email or password is not valid ' + error,
                     timeout: 10000
                 };
                 toast.trigger(f);
@@ -64,20 +59,18 @@ function user() {
         emailLogin: (email, toast) => update(async (n) => {
             let { data, error } = await supabase.auth.signInWithOtp({
                 email: email
-              })
-         
+            })
+
             if (!error) {
                 const t = {
-                    message: 'Email is sent to ' + email+'. Login from there !',
+                    message: 'Email is sent to ' + email + '. Login from there !',
                     timeout: 10000
                 };
                 toast.trigger(t);
                 set(false)
-                // goto('./your');
             } else {
-                //console.log('error from login ', error)
                 const f = {
-                    message: 'Your email is not valid '+ error,
+                    message: 'Your email is not valid ' + error,
                     timeout: 10000
                 };
                 toast.trigger(f);
@@ -86,7 +79,7 @@ function user() {
         }),
         forgetPassword: (email, toast) => update(async (n) => {
             let { data, error } = await supabase.auth.resetPasswordForEmail(email)
-         
+
             if (!error) {
                 const t = {
                     message: 'Email is sent to ' + email,
@@ -94,11 +87,9 @@ function user() {
                 };
                 toast.trigger(t);
                 set(false)
-                // goto('./your');
             } else {
-                //console.log('error from login ', error)
                 const f = {
-                    message: 'Your email is not valid '+ error,
+                    message: 'Your email is not valid ' + error,
                     timeout: 10000
                 };
                 toast.trigger(f);
@@ -116,7 +107,6 @@ function user() {
                 toast.trigger(f);
             }
         }),
-        // getuser:()=> 
     }
 
 }

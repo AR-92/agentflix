@@ -7,8 +7,6 @@ async function get() {
         .from('profile')
         .select('*')
         .eq('role', 'True')
-
-    // //console.log('locations',locations)
     return profile;
 }
 async function search(value) {
@@ -16,13 +14,7 @@ async function search(value) {
         .from('profile')
         .select("*")
         .ilike('name', value)
-        // .or([
-        //     { name: { ilike: value } },
-        //     { column2: { ilike: value } },
-        //     { column3: { ilike: value } },
-        //     // Add more columns as needed
-        //   ]);
-    //console.log(profile)
+        .eq('role', 'True')
     return profile
 }
 async function city(value) {
@@ -30,10 +22,10 @@ async function city(value) {
         .from('profile')
         .select("*")
         .eq('location_id', value)
-    //console.log(profile)
+        .eq('role', 'True')
     return profile
 }
-async function filter(brokerage,rating,location,languages,experience) {
+async function filter(brokerage, rating, location, languages, experience) {
     const { data: profile, error } = await supabase
         .from('profile')
         .select("*")
@@ -42,17 +34,13 @@ async function filter(brokerage,rating,location,languages,experience) {
         .eq('brokerage_id', brokerage)
         .gt('rating', rating)
         .gt('experience', experience)
-    //console.log(profile)
+        .eq('role', 'True')
     return profile
 }
 
-// var d = await get()
 function profile() {
-    // let d= await get()
-
     const { subscribe, set, update } = writable([]);
     get().then(data => set(data));
-
     return {
         subscribe,
         searchFilter: (value) => update(async (n) => {
@@ -61,22 +49,14 @@ function profile() {
         cityFilter: (value) => update(async (n) => {
             set(await city(value))
         }),
-        filter: (brokerage,rating,location,languages,experience) => update(async (n) => {
-            set(await filter(brokerage,rating,location,languages,experience))
+        filter: (brokerage, rating, location, languages, experience) => update(async (n) => {
+            set(await filter(brokerage, rating, location, languages, experience))
         }),
-        // getall:() => update(async (n) => {
-        //     set(await gat())
-        // }),
         all: () => update(async (n) => {
             set(await get())
         }),
-        // getall:() => update(async (n) => {
-        //     set(await gat())
-        // }),
-
     }
 }
-
 export const profilesData = profile();
 
 

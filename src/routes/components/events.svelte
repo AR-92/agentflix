@@ -30,9 +30,7 @@
 	}
 	let events = [];
 	getevents().then((x) => {
-		// brokerage_address = x.adress;
 		events = x;
-		//console.log(x, 'getevents');
 	});
 	function handle_join(value) {
 		if ($userdata) {

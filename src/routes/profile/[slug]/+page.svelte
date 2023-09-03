@@ -2,9 +2,6 @@
 	import Footer from '../../components/footer.svelte';
 	import NavBar from '../../components/navBar.svelte';
 	import Banner from '../../components/banner.svelte';
-	// import { page } from '$app/stores';
-	// import { supabase } from '$lib/supabaseClient';
-
 	import ReviewsReceived from '../../components/reviews.svelte';
 	import AgentEvents from '../../components/events.svelte';
 	import AgentProfileCard from '../../components/profileCard.svelte';
