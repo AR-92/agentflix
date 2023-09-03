@@ -33,6 +33,18 @@ async function city(value) {
     console.log(profile)
     return profile
 }
+async function filter(brokerage,rating,location,languages,experience) {
+    const { data: profile, error } = await supabase
+        .from('profile')
+        .select("*")
+        .eq('location_id', location)
+        .eq('language', languages)
+        .eq('brokerage_id', brokerage)
+        .gt('rating', rating)
+        .gt('experience', experience)
+    console.log(profile)
+    return profile
+}
 
 var d = await get()
 function profile() {
@@ -47,6 +59,9 @@ function profile() {
         }),
         cityFilter: (value) => update(async (n) => {
             set(await city(value))
+        }),
+        filter: (brokerage,rating,location,languages,experience) => update(async (n) => {
+            set(await filter(brokerage,rating,location,languages,experience))
         }),
         // getall:() => update(async (n) => {
         //     set(await gat())

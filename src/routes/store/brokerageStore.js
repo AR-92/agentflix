@@ -3,14 +3,14 @@ import { writable } from 'svelte/store';
 // import { goto } from '$app/navigation';
 
 async function get() {
-    let { data: locations, error } = await supabase
-    .from('locations')
+    let { data: brokerage, error } = await supabase
+    .from('brokerage')
     .select('*')
     // console.log('locations',locations)
-    return locations;
+    return brokerage;
 }
 var l= await get();
-function locations() {
+function brokerage() {
     const { subscribe } = writable(l);
 
     return {
@@ -19,6 +19,6 @@ function locations() {
 
 }
 
-export const locationsData = locations();
+export const brokerageData = brokerage();
 
 

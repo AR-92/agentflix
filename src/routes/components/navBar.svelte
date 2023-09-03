@@ -15,10 +15,10 @@
 	export let showSubbar = true;
 	const toastStore = getToastStore();
 	// console.log($locationsData, 'locationsData');
-	$locationsData.then((x) => {
-		filterList = x;
-	});
-	let filterList = [];
+	// $locationsData.then((x) => {
+	// 	filterList = x;
+	// });
+	// let filterList = [];
 	// filterList = $locationsData;
 
 	const popupCombobox = {
@@ -210,7 +210,7 @@
 		</div>
 	</nav>
 	<hr />
-	{#if showSubbar && filterList.length > 0}
+	{#if showSubbar && $locationsData.length > 0}
 		<nav class="flex gap-2 px-2 justify-around">
 			<button
 				type="button"
@@ -229,7 +229,7 @@
 				>
 					All
 				</button>
-				{#each filterList as item}
+				{#each $locationsData as item}
 					<button
 						id={item.location_id}
 						on:click={filterCity(item.location_id)}
