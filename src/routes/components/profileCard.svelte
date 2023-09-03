@@ -2,52 +2,78 @@
 	import { goto } from '$app/navigation';
 	import Model from './model.svelte';
 	import Signup from './joinNow.svelte';
+	import { supabase } from '$lib/supabaseClient';
 
 	import { userdata } from '../store/userStore';
 	import { TabGroup, Tab, Avatar, FileDropzone } from '@skeletonlabs/skeleton';
 	let openreview = false;
 	let tabSet = 0;
+	let location = null;
 	export let setset = false;
+	export let profileData;
+	let ava;
+	let brokerage;
+	if (profileData.avatar) {
+		ava = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${profileData.profiles_id}.jpg`;
+	} else {
+		ava = null;
+	}
+
 	function OpenReview() {
 		openreview = true;
 	}
+	function getarray(value) {
+		return value.split(',');
+	}
+	async function getLocation() {
+		let { data: locations, error } = await supabase
+			.from('locations')
+			.select('location')
+			.eq('location_id', profileData.location_id);
+		return locations;
+	}
+	async function getbrokerage() {
+		let { data: brokerage, error } = await supabase
+			.from('brokerage')
+			.select('*')
+			.eq('id', profileData.brokerage_id);
+		return brokerage[0];
+	}
+	getbrokerage().then((x) => {
+		brokerage = x.name;
+		// console.log(x, 'getbrokerage');
+	});
+	getLocation().then((x) => {
+		if (x) {
+			location = x[0];
+			console.log(location, 'location');
+		}
+	});
+	console.log(profileData);
 
-	var agentData = {
-		name: 'John Baker',
-		brokage: 'Baker Realty INC',
-		phoneNumber: '(334) 585-0748',
-		sales: '41 Sales',
-		ratings: '4.1',
-		location: 'Vancouver',
-		website: 'https://www.johnbacker.com',
-		dob: 'April 2012',
-		link: 'https://www.google.com',
-		dp: './t1.jpg'
-	};
 	let openSignup = false;
 	function handle_chat() {
-		if ($userdata) {
+		if (!$userdata) {
 			openSignup = true;
 		} else {
-			goto('./chat');
+			goto('../chat');
 		}
 	}
 	function handle_listing(url) {
-		if ($userdata) {
+		if (!$userdata) {
 			openSignup = true;
 		} else {
 			window.location.href = url;
 		}
 	}
 	function handle_follow() {
-		if ($userdata) {
+		if (!$userdata) {
 			openSignup = true;
 		}
 	}
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-
 <div class="card h-fit w-auto mt-[-280px] pb-5">
 	<div class="w-full h-32 rounded-lg bg-primary-500 flex justify-end cursor-pointer">
 		{#if setset}
@@ -74,12 +100,13 @@
 	</div>
 	<div class="flex justify-around mt-[-90px]">
 		<Avatar
-				class="m-auto z-0"
-				initials="JD"
-				background="bg-primary-300 "
-				width="w-40"
-				rounded="rounded-full"
-			/>
+			class="m-auto z-0"
+			initials="JD"
+			src={ava}
+			background="bg-primary-300 "
+			width="w-40"
+			rounded="rounded-full"
+		/>
 		<!-- {#if setset}
 			<Avatar
 				class="m-auto z-0"
@@ -89,9 +116,9 @@
 				rounded="rounded-full"
 			/>
 		{:else}
-			<Avatar class="m-auto z-0" src={agentData.dp} width="w-40" rounded="rounded-full" />
+			<Avatar class="m-auto z-0" src={profileData.dp} width="w-40" rounded="rounded-full" />
 		{/if} -->
-		<!-- <img src={agentData.dp} class="rounded-full w-40" alt="" srcset="" /> -->
+		<!-- <img src={profileData.dp} class="rounded-full w-40" alt="" srcset="" /> -->
 	</div>
 	{#if $userdata}
 		<div class="flex justify-around mt-[-10px] z-50">
@@ -105,7 +132,7 @@
 	{/if}
 	<div class="px-4 mt-4 mb-4">
 		<div class="flex justify-between">
-			<div class="font-semibold">{agentData.name}</div>
+			<div class="font-semibold">{profileData.name}</div>
 
 			<div class="flex">
 				<svg
@@ -117,16 +144,20 @@
 						d="M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z"
 					/></svg
 				>
-				<div class="m-auto">{agentData.ratings}</div>
+				<div class="m-auto">{profileData.rating}</div>
 			</div>
 		</div>
 
 		<div class="mt-1 flex text-sm justify-between">
-			<div>{agentData.brokage}</div>
-			<div class="">{agentData.sales}</div>
+			<div>{brokerage}</div>
+			{#if profileData.role}
+				<button class="btn variant-soft-primary btn-sm w-fit">Agent Profile</button>
+			{:else}
+				<button class="btn variant-soft-primary btn-sm w-fit">Client Profile</button>
+			{/if}
 		</div>
 		<div class="flex justify-between">
-			<div class="mt-1 text-sm">{agentData.phoneNumber}</div>
+			<div class="mt-1 text-sm">{profileData.contact}</div>
 		</div>
 	</div>
 
@@ -135,35 +166,38 @@
 			<div class="text-sm font-semibold">Baker employee</div>
 		</div>
 		<div class="mt-1 flex justify-between text-sm">
-			<div class="text-sm text-primary-500 dark:text-primary-300">@bakerRealty</div>
+			<div class="text-sm text-primary-500 dark:text-primary-300">@{profileData.username}</div>
 		</div>
 	</div>
+
 	<div class="px-4">
-		<div class="flex mt-1 gap-4">
-			<div class="text-sm text-primary-500 dark:text-primary-100">
-				<svg xmlns="http://www.w3.org/2000/svg" class="ionicon w-5" viewBox="0 0 512 512"
-					><path
-						d="M256 48c-79.5 0-144 61.39-144 137 0 87 96 224.87 131.25 272.49a15.77 15.77 0 0025.5 0C304 409.89 400 272.07 400 185c0-75.61-64.5-137-144-137z"
-						fill="none"
-						stroke="currentColor"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="32"
-					/><circle
-						cx="256"
-						cy="192"
-						r="48"
-						fill="none"
-						stroke="currentColor"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="32"
-					/></svg
-				>
-				<!-- <img src="./location-outline.svg" class="w-5" alt="" srcset="" /> -->
+		{#if location}
+			<div class="flex mt-1 gap-4">
+				<div class="text-sm text-primary-500 dark:text-primary-100">
+					<svg xmlns="http://www.w3.org/2000/svg" class="ionicon w-5" viewBox="0 0 512 512"
+						><path
+							d="M256 48c-79.5 0-144 61.39-144 137 0 87 96 224.87 131.25 272.49a15.77 15.77 0 0025.5 0C304 409.89 400 272.07 400 185c0-75.61-64.5-137-144-137z"
+							fill="none"
+							stroke="currentColor"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="32"
+						/><circle
+							cx="256"
+							cy="192"
+							r="48"
+							fill="none"
+							stroke="currentColor"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="32"
+						/></svg
+					>
+					<!-- <img src="./location-outline.svg" class="w-5" alt="" srcset="" /> -->
+				</div>
+				<div class="text-sm">{location.location}</div>
 			</div>
-			<div class="text-sm">{agentData.location}</div>
-		</div>
+		{/if}
 		<div class="flex mt-1 gap-4">
 			<div class="text-sm text-primary-500 dark:text-primary-100">
 				<svg xmlns="http://www.w3.org/2000/svg" class="ionicon w-5" viewBox="0 0 512 512"
@@ -197,9 +231,9 @@
 				<!-- <img src="./globe-outline.svg" class="w-5" alt="" srcset="" /> -->
 			</div>
 			<a
-				href={agentData.website}
+				href={profileData.website_link}
 				target="_blank"
-				class="text-sm text-primary-500 dark:text-primary-300">{agentData.website}</a
+				class="text-sm text-primary-500 dark:text-primary-300">Personal website Link</a
 			>
 		</div>
 		<div class="flex mt-1 gap-4">
@@ -226,7 +260,7 @@
 				>
 				<!-- <img src="./calendar-clear-outline.svg" class="w-5" alt="" srcset="" /> -->
 			</div>
-			<div class="text-sm">{agentData.dob}</div>
+			<div class="text-sm">{profileData.dob}</div>
 		</div>
 		<!-- <div class="flex mt-1 gap-4">
 			<div class="text-sm text-primary-500">
@@ -241,14 +275,42 @@
 					handle_chat();
 				}}
 			>
-				<img class="w-4" src="./chatbox.svg" alt="" srcset="" /><span> Lets Chat</span>
+				<img class="w-4" src="../chatbox.svg" alt="" srcset="" /><span> Lets Chat</span>
 			</button>
 			<button
 				on:click={() => {
-					handle_listing(agentData.link);
+					handle_listing(profileData.external_link);
 				}}
 				class="btn variant-filled-primary btn-sm w-full">View My Listings</button
 			>
+		</div>
+	</div>
+</div>
+<div class="text-sm card p-4 mt-4 gap-2 flex flex-col">
+	<div class="my-2">
+		<div class="font-semibold mb-2">ABOUT</div>
+		<div>
+			{profileData.about}
+		</div>
+	</div>
+	<div class="my-2">
+		<div class="font-semibold mb-1">HOBBIES</div>
+		<div class="">
+			<div>
+				{#each getarray(profileData.hobbies) as h}
+					{h} |
+				{/each}
+			</div>
+		</div>
+	</div>
+	<div class="my-2">
+		<div class="font-semibold mb-2">EDUCATION</div>
+		<div>{profileData.education}</div>
+	</div>
+	<div class="my-2">
+		<div class="font-semibold mb-2">OVERVIEW & AWARDS</div>
+		<div>
+			{profileData['o&a']}
 		</div>
 	</div>
 </div>
@@ -270,16 +332,21 @@
 							<div class="flex flex-col gap-4">
 								<!-- <Avatar class="m-auto" src="./t1.jpg" width="w-32" rounded="rounded-full" /> -->
 								{#if setset}
-								<Avatar
-									class="m-auto z-0"
-									initials="JD"
-									background="bg-primary-300 "
-									width="w-32"
-									rounded="rounded-full"
-								/>
-							{:else}
-								<Avatar class="m-auto z-0" src={agentData.dp} width="w-32" rounded="rounded-full" />
-							{/if}
+									<Avatar
+										class="m-auto z-0"
+										initials="JD"
+										background="bg-primary-300 "
+										width="w-32"
+										rounded="rounded-full"
+									/>
+								{:else}
+									<Avatar
+										class="m-auto z-0"
+										src={profileData.dp}
+										width="w-32"
+										rounded="rounded-full"
+									/>
+								{/if}
 								<FileDropzone class="" name="files" />
 
 								<label class="label text-sm">

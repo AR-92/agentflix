@@ -2,49 +2,38 @@
 	import Model from './model.svelte';
 	import { userdata } from '../store/userStore';
 	import Signup from './joinNow.svelte';
+	import { supabase } from '$lib/supabaseClient';
 
 	import Empty from '../icons/empty.svelte';
 	import Events from '../icons/events.svelte';
 	export let addeve = true;
+	export let profile;
+	// console.log(profile, 'profile');
 	let openevent = false;
 	let openAddEvent = false;
 	let openSignup = false;
-	function OpenEvent() {
+	let currentIndex = 0;
+	function OpenEvent(i) {
 		if ($userdata) {
 			openSignup = true;
-		}else{
+		} else {
 			openevent = true;
+			currentIndex = i;
 		}
 	}
 	function AddEvent() {
 		openAddEvent = true;
 	}
-	var events = [
-		{
-			Name: 'John Baker',
-			Date: '06/01/2021',
-			Time: '12:30 pm',
-			Dis: 'Tonya Currie & her team resides in Washington & Grimes County areas and represent',
-			Location: 'Nova Scotia',
-			Address: 'Tonya Currie & her team resides in Washington'
-		},
-		{
-			Name: 'John Baker',
-			Date: '06/01/2021',
-			Time: '12:30 pm',
-			Dis: 'Tonya Currie & her team resides in Washington & Grimes County areas and represent',
-			Location: 'Nova Scotia',
-			Address: 'Tonya Currie & her team resides in Washington'
-		},
-		{
-			Name: 'John Baker',
-			Date: '06/01/2021',
-			Time: '12:30 pm',
-			Dis: 'Tonya Currie & her team resides in Washington & Grimes County areas and represent',
-			Location: 'Nova Scotia',
-			Address: 'Tonya Currie & her team resides in Washington'
-		}
-	];
+	async function getevents() {
+		let { data: events, error } = await supabase.from('events').select('*').eq('agent_id', profile);
+		return events;
+	}
+	let events = [];
+	getevents().then((x) => {
+		// brokerage_address = x.adress;
+		events = x;
+		console.log(x, 'getevents');
+	});
 	function handle_join(value) {
 		if ($userdata) {
 			openSignup = true;
@@ -90,72 +79,95 @@
 		</div>
 	</div>
 	<hr class="my-5" />
-	{#if events.length < 1}
-		<div class="w-full text-center">
-			<div class="bg-primary-200 dark:bg-primary-500 p-4 rounded-lg m-4">
-				<Empty />
-			</div>
-			<p class="m-auto mt-6 text-xs dark:text-primary-300 text-primary-500">
-				No Events Yet Created
-			</p>
-		</div>
-	{/if}
-	{#each events as e, i}
-		<div
-			class="flex group cursor-pointer"
-			on:click={() => {
-				OpenEvent();
-			}}
-			on:keypress
-		>
-			<div class="group-hover:bg-primary-500 bg-surface-300 h-[100px] rounded-full w-2 m-auto" />
-			<div class="m-5">
-				<div class="flex justify-between items-center">
-					<div>
-						<div class="font-semibold">{e.Name}</div>
-					</div>
-					<div class="flex gap-2 items-center">
-						<div class="text-sm text-surface-900 dark:text-surface-100">{e.Date}</div>
-					</div>
+	<!-- {#if events} -->
+	{#await events}
+		Loading
+	{:then}
+		{#if events.length < 1}
+			<div class="w-full text-center">
+				<div class="bg-primary-200 dark:bg-primary-500 p-4 rounded-lg m-4">
+					<Empty />
 				</div>
-				<div class="flex justify-between mb-4 items-center">
-					<div>
-						<div class="font-semibold">Location</div>
-					</div>
-					<div class="flex gap-2 items-center">
-						<div class="text-sm text-surface-900 dark:text-surface-100">{e.Location}</div>
-					</div>
-				</div>
-				<div class="mt-2">{e.Dis}</div>
+				<p class="m-auto mt-6 text-xs dark:text-primary-300 text-primary-500">
+					No Events Yet Created
+				</p>
 			</div>
-		</div>
-		{#if i + 1 !== events.length}
-			<hr />
 		{/if}
-	{/each}
+		{#each events as e, i}
+			<div
+				class="flex group cursor-pointer"
+				on:click={() => {
+					OpenEvent(i);
+				}}
+				on:keypress
+			>
+				<div class="group-hover:bg-primary-500 bg-surface-300 h-[100px] rounded-full w-2 m-auto" />
+				<div class="m-5">
+					<div class="flex justify-between items-center">
+						<div>
+							<div class="font-semibold">{e.name}</div>
+						</div>
+						<div class="flex gap-2 items-center">
+							<div class="text-sm text-surface-900 dark:text-surface-100">
+								On {e.date} At {e.time}
+							</div>
+						</div>
+					</div>
+					<div class="flex justify-between mb-4 items-center">
+						<div>
+							<div class="font-semibold">Location</div>
+						</div>
+						<div class="flex gap-2 items-center">
+							<div class="text-sm text-surface-900 dark:text-surface-100">{e.location}</div>
+						</div>
+					</div>
+					<div class="mt-2">{e.description}</div>
+				</div>
+			</div>
+			{#if i + 1 !== events.length}
+				<hr />
+			{/if}
+		{/each}
+	{/await}
+	<!-- {/if} -->
 </div>
 
 <Model bind:show={openevent} width="w-fit max-md:mx-5">
 	<div slot="title" class="flex w-full justify-between">
 		<div class="my-auto text-left">You’re Invited!</div>
 		<div class="text-sm text-surface-900 dark:text-surface-100 font-normal">
-			On 06/01/2021 At 12:30 pm
+			On {events[currentIndex].date} At {events[currentIndex].time}
 		</div>
 	</div>
 	<div slot="body">
 		<div class="flex cursor-pointer">
 			<div class="m-4">
 				<div class="my-4">
-					Tonya Currie &amp; her team resides in Washington &amp; Grimes County areas and represent
+					{events[currentIndex].description}
 				</div>
 				<hr />
 				<div class="text-xs my-4 text-surface-900 dark:text-surface-100">
-					Lifestyle Ranch & Home Group Compass 105 Main St. Suite 200A Brenham, TX 77833
+					{events[currentIndex].address}
 				</div>
 				<div class="flex gap-2 float-right">
-					<button on:click={()=>{handle_join('coming')}} class="btn variant-filled-primary btn-sm px-5">I'm coming</button>
-					<button on:click={()=>{handle_join('maybe')}} class="btn variant-filled-primary btn-sm px-5">Maybe</button>
-					<button on:click={()=>{handle_join('next')}} class="btn variant-filled-primary btn-sm px-5">Next Time</button>
+					<button
+						on:click={() => {
+							handle_join('coming');
+						}}
+						class="btn variant-filled-primary btn-sm px-5">I'm coming</button
+					>
+					<button
+						on:click={() => {
+							handle_join('maybe');
+						}}
+						class="btn variant-filled-primary btn-sm px-5">Maybe</button
+					>
+					<button
+						on:click={() => {
+							handle_join('next');
+						}}
+						class="btn variant-filled-primary btn-sm px-5">Next Time</button
+					>
 				</div>
 			</div>
 		</div>
@@ -221,4 +233,4 @@
 		</div>
 	</div>
 </Model>
-<Signup  bind:show={openSignup}/>
+<Signup bind:show={openSignup} />

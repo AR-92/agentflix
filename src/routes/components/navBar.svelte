@@ -2,8 +2,9 @@
 	import Login from './login.svelte';
 	import Signup from './joinNow.svelte';
 	import { userdata } from '../store/userStore';
+	import { locationsData } from '../store/locationStore';
 	import { getToastStore } from '@skeletonlabs/skeleton';
- 
+
 	import { goto } from '$app/navigation';
 	import { LightSwitch, popup, ListBox } from '@skeletonlabs/skeleton';
 	import Logo from './logo.svelte';
@@ -12,24 +13,12 @@
 	export let showSearchbar = true;
 	export let showSubbar = true;
 	const toastStore = getToastStore();
-
-	const filterList = [
-		'All',
-		'Alberta',
-		'British Columbia',
-		'Manitoba',
-		'Yukon Territory',
-		'New Brunswick',
-		'Nova Scotia',
-		'Nunavut',
-		'Ontario',
-		'Prince Edward Island',
-		'Quebec',
-		'Prince Edward Island',
-		'Saskatchewan',
-		'Manitoba',
-		'Yukon Territory'
-	];
+	// console.log($locationsData, 'locationsData');
+	$locationsData.then((x) => {
+		filterList = x;
+	});
+	let filterList = [];
+	// filterList = $locationsData;
 
 	const popupCombobox = {
 		event: 'focus-click',
@@ -53,11 +42,11 @@
 			x = elemList.scrollLeft + elemList.clientWidth;
 		elemList.scroll(x, 0);
 	}
-	
+
 	let openlogin = false;
 	let openSignup = false;
 	let openfilter = false;
-	if (!$userdata) openlogin = $userdata;
+	// if ($userdata.id) openlogin = false;
 </script>
 
 <div class="top-0 sticky flex flex-col card rounded-none z-40 font-bitten">
@@ -78,7 +67,7 @@
 			</div>
 		{/if}
 		<div class="flex gap-2">
-			<a href="./agentlanding" class="btn variant-soft-primary w-fit font-bitten max-lg:hidden">
+			<a href="../agentlanding" class="btn variant-soft-primary w-fit font-bitten max-lg:hidden">
 				Are you An Agent ?
 			</a>
 
@@ -114,25 +103,25 @@
 			<div class="card w-48 shadow-xl py-2 z-50" data-popup="popupCombobox">
 				<!-- svelte-ignore a11y-no-static-element-interactions -->
 				<ListBox rounded="rounded-none">
-					{#if !$userdata}
+					{#if $userdata}
 						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							on:click={() => {
-								goto('./your');
+								goto('../your');
 							}}
 							on:keypress
 						>
 							Profile
 						</div>
 						<div
-						class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
-						on:click={() => {
-							goto('./chat');
-						}}
-						on:keypress
-					>
-						Chat
-					</div>
+							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
+							on:click={() => {
+								goto('../chat');
+							}}
+							on:keypress
+						>
+							Chat
+						</div>
 						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							on:click={() => {
@@ -168,7 +157,7 @@
 					<div
 						class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 						on:click={() => {
-							goto('./agentlanding');
+							goto('../agentlanding');
 						}}
 						on:keypress
 					>
@@ -178,7 +167,7 @@
 					<div
 						class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 						on:click={() => {
-							goto('./help');
+							goto('../help');
 						}}
 						on:keypress
 					>
@@ -196,7 +185,7 @@
 		</div>
 	</nav>
 	<hr />
-	{#if showSubbar}
+	{#if showSubbar && filterList.length > 0}
 		<nav class="flex gap-2 px-2 justify-around">
 			<button
 				type="button"
@@ -210,10 +199,10 @@
 				class="snap-x snap-mandatory scroll-px-4 scroll-smooth flex gap-4 overflow-hidden"
 			>
 				{#each filterList as item}
-					<button
+					<button id={item.location_id}
 						class="snap-start shrink-0 p-2 hover:border-b-2 hover:border-primary-500 hover:text-primary-700 dark:hover:border-primary-200 dark:hover:text-primary-200 cursor-pointer"
 					>
-						{item}
+						{item.location}
 					</button>
 				{/each}
 			</div>

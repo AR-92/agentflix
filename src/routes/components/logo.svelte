@@ -6,7 +6,7 @@
 
 <svg
 	on:click={() => {
-		goto('./');
+		goto('../');
 	}}
 	on:keydown
 	style="width: {width}"

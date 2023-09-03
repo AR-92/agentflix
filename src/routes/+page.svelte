@@ -3,65 +3,69 @@
 	import NavBar from './components/navBar.svelte';
 	import AgentCard from './components/profileThum.svelte';
 	import Footer from './components/footer.svelte';
+	import { profilesData } from './store/allusersStore';
 
-	const agentsList = [
-		{
-			dp: './t1.jpg',
-			agentName: 'John Baker',
-			ratings: 4.48,
-			agency: 'Baker Realty INC',
-			sales: 42,
-			number: '334 585-0748'
-		},
-		{
-			dp: './t2.jpg',
-			agentName: 'John Baker',
-			ratings: 4.48,
-			agency: 'Baker Realty INC',
-			sales: 42,
-			number: '334 585-0748'
-		},
-		{
-			dp: './t3.jpg',
-			agentName: 'John Baker',
-			ratings: 4.48,
-			agency: 'Baker Realty INC',
-			sales: 42,
-			number: '334 585-0748'
-		},
-		{
-			dp: './t4.jpg',
-			agentName: 'John Baker',
-			ratings: 4.48,
-			agency: 'Baker Realty INC',
-			sales: 42,
-			number: '334 585-0748'
-		},
-		{
-			dp: './t5.jpg',
-			agentName: 'John Baker',
-			ratings: 4.48,
-			agency: 'Baker Realty INC',
-			sales: 42,
-			number: '334 585-0748'
-		},
-		{
-			dp: './t6.jpg',
-			agentName: 'John Baker',
-			ratings: 4.48,
-			agency: 'Baker Realty INC',
-			sales: 42,
-			number: '334 585-0748'
-		},
-		{
-			dp: './t7.jpg',
-			agentName: 'John Baker',
-			ratings: 4.48,
-			agency: 'Baker Realty INC',
-			sales: 42,
-			number: '334 585-0748'
-		}
+	let agentsList = [
+	// 	{
+	// 		dp: './t1.jpg',
+	// 		agentName: 'John Baker',
+	// 		ratings: 4.48,
+	// 		agency: 'Baker Realty INC',
+	// 		sales: 42,
+	// 		number: '334 585-0748'
+	// 	},
+	// 	{
+	// 		dp: './t2.jpg',
+	// 		agentName: 'John Baker',
+	// 		ratings: 4.48,
+	// 		agency: 'Baker Realty INC',
+	// 		sales: 42,
+	// 		number: '334 585-0748'
+	// 	},
+	// 	{
+	// 		dp: './t3.jpg',
+	// 		agentName: 'John Baker',
+	// 		ratings: 4.48,
+	// 		agency: 'Baker Realty INC',
+	// 		sales: 42,
+	// 		number: '334 585-0748'
+	// 	},
+	// 	{
+	// 		dp: './t4.jpg',
+	// 		agentName: 'John Baker',
+	// 		ratings: 4.48,
+	// 		agency: 'Baker Realty INC',
+	// 		sales: 42,
+	// 		number: '334 585-0748'
+	// 	},
+	// 	{
+	// 		dp: './t5.jpg',
+	// 		agentName: 'John Baker',
+	// 		ratings: 4.48,
+	// 		agency: 'Baker Realty INC',
+	// 		sales: 42,
+	// 		number: '334 585-0748'
+	// 	},
+	// 	{
+	// 		dp: './t6.jpg',
+	// 		agentName: 'John Baker',
+	// 		ratings: 4.48,
+	// 		agency: 'Baker Realty INC',
+	// 		sales: 42,
+	// 		number: '334 585-0748'
+	// 	},
+	// 	{
+	// 		dp: './t7.jpg',
+	// 		agentName: 'John Baker',
+	// 		ratings: 4.48,
+	// 		agency: 'Baker Realty INC',
+	// 		sales: 42,
+	// 		number: '334 585-0748'
+	// 	}
 	];
+	$profilesData.then(x=>{
+		agentsList=x
+	})
 </script>
 
 <NavBar />

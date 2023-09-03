@@ -4,12 +4,14 @@ import { goto } from '$app/navigation';
 
 async function check() {
     const { data: { user } } = await supabase.auth.getUser()
-    return user !== null;
+    // console.log(user,'user')
+    return user;
 }
 function user() {
-    const { subscribe, set, update } = writable(false);
+    const { subscribe, set, update } = writable(check());
     check().then((n) => {
-        set(!n);
+        // console.log(n,'n')
+        set(n);
     })
     return {
         subscribe,
@@ -48,7 +50,7 @@ function user() {
                     timeout: 10000
                 };
                 toast.trigger(t);
-                set(false)
+                set(check())
                 goto('./your');
             } else {
                 const f = {
