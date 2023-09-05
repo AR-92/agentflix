@@ -5,6 +5,7 @@
 	import { locationsData } from '../store/locationStore';
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	import { profilesData } from '../store/allusersStore';
+	import { browser } from '$app/environment';
 
 	import { goto } from '$app/navigation';
 	import { LightSwitch, popup, ListBox } from '@skeletonlabs/skeleton';
@@ -14,6 +15,8 @@
 	export let showSearchbar = true;
 	export let showSubbar = true;
 	const toastStore = getToastStore();
+	// localStorage.setItem('auth',JSON.stringify($userdata))
+
 	// //console.log($locationsData, 'locationsData');
 	// $locationsData.then((x) => {
 	// 	filterList = x;
@@ -49,6 +52,10 @@
 	let openfilter = false;
 	// if ($userdata.id) openlogin = false;
 	let searchbar;
+	let user = false;
+	if (browser) user = JSON.parse(localStorage.getItem('auth'));
+	// console.log(user)
+	// if(JSON.parse(window.localStorage.get('auth')))
 	// $:{
 	// 	//console.log("state ",$profilesData)
 	// }
@@ -128,7 +135,10 @@
 			<div class="card w-48 shadow-xl py-2 z-50" data-popup="popupCombobox">
 				<!-- svelte-ignore a11y-no-static-element-interactions -->
 				<ListBox rounded="rounded-none">
-					{#if $userdata}
+					{#if user !== false}
+						<div class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer">
+							{user.email}
+						</div>
 						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							on:click={() => {
@@ -224,7 +234,9 @@
 				class="snap-x snap-mandatory scroll-px-4 scroll-smooth flex gap-4 overflow-hidden"
 			>
 				<button
-					on:click={()=>{sCancel()}}
+					on:click={() => {
+						sCancel();
+					}}
 					class="snap-start shrink-0 p-2 hover:border-b-2 hover:border-primary-500 hover:text-primary-700 dark:hover:border-primary-200 dark:hover:text-primary-200 cursor-pointer"
 				>
 					All

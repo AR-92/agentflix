@@ -37,19 +37,22 @@
 			.from('brokerage')
 			.select('*')
 			.eq('id', profileData.brokerage_id);
-		return brokerage[0];
-	}
-	getbrokerage().then((x) => {
-		brokerage = x.name;
-		// //console.log(x, 'getbrokerage');
-	});
-	getLocation().then((x) => {
-		if (x) {
-			location = x[0];
-			//console.log(location, 'location');
+		if (brokerage) {
+			return brokerage[0];
+		} else {
+			return [];
 		}
-	});
-	//console.log(profileData);
+	}
+	if (profileData.role) {
+		getbrokerage().then((x) => {
+			brokerage = x.name;
+		});
+		getLocation().then((x) => {
+			if (x) {
+				location = x[0];
+			}
+		});
+	}
 
 	let openSignup = false;
 	function handle_chat() {
@@ -67,6 +70,7 @@
 		}
 	}
 	function handle_follow() {
+		// console.log($userdata)
 		if (!$userdata) {
 			openSignup = true;
 		}
@@ -125,20 +129,8 @@
 			width="w-40"
 			rounded="rounded-full"
 		/>
-		<!-- {#if setset}
-			<Avatar
-				class="m-auto z-0"
-				initials="JD"
-				background="bg-primary-300 "
-				width="w-40"
-				rounded="rounded-full"
-			/>
-		{:else}
-			<Avatar class="m-auto z-0" src={profileData.dp} width="w-40" rounded="rounded-full" />
-		{/if} -->
-		<!-- <img src={profileData.dp} class="rounded-full w-40" alt="" srcset="" /> -->
 	</div>
-	{#if $userdata}
+	{#if profileData.role}
 		<div class="flex justify-around mt-[-10px] z-50">
 			<button
 				on:click={() => {
@@ -151,42 +143,47 @@
 	<div class="px-4 mt-4 mb-4">
 		<div class="flex justify-between">
 			<div class="font-semibold">{profileData.name}</div>
-
-			<div class="flex">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					class="ionicon w-4 text-primary-500 dark:text-surface-300 m-2"
-					fill="currentColor"
-					viewBox="0 0 512 512"
-					><path
-						d="M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z"
-					/></svg
-				>
-				<div class="m-auto">{profileData.rating}</div>
-			</div>
+			{#if profileData.role}
+				<div class="flex">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="ionicon w-4 text-primary-500 dark:text-surface-300 m-2"
+						fill="currentColor"
+						viewBox="0 0 512 512"
+						><path
+							d="M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z"
+						/></svg
+					>
+					<div class="m-auto">{profileData.rating}</div>
+				</div>
+			{/if}
 		</div>
 
 		<div class="mt-1 flex text-sm justify-between">
-			<div>{brokerage}</div>
 			{#if profileData.role}
+				<div>{brokerage}</div>
 				<button class="btn variant-soft-primary btn-sm w-fit">Agent Profile</button>
 			{:else}
+				<div></div>
 				<button class="btn variant-soft-primary btn-sm w-fit">Client Profile</button>
 			{/if}
 		</div>
-		<div class="flex justify-between">
-			<div class="mt-1 text-sm">{profileData.contact}</div>
-		</div>
+		{#if profileData.role}
+			<div class="flex justify-between">
+				<div class="mt-1 text-sm">{profileData.contact}</div>
+			</div>
+		{/if}
 	</div>
-
-	<div class="px-4 mt-4 mb-4">
-		<div class="flex justify-between">
-			<div class="text-sm font-semibold">Baker employee</div>
+	{#if profileData.role}
+		<div class="px-4 mt-4 mb-4">
+			<div class="flex justify-between">
+				<div class="text-sm font-semibold">Baker employee</div>
+			</div>
+			<div class="mt-1 flex justify-between text-sm">
+				<div class="text-sm text-primary-500 dark:text-primary-300">@{profileData.username}</div>
+			</div>
 		</div>
-		<div class="mt-1 flex justify-between text-sm">
-			<div class="text-sm text-primary-500 dark:text-primary-300">@{profileData.username}</div>
-		</div>
-	</div>
+	{/if}
 
 	<div class="px-4">
 		{#if location}
@@ -211,81 +208,75 @@
 							stroke-width="32"
 						/></svg
 					>
-					<!-- <img src="./location-outline.svg" class="w-5" alt="" srcset="" /> -->
 				</div>
 				<div class="text-sm">{location.location}</div>
 			</div>
 		{/if}
-		<div class="flex mt-1 gap-4">
-			<div class="text-sm text-primary-500 dark:text-primary-100">
-				<svg xmlns="http://www.w3.org/2000/svg" class="ionicon w-5" viewBox="0 0 512 512"
-					><path
-						d="M256 48C141.13 48 48 141.13 48 256s93.13 208 208 208 208-93.13 208-208S370.87 48 256 48z"
-						fill="none"
-						stroke="currentColor"
-						stroke-miterlimit="10"
-						stroke-width="32"
-					/><path
-						d="M256 48c-58.07 0-112.67 93.13-112.67 208S197.93 464 256 464s112.67-93.13 112.67-208S314.07 48 256 48z"
-						fill="none"
-						stroke="currentColor"
-						stroke-miterlimit="10"
-						stroke-width="32"
-					/><path
-						d="M117.33 117.33c38.24 27.15 86.38 43.34 138.67 43.34s100.43-16.19 138.67-43.34M394.67 394.67c-38.24-27.15-86.38-43.34-138.67-43.34s-100.43 16.19-138.67 43.34"
-						fill="none"
-						stroke="currentColor"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="32"
-					/><path
-						fill="none"
-						stroke="currentColor"
-						stroke-miterlimit="10"
-						stroke-width="32"
-						d="M256 48v416M464 256H48"
-					/></svg
+		{#if profileData.role}
+			<div class="flex mt-1 gap-4">
+				<div class="text-sm text-primary-500 dark:text-primary-100">
+					<svg xmlns="http://www.w3.org/2000/svg" class="ionicon w-5" viewBox="0 0 512 512"
+						><path
+							d="M256 48C141.13 48 48 141.13 48 256s93.13 208 208 208 208-93.13 208-208S370.87 48 256 48z"
+							fill="none"
+							stroke="currentColor"
+							stroke-miterlimit="10"
+							stroke-width="32"
+						/><path
+							d="M256 48c-58.07 0-112.67 93.13-112.67 208S197.93 464 256 464s112.67-93.13 112.67-208S314.07 48 256 48z"
+							fill="none"
+							stroke="currentColor"
+							stroke-miterlimit="10"
+							stroke-width="32"
+						/><path
+							d="M117.33 117.33c38.24 27.15 86.38 43.34 138.67 43.34s100.43-16.19 138.67-43.34M394.67 394.67c-38.24-27.15-86.38-43.34-138.67-43.34s-100.43 16.19-138.67 43.34"
+							fill="none"
+							stroke="currentColor"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="32"
+						/><path
+							fill="none"
+							stroke="currentColor"
+							stroke-miterlimit="10"
+							stroke-width="32"
+							d="M256 48v416M464 256H48"
+						/></svg
+					>
+				</div>
+				<a
+					href={profileData.website_link}
+					target="_blank"
+					class="text-sm text-primary-500 dark:text-primary-300">Personal website Link</a
 				>
-				<!-- <img src="./globe-outline.svg" class="w-5" alt="" srcset="" /> -->
 			</div>
-			<a
-				href={profileData.website_link}
-				target="_blank"
-				class="text-sm text-primary-500 dark:text-primary-300">Personal website Link</a
-			>
-		</div>
-		<div class="flex mt-1 gap-4">
-			<div class="text-sm text-primary-500 dark:text-primary-100">
-				<svg xmlns="http://www.w3.org/2000/svg" class="ionicon w-5" viewBox="0 0 512 512"
-					><rect
-						fill="none"
-						stroke="currentColor"
-						stroke-linejoin="round"
-						stroke-width="32"
-						x="48"
-						y="80"
-						width="416"
-						height="384"
-						rx="48"
-					/><path
-						fill="none"
-						stroke="currentColor"
-						stroke-linejoin="round"
-						stroke-width="32"
-						stroke-linecap="round"
-						d="M128 48v32M384 48v32M464 160H48"
-					/></svg
-				>
-				<!-- <img src="./calendar-clear-outline.svg" class="w-5" alt="" srcset="" /> -->
+			<div class="flex mt-1 gap-4">
+				<div class="text-sm text-primary-500 dark:text-primary-100">
+					<svg xmlns="http://www.w3.org/2000/svg" class="ionicon w-5" viewBox="0 0 512 512"
+						><rect
+							fill="none"
+							stroke="currentColor"
+							stroke-linejoin="round"
+							stroke-width="32"
+							x="48"
+							y="80"
+							width="416"
+							height="384"
+							rx="48"
+						/><path
+							fill="none"
+							stroke="currentColor"
+							stroke-linejoin="round"
+							stroke-width="32"
+							stroke-linecap="round"
+							d="M128 48v32M384 48v32M464 160H48"
+						/></svg
+					>
+				</div>
+				<div class="text-sm">{profileData.dob}</div>
 			</div>
-			<div class="text-sm">{profileData.dob}</div>
-		</div>
-		<!-- <div class="flex mt-1 gap-4">
-			<div class="text-sm text-primary-500">
-				<img src="./image-outline.svg" class="w-5" alt="" srcset="" />
-			</div>
-			<div class="text-sm text-primary-500">400 Photos and videos</div>
-		</div> -->
+		{/if}
+
 		<div class="mt-4 flex flex-col gap-2">
 			<button
 				class="btn variant-filled-primary btn-sm flex w-full px-5"
@@ -295,43 +286,47 @@
 			>
 				<img class="w-4" src="../chatbox.svg" alt="" srcset="" /><span> Lets Chat</span>
 			</button>
-			<button
-				on:click={() => {
-					handle_listing(profileData.external_link);
-				}}
-				class="btn variant-filled-primary btn-sm w-full">View My Listings</button
-			>
+			{#if profileData.role}
+				<button
+					on:click={() => {
+						handle_listing(profileData.external_link);
+					}}
+					class="btn variant-filled-primary btn-sm w-full">View My Listings</button
+				>
+			{/if}
 		</div>
 	</div>
 </div>
-<div class="text-sm card p-4 mt-4 gap-2 flex flex-col">
-	<div class="my-2">
-		<div class="font-semibold mb-2">ABOUT</div>
-		<div>
-			{profileData.about}
-		</div>
-	</div>
-	<div class="my-2">
-		<div class="font-semibold mb-1">HOBBIES</div>
-		<div class="">
+{#if profileData.role}
+	<div class="text-sm card p-4 mt-4 gap-2 flex flex-col">
+		<div class="my-2">
+			<div class="font-semibold mb-2">ABOUT</div>
 			<div>
-				{#each getarray(profileData.hobbies) as h}
-					{h} |
-				{/each}
+				{profileData.about}
+			</div>
+		</div>
+		<div class="my-2">
+			<div class="font-semibold mb-1">HOBBIES</div>
+			<div class="">
+				<div>
+					{#each getarray(profileData.hobbies) as h}
+						{h} |
+					{/each}
+				</div>
+			</div>
+		</div>
+		<div class="my-2">
+			<div class="font-semibold mb-2">EDUCATION</div>
+			<div>{profileData.education}</div>
+		</div>
+		<div class="my-2">
+			<div class="font-semibold mb-2">OVERVIEW & AWARDS</div>
+			<div>
+				{profileData['o&a']}
 			</div>
 		</div>
 	</div>
-	<div class="my-2">
-		<div class="font-semibold mb-2">EDUCATION</div>
-		<div>{profileData.education}</div>
-	</div>
-	<div class="my-2">
-		<div class="font-semibold mb-2">OVERVIEW & AWARDS</div>
-		<div>
-			{profileData['o&a']}
-		</div>
-	</div>
-</div>
+{/if}
 <Model bind:show={openreview} width="w-[650px]">
 	<div slot="title">Update Profile</div>
 	<div slot="body">
@@ -348,7 +343,6 @@
 					{#if tabSet === 0}
 						<div class="grid grid-cols-2 gap-8 text-sm">
 							<div class="flex flex-col gap-4">
-								<!-- <Avatar class="m-auto" src="./t1.jpg" width="w-32" rounded="rounded-full" /> -->
 								{#if setset}
 									<Avatar
 										class="m-auto z-0"
@@ -381,10 +375,220 @@
 									<span class="font-semibold">Date Of Birth</span>
 									<input class="input rounded-md" type="date" />
 								</label>
+
+								<label class="label">
+									<span class="font-semibold text-sm">City</span>
+									<select class="select select">
+										<option value="1">City 1</option>
+										<option value="2">City 2</option>
+										<option value="3">City 3</option>
+										<option value="4">City 4</option>
+										<option value="5">City 5</option>
+									</select>
+								</label>
+								<label class="label text-sm">
+									<span class="font-semibold">External Index Link</span>
+									<input
+										class="input rounded-md placeholder:text-sm"
+										type="text"
+										placeholder="Please Enter Your External Listing Link Here .... !"
+									/>
+								</label>
+								<label class="label text-sm">
+									<span class="font-semibold">Website</span>
+									<input
+										class="input rounded-md placeholder:text-sm"
+										placeholder="Please Enter Your Website Link Here .... !"
+										type="text"
+									/>
+								</label>
+							</div>
+						</div>
+					{:else if tabSet === 1}
+						<div class="grid grid-cols-2 gap-8 p-4">
+							<div class="flex flex-col gap-4">
+								<label class="label text-sm">
+									<span class="font-semibold">About</span>
+									<textarea
+										class="textarea placeholder:text-sm"
+										rows="4"
+										placeholder="Add Event Description here !"
+									/>
+								</label>
+							</div>
+							<div class="flex flex-col gap-4">
+								<label class="label text-sm">
+									<span class="font-semibold">Education</span>
+
+									<input
+										class="input rounded-md placeholder:text-sm"
+										placeholder="Please Enter Your Education details Here .... !"
+										type="text"
+									/>
+								</label>
+								<label class="label text-sm">
+									<span class="font-semibold">Hobbies</span>
+									<input
+										class="input rounded-md placeholder:text-sm"
+										placeholder="Please Enter Your Hobbies Here .... !"
+										type="text"
+									/>
+								</label>
+							</div>
+						</div>
+					{:else if tabSet === 2}
+						<div class="grid grid-cols-2 gap-8 p-4">
+							<div class="flex flex-col gap-4">
 								<!-- <label class="label text-sm">
-									<span>City</span>
+									<span>Brokrage</span>
+									<input class="input rounded-md"  type="text" />
+								</label> -->
+								<label class="label">
+									<span class="font-semibold text-sm">Brokrage</span>
+									<select class="select select">
+										<option value="1">Brokrage 1</option>
+										<option value="2">Brokrage 2</option>
+										<option value="3">Brokrage 3</option>
+										<option value="4">Brokrage 4</option>
+										<option value="5">Brokrage 5</option>
+									</select>
+								</label>
+								<label class="label text-sm">
+									<span class="font-semibold">Real Estate Licence</span>
+									<input
+										class="input rounded-md placeholder:text-sm"
+										placeholder="Please Enter Your Real Estate Licence Here .... !"
+										type="text"
+									/>
+								</label>
+								<label class="label text-sm">
+									<span class="font-semibold">Desgnations</span>
+									<input
+										class="input rounded-md placeholder:text-sm"
+										placeholder="Please Enter Your Desgnations Here .... !"
+										type="text"
+									/>
+								</label>
+							</div>
+							<div class="flex flex-col gap-4">
+								<!-- <label class="label text-sm">
+									<span>Language</span>
 									<input class="input rounded-md" type="text" />
 								</label> -->
+								<!-- <label class="label text-sm">
+									<span>Service Areas</span>
+									<input class="input rounded-md" type="text" />
+								</label> -->
+								<label class="label">
+									<span class="font-semibold text-sm">Language</span>
+									<select class="select select">
+										<option value="1">English</option>
+										<option value="2">French</option>
+									</select>
+								</label>
+								<label class="label">
+									<span class="font-semibold text-sm">Service Areas</span>
+									<select class="select select">
+										<option value="1">City 1</option>
+										<option value="2">City 2</option>
+										<option value="3">City 3</option>
+										<option value="4">City 4</option>
+										<option value="5">City 5</option>
+									</select>
+								</label>
+							</div>
+						</div>
+					{:else if tabSet === 3}
+						<div class="grid grid-cols-2 gap-8 p-4">
+							<div class="flex flex-col gap-4">
+								<label class="label text-sm">
+									<span class="font-semibold">Overview</span>
+									<input
+										class="input rounded-md placeholder:text-sm"
+										placeholder="Please Enter Your Overview Here .... !"
+										type="text"
+									/>
+								</label>
+								<label class="label text-sm">
+									<span class="font-semibold">Specialties</span>
+									<input
+										class="input rounded-md placeholder:text-sm"
+										placeholder="Please Enter Your Specialties Here .... !"
+										type="text"
+									/>
+								</label>
+							</div>
+							<div class="flex flex-col gap-4">
+								<label class="label text-sm">
+									<span class="font-semibold">Awards</span>
+									<input
+										class="input rounded-md placeholder:text-sm"
+										placeholder="Please Enter Your Awards Here .... !"
+										type="text"
+									/>
+								</label>
+							</div>
+						</div>
+					{/if}
+				</svelte:fragment>
+			</TabGroup>
+		</div>
+		<hr />
+		<div class="flex m-5 gap-4 place-content-end">
+			<button class="btn variant-soft-surface btn-sm w-fit">Cancel</button>
+			<button class="btn variant-filled-primary btn-sm w-fit">Update</button>
+		</div>
+	</div>
+</Model>
+<Model bind:show={openreview} width="w-[650px]">
+	<div slot="title">Update Profile</div>
+	<div slot="body">
+		<div class="p-4 flex h-fit">
+			<TabGroup>
+				<Tab bind:group={tabSet} name="tab1" value={0}>
+					<span>Professional Information</span>
+				</Tab>
+				<Tab bind:group={tabSet} name="tab2" value={1}>About</Tab>
+				<Tab bind:group={tabSet} name="tab3" value={2}>Service Areas</Tab>
+				<Tab bind:group={tabSet} name="tab3" value={3}>Specialties & Awards</Tab>
+				<!-- Tab Panels --->
+				<svelte:fragment slot="panel">
+					{#if tabSet === 0}
+						<div class="grid grid-cols-2 gap-8 text-sm">
+							<div class="flex flex-col gap-4">
+								{#if setset}
+									<Avatar
+										class="m-auto z-0"
+										initials="JD"
+										background="bg-primary-300 "
+										width="w-32"
+										rounded="rounded-full"
+									/>
+								{:else}
+									<Avatar
+										class="m-auto z-0"
+										src={profileData.dp}
+										width="w-32"
+										rounded="rounded-full"
+									/>
+								{/if}
+								<FileDropzone class="" name="files" />
+
+								<label class="label text-sm">
+									<span class="font-semibold">Display Name</span>
+									<input
+										class="input rounded-md placeholder:text-sm"
+										placeholder="Please Enter Your Display Name Here .... !"
+										type="text"
+									/>
+								</label>
+							</div>
+							<div class="flex flex-col gap-4">
+								<label class="label text-sm">
+									<span class="font-semibold">Date Of Birth</span>
+									<input class="input rounded-md" type="date" />
+								</label>
+
 								<label class="label">
 									<span class="font-semibold text-sm">City</span>
 									<select class="select select">

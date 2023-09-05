@@ -3,19 +3,28 @@
 	import { userdata } from '../store/userStore';
 	import Signup from './joinNow.svelte';
 	import { supabase } from '$lib/supabaseClient';
-
+	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
+	import TrashIcon from '../icons/trash.svelte';
 	import Model from './model.svelte';
 	import Events from '../icons/emptyReviews.svelte';
 	import EmptyReviews from '../icons/emptyReviews.svelte';
-	export let addre = true;
+	// export let addre = true;
 	let value = 4;
 	let max = 5;
 	let openSignup = false;
 	export let profileData;
+	export let page = false;
 	// //console.log(profileData, 'review profileData');
 	var reviews = [];
 	let openAddReview = false;
-
+	function openLinkedReview(obj) {
+		if (!profileData.role) {
+			goto('/profile/' + obj.agent_id);
+		} else {
+			goto('/profile/' + obj.client_id);
+		}
+	}
 	function AddReview() {
 		if (!$userdata) {
 			openSignup = true;
@@ -27,27 +36,99 @@
 		let { data: reviews, error } = await supabase
 			.from('reviews')
 			.select('*')
-			.eq('agent_id', profileData.profiles_id);
+			.eq('agent_id', profileData.profiles_id)
+			.range(0, 3);
 		return reviews;
 	}
-	getreviews().then((x) => {
-		// brokerage_address = x.adress;
-		reviews = x;
-		//console.log(x, 'getreviews');
-	});
+	async function getyourreviews() {
+		let { data: reviews, error } = await supabase
+			.from('reviews')
+			.select('*')
+			.eq('client_id', profileData.profiles_id)
+			.range(0, 3);
+		return reviews;
+	}
+	if (profileData.role) {
+		getreviews().then((x) => {
+			if(x){
+				reviews = x;
+
+			}else{
+				reviews = [];
+
+			}
+		});
+	} else {
+		getyourreviews().then((x) => {
+			if(x){
+				reviews = x;
+
+			}else{
+				reviews = [];
+
+			}
+		});
+	}
+	let comments;
+	let your;
+	if (browser) your = JSON.parse(localStorage.getItem('profile'));
+	async function handle_addreviews() {
+
+		// console.log({
+		// 	review: comments,
+		// 	rating: value,
+		// 	client_id: your.profiles_id,
+		// 	agent_id: profileData.profiles_id,
+		// 	client_name: your.name
+		// });
+		const { data, error } = await supabase
+			.from('reviews')
+			.insert([
+				{
+					review: comments,
+					rating: value,
+					client_id: your.profiles_id,
+					agent_id: profileData.profiles_id,
+					client_name: your.name,
+					agent_name: profileData.name,
+					type: 'Highly Recommended'
+				}
+			])
+			.select();
+		// console.log(error, data);
+		if (!error) {
+			openAddReview = false;
+			comments = null;
+			// reviews.push(data[0]);
+			// console.log(reviews);
+			getyourreviews().then((x) => {
+				reviews = x;
+			});
+		}
+	}
+	async function remove_review(obj) {
+		const { error } = await supabase.from('reviews').delete().eq('id', obj.id);
+		if (!error) {
+			getyourreviews().then((x) => {
+				reviews = x;
+			});
+		}
+	}
 </script>
 
 <div class="text-sm card p-4">
 	<div class="w-full my-4 justify-between">
-		<div class="font-semibold text-lg">Reviews Given By Clients</div>
-		<div class="text-sm text-surface-900 dark:text-surface-100">Leave a Review</div>
-		{#if addre}
+		{#if profileData.role}
+			<div class="font-semibold text-lg text-left">Reviews Given By Clients</div>
+			<div class="text-sm text-surface-900 dark:text-surface-100">Leave a Review</div>
 			<button
 				on:click={() => {
 					AddReview();
 				}}
 				class="btn variant-filled-primary btn-sm w-full mt-4">Give Reviews</button
 			>
+		{:else}
+			<div class="font-semibold text-lg text-left">Reviews Given By You</div>
 		{/if}
 	</div>
 	<hr />
@@ -63,10 +144,18 @@
 			</div>
 		{/if}
 		{#each reviews as r, i}
-			<div class="my-4">
+			<!-- svelte-ignore a11y-no-static-element-interactions -->
+			<div
+				class="my-4 cursor-pointer"
+				on:click={() => {
+					openLinkedReview(r);
+				}}
+				on:keypress
+			>
 				<div class="flex justify-between mb-4 items-center font-semibold">
 					<div>
-						<div>{r.client_name}</div>
+						<div>From {r.client_name}</div>
+						<div>To {r.agent_name}</div>
 						<div class="text-sm text-surface-900 dark:text-surface-100 font-normal">{r.date}</div>
 					</div>
 					<div>
@@ -88,12 +177,35 @@
 				<div>
 					{r.review}
 				</div>
+				{#if  your}
+				<div class="flex justify-between text-error-500">
+					<div></div>
+					<TrashIcon
+					on:click={() => {
+						remove_review(r);
+					}}
+					/>
+				</div>
+				{/if}
 			</div>
 			{#if i + 1 !== reviews.length}
 				<hr />
 			{/if}
 		{/each}
 	{/await}
+	{#if !page}
+		<hr />
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<div
+			on:click={() => {
+				goto('/reviewsAll');
+			}}
+			on:keydown
+			class="text-sm text-primary-900 hover:text-primary-500 dark:text-primary-100 my-4 cursor-pointer w-full text-center"
+		>
+			See All Reviews
+		</div>
+	{/if}
 </div>
 <Model bind:show={openAddReview} width="w-fit max-md:mx-5">
 	<div slot="title">Add Reviews</div>
@@ -109,6 +221,7 @@
 					<label class="label text-sm">
 						<span class="font-semibold text-sm">The Experience</span>
 						<textarea
+							bind:value={comments}
 							class="textarea placeholder:text-sm"
 							rows="3"
 							placeholder="How was your experience?"
@@ -122,8 +235,12 @@
 					</RangeSlider>
 					<div class="w-full text-right">
 						<button type="button" class="btn variant-soft-surface btn-sm w-fit mr-2">Cancel</button>
-						<button type="button" class="btn variant-filled-primary w-fit btn-sm"
-							>Submit Review</button
+						<button
+							type="button"
+							class="btn variant-filled-primary w-fit btn-sm"
+							on:click={() => {
+								handle_addreviews();
+							}}>Submit Review</button
 						>
 					</div>
 				</div>

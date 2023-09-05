@@ -13,7 +13,11 @@
 			.from('brokerage')
 			.select('*')
 			.eq('id', profileData.brokerage_id);
-		return brokerage[0];
+			if(brokerage){
+				return brokerage[0];
+			}else{
+				return [];
+			}
 	}
 	async function getlanguage() {
 		let { data: languages, error } = await supabase
@@ -31,7 +35,7 @@
 		// //console.log(x, 'getbrokerage');
 	});
 </script>
-
+{#if profileData.role}
 <div class="text-sm card p-4 mt-4">
 	<div class="grid grid-cols-2 gap-4">
 		<div>
@@ -61,3 +65,4 @@
 		<!-- <img src={data.map} alt="" srcset="" /> -->
 	</div>
 </div>
+{/if}

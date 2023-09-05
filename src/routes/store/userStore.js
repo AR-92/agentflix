@@ -1,16 +1,30 @@
 import { supabase } from '$lib/supabaseClient';
 import { writable } from 'svelte/store';
 import { goto } from '$app/navigation';
-
+import { browser } from '$app/environment';
+// import { localStorageStore } from '@skeletonlabs/skeleton';
 async function check() {
-    const { data: { user } } = await supabase.auth.getUser()
+    const { data: { user } } = await supabase.auth.getUser();
+    // console.log(user,'localStorageStore')
+    // localStorageStore('auth', user);
+    if (browser) {
+        if (user) {
+            const { data: profile, error } = await supabase
+                .from('profile')
+                .select('*')
+                .eq('auth_id', user.id);
+            window.localStorage.setItem('auth', JSON.stringify(user));
+            window.localStorage.setItem('profile', JSON.stringify(profile[0]));
+        } else {
+            window.localStorage.setItem('profile', false)
+        }
+    }
+    // localStorage.setItem('auth',JSON.stringify(user))
     return user;
 }
 function user() {
-    const { subscribe, set, update } = writable(check());
-    check().then((n) => {
-        set(n);
-    })
+    const { subscribe, set, update } = writable({});
+    check().then(x => set(x))
     return {
         subscribe,
         sigup: (email, password, toast) => update(async (n) => {
@@ -86,7 +100,7 @@ function user() {
                     timeout: 10000
                 };
                 toast.trigger(t);
-                set(false)
+                // set(false)
             } else {
                 const f = {
                     message: 'Your email is not valid ' + error,
@@ -99,14 +113,32 @@ function user() {
         logout: (toast) => update(async (n) => {
             let { error } = await supabase.auth.signOut();
             if (!error) {
-                goto('./');
+                goto('/');
                 const f = {
                     message: 'You are now logged out !',
                     timeout: 10000
                 };
                 toast.trigger(f);
+                if (browser) window.localStorage.setItem('auth', false);
+                if (browser) window.localStorage.setItem('profile', false)
+
             }
         }),
+        // get: () => update(async (n) => {
+        //     // let u = JSON.parse(localStorage.getItem('auth'))
+        //     // if (u) {
+        //     //     let { data: profile, error } = await supabase
+        //     //         .from('profile')
+        //     //         .select('*')
+        //     //         .eq('profiles_id', u.id);
+        //     //     if (profile) {
+        //     //         return {
+        //     //             profile: profile[0],
+        //     //         };
+        //     //     }
+        //     // }
+
+        // })
     }
 
 }

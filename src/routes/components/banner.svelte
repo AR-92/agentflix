@@ -1,8 +1,9 @@
 <script>
 	export let src;
-	//console.log(src)
-	let ban=`https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/banners/b${src.profiles_id}.jpg`
+	console.log(src);
+	let ban = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/banners/b${src.profiles_id}.jpg`;
 </script>
+
 
 {#if src.banner}
 	<img src={ban} class="w-full h-80" alt="" srcset="" />
@@ -15,7 +16,11 @@
 					This is your defaul banner , You can change that from settings !
 				</div>
 				<div class="text-5xl dark:text-primary-100 text-primary-700">
-					Banner Space: Elevate Your Message with Impactful Design
+					{#if src.role}
+						Banner Space: Elevate Your Message with Impactful Design
+					{:else}
+						Banner Space: This Space Is Reserved For Agents Profile
+					{/if}
 				</div>
 				<div class="text-xs mt-5 dark:text-primary-100 text-primary-700">
 					Banner Space is your go-to destination for professional design services. Our team

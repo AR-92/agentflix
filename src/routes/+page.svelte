@@ -8,10 +8,6 @@
 	onMount(() => {
 		profilesData.all();
 	});
-	// let agentsList = [];
-	// $profilesData.then((x) => {
-	// 	agentsList = x;
-	// });
 </script>
 
 <NavBar />

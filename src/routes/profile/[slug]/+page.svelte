@@ -7,7 +7,6 @@
 	import AgentProfileCard from '../../components/profileCard.svelte';
 	import AgentInfo from '../../components/profileInfo.svelte';
 	export let data;
-
 	let sbar = false;
 </script>
 

@@ -2,7 +2,6 @@ import { supabase } from '$lib/supabaseClient';
 import { writable } from 'svelte/store';
 
 async function get() {
-
     const { data: profile, error } = await supabase
         .from('profile')
         .select('*')

@@ -3,11 +3,13 @@
 	import { userdata } from '../store/userStore';
 	import Signup from './joinNow.svelte';
 	import { supabase } from '$lib/supabaseClient';
+	import { goto } from '$app/navigation';
 
 	import Empty from '../icons/empty.svelte';
 	import Events from '../icons/events.svelte';
 	export let addeve = true;
 	export let profile;
+	export let page=false;
 	// //console.log(profile, 'profile');
 	let openevent = false;
 	let openAddEvent = false;
@@ -15,10 +17,10 @@
 	let currentIndex = 0;
 	function OpenEvent(i) {
 		if ($userdata) {
-			openSignup = true;
-		} else {
 			openevent = true;
 			currentIndex = i;
+		} else {
+			openSignup = true;
 		}
 	}
 	function AddEvent() {
@@ -69,7 +71,7 @@
 				>
 			</button>
 		{/if}
-		<div class="my-auto w-full ml-4">
+		<div class="my-auto w-full ml-4 text-left">
 			<div class="font-semibold text-lg">My Open Houses</div>
 			<div class="text-sm text-surface-900 dark:text-surface-100">
 				Here you can view and attend my open houses
@@ -127,7 +129,14 @@
 			{/if}
 		{/each}
 	{/await}
-	<!-- {/if} -->
+	{#if !page}
+
+	<hr class="mt-2">
+	<div 	on:click={() => {
+		goto('/eventsAll');
+	}}
+	on:keydown class="text-sm text-primary-900 hover:text-primary-500 dark:text-primary-100 my-2 cursor-pointer w-full text-center">See All Events</div>
+	{/if}
 </div>
 
 <Model bind:show={openevent} width="w-fit max-md:mx-5">
