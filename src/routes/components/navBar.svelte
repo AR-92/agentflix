@@ -1,11 +1,12 @@
 <script>
-	import { browser } from '$app/environment';
+	// import { browser } from '$app/environment';
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	import Login from './login.svelte';
 	import Signup from './joinNow.svelte';
 	import { locationsData } from '../store/locationStore';
 	import { profilesData } from '../store/allusersStore';
 	import { userdata } from '../store/userStore';
+	import { profiledata } from '../store/profileStore';
 
 	import { goto } from '$app/navigation';
 	import { LightSwitch, popup, ListBox } from '@skeletonlabs/skeleton';
@@ -19,10 +20,7 @@
 	let openSignup = false;
 	let openfilter = false;
 	let searchbar;
-	let user = false;
 	let elemList;
-
-	if (browser) user = JSON.parse(localStorage.getItem('auth'));
 
 	const toastStore = getToastStore();
 
@@ -32,7 +30,6 @@
 		placement: 'bottom',
 		closeQuery: '.listbox-item'
 	};
-
 
 	function multiColumnLeft() {
 		let x = elemList.scrollWidth;
@@ -54,9 +51,9 @@
 			searchbar = null;
 		}
 	}
-
 </script>
 
+<!-- {#if $userdata} -->
 <div class="top-0 sticky flex flex-col card rounded-none z-40 font-bitten">
 	<nav class="flex p-4 mx-8 justify-between">
 		<div>
@@ -80,10 +77,11 @@
 			</div>
 		{/if}
 		<div class="flex gap-2">
-			<a href="../agentlanding" class="btn variant-soft-primary w-fit font-bitten max-lg:hidden">
-				Are you An Agent ?
-			</a>
-
+			{#if !$profiledata.role}
+				<a href="../agentlanding" class="btn variant-soft-primary w-fit font-bitten max-lg:hidden">
+					Are you An Agent ?
+				</a>
+			{/if}
 			<button use:popup={popupCombobox} class="btn variant-ringed-primary btn-sm">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -116,10 +114,7 @@
 			<div class="card w-48 shadow-xl py-2 z-50" data-popup="popupCombobox">
 				<!-- svelte-ignore a11y-no-static-element-interactions -->
 				<ListBox rounded="rounded-none">
-					{#if user !== false}
-						<div class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer">
-							{user.email}
-						</div>
+					{#if $userdata.role}
 						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							on:click={() => {
@@ -127,7 +122,7 @@
 							}}
 							on:keypress
 						>
-							Profile
+							{$userdata.email}
 						</div>
 						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
@@ -286,7 +281,7 @@
 		</nav>
 	{/if}
 </div>
-
+<!-- {/if} -->
 <Login bind:show={openlogin} />
 <Signup bind:show={openSignup} />
 <Filters bind:show={openfilter} />

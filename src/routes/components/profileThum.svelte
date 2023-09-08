@@ -2,7 +2,6 @@
 	import { goto } from '$app/navigation';
 	import { Avatar } from '@skeletonlabs/skeleton';
 
-	// export let dp;
 	export let name;
 	export let rating;
 	export let profiles_id;
@@ -32,9 +31,6 @@
 		// Join the initials and return as a string
 		return initials.join('');
 	}
-	// function gotoProfile() {
-	//console.log('agent is clicked', profiles_id);
-	// }
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -46,8 +42,6 @@
 	id={profiles_id}
 	class="rounded-lg card cursor-pointer text-left transform transition duration-150 hover:shadow-2xl hover:scale-110"
 >
-	<!-- on:click={gotoProfile} -->
-	<!-- <img src={dp} class="rounded-lg w-full" alt="" srcset="" /> -->
 	<Avatar
 		class="m-auto z-0"
 		initials={extractInitials(name)}

@@ -1,7 +1,5 @@
 <script>
 	// import Setup from '../components/profileSetup.svelte';
-	import { browser } from '$app/environment';
-
 	import Footer from '../components/footer.svelte';
 	import NavBar from '../components/navBar.svelte';
 	import Banner from '../components/banner.svelte';
@@ -9,35 +7,35 @@
 	import AgentEvents from '../components/events.svelte';
 	import AgentInfo from '../components/profileInfo.svelte';
 	import ReviewsReceived from '../components/reviews.svelte';
-
-	let profile = false;
-	if (browser) profile = JSON.parse(localStorage.getItem('profile'));
-
+	import { userdata } from '../store/userStore';
+	import { profiledata } from '../store/profileStore';
+	userdata.fresh();
+	console.log($profiledata, '$profiledat');
 	let sbar = false;
 </script>
 
 <NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
 
-<Banner src={profile} />
+<Banner src={$profiledata} />
 
 <div
 	class="grid max-sm:grid-cols-1 max-md:grid-cols-2 max-2xl:grid-cols-12 gap-4 m-8 pb-20 font-bitten"
 >
 	<div class="max-2xl:col-span-3">
-		<AgentProfileCard setset={true} profileData={profile} />
+		<AgentProfileCard setset={true} profileData={$profiledata} />
 	</div>
 	<div class="max-2xl:col-span-6">
 		<div class="min-lg:col-span-4 max-md:col-span-6 max-sm:col-span-12">
-			<AgentEvents profile={profile.profiles_id} />
+			<AgentEvents profile={$profiledata.profiles_id} />
 		</div>
-		{#if profile.role}
+		{#if $profiledata.role}
 			<div class="">
-				<AgentInfo profileData={profile} />
+				<AgentInfo profileData={$profiledata} />
 			</div>
 		{/if}
 	</div>
 	<div class="max-2xl:col-span-3">
-		<ReviewsReceived profileData={profile} />
+		<ReviewsReceived profileData={$profiledata} />
 	</div>
 </div>
 

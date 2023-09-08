@@ -1,30 +1,36 @@
 import { supabase } from '$lib/supabaseClient';
 import { writable } from 'svelte/store';
 import { goto } from '$app/navigation';
-import { browser } from '$app/environment';
+import { profiledata } from './profileStore';
+
 
 async function check() {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (browser) {
+    try {
+        // Attempt to get the authenticated user's data
+        let { data: { user } } = await supabase.auth.getUser();
+
         if (user) {
-            const { data: profile, error } = await supabase
-                .from('profile')
-                .select('*')
-                .eq('auth_id', user.id);
-            window.localStorage.setItem('auth', JSON.stringify(user));
-            window.localStorage.setItem('profile', JSON.stringify(profile[0]));
+            // If the user is authenticated, fetch their profile data
+            profiledata.get(user.id);
         } else {
-            window.localStorage.setItem('profile', false)
+            // If the user is not authenticated, create a role-less user object
+            user = { role: false };
         }
+
+        return user;
+    } catch (error) {
+        // Handle errors gracefully, e.g., log the error and return a role-less user object
+        console.error('Error in check:', error);
+        return { role: false };
     }
-    return user;
 }
+
 function user() {
     const { subscribe, set, update } = writable({});
     check().then(x => set(x))
     return {
         subscribe,
-        sigup: (email, password, toast) => update(async (n) => {
+        signup: (email, password, toast) => update(async (n) => {
             let { data, error } = await supabase.auth.signUp({
                 email: email,
                 password: password
@@ -56,7 +62,9 @@ function user() {
                     timeout: 10000
                 };
                 toast.trigger(t);
-                set(check())
+                console.log("login dataa ", data)
+                set(data.user);
+                profiledata.get(data.user.id)
                 goto('./your');
             } else {
                 const f = {
@@ -116,13 +124,10 @@ function user() {
                     timeout: 10000
                 };
                 toast.trigger(f);
-                if (browser) window.localStorage.setItem('auth', false);
-                if (browser) window.localStorage.setItem('profile', false)
-
             }
         }),
+        fresh: () => update(async () => { check().then(x => set(x)) })
     }
-
 }
 
 export const userdata = user();

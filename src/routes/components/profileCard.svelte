@@ -70,7 +70,6 @@
 		});
 	}
 	getLocation().then((x) => {
-		console.log(x);
 		if (x) {
 			location = x[0].location;
 		}

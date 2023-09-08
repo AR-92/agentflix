@@ -29,7 +29,7 @@
 			class="grid grid-cols-5 max-sm:grid-cols-2 max-md:grid-cols-3 max-lg:grid-cols-4 gap-6 m-8 pb-16 font-bitten"
 		>
 			{#each $profilesData as agent}
-				<AgentCard {...agent} />
+				<AgentCard name={agent.name} rating={agent.rating} profiles_id={agent.profiles_id} avatar={agent.avatar} />
 			{/each}
 		</div>
 	{/if}

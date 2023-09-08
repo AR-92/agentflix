@@ -8,7 +8,7 @@
 	let username;
 	let password;
 	function handle_joinnow(){
-		userdata.sigup(username, password, toastStore)
+		userdata.signup(username, password, toastStore)
 		show=false;
 		username=null;
 		password=null;
