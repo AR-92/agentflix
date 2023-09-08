@@ -2,13 +2,20 @@
 	import { goto } from '$app/navigation';
 	import Model from './model.svelte';
 	import Signup from './joinNow.svelte';
+	import Globe from '../icons/globe.svelte';
+	import { locationsData } from '../store/locationStore';
+	import { languagesData } from '../store/languageStore';
+	import { brokerageData } from '../store/brokerageStore';
 	import { supabase } from '$lib/supabaseClient';
-
+	import { extarct } from '../../lib/utils';
 	import { userdata } from '../store/userStore';
 	import { TabGroup, Tab, Avatar, FileDropzone } from '@skeletonlabs/skeleton';
-	let openreview = false;
+	let opensettingsAgent = false;
+	let opensettingsClient = false;
 	let tabSet = 0;
-	let location = null;
+	let location;
+	let language;
+
 	export let setset = false;
 	export let profileData;
 	let ava;
@@ -18,9 +25,12 @@
 	} else {
 		ava = null;
 	}
-
-	function OpenReview() {
-		openreview = true;
+	function OpenSettings() {
+		if (profileData.role) {
+			opensettingsAgent = true;
+		} else {
+			opensettingsClient = true;
+		}
 	}
 	function getarray(value) {
 		return value.split(',');
@@ -43,16 +53,31 @@
 			return [];
 		}
 	}
+	async function getlanguage() {
+		let { data: languages, error } = await supabase
+			.from('languages')
+			.select('*')
+			.eq('id', profileData.language);
+		if (languages) {
+			return languages[0];
+		} else {
+			return '';
+		}
+	}
 	if (profileData.role) {
 		getbrokerage().then((x) => {
 			brokerage = x.name;
 		});
-		getLocation().then((x) => {
-			if (x) {
-				location = x[0];
-			}
-		});
 	}
+	getLocation().then((x) => {
+		console.log(x);
+		if (x) {
+			location = x[0].location;
+		}
+	});
+	getlanguage().then((x) => {
+		language = x.language;
+	});
 
 	let openSignup = false;
 	function handle_chat() {
@@ -70,28 +95,35 @@
 		}
 	}
 	function handle_follow() {
-		// console.log($userdata)
 		if (!$userdata) {
 			openSignup = true;
 		}
 	}
-	function extractInitials(name) {
-		// Split the name into words
-		const words = name.split(' ');
-
-		// Initialize an array to store initials
-		const initials = [];
-
-		// Iterate through the words and extract the first letter of each
-		for (let i = 0; i < words.length; i++) {
-			if (words[i]) {
-				// Check if the word is not empty
-				initials.push(words[i][0].toUpperCase()); // Convert to uppercase for consistency
-			}
-		}
-
-		// Join the initials and return as a string
-		return initials.join('');
+	async function handle_clientUpdate() {
+		console.log(profileData.name, profileData.dob, profileData.language, profileData.location);
+		const { data, error } = await supabase
+			.from('profile')
+			.update({
+				name: profileData.name,
+				dob: profileData.dob,
+				language: profileData.language,
+				location_id: profileData.location
+			})
+			.eq('auth_id', profileData.auth_id)
+			.select();
+	}
+	async function handle_agentUpdate() {
+		console.log(profileData.name, profileData.dob, profileData.language, profileData.location);
+		const { data, error } = await supabase
+			.from('profile')
+			.update({
+				name: profileData.name,
+				dob: profileData.dob,
+				language: profileData.language,
+				location_id: profileData.location
+			})
+			.eq('auth_id', profileData.auth_id)
+			.select();
 	}
 </script>
 
@@ -101,7 +133,7 @@
 		{#if setset}
 			<button
 				on:click={() => {
-					OpenReview();
+					OpenSettings();
 				}}
 			>
 				<svg
@@ -123,7 +155,7 @@
 	<div class="flex justify-around mt-[-90px]">
 		<Avatar
 			class="m-auto z-0"
-			initials={extractInitials(profileData.name)}
+			initials={extarct(profileData.name)}
 			src={ava}
 			background="bg-primary-300 "
 			width="w-40"
@@ -174,16 +206,6 @@
 			</div>
 		{/if}
 	</div>
-	{#if profileData.role}
-		<div class="px-4 mt-4 mb-4">
-			<div class="flex justify-between">
-				<div class="text-sm font-semibold">Baker employee</div>
-			</div>
-			<div class="mt-1 flex justify-between text-sm">
-				<div class="text-sm text-primary-500 dark:text-primary-300">@{profileData.username}</div>
-			</div>
-		</div>
-	{/if}
 
 	<div class="px-4">
 		{#if location}
@@ -209,7 +231,7 @@
 						/></svg
 					>
 				</div>
-				<div class="text-sm">{location.location}</div>
+				<div class="text-sm">{location}</div>
 			</div>
 		{/if}
 		{#if profileData.role}
@@ -250,32 +272,38 @@
 					class="text-sm text-primary-500 dark:text-primary-300">Personal website Link</a
 				>
 			</div>
-			<div class="flex mt-1 gap-4">
-				<div class="text-sm text-primary-500 dark:text-primary-100">
-					<svg xmlns="http://www.w3.org/2000/svg" class="ionicon w-5" viewBox="0 0 512 512"
-						><rect
-							fill="none"
-							stroke="currentColor"
-							stroke-linejoin="round"
-							stroke-width="32"
-							x="48"
-							y="80"
-							width="416"
-							height="384"
-							rx="48"
-						/><path
-							fill="none"
-							stroke="currentColor"
-							stroke-linejoin="round"
-							stroke-width="32"
-							stroke-linecap="round"
-							d="M128 48v32M384 48v32M464 160H48"
-						/></svg
-					>
-				</div>
-				<div class="text-sm">{profileData.dob}</div>
-			</div>
 		{/if}
+		<div class="flex mt-1 gap-4">
+			<div class="text-sm text-primary-500 dark:text-primary-100">
+				<Globe />
+			</div>
+			<div class="text-sm">{language}</div>
+		</div>
+		<div class="flex mt-1 gap-4">
+			<div class="text-sm text-primary-500 dark:text-primary-100">
+				<svg xmlns="http://www.w3.org/2000/svg" class="ionicon w-5" viewBox="0 0 512 512"
+					><rect
+						fill="none"
+						stroke="currentColor"
+						stroke-linejoin="round"
+						stroke-width="32"
+						x="48"
+						y="80"
+						width="416"
+						height="384"
+						rx="48"
+					/><path
+						fill="none"
+						stroke="currentColor"
+						stroke-linejoin="round"
+						stroke-width="32"
+						stroke-linecap="round"
+						d="M128 48v32M384 48v32M464 160H48"
+					/></svg
+				>
+			</div>
+			<div class="text-sm">{profileData.dob}</div>
+		</div>
 
 		<div class="mt-4 flex flex-col gap-2">
 			<button
@@ -327,220 +355,77 @@
 		</div>
 	</div>
 {/if}
-<Model bind:show={openreview} width="w-[650px]">
-	<div slot="title">Update Profile</div>
+<Model bind:show={opensettingsClient} width="w-[650px]">
+	<div slot="title">Update Client Profile</div>
 	<div slot="body">
 		<div class="p-4 flex h-fit">
-			<TabGroup>
-				<Tab bind:group={tabSet} name="tab1" value={0}>
-					<span>Professional Information</span>
-				</Tab>
-				<Tab bind:group={tabSet} name="tab2" value={1}>About</Tab>
-				<Tab bind:group={tabSet} name="tab3" value={2}>Service Areas</Tab>
-				<Tab bind:group={tabSet} name="tab3" value={3}>Specialties & Awards</Tab>
-				<!-- Tab Panels --->
-				<svelte:fragment slot="panel">
-					{#if tabSet === 0}
-						<div class="grid grid-cols-2 gap-8 text-sm">
-							<div class="flex flex-col gap-4">
-								{#if setset}
-									<Avatar
-										class="m-auto z-0"
-										initials="JD"
-										background="bg-primary-300 "
-										width="w-32"
-										rounded="rounded-full"
-									/>
-								{:else}
-									<Avatar
-										class="m-auto z-0"
-										src={profileData.dp}
-										width="w-32"
-										rounded="rounded-full"
-									/>
-								{/if}
-								<FileDropzone class="" name="files" />
-
-								<label class="label text-sm">
-									<span class="font-semibold">Display Name</span>
-									<input
-										class="input rounded-md placeholder:text-sm"
-										placeholder="Please Enter Your Display Name Here .... !"
-										type="text"
-									/>
-								</label>
-							</div>
-							<div class="flex flex-col gap-4">
-								<label class="label text-sm">
-									<span class="font-semibold">Date Of Birth</span>
-									<input class="input rounded-md" type="date" />
-								</label>
-
-								<label class="label">
-									<span class="font-semibold text-sm">City</span>
-									<select class="select select">
-										<option value="1">City 1</option>
-										<option value="2">City 2</option>
-										<option value="3">City 3</option>
-										<option value="4">City 4</option>
-										<option value="5">City 5</option>
-									</select>
-								</label>
-								<label class="label text-sm">
-									<span class="font-semibold">External Index Link</span>
-									<input
-										class="input rounded-md placeholder:text-sm"
-										type="text"
-										placeholder="Please Enter Your External Listing Link Here .... !"
-									/>
-								</label>
-								<label class="label text-sm">
-									<span class="font-semibold">Website</span>
-									<input
-										class="input rounded-md placeholder:text-sm"
-										placeholder="Please Enter Your Website Link Here .... !"
-										type="text"
-									/>
-								</label>
-							</div>
-						</div>
-					{:else if tabSet === 1}
-						<div class="grid grid-cols-2 gap-8 p-4">
-							<div class="flex flex-col gap-4">
-								<label class="label text-sm">
-									<span class="font-semibold">About</span>
-									<textarea
-										class="textarea placeholder:text-sm"
-										rows="4"
-										placeholder="Add Event Description here !"
-									/>
-								</label>
-							</div>
-							<div class="flex flex-col gap-4">
-								<label class="label text-sm">
-									<span class="font-semibold">Education</span>
-
-									<input
-										class="input rounded-md placeholder:text-sm"
-										placeholder="Please Enter Your Education details Here .... !"
-										type="text"
-									/>
-								</label>
-								<label class="label text-sm">
-									<span class="font-semibold">Hobbies</span>
-									<input
-										class="input rounded-md placeholder:text-sm"
-										placeholder="Please Enter Your Hobbies Here .... !"
-										type="text"
-									/>
-								</label>
-							</div>
-						</div>
-					{:else if tabSet === 2}
-						<div class="grid grid-cols-2 gap-8 p-4">
-							<div class="flex flex-col gap-4">
-								<!-- <label class="label text-sm">
-									<span>Brokrage</span>
-									<input class="input rounded-md"  type="text" />
-								</label> -->
-								<label class="label">
-									<span class="font-semibold text-sm">Brokrage</span>
-									<select class="select select">
-										<option value="1">Brokrage 1</option>
-										<option value="2">Brokrage 2</option>
-										<option value="3">Brokrage 3</option>
-										<option value="4">Brokrage 4</option>
-										<option value="5">Brokrage 5</option>
-									</select>
-								</label>
-								<label class="label text-sm">
-									<span class="font-semibold">Real Estate Licence</span>
-									<input
-										class="input rounded-md placeholder:text-sm"
-										placeholder="Please Enter Your Real Estate Licence Here .... !"
-										type="text"
-									/>
-								</label>
-								<label class="label text-sm">
-									<span class="font-semibold">Desgnations</span>
-									<input
-										class="input rounded-md placeholder:text-sm"
-										placeholder="Please Enter Your Desgnations Here .... !"
-										type="text"
-									/>
-								</label>
-							</div>
-							<div class="flex flex-col gap-4">
-								<!-- <label class="label text-sm">
-									<span>Language</span>
-									<input class="input rounded-md" type="text" />
-								</label> -->
-								<!-- <label class="label text-sm">
-									<span>Service Areas</span>
-									<input class="input rounded-md" type="text" />
-								</label> -->
-								<label class="label">
-									<span class="font-semibold text-sm">Language</span>
-									<select class="select select">
-										<option value="1">English</option>
-										<option value="2">French</option>
-									</select>
-								</label>
-								<label class="label">
-									<span class="font-semibold text-sm">Service Areas</span>
-									<select class="select select">
-										<option value="1">City 1</option>
-										<option value="2">City 2</option>
-										<option value="3">City 3</option>
-										<option value="4">City 4</option>
-										<option value="5">City 5</option>
-									</select>
-								</label>
-							</div>
-						</div>
-					{:else if tabSet === 3}
-						<div class="grid grid-cols-2 gap-8 p-4">
-							<div class="flex flex-col gap-4">
-								<label class="label text-sm">
-									<span class="font-semibold">Overview</span>
-									<input
-										class="input rounded-md placeholder:text-sm"
-										placeholder="Please Enter Your Overview Here .... !"
-										type="text"
-									/>
-								</label>
-								<label class="label text-sm">
-									<span class="font-semibold">Specialties</span>
-									<input
-										class="input rounded-md placeholder:text-sm"
-										placeholder="Please Enter Your Specialties Here .... !"
-										type="text"
-									/>
-								</label>
-							</div>
-							<div class="flex flex-col gap-4">
-								<label class="label text-sm">
-									<span class="font-semibold">Awards</span>
-									<input
-										class="input rounded-md placeholder:text-sm"
-										placeholder="Please Enter Your Awards Here .... !"
-										type="text"
-									/>
-								</label>
-							</div>
-						</div>
+			<div class="grid grid-cols-2 gap-8 text-sm">
+				<div class="flex flex-col gap-4">
+					{#if setset}
+						<Avatar
+							initials={extarct(profileData.name)}
+							class="m-auto z-0"
+							background="bg-primary-300 "
+							width="w-32"
+							rounded="rounded-full"
+						/>
+					{:else}
+						<Avatar class="m-auto z-0" src={profileData.dp} width="w-32" rounded="rounded-full" />
 					{/if}
-				</svelte:fragment>
-			</TabGroup>
+
+					<label class="label text-sm">
+						<span class="font-semibold">Display Name</span>
+						<input
+							bind:value={profileData.name}
+							class="input rounded-md placeholder:text-sm"
+							placeholder="Please Enter Your Display Name Here .... !"
+							type="text"
+						/>
+					</label>
+				</div>
+				<div class="flex flex-col gap-4">
+					<label class="label text-sm">
+						<span class="font-semibold">Date Of Birth</span>
+						<input bind:value={profileData.dob} class="input rounded-md" type="date" />
+					</label>
+
+					<label class="label">
+						<span class="font-semibold text-sm">City</span>
+						<select bind:value={profileData.location} class="select">
+							{#each $locationsData as l}
+								<option value={l.location_id}>{l.location}</option>
+							{/each}
+						</select>
+					</label>
+					<label>
+						<span class="font-semibold text-sm">Language</span>
+						<select bind:value={profileData.language} class="select">
+							{#each $languagesData as l}
+								<option value={l.id}>{l.language}</option>
+							{/each}
+						</select></label
+					>
+				</div>
+			</div>
 		</div>
 		<hr />
 		<div class="flex m-5 gap-4 place-content-end">
-			<button class="btn variant-soft-surface btn-sm w-fit">Cancel</button>
-			<button class="btn variant-filled-primary btn-sm w-fit">Update</button>
+			<button
+				class="btn variant-soft-surface btn-sm w-fit"
+				on:click={() => {
+					opensettingsClient = false;
+				}}>Cancel</button
+			>
+			<button
+				class="btn variant-filled-primary btn-sm w-fit"
+				on:click={() => {
+					handle_clientUpdate();
+				}}>Update</button
+			>
 		</div>
 	</div>
 </Model>
-<Model bind:show={openreview} width="w-[650px]">
+<Model bind:show={opensettingsAgent} width="w-[650px]">
 	<div slot="title">Update Profile</div>
 	<div slot="body">
 		<div class="p-4 flex h-fit">
@@ -577,6 +462,7 @@
 								<label class="label text-sm">
 									<span class="font-semibold">Display Name</span>
 									<input
+										bind:value={profileData.name}
 										class="input rounded-md placeholder:text-sm"
 										placeholder="Please Enter Your Display Name Here .... !"
 										type="text"
@@ -586,22 +472,21 @@
 							<div class="flex flex-col gap-4">
 								<label class="label text-sm">
 									<span class="font-semibold">Date Of Birth</span>
-									<input class="input rounded-md" type="date" />
+									<input bind:value={profileData.dob} class="input rounded-md" type="date" />
 								</label>
 
 								<label class="label">
 									<span class="font-semibold text-sm">City</span>
-									<select class="select select">
-										<option value="1">City 1</option>
-										<option value="2">City 2</option>
-										<option value="3">City 3</option>
-										<option value="4">City 4</option>
-										<option value="5">City 5</option>
+									<select bind:value={profileData.location} class="select">
+										{#each $locationsData as l}
+											<option value={l.location_id}>{l.location}</option>
+										{/each}
 									</select>
 								</label>
 								<label class="label text-sm">
 									<span class="font-semibold">External Index Link</span>
 									<input
+										bind:value={profileData.external_link}
 										class="input rounded-md placeholder:text-sm"
 										type="text"
 										placeholder="Please Enter Your External Listing Link Here .... !"
@@ -610,6 +495,7 @@
 								<label class="label text-sm">
 									<span class="font-semibold">Website</span>
 									<input
+										bind:value={profileData.website_link}
 										class="input rounded-md placeholder:text-sm"
 										placeholder="Please Enter Your Website Link Here .... !"
 										type="text"
@@ -623,6 +509,7 @@
 								<label class="label text-sm">
 									<span class="font-semibold">About</span>
 									<textarea
+										bind:value={profileData.about}
 										class="textarea placeholder:text-sm"
 										rows="4"
 										placeholder="Add Event Description here !"
@@ -634,6 +521,7 @@
 									<span class="font-semibold">Education</span>
 
 									<input
+										bind:value={profileData.education}
 										class="input rounded-md placeholder:text-sm"
 										placeholder="Please Enter Your Education details Here .... !"
 										type="text"
@@ -642,6 +530,7 @@
 								<label class="label text-sm">
 									<span class="font-semibold">Hobbies</span>
 									<input
+										bind:value={profileData.hobbies}
 										class="input rounded-md placeholder:text-sm"
 										placeholder="Please Enter Your Hobbies Here .... !"
 										type="text"
@@ -652,92 +541,45 @@
 					{:else if tabSet === 2}
 						<div class="grid grid-cols-2 gap-8 p-4">
 							<div class="flex flex-col gap-4">
-								<!-- <label class="label text-sm">
-									<span>Brokrage</span>
-									<input class="input rounded-md"  type="text" />
-								</label> -->
 								<label class="label">
 									<span class="font-semibold text-sm">Brokrage</span>
-									<select class="select select">
-										<option value="1">Brokrage 1</option>
-										<option value="2">Brokrage 2</option>
-										<option value="3">Brokrage 3</option>
-										<option value="4">Brokrage 4</option>
-										<option value="5">Brokrage 5</option>
+									<select bind:value={profileData.brokerage_id} class="select">
+										{#each $brokerageData as l}
+											<option value={l.id}>{l.name}</option>
+										{/each}
 									</select>
-								</label>
-								<label class="label text-sm">
-									<span class="font-semibold">Real Estate Licence</span>
-									<input
-										class="input rounded-md placeholder:text-sm"
-										placeholder="Please Enter Your Real Estate Licence Here .... !"
-										type="text"
-									/>
-								</label>
-								<label class="label text-sm">
-									<span class="font-semibold">Desgnations</span>
-									<input
-										class="input rounded-md placeholder:text-sm"
-										placeholder="Please Enter Your Desgnations Here .... !"
-										type="text"
-									/>
 								</label>
 							</div>
 							<div class="flex flex-col gap-4">
-								<!-- <label class="label text-sm">
-									<span>Language</span>
-									<input class="input rounded-md" type="text" />
-								</label> -->
-								<!-- <label class="label text-sm">
-									<span>Service Areas</span>
-									<input class="input rounded-md" type="text" />
-								</label> -->
 								<label class="label">
 									<span class="font-semibold text-sm">Language</span>
-									<select class="select select">
-										<option value="1">English</option>
-										<option value="2">French</option>
+									<select bind:value={profileData.language} class="select">
+										{#each $languagesData as l}
+											<option value={l.id}>{l.language}</option>
+										{/each}
 									</select>
 								</label>
 								<label class="label">
 									<span class="font-semibold text-sm">Service Areas</span>
-									<select class="select select">
-										<option value="1">City 1</option>
-										<option value="2">City 2</option>
-										<option value="3">City 3</option>
-										<option value="4">City 4</option>
-										<option value="5">City 5</option>
-									</select>
+									<input
+										bind:value={profileData.service_areas}
+										class="input rounded-md placeholder:text-sm"
+										placeholder="Please Enter Your Service Areas Here .... !"
+										type="text"
+									/>
 								</label>
 							</div>
 						</div>
 					{:else if tabSet === 3}
-						<div class="grid grid-cols-2 gap-8 p-4">
-							<div class="flex flex-col gap-4">
-								<label class="label text-sm">
-									<span class="font-semibold">Overview</span>
-									<input
-										class="input rounded-md placeholder:text-sm"
-										placeholder="Please Enter Your Overview Here .... !"
-										type="text"
-									/>
-								</label>
-								<label class="label text-sm">
-									<span class="font-semibold">Specialties</span>
-									<input
-										class="input rounded-md placeholder:text-sm"
-										placeholder="Please Enter Your Specialties Here .... !"
-										type="text"
-									/>
-								</label>
-							</div>
+						<div class="grid grid-cols-1 gap-8 p-4">
 							<div class="flex flex-col gap-4">
 								<label class="label text-sm">
 									<span class="font-semibold">Awards</span>
-									<input
-										class="input rounded-md placeholder:text-sm"
-										placeholder="Please Enter Your Awards Here .... !"
-										type="text"
+									<textarea
+										bind:value={profileData['o&a']}
+										class="textarea placeholder:text-sm"
+										rows="4"
+										placeholder="Add Event Description here !"
 									/>
 								</label>
 							</div>

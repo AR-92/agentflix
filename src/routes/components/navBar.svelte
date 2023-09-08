@@ -1,11 +1,11 @@
 <script>
+	import { browser } from '$app/environment';
+	import { getToastStore } from '@skeletonlabs/skeleton';
 	import Login from './login.svelte';
 	import Signup from './joinNow.svelte';
-	import { userdata } from '../store/userStore';
 	import { locationsData } from '../store/locationStore';
-	import { getToastStore } from '@skeletonlabs/skeleton';
 	import { profilesData } from '../store/allusersStore';
-	import { browser } from '$app/environment';
+	import { userdata } from '../store/userStore';
 
 	import { goto } from '$app/navigation';
 	import { LightSwitch, popup, ListBox } from '@skeletonlabs/skeleton';
@@ -14,15 +14,17 @@
 
 	export let showSearchbar = true;
 	export let showSubbar = true;
-	const toastStore = getToastStore();
-	// localStorage.setItem('auth',JSON.stringify($userdata))
 
-	// //console.log($locationsData, 'locationsData');
-	// $locationsData.then((x) => {
-	// 	filterList = x;
-	// });
-	// let filterList = [];
-	// filterList = $locationsData;
+	let openlogin = false;
+	let openSignup = false;
+	let openfilter = false;
+	let searchbar;
+	let user = false;
+	let elemList;
+
+	if (browser) user = JSON.parse(localStorage.getItem('auth'));
+
+	const toastStore = getToastStore();
 
 	const popupCombobox = {
 		event: 'focus-click',
@@ -31,7 +33,6 @@
 		closeQuery: '.listbox-item'
 	};
 
-	let elemList;
 
 	function multiColumnLeft() {
 		let x = elemList.scrollWidth;
@@ -47,36 +48,13 @@
 		elemList.scroll(x, 0);
 	}
 
-	let openlogin = false;
-	let openSignup = false;
-	let openfilter = false;
-	// if ($userdata.id) openlogin = false;
-	let searchbar;
-	let user = false;
-	if (browser) user = JSON.parse(localStorage.getItem('auth'));
-	// console.log(user)
-	// if(JSON.parse(window.localStorage.get('auth')))
-	// $:{
-	// 	//console.log("state ",$profilesData)
-	// }
-	function handle_search() {
-		// $profilesData.then(s=>{
-		// //console.log(searchbar,$profilesData)
-		profilesData.searchFilter(searchbar);
-		// })
-	}
 	function searchCancel() {
 		if (searchbar.length > 1) {
 			profilesData.all();
 			searchbar = null;
 		}
 	}
-	function sCancel() {
-		profilesData.all();
-	}
-	function filterCity(value) {
-		profilesData.cityFilter(value);
-	}
+
 </script>
 
 <div class="top-0 sticky flex flex-col card rounded-none z-40 font-bitten">
@@ -93,7 +71,10 @@
 					class="col-span-11 px-4 placeholder:text-sm"
 					placeholder="Search By Name | Location | Brokerage…"
 				/>
-				<button on:click={handle_search} class="variant-filled-primary col-span-1">
+				<button
+					on:click={profilesData.searchFilter(searchbar)}
+					class="variant-filled-primary col-span-1"
+				>
 					<img class="text-white" src="./search-outline.svg" alt="" srcset="" />
 				</button>
 			</div>
@@ -198,7 +179,6 @@
 					>
 						I am an Agent
 					</div>
-					<!-- svelte-ignore a11y-no-static-element-interactions -->
 					<div
 						class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 						on:click={() => {
@@ -220,7 +200,7 @@
 		</div>
 	</nav>
 	<hr />
-	{#if showSubbar && $locationsData.length > 0}
+	{#if showSubbar && $locationsData}
 		<nav class="flex gap-2 px-2 justify-around">
 			<button
 				type="button"
@@ -234,9 +214,7 @@
 				class="snap-x snap-mandatory scroll-px-4 scroll-smooth flex gap-4 overflow-hidden"
 			>
 				<button
-					on:click={() => {
-						sCancel();
-					}}
+					on:click={profilesData.all()}
 					class="snap-start shrink-0 p-2 hover:border-b-2 hover:border-primary-500 hover:text-primary-700 dark:hover:border-primary-200 dark:hover:text-primary-200 cursor-pointer"
 				>
 					All
@@ -244,7 +222,7 @@
 				{#each $locationsData as item}
 					<button
 						id={item.location_id}
-						on:click={filterCity(item.location_id)}
+						on:click={profilesData.cityFilter(item.location_id)}
 						class="snap-start shrink-0 p-2 hover:border-b-2 hover:border-primary-500 hover:text-primary-700 dark:hover:border-primary-200 dark:hover:text-primary-200 cursor-pointer"
 					>
 						{item.location}
@@ -312,209 +290,3 @@
 <Login bind:show={openlogin} />
 <Signup bind:show={openSignup} />
 <Filters bind:show={openfilter} />
-
-<!-- <Model bind:show={openSignupAgent} width="w-1/3 max-lg:w-fit max-lg:mx-10 font-bitten">
-	<span slot="title">Sign up</span>
-	<div slot="body">
-		<div class="p-4">
-			<Stepper
-				on:next={onNextHandler}
-				on:back={onBackHandler}
-				on:step={onStepHandler}
-				on:complete={onCompleteHandler}
-			>
-				<Step>
-					<svelte:fragment slot="header">Get Started As An Agent !</svelte:fragment>
-					<p class="mb-8">
-						We will guide you how to setup your account.Very easy it will just take 2 min. Tap <u
-							>next</u
-						> to proceed to the next step.
-					</p>
-				</Step>
-				<Step>
-					<svelte:fragment slot="header">Upload Your Profile Photo.</svelte:fragment>
-					<p>
-						Just click on the file uploader below and upload your profile photo from your system.
-					</p>
-					<FileDropzone class="" name="files" />
-				</Step>
-				<Step>
-					<svelte:fragment slot="header">Enter Your Display Name and DOB.</svelte:fragment>
-					<p>
-						Please kindly provide your full display name, which could be your first and last name,
-						and your date of birth (DOB) so that we can assist you effectively.
-					</p>
-					<label class="label text-sm">
-						<span class="font-semibold">Display Name</span>
-						<input
-							class="input rounded-md placeholder:text-sm"
-							placeholder="Please Enter Your Display Name Here .... !"
-							type="text"
-						/>
-					</label>
-					<label class="label text-sm">
-						<span class="font-semibold">Date Of Birth</span>
-						<input class="input rounded-md" type="date" />
-					</label>
-				</Step>
-				<Step>
-					<svelte:fragment slot="header">Please Enter the Following.</svelte:fragment>
-					<p>
-						We need you to input the following information: your city of residence, an external
-						index link (if applicable), and the URL of your website (if you have one).
-					</p>
-					<label class="label">
-						<span class="font-semibold text-sm">City</span>
-						<select class="select select">
-							<option value="1">City 1</option>
-							<option value="2">City 2</option>
-							<option value="3">City 3</option>
-							<option value="4">City 4</option>
-							<option value="5">City 5</option>
-						</select>
-					</label>
-					<label class="label text-sm">
-						<span class="font-semibold">External Index Link</span>
-						<input
-							class="input rounded-md placeholder:text-sm"
-							type="text"
-							placeholder="Please Enter Your External Listing Link Here .... !"
-						/>
-					</label>
-					<label class="label text-sm">
-						<span class="font-semibold">Website</span>
-						<input
-							class="input rounded-md placeholder:text-sm"
-							placeholder="Please Enter Your Website Link Here .... !"
-							type="text"
-						/>
-					</label>
-				</Step>
-				<Step>
-					<svelte:fragment slot="header">Tell Us About Yourself.</svelte:fragment>
-					<p>
-						Please share some information about yourself, including details about your background
-						(education) and your interests or activities you enjoy in your free time (hobbies). This
-						will help us get to know you better.
-					</p>
-					<label class="label text-sm">
-						<span class="font-semibold">About</span>
-						<textarea
-							class="textarea placeholder:text-sm"
-							rows="3"
-							placeholder="Add Event Description here !"
-						/>
-					</label>
-					<label class="label text-sm">
-						<span class="font-semibold">Education</span>
-
-						<input
-							class="input rounded-md placeholder:text-sm"
-							placeholder="Please Enter Your Education details Here .... !"
-							type="text"
-						/>
-					</label>
-					<label class="label text-sm">
-						<span class="font-semibold">Hobbies</span>
-						<input
-							class="input rounded-md placeholder:text-sm"
-							placeholder="Please Enter Your Hobbies Here .... !"
-							type="text"
-						/>
-					</label>
-				</Step>
-				<Step>
-					<svelte:fragment slot="header">Tell Us About Service Areas.</svelte:fragment>
-					<p>
-						Please provide details about your service areas, including information about your
-						brokerage (if applicable), your real estate license status, and any professional
-						designations or certifications you hold. This will help us understand your expertise and
-						specialization in the real estate industry.
-					</p>
-					<div class="grid grid-cols-2 gap-8 p-4">
-						<div class="flex flex-col gap-4">
-							<label class="label">
-								<span class="font-semibold text-sm">Brokerage</span>
-								<select class="select select">
-									<option value="1">Brokerage 1</option>
-									<option value="2">Brokerage 2</option>
-									<option value="3">Brokerage 3</option>
-									<option value="4">Brokerage 4</option>
-									<option value="5">Brokerage 5</option>
-								</select>
-							</label>
-							<label class="label text-sm">
-								<span class="font-semibold">Real Estate Licence</span>
-								<input
-									class="input rounded-md placeholder:text-sm"
-									placeholder="Please Enter Your Real Estate Licence Here .... !"
-									type="text"
-								/>
-							</label>
-							<label class="label text-sm">
-								<span class="font-semibold">Desgnations</span>
-								<input
-									class="input rounded-md placeholder:text-sm"
-									placeholder="Please Enter Your Desgnations Here .... !"
-									type="text"
-								/>
-							</label>
-						</div>
-						<div class="flex flex-col gap-4">
-							<label class="label">
-								<span class="font-semibold text-sm">Language</span>
-								<select class="select select">
-									<option value="1">English</option>
-									<option value="2">French</option>
-								</select>
-							</label>
-							<label class="label">
-								<span class="font-semibold text-sm">Service Areas</span>
-								<select class="select select">
-									<option value="1">City 1</option>
-									<option value="2">City 2</option>
-									<option value="3">City 3</option>
-									<option value="4">City 4</option>
-									<option value="5">City 5</option>
-								</select>
-							</label>
-						</div>
-					</div>
-				</Step>
-				<Step>
-					<svelte:fragment slot="header">Almost Done.</svelte:fragment>
-					<p>
-						Please share information about any awards or recognitions you have received in your
-						field, as well as any specific specialties or areas of expertise you possess. This will
-						help us understand your achievements and areas where you excel in your professional
-						career.
-					</p>
-					<label class="label text-sm">
-						<span class="font-semibold">Overview</span>
-						<input
-							class="input rounded-md placeholder:text-sm"
-							placeholder="Please Enter Your Overview Here .... !"
-							type="text"
-						/>
-					</label>
-					<label class="label text-sm">
-						<span class="font-semibold">Specialties</span>
-						<input
-							class="input rounded-md placeholder:text-sm"
-							placeholder="Please Enter Your Specialties Here .... !"
-							type="text"
-						/>
-					</label>
-					<label class="label text-sm">
-						<span class="font-semibold">Awards</span>
-						<input
-							class="input rounded-md placeholder:text-sm"
-							placeholder="Please Enter Your Awards Here .... !"
-							type="text"
-						/>
-					</label>
-				</Step>
-			</Stepper>
-		</div>
-	</div>
-</Model> -->

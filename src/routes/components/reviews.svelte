@@ -1,23 +1,25 @@
 <script>
-	import { RangeSlider } from '@skeletonlabs/skeleton';
-	import { userdata } from '../store/userStore';
-	import Signup from './joinNow.svelte';
-	import { supabase } from '$lib/supabaseClient';
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
+	import { userdata } from '../store/userStore';
+	import { reviewData } from '../store/reviews';
+	import { RangeSlider } from '@skeletonlabs/skeleton';
 	import TrashIcon from '../icons/trash.svelte';
+	import Loading from '../animation/loading.svelte';
+	import Signup from './joinNow.svelte';
 	import Model from './model.svelte';
 	import Events from '../icons/emptyReviews.svelte';
 	import EmptyReviews from '../icons/emptyReviews.svelte';
 	// export let addre = true;
-	let value = 4;
+	let rating = 1;
 	let max = 5;
+	let review;
+	let your;
+	if (browser) your = JSON.parse(localStorage.getItem('profile'));
 	let openSignup = false;
+	let openAddReview = false;
 	export let profileData;
 	export let page = false;
-	// //console.log(profileData, 'review profileData');
-	var reviews = [];
-	let openAddReview = false;
 	function openLinkedReview(obj) {
 		if (!profileData.role) {
 			goto('/profile/' + obj.agent_id);
@@ -25,117 +27,46 @@
 			goto('/profile/' + obj.client_id);
 		}
 	}
-	function AddReview() {
+	function openAddReviewModel() {
 		if (!$userdata) {
 			openSignup = true;
 		} else {
 			openAddReview = true;
 		}
 	}
-	async function getreviews() {
-		let { data: reviews, error } = await supabase
-			.from('reviews')
-			.select('*')
-			.eq('agent_id', profileData.profiles_id)
-			.range(0, 3);
-		return reviews;
-	}
-	async function getyourreviews() {
-		let { data: reviews, error } = await supabase
-			.from('reviews')
-			.select('*')
-			.eq('client_id', profileData.profiles_id)
-			.range(0, 3);
-		return reviews;
-	}
 	if (profileData.role) {
-		getreviews().then((x) => {
-			if(x){
-				reviews = x;
-
-			}else{
-				reviews = [];
-
-			}
-		});
+		reviewData.getAgentReviews(profileData.profiles_id);
 	} else {
-		getyourreviews().then((x) => {
-			if(x){
-				reviews = x;
-
-			}else{
-				reviews = [];
-
-			}
-		});
-	}
-	let comments;
-	let your;
-	if (browser) your = JSON.parse(localStorage.getItem('profile'));
-	async function handle_addreviews() {
-
-		// console.log({
-		// 	review: comments,
-		// 	rating: value,
-		// 	client_id: your.profiles_id,
-		// 	agent_id: profileData.profiles_id,
-		// 	client_name: your.name
-		// });
-		const { data, error } = await supabase
-			.from('reviews')
-			.insert([
-				{
-					review: comments,
-					rating: value,
-					client_id: your.profiles_id,
-					agent_id: profileData.profiles_id,
-					client_name: your.name,
-					agent_name: profileData.name,
-					type: 'Highly Recommended'
-				}
-			])
-			.select();
-		// console.log(error, data);
-		if (!error) {
-			openAddReview = false;
-			comments = null;
-			// reviews.push(data[0]);
-			// console.log(reviews);
-			getyourreviews().then((x) => {
-				reviews = x;
-			});
-		}
-	}
-	async function remove_review(obj) {
-		const { error } = await supabase.from('reviews').delete().eq('id', obj.id);
-		if (!error) {
-			getyourreviews().then((x) => {
-				reviews = x;
-			});
-		}
+		reviewData.getClientReviews(profileData.profiles_id);
 	}
 </script>
 
 <div class="text-sm card p-4">
 	<div class="w-full my-4 justify-between">
 		{#if profileData.role}
-			<div class="font-semibold text-lg text-left">Reviews Given By Clients</div>
-			<div class="text-sm text-surface-900 dark:text-surface-100">Leave a Review</div>
+		<div class="flex justify-between w-full">
+			<div>
+				<div class="font-semibold text-lg text-left">Reviews Given By Clients</div>
+				<div class="text-sm text-surface-900 dark:text-surface-100 text-left">Leave a Review</div>
+			</div>
+			{#if $userdata}
 			<button
-				on:click={() => {
-					AddReview();
-				}}
-				class="btn variant-filled-primary btn-sm w-full mt-4">Give Reviews</button
-			>
+			on:click={() => {
+				openAddReviewModel();
+			}}
+				class="btn variant-filled-primary btn-sm w-fit mt-4 my-auto">Give Reviews</button
+				>
+				{/if}
+			</div>
 		{:else}
 			<div class="font-semibold text-lg text-left">Reviews Given By You</div>
 		{/if}
 	</div>
 	<hr />
-	{#await reviews}
-		Loading
+	{#await $reviewData}
+		<Loading />
 	{:then}
-		{#if reviews.length < 1}
+		{#if $reviewData.length < 1}
 			<div class="w-full text-center">
 				<div class="bg-primary-200 dark:bg-primary-500 p-4 rounded-lg m-4">
 					<EmptyReviews />
@@ -143,7 +74,7 @@
 				<p class="m-auto mt-6 text-xs dark:text-primary-300 text-primary-500">No Reviews Yet</p>
 			</div>
 		{/if}
-		{#each reviews as r, i}
+		{#each $reviewData as r, i}
 			<!-- svelte-ignore a11y-no-static-element-interactions -->
 			<div
 				class="my-4 cursor-pointer"
@@ -152,11 +83,11 @@
 				}}
 				on:keypress
 			>
-				<div class="flex justify-between mb-4 items-center font-semibold">
+				<div class="flex justify-between mb-4 items-center font-semibold ">
 					<div>
 						<div>From {r.client_name}</div>
 						<div>To {r.agent_name}</div>
-						<div class="text-sm text-surface-900 dark:text-surface-100 font-normal">{r.date}</div>
+						<div class="text-sm text-surface-900 dark:text-surface-100 font-normal float-left">{r.date}</div>
 					</div>
 					<div>
 						<div>{r.type}</div>
@@ -174,21 +105,28 @@
 						</div>
 					</div>
 				</div>
-				<div>
+				<div class="flex float-left">
 					{r.review}
 				</div>
-				{#if  your}
-				<div class="flex justify-between text-error-500">
-					<div></div>
-					<TrashIcon
-					on:click={() => {
-						remove_review(r);
-					}}
-					/>
-				</div>
+				{#if your}
+					<div class="flex justify-between text-error-500">
+						<div></div>
+						<button
+							on:click={() => {
+								reviewData.deleteReview(r, i);
+								if (profileData.role) {
+									reviewData.getAgentReviews(profileData.profiles_id);
+								} else {
+									reviewData.getClientReviews(profileData.profiles_id);
+								}
+							}}
+						>
+							<TrashIcon />
+						</button>
+					</div>
 				{/if}
 			</div>
-			{#if i + 1 !== reviews.length}
+			{#if i + 1 !== $reviewData.length}
 				<hr />
 			{/if}
 		{/each}
@@ -198,10 +136,10 @@
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
 			on:click={() => {
-				goto('/reviewsAll');
+				goto('/reviewsAll/'+profileData.profiles_id);
 			}}
 			on:keydown
-			class="text-sm text-primary-900 hover:text-primary-500 dark:text-primary-100 my-4 cursor-pointer w-full text-center"
+			class="text-sm text-primary-900 hover:text-primary-500 dark:text-primary-100 mt-4 cursor-pointer w-full text-center"
 		>
 			See All Reviews
 		</div>
@@ -221,27 +159,38 @@
 					<label class="label text-sm">
 						<span class="font-semibold text-sm">The Experience</span>
 						<textarea
-							bind:value={comments}
+							bind:value={review}
 							class="textarea placeholder:text-sm"
 							rows="3"
 							placeholder="How was your experience?"
 						/>
 					</label>
-					<RangeSlider name="range-slider" bind:value max={5} step={1} ticked>
+					<RangeSlider name="range-slider" bind:value={rating} max={5} step={1} ticked>
 						<div class="flex justify-between items-center">
 							<div class="font-semibold text-sm">Leave a rating</div>
-							<div class="text-xs">{value} / {max}</div>
+							<div class="text-xs">{rating} / {max}</div>
 						</div>
 					</RangeSlider>
 					<div class="w-full text-right">
 						<button type="button" class="btn variant-soft-surface btn-sm w-fit mr-2">Cancel</button>
+						{#if your}
 						<button
 							type="button"
 							class="btn variant-filled-primary w-fit btn-sm"
 							on:click={() => {
-								handle_addreviews();
+								reviewData.addReview({
+									review: review,
+									rating: rating,
+									agent_id: profileData.profiles_id,
+									agent_name: profileData.name,
+									client_id: your.profiles_id,
+									client_name: your.name,
+									type: 'Highly Recommended'
+								});
+								openAddReview = false;
 							}}>Submit Review</button
 						>
+						{/if}
 					</div>
 				</div>
 			</div>

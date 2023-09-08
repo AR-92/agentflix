@@ -17,6 +17,7 @@
 		<div class="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500">+</div>
 	</div>
 {:then}
+{#if $profilesData}
 	{#if $profilesData.length < 1}
 		<div class="w-full h-[500px] grid place-items-center">
 			<div class="bg-primary-200 dark:bg-primary-500 p-8 rounded-full w-[300px] font-bitten">
@@ -31,6 +32,7 @@
 				<AgentCard {...agent} />
 			{/each}
 		</div>
+	{/if}
 	{/if}
 {/await}
 <Footer />

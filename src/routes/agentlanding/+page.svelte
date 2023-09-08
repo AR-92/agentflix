@@ -144,7 +144,7 @@
 						<tr>
 							<th class="text-center">Calculated Total</th>
 							<th class="text-center">$4700/month</th>
-							<th class="text-center">$$64.99/month</th>
+							<th class="text-center">$64.99/month</th>
 						</tr>
 					</tfoot>
 				</table>

@@ -1,8 +1,6 @@
 <script>
 	// import Setup from '../components/profileSetup.svelte';
-	// import { userdata } from '../store/userStore';
 	import { browser } from '$app/environment';
-	// import { supabase } from '$lib/supabaseClient';
 
 	import Footer from '../components/footer.svelte';
 	import NavBar from '../components/navBar.svelte';
@@ -11,14 +9,10 @@
 	import AgentEvents from '../components/events.svelte';
 	import AgentInfo from '../components/profileInfo.svelte';
 	import ReviewsReceived from '../components/reviews.svelte';
-	let user = false;
+
 	let profile = false;
-	// async function getprofile() {
-	// }
-	if (browser) user = JSON.parse(localStorage.getItem('auth'));
 	if (browser) profile = JSON.parse(localStorage.getItem('profile'));
 
-	// let data = getprofile();
 	let sbar = false;
 </script>
 

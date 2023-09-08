@@ -24,7 +24,11 @@
 			.from('languages')
 			.select('*')
 			.eq('id', profileData.language);
-		return languages[0];
+			if(languages){
+				return languages[0];
+			}else{
+				return ''
+			}
 	}
 	getlanguage().then((x) => {
 		language = x.language;

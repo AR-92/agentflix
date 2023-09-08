@@ -2,11 +2,9 @@ import { supabase } from '$lib/supabaseClient';
 import { writable } from 'svelte/store';
 import { goto } from '$app/navigation';
 import { browser } from '$app/environment';
-// import { localStorageStore } from '@skeletonlabs/skeleton';
+
 async function check() {
     const { data: { user } } = await supabase.auth.getUser();
-    // console.log(user,'localStorageStore')
-    // localStorageStore('auth', user);
     if (browser) {
         if (user) {
             const { data: profile, error } = await supabase
@@ -19,7 +17,6 @@ async function check() {
             window.localStorage.setItem('profile', false)
         }
     }
-    // localStorage.setItem('auth',JSON.stringify(user))
     return user;
 }
 function user() {
@@ -124,21 +121,6 @@ function user() {
 
             }
         }),
-        // get: () => update(async (n) => {
-        //     // let u = JSON.parse(localStorage.getItem('auth'))
-        //     // if (u) {
-        //     //     let { data: profile, error } = await supabase
-        //     //         .from('profile')
-        //     //         .select('*')
-        //     //         .eq('profiles_id', u.id);
-        //     //     if (profile) {
-        //     //         return {
-        //     //             profile: profile[0],
-        //     //         };
-        //     //     }
-        //     // }
-
-        // })
     }
 
 }

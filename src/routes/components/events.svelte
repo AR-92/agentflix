@@ -4,13 +4,14 @@
 	import Signup from './joinNow.svelte';
 	import { supabase } from '$lib/supabaseClient';
 	import { goto } from '$app/navigation';
-
+	import { browser } from '$app/environment';
 	import Empty from '../icons/empty.svelte';
 	import Events from '../icons/events.svelte';
 	export let addeve = true;
 	export let profile;
-	export let page=false;
-	// //console.log(profile, 'profile');
+	// if (browser) profile = JSON.parse(localStorage.getItem('profile'));
+	export let page = false;
+	// console.log(profile, 'profile');
 	let openevent = false;
 	let openAddEvent = false;
 	let openSignup = false;
@@ -83,59 +84,67 @@
 	{#await events}
 		Loading
 	{:then}
-		{#if events.length < 1}
-			<div class="w-full text-center">
-				<div class="bg-primary-200 dark:bg-primary-500 p-4 rounded-lg m-4">
-					<Empty />
+		{#if events}
+			{#if events.length < 1}
+				<div class="w-full text-center">
+					<div class="bg-primary-200 dark:bg-primary-500 p-4 rounded-lg m-4">
+						<Empty />
+					</div>
+					<p class="m-auto mt-6 text-xs dark:text-primary-300 text-primary-500">
+						No Events Yet Created
+					</p>
 				</div>
-				<p class="m-auto mt-6 text-xs dark:text-primary-300 text-primary-500">
-					No Events Yet Created
-				</p>
-			</div>
-		{/if}
-		{#each events as e, i}
-			<div
-				class="flex group cursor-pointer"
-				on:click={() => {
-					OpenEvent(i);
-				}}
-				on:keypress
-			>
-				<div class="group-hover:bg-primary-500 bg-surface-300 h-[100px] rounded-full w-2 m-auto" />
-				<div class="m-5">
-					<div class="flex justify-between items-center">
-						<div>
-							<div class="font-semibold">{e.name}</div>
-						</div>
-						<div class="flex gap-2 items-center">
-							<div class="text-sm text-surface-900 dark:text-surface-100">
-								On {e.date} At {e.time}
+			{/if}
+			{#each events as e, i}
+				<div
+					class="flex group cursor-pointer"
+					on:click={() => {
+						OpenEvent(i);
+					}}
+					on:keypress
+				>
+					<div
+						class="group-hover:bg-primary-500 bg-surface-300 h-[100px] rounded-full w-2 m-auto"
+					/>
+					<div class="m-5">
+						<div class="flex justify-between items-center">
+							<div>
+								<div class="font-semibold">{e.name}</div>
+							</div>
+							<div class="flex gap-2 items-center">
+								<div class="text-sm text-surface-900 dark:text-surface-100">
+									On {e.date} At {e.time}
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="flex justify-between mb-4 items-center">
-						<div>
-							<div class="font-semibold">Location</div>
+						<div class="flex justify-between mb-4 items-center">
+							<div>
+								<div class="font-semibold">Location</div>
+							</div>
+							<div class="flex gap-2 items-center">
+								<div class="text-sm text-surface-900 dark:text-surface-100">{e.location}</div>
+							</div>
 						</div>
-						<div class="flex gap-2 items-center">
-							<div class="text-sm text-surface-900 dark:text-surface-100">{e.location}</div>
-						</div>
+						<div class="mt-2">{e.description}</div>
 					</div>
-					<div class="mt-2">{e.description}</div>
 				</div>
-			</div>
-			{#if i + 1 !== events.length}
-				<hr />
-			{/if}
-		{/each}
+				{#if i + 1 !== events.length}
+					<hr />
+				{/if}
+			{/each}
+		{/if}
 	{/await}
 	{#if !page}
-
-	<hr class="mt-2">
-	<div 	on:click={() => {
-		goto('/eventsAll');
-	}}
-	on:keydown class="text-sm text-primary-900 hover:text-primary-500 dark:text-primary-100 my-2 cursor-pointer w-full text-center">See All Events</div>
+		<hr class="mt-2" />
+		<div
+			on:click={() => {
+				goto('/eventsAll');
+			}}
+			on:keydown
+			class="text-sm text-primary-900 hover:text-primary-500 dark:text-primary-100 mt-4 cursor-pointer w-full text-center"
+		>
+			See All Events
+		</div>
 	{/if}
 </div>
 

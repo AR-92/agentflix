@@ -3,16 +3,11 @@
 	import { RangeSlider } from '@skeletonlabs/skeleton';
 	import Model from './model.svelte';
 	import { locationsData } from '../store/locationStore';
-	import { brokerageData } from '../store/brokerageStore';
 	import { languagesData } from '../store/languageStore';
+	import { brokerageData } from '../store/brokerageStore';
 	import { profilesData } from '../store/allusersStore';
 
-	// let filterList=[];
-	// $locationsData.then((x) => {
-	// 	filterList = x;
-	// });
-	//console.log($locationsData);
-	// let value = 2;
+
 	let max = 5;
 	let brokerage;
 	let rating=2;
@@ -22,7 +17,6 @@
 
 	export let show = false;
 	function apply() {
-		//console.log(brokerage,rating,location,languages,experience);
 		profilesData.filter(brokerage,rating,location,languages,experience)
 	}
 </script>
@@ -60,10 +54,6 @@
 							{#each $locationsData as l}
 								<option value={l.location_id}>{l.location}</option>
 							{/each}
-							<!-- <option value="2">Location 2</option>
-							<option value="3">Location 3</option>
-							<option value="4">Location 4</option>
-							<option value="5">Location 5</option> -->
 						</select>
 					</label>
 					<label class="label">
