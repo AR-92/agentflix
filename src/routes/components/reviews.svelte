@@ -105,7 +105,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="flex float-left">
+				<div class="flex">
 					{r.review}
 				</div>
 				{#if your}
