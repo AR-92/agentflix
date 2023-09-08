@@ -4,7 +4,7 @@
 	import Signup from './joinNow.svelte';
 	import { supabase } from '$lib/supabaseClient';
 	import { goto } from '$app/navigation';
-	import { browser } from '$app/environment';
+	// import { browser } from '$app/environment';
 	import Empty from '../icons/empty.svelte';
 	import Events from '../icons/events.svelte';
 	export let addeve = true;
@@ -17,7 +17,7 @@
 	let openSignup = false;
 	let currentIndex = 0;
 	function OpenEvent(i) {
-		if ($userdata) {
+		if (!$userdata.role) {
 			openevent = true;
 			currentIndex = i;
 		} else {
@@ -36,7 +36,7 @@
 		events = x;
 	});
 	function handle_join(value) {
-		if ($userdata) {
+		if (!$userdata.role) {
 			openSignup = true;
 		}
 		if (value === 'coming') {

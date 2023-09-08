@@ -28,7 +28,7 @@
 		}
 	}
 	function openAddReviewModel() {
-		if (!$userdata) {
+		if (!$userdata.role) {
 			openSignup = true;
 		} else {
 			openAddReview = true;
@@ -49,14 +49,14 @@
 				<div class="font-semibold text-lg text-left">Reviews Given By Clients</div>
 				<div class="text-sm text-surface-900 dark:text-surface-100 text-left">Leave a Review</div>
 			</div>
-			{#if $userdata}
+			<!-- {#if $userdata.role} -->
 			<button
 			on:click={() => {
 				openAddReviewModel();
 			}}
 				class="btn variant-filled-primary btn-sm w-fit mt-4 my-auto">Give Reviews</button
 				>
-				{/if}
+				<!-- {/if} -->
 			</div>
 		{:else}
 			<div class="font-semibold text-lg text-left">Reviews Given By You</div>

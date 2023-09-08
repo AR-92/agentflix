@@ -80,21 +80,22 @@
 
 	let openSignup = false;
 	function handle_chat() {
-		if (!$userdata) {
+		if (!$userdata.role) {
 			openSignup = true;
 		} else {
 			goto('../chat');
 		}
 	}
 	function handle_listing(url) {
-		if (!$userdata) {
+		if (!$userdata.role) {
 			openSignup = true;
 		} else {
 			window.location.href = url;
 		}
 	}
 	function handle_follow() {
-		if (!$userdata) {
+		console.log($userdata)
+		if (!$userdata.role) {
 			openSignup = true;
 		}
 	}
