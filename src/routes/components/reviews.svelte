@@ -1,6 +1,8 @@
 <script>
 	import { browser } from '$app/environment';
+	
 	import { goto } from '$app/navigation';
+	import { profiledata } from '../store/profileStore';
 	import { userdata } from '../store/userStore';
 	import { reviewData } from '../store/reviews';
 	import { RangeSlider } from '@skeletonlabs/skeleton';
@@ -10,12 +12,9 @@
 	import Model from './model.svelte';
 	import Events from '../icons/emptyReviews.svelte';
 	import EmptyReviews from '../icons/emptyReviews.svelte';
-	// export let addre = true;
 	let rating = 1;
 	let max = 5;
 	let review;
-	let your;
-	if (browser) your = JSON.parse(localStorage.getItem('profile'));
 	let openSignup = false;
 	let openAddReview = false;
 	export let profileData;
@@ -108,7 +107,7 @@
 				<div class="flex">
 					{r.review}
 				</div>
-				{#if your}
+				{#if $profiledata}
 					<div class="flex justify-between text-error-500">
 						<div></div>
 						<button
@@ -173,7 +172,7 @@
 					</RangeSlider>
 					<div class="w-full text-right">
 						<button type="button" class="btn variant-soft-surface btn-sm w-fit mr-2">Cancel</button>
-						{#if your}
+						<!-- {#if your} -->
 						<button
 							type="button"
 							class="btn variant-filled-primary w-fit btn-sm"
@@ -183,14 +182,14 @@
 									rating: rating,
 									agent_id: profileData.profiles_id,
 									agent_name: profileData.name,
-									client_id: your.profiles_id,
-									client_name: your.name,
+									client_id: $profiledata.profiles_id,
+									client_name: $profiledata.name,
 									type: 'Highly Recommended'
 								});
 								openAddReview = false;
 							}}>Submit Review</button
 						>
-						{/if}
+						<!-- {/if} -->
 					</div>
 				</div>
 			</div>

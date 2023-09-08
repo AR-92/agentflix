@@ -2,11 +2,17 @@
 	import Footer from '../components/footer.svelte';
 	import ReviewsReceived from '../components/reviews.svelte';
 	import NavBar from '../components/navBar.svelte';
+	import { profiledata } from '../store/profileStore';
+	import Loading from '../animation/loading.svelte';
+
 	let sbar=false
 </script>
 
 <NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
-<hr />
+<!-- <hr /> -->
+{#await $profiledata}
+	<Loading />
+{:then}
 <div class="chat w-full flex font-header">
 	<div class="flex w-1/3 flex-col border-r border-surface-500/30 max-md:hidden ">
 		<header class="border-b border-surface-500/30 p-4">
@@ -315,7 +321,8 @@
 		</section>
 	</div>
 	<div class="m-4 w-1/3 max-lg:hidden">
-		<ReviewsReceived />
+		<ReviewsReceived profileData={$profiledata} />
 	</div>
 </div>
+{/await}
 <Footer />
