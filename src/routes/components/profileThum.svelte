@@ -1,6 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { Avatar } from '@skeletonlabs/skeleton';
+	import { extarct } from '../../lib/utils';
 
 	export let name;
 	export let rating;
@@ -12,24 +13,6 @@
 		ava = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${profiles_id}.jpg`;
 	} else {
 		ava = false;
-	}
-	function extractInitials(name) {
-		// Split the name into words
-		const words = name.split(' ');
-
-		// Initialize an array to store initials
-		const initials = [];
-
-		// Iterate through the words and extract the first letter of each
-		for (let i = 0; i < words.length; i++) {
-			if (words[i]) {
-				// Check if the word is not empty
-				initials.push(words[i][0].toUpperCase()); // Convert to uppercase for consistency
-			}
-		}
-
-		// Join the initials and return as a string
-		return initials.join('');
 	}
 </script>
 
@@ -44,7 +27,7 @@
 >
 	<Avatar
 		class="m-auto z-0"
-		initials={extractInitials(name)}
+		initials={extarct(name)}
 		src={ava}
 		background="bg-primary-300 "
 		width="w-full"
