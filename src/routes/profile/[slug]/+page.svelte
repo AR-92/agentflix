@@ -36,7 +36,7 @@
 	})[0].language;
 
 	if (data.profile.avatar) {
-		data.profile.avtarLink = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${profileData.profiles_id}.jpg`;
+		data.profile.avtarLink = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${data.profile.profiles_id}.jpg`;
 	} else {
 		data.profile.avtarLink = null;
 	}

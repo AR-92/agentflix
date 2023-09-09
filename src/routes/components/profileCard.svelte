@@ -105,14 +105,14 @@
 		<Avatar
 			class="m-auto z-0"
 			initials={extarct(profileData.name)}
-			src={profileData.avatarLink}
+			src={profileData.avtarLink}
 			background="bg-primary-300 "
 			width="w-40"
 			rounded="rounded-full"
 		/>
 	</div>
 	{#if profileData.role}
-		<div class="flex justify-around mt-[-10px] z-50">
+		<div class="flex justify-around mt-[-10px] z-50 relative">
 			<button
 				on:click={() => {
 					handle_follow();

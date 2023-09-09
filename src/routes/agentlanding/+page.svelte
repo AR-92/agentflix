@@ -12,10 +12,10 @@
 <div class="pb-20 px-10">
 	<div class="flex px-4 font-semibold justify-between items-center">
 		<div class="m-8">
-			<Logo width='250px' />
+			<Logo width="250px" />
 		</div>
 
-		<div class="flex gap-6 ">
+		<div class="flex gap-6">
 			<button
 				class="btn variant-soft-primary w-fit font-bitten"
 				on:click={() => {
@@ -42,12 +42,21 @@
 						openSignup = true;
 					}}>Join Now</button
 				>
-				<button class="btn variant-soft-primary w-fit font-bitten" on:click={() => {
-					openContact = true;
-				}}>Contact Us</button>
+				<button
+					class="btn variant-soft-primary w-fit font-bitten"
+					on:click={() => {
+						openContact = true;
+					}}>Contact Us</button
+				>
 			</div>
 		</div>
-		<div class="col-span-5 bg-secondary-200 max-md:hidden" style="height: 500px;" />
+		<!-- <div class="col-span-5 bg-secondary-200 max-md:hidden" style="height: 500px;"></div> -->
+		<img
+			class="col-span-5 max-md:hidden"
+			src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/lp2.png"
+			alt=""
+			srcset=""
+		/>
 	</div>
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12">
 		<div class="col-span-3 bg-secondary-200 h-20" />
@@ -78,7 +87,7 @@
 				>
 			</div>
 		</div>
-		<div class="col-span-5 bg-secondary-200 max-md:hidden" style="height: 500px;" />
+		<div class="col-span-5 bg-secondary-200 max-md:hidden" style="height: 500px;"></div>
 	</div>
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full text-center" id="compare">
 		<div class="col-span-12">
@@ -206,9 +215,12 @@
 						openSignup = true;
 					}}>Join Now</button
 				>
-				<button class="btn variant-soft-primary w-fit font-bitten" on:click={() => {
-					openContact = true;
-				}}>Contact Us</button>
+				<button
+					class="btn variant-soft-primary w-fit font-bitten"
+					on:click={() => {
+						openContact = true;
+					}}>Contact Us</button
+				>
 			</div>
 		</div>
 	</div>
@@ -287,6 +299,6 @@
 	<FooterLinks />
 </div>
 
-<Login bind:show={openlogin}/>
-<Signup  bind:show={openSignup}/>
-<Contact bind:show={openContact}/>
+<Login bind:show={openlogin} />
+<Signup bind:show={openSignup} />
+<Contact bind:show={openContact} />
