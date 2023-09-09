@@ -17,6 +17,17 @@
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
 	import { storePopup } from '@skeletonlabs/skeleton';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
+
+	import { locationsData } from './store/locationStore';
+	import { userdata } from './store/userStore';
+	import { languagesData } from './store/languageStore';
+	import { brokerageData } from './store/brokerageStore';
+	locationsData.get();
+	languagesData.get();
+	brokerageData.get();
+	userdata.fresh();
+
+	console.log("this is layout")
 </script>
 
 <Toast />

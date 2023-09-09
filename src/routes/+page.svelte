@@ -1,21 +1,15 @@
 <script>
-	import { onMount } from 'svelte';
 	import EmptyHome from './icons/emptyhome.svelte';
 	import NavBar from './components/navBar.svelte';
 	import AgentCard from './components/profileThum.svelte';
 	import Footer from './components/footer.svelte';
+	import { onMount } from 'svelte';
 	import { profilesData } from './store/allusersStore';
-	import { locationsData } from './store/locationStore';
-	import { userdata } from './store/userStore';
-	import { languagesData } from './store/languageStore';
-	import { brokerageData } from './store/brokerageStore';
+
 
 	onMount(() => {
 		profilesData.all();
-		locationsData.get();
-		languagesData.get();
-		brokerageData.get();
-		userdata.fresh();
+		
 	});
 </script>
 

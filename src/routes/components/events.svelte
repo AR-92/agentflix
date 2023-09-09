@@ -4,14 +4,11 @@
 	import Signup from './joinNow.svelte';
 	import { supabase } from '$lib/supabaseClient';
 	import { goto } from '$app/navigation';
-	// import { browser } from '$app/environment';
 	import Empty from '../icons/empty.svelte';
 	import Events from '../icons/events.svelte';
 	export let addeve = true;
 	export let profile;
-	// if (browser) profile = JSON.parse(localStorage.getItem('profile'));
 	export let page = false;
-	// console.log(profile, 'profile');
 	let openevent = false;
 	let openAddEvent = false;
 	let openSignup = false;

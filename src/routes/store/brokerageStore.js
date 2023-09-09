@@ -29,6 +29,11 @@ function createBrokerageStore() {
       .select('*');
       set(data)
     }),
+    // f: (value,id) => update(async (n) => {
+    //   return value.filter((obj) => {
+    //     return obj['id'] === id;
+    //   })[0].name;
+    // }),
   };
 }
 

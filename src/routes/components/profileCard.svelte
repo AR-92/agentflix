@@ -7,23 +7,15 @@
 	import { languagesData } from '../store/languageStore';
 	import { brokerageData } from '../store/brokerageStore';
 	import { extarct } from '../../lib/utils';
-	import { userdata } from '../store/userStore';
 	import { TabGroup, Tab, Avatar, FileDropzone } from '@skeletonlabs/skeleton';
+
 	let opensettingsAgent = false;
 	let opensettingsClient = false;
 	let tabSet = 0;
-	let location;
-	let language;
 
 	export let setset = false;
 	export let profileData;
-	let ava;
-	let brokerage;
-	if (profileData.avatar) {
-		ava = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${profileData.profiles_id}.jpg`;
-	} else {
-		ava = null;
-	}
+
 	function OpenSettings() {
 		if (profileData.role) {
 			opensettingsAgent = true;
@@ -35,41 +27,24 @@
 		return value.split(',');
 	}
 
-	// if (profileData.role) {
-	// 	getbrokerage().then((x) => {
-	// 		brokerage = x.name;
-	// 	});
-	// }
-	brokerage= $brokerageData.filter((obj) => {
-		return obj['id'] === profileData.brokerage_id;
-	})[0].name;
-
-	location= $locationsData.filter((obj) => {
-		return obj['location_id'] === profileData.location_id;
-	})[0].location;
-
-	language = $languagesData.filter((obj) => {
-		return obj.id === profileData.language;
-	})[0].language;
 
 	let openSignup = false;
 	function handle_chat() {
-		if (!$userdata.role) {
+		if (!profileData.userRole) {
 			openSignup = true;
 		} else {
 			goto('../chat');
 		}
 	}
 	function handle_listing(url) {
-		if (!$userdata.role) {
+		if (!profileData.userRole) {
 			openSignup = true;
 		} else {
 			window.location.href = url;
 		}
 	}
 	function handle_follow() {
-		// console.log($userdata);
-		if (!$userdata.role) {
+		if (!profileData.userRole) {
 			openSignup = true;
 		}
 	}
@@ -130,7 +105,7 @@
 		<Avatar
 			class="m-auto z-0"
 			initials={extarct(profileData.name)}
-			src={ava}
+			src={profileData.avatarLink}
 			background="bg-primary-300 "
 			width="w-40"
 			rounded="rounded-full"
@@ -167,7 +142,7 @@
 
 		<div class="mt-1 flex text-sm justify-between">
 			{#if profileData.role}
-				<div>{brokerage}</div>
+				<div>{profileData.brokerageName}</div>
 				<button class="btn variant-soft-primary btn-sm w-fit">Agent Profile</button>
 			{:else}
 				<div></div>
@@ -182,7 +157,7 @@
 	</div>
 
 	<div class="px-4">
-		{#if location}
+		{#if profileData.locationName}
 			<div class="flex mt-1 gap-4">
 				<div class="text-sm text-primary-500 dark:text-primary-100">
 					<svg xmlns="http://www.w3.org/2000/svg" class="ionicon w-5" viewBox="0 0 512 512"
@@ -205,7 +180,7 @@
 						/></svg
 					>
 				</div>
-				<div class="text-sm">{location}</div>
+				<div class="text-sm">{profileData.locationName}</div>
 			</div>
 		{/if}
 		{#if profileData.role}
@@ -251,7 +226,7 @@
 			<div class="text-sm text-primary-500 dark:text-primary-100">
 				<Globe />
 			</div>
-			<div class="text-sm">{language}</div>
+			<div class="text-sm">{profileData.languageName}</div>
 		</div>
 		<div class="flex mt-1 gap-4">
 			<div class="text-sm text-primary-500 dark:text-primary-100">

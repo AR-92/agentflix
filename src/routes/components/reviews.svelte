@@ -1,6 +1,4 @@
 <script>
-	import { browser } from '$app/environment';
-	
 	import { goto } from '$app/navigation';
 	import { profiledata } from '../store/profileStore';
 	import { userdata } from '../store/userStore';

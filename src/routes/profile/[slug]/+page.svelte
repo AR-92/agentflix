@@ -6,10 +6,41 @@
 	import AgentEvents from '../../components/events.svelte';
 	import AgentProfileCard from '../../components/profileCard.svelte';
 	import AgentInfo from '../../components/profileInfo.svelte';
+
+	import { locationsData } from '../../store/locationStore';
+	import { languagesData } from '../../store/languageStore';
+	import { brokerageData } from '../../store/brokerageStore';
+	import { userdata } from '../../store/userStore';
+
 	export let data;
 	let sbar = false;
 
-	// console.log("this is data of profile page >",data)
+	data.profile.userRole = $userdata.role;
+
+	data.profile.brokerageName= $brokerageData.filter((obj) => {
+		return obj['id'] === data.profile.brokerage_id;
+	})[0].name;
+
+	// data.profile.brokerageName = brokerageData.f($brokerageData, data.profile.brokerage_id);
+
+	data.profile.brokerage_address = $brokerageData.filter((obj) => {
+		return obj['id'] === data.profile.brokerage_id;
+	})[0].adress;
+
+	data.profile.locationName = $locationsData.filter((obj) => {
+		return obj['location_id'] === data.profile.location_id;
+	})[0].location;
+
+	data.profile.languageName = $languagesData.filter((obj) => {
+		return obj.id === data.profile.language;
+	})[0].language;
+
+	if (data.profile.avatar) {
+		data.profile.avtarLink = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${profileData.profiles_id}.jpg`;
+	} else {
+		data.profile.avtarLink = null;
+	}
+	console.log('this is data of profile page >', data);
 </script>
 
 <NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
