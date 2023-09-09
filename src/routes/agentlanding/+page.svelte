@@ -52,8 +52,14 @@
 		</div>
 		<!-- <div class="col-span-5 bg-secondary-200 max-md:hidden" style="height: 500px;"></div> -->
 		<img
-			class="col-span-5 max-md:hidden"
+			class="col-span-5 max-md:hidden dark:hidden"
 			src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/lp2.png"
+			alt=""
+			srcset=""
+		/>
+		<img
+			class="col-span-5 max-md:hidden hidden dark:block"
+			src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/dlp2.png"
 			alt=""
 			srcset=""
 		/>
