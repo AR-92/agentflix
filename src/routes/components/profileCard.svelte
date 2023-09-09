@@ -6,7 +6,6 @@
 	import { locationsData } from '../store/locationStore';
 	import { languagesData } from '../store/languageStore';
 	import { brokerageData } from '../store/brokerageStore';
-	import { supabase } from '$lib/supabaseClient';
 	import { extarct } from '../../lib/utils';
 	import { userdata } from '../store/userStore';
 	import { TabGroup, Tab, Avatar, FileDropzone } from '@skeletonlabs/skeleton';
@@ -35,48 +34,23 @@
 	function getarray(value) {
 		return value.split(',');
 	}
-	async function getLocation() {
-		let { data: locations, error } = await supabase
-			.from('locations')
-			.select('location')
-			.eq('location_id', profileData.location_id);
-		return locations;
-	}
-	async function getbrokerage() {
-		let { data: brokerage, error } = await supabase
-			.from('brokerage')
-			.select('*')
-			.eq('id', profileData.brokerage_id);
-		if (brokerage) {
-			return brokerage[0];
-		} else {
-			return [];
-		}
-	}
-	async function getlanguage() {
-		let { data: languages, error } = await supabase
-			.from('languages')
-			.select('*')
-			.eq('id', profileData.language);
-		if (languages) {
-			return languages[0];
-		} else {
-			return '';
-		}
-	}
-	if (profileData.role) {
-		getbrokerage().then((x) => {
-			brokerage = x.name;
-		});
-	}
-	getLocation().then((x) => {
-		if (x) {
-			location = x[0].location;
-		}
-	});
-	getlanguage().then((x) => {
-		language = x.language;
-	});
+
+	// if (profileData.role) {
+	// 	getbrokerage().then((x) => {
+	// 		brokerage = x.name;
+	// 	});
+	// }
+	brokerage= $brokerageData.filter((obj) => {
+		return obj['id'] === profileData.brokerage_id;
+	})[0].name;
+
+	location= $locationsData.filter((obj) => {
+		return obj['location_id'] === profileData.location_id;
+	})[0].location;
+
+	language = $languagesData.filter((obj) => {
+		return obj.id === profileData.language;
+	})[0].language;
 
 	let openSignup = false;
 	function handle_chat() {
@@ -94,36 +68,36 @@
 		}
 	}
 	function handle_follow() {
-		console.log($userdata)
+		// console.log($userdata);
 		if (!$userdata.role) {
 			openSignup = true;
 		}
 	}
 	async function handle_clientUpdate() {
 		console.log(profileData.name, profileData.dob, profileData.language, profileData.location);
-		const { data, error } = await supabase
-			.from('profile')
-			.update({
-				name: profileData.name,
-				dob: profileData.dob,
-				language: profileData.language,
-				location_id: profileData.location
-			})
-			.eq('auth_id', profileData.auth_id)
-			.select();
+		// const { data, error } = await supabase
+		// 	.from('profile')
+		// 	.update({
+		// 		name: profileData.name,
+		// 		dob: profileData.dob,
+		// 		language: profileData.language,
+		// 		location_id: profileData.location
+		// 	})
+		// 	.eq('auth_id', profileData.auth_id)
+		// 	.select();
 	}
 	async function handle_agentUpdate() {
 		console.log(profileData.name, profileData.dob, profileData.language, profileData.location);
-		const { data, error } = await supabase
-			.from('profile')
-			.update({
-				name: profileData.name,
-				dob: profileData.dob,
-				language: profileData.language,
-				location_id: profileData.location
-			})
-			.eq('auth_id', profileData.auth_id)
-			.select();
+		// const { data, error } = await supabase
+		// 	.from('profile')
+		// 	.update({
+		// 		name: profileData.name,
+		// 		dob: profileData.dob,
+		// 		language: profileData.language,
+		// 		location_id: profileData.location
+		// 	})
+		// 	.eq('auth_id', profileData.auth_id)
+		// 	.select();
 	}
 </script>
 

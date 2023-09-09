@@ -19,10 +19,16 @@ async function getBrokerageData() {
 }
 
 function createBrokerageStore() {
-  const { subscribe, set } = writable([]);
-  getBrokerageData().then(data => set(data));
+  const { subscribe, set ,update} = writable([]);
+  // getBrokerageData().then(data => set(data));
   return {
     subscribe,
+    get: () => update(async (n) => {
+      const { data, error } = await supabase
+      .from('brokerage')
+      .select('*');
+      set(data)
+    }),
   };
 }
 

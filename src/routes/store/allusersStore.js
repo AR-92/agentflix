@@ -39,7 +39,6 @@ async function filter(brokerage, rating, location, languages, experience) {
 
 function profile() {
     const { subscribe, set, update } = writable([]);
-    get().then(data => set(data));
     return {
         subscribe,
         searchFilter: (value) => update(async (n) => {

@@ -12,15 +12,20 @@ async function getLanguagesData() {
     return data;
   } catch (error) {
     console.error('Error fetching languages data:', error);
-    throw error; 
+    throw error;
   }
 }
 
 function createLanguagesStore() {
-  const { subscribe, set } = writable([]);
-  getLanguagesData().then(data => set(data));
+  const { subscribe, set, update } = writable([]);
   return {
     subscribe,
+    get: () => update(async (n) => {
+      const { data, error } = await supabase
+        .from('languages')
+        .select('*');
+      set(data)
+    }),
   };
 }
 

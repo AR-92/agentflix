@@ -27,7 +27,7 @@ async function check() {
 
 function user() {
     const { subscribe, set, update } = writable({});
-    check().then(x => set(x))
+    // check().then(x => set(x))
     return {
         subscribe,
         signup: (email, password, toast) => update(async (n) => {

@@ -8,6 +8,8 @@
 	import AgentInfo from '../../components/profileInfo.svelte';
 	export let data;
 	let sbar = false;
+
+	// console.log("this is data of profile page >",data)
 </script>
 
 <NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>

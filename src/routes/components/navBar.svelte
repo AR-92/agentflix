@@ -7,6 +7,7 @@
 	import { profilesData } from '../store/allusersStore';
 	import { userdata } from '../store/userStore';
 	import { profiledata } from '../store/profileStore';
+	import Loading from '../animation/loading.svelte';
 
 	import { goto } from '$app/navigation';
 	import { LightSwitch, popup, ListBox } from '@skeletonlabs/skeleton';
@@ -195,91 +196,95 @@
 		</div>
 	</nav>
 	<hr />
-	{#if showSubbar && $locationsData}
-		<nav class="flex gap-2 px-2 justify-around">
-			<button
-				type="button"
-				class="px-4 text-2xl text-primary-500 dark:text-primary-100 font-bold"
-				on:click={multiColumnLeft}
-			>
-				«
-			</button>
-			<div
-				bind:this={elemList}
-				class="snap-x snap-mandatory scroll-px-4 scroll-smooth flex gap-4 overflow-hidden"
-			>
+	{#await $locationsData}
+		<Loading />
+	{:then}
+		{#if showSubbar}
+			<nav class="flex gap-2 px-2 justify-around">
 				<button
-					on:click={profilesData.all()}
-					class="snap-start shrink-0 p-2 hover:border-b-2 hover:border-primary-500 hover:text-primary-700 dark:hover:border-primary-200 dark:hover:text-primary-200 cursor-pointer"
+					type="button"
+					class="px-4 text-2xl text-primary-500 dark:text-primary-100 font-bold"
+					on:click={multiColumnLeft}
 				>
-					All
+					«
 				</button>
-				{#each $locationsData as item}
+				<div
+					bind:this={elemList}
+					class="snap-x snap-mandatory scroll-px-4 scroll-smooth flex gap-4 overflow-hidden"
+				>
 					<button
-						id={item.location_id}
-						on:click={profilesData.cityFilter(item.location_id)}
+						on:click={profilesData.all()}
 						class="snap-start shrink-0 p-2 hover:border-b-2 hover:border-primary-500 hover:text-primary-700 dark:hover:border-primary-200 dark:hover:text-primary-200 cursor-pointer"
 					>
-						{item.location}
+						All
 					</button>
-				{/each}
-			</div>
-			<button
-				type="button"
-				class="px-4 text-2xl text-primary-500 dark:text-primary-100 font-bold"
-				on:click={multiColumnRight}
-			>
-				»
-			</button>
-			<button
-				class="btn btn-sm m-1"
-				on:click={() => {
-					openfilter = true;
-				}}
-			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					class="ionicon w-6 text-primary-500 dark:text-primary-100"
-					viewBox="0 0 512 512"
-					><path
-						fill="currentColor"
-						stroke="currentColor"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="32"
-						d="M368 128h80M64 128h240M368 384h80M64 384h240M208 256h240M64 256h80"
-					/><circle
-						cx="336"
-						cy="128"
-						r="32"
-						fill="none"
-						stroke="currentColor"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="32"
-					/><circle
-						cx="176"
-						cy="256"
-						r="32"
-						fill="none"
-						stroke="currentColor"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="32"
-					/><circle
-						cx="336"
-						cy="384"
-						r="32"
-						fill="none"
-						stroke="currentColor"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="32"
-					/></svg
+					{#each $locationsData as item}
+						<button
+							id={item.location_id}
+							on:click={profilesData.cityFilter(item.location_id)}
+							class="snap-start shrink-0 p-2 hover:border-b-2 hover:border-primary-500 hover:text-primary-700 dark:hover:border-primary-200 dark:hover:text-primary-200 cursor-pointer"
+						>
+							{item.location}
+						</button>
+					{/each}
+				</div>
+				<button
+					type="button"
+					class="px-4 text-2xl text-primary-500 dark:text-primary-100 font-bold"
+					on:click={multiColumnRight}
 				>
-			</button>
-		</nav>
-	{/if}
+					»
+				</button>
+				<button
+					class="btn btn-sm m-1"
+					on:click={() => {
+						openfilter = true;
+					}}
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="ionicon w-6 text-primary-500 dark:text-primary-100"
+						viewBox="0 0 512 512"
+						><path
+							fill="currentColor"
+							stroke="currentColor"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="32"
+							d="M368 128h80M64 128h240M368 384h80M64 384h240M208 256h240M64 256h80"
+						/><circle
+							cx="336"
+							cy="128"
+							r="32"
+							fill="none"
+							stroke="currentColor"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="32"
+						/><circle
+							cx="176"
+							cy="256"
+							r="32"
+							fill="none"
+							stroke="currentColor"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="32"
+						/><circle
+							cx="336"
+							cy="384"
+							r="32"
+							fill="none"
+							stroke="currentColor"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="32"
+						/></svg
+					>
+				</button>
+			</nav>
+		{/if}
+	{/await}
 </div>
 <!-- {/if} -->
 <Login bind:show={openlogin} />
