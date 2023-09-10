@@ -93,7 +93,18 @@
 				>
 			</div>
 		</div>
-		<div class="col-span-5 bg-secondary-200 max-md:hidden" style="height: 500px;"></div>
+		<img
+			class="col-span-5 max-md:hidden dark:hidden"
+			src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/lp3.png"
+			alt=""
+			srcset=""
+		/>
+		<img
+			class="col-span-5 max-md:hidden hidden dark:block"
+			src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/dlp3.png"
+			alt=""
+			srcset=""
+		/>
 	</div>
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full text-center" id="compare">
 		<div class="col-span-12">
@@ -185,6 +196,18 @@
 				flyers!
 			</p>
 		</div>
+		<img
+			class="col-span-5 dark:hidden"
+			src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/lp10.png"
+			alt=""
+			srcset=""
+		/>
+		<img
+			class="col-span-5 hidden dark:block"
+			src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/dlp10.png"
+			alt=""
+			srcset=""
+		/>
 	</div>
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12 text-center">
 		<div class="col-span-3">
@@ -247,7 +270,19 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-span-9 bg-secondary-200 max-md:hidden" style="height: 500px;" />
+		<!-- <div class="col-span-9 bg-secondary-200 max-md:hidden" style="height: 500px;" /> -->
+		<img
+			class="col-span-9 max-md:hidden dark:hidden"
+			src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/lp5.png"
+			alt=""
+			srcset=""
+		/>
+		<img
+			class="col-span-9 max-md:hidden hidden dark:block"
+			src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/dlp5.png"
+			alt=""
+			srcset=""
+		/>
 	</div>
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12">
 		<div class="col-span-3 bg-secondary-200 h-20" />
@@ -267,10 +302,54 @@
 		</div>
 	</div>
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12">
-		<div class="col-span-6 bg-secondary-200 h-[300px]" />
-		<div class="col-span-6 bg-secondary-200 h-[300px]" />
-		<div class="col-span-6 bg-secondary-200 h-[300px]" />
-		<div class="col-span-6 bg-secondary-200 h-[300px]" />
+		<img
+			class="col-span-6 h-[300px] dark:hidden"
+			src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/lp6.png"
+			alt=""
+			srcset=""
+		/>
+		<img
+			class="col-span-6 h-[300px] dark:hidden"
+			src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/lp7.png"
+			alt=""
+			srcset=""
+		/>
+		<img
+			class="col-span-6 h-[300px] dark:hidden"
+			src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/lp8.png"
+			alt=""
+			srcset=""
+		/>
+		<img
+			class="col-span-6 h-[400px] dark:hidden"
+			src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/lp9.png"
+			alt=""
+			srcset=""
+		/>
+		<img
+			class="col-span-6 h-[300px] hidden dark:block"
+			src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/dlp6.png"
+			alt=""
+			srcset=""
+		/>
+		<img
+			class="col-span-6 h-[300px] hidden dark:block"
+			src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/dlp7.png"
+			alt=""
+			srcset=""
+		/>
+		<img
+			class="col-span-6 h-[300px] hidden dark:block"
+			src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/dlp8.png"
+			alt=""
+			srcset=""
+		/>
+		<img
+			class="col-span-6 h-[400px] hidden dark:block"
+			src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/dlp9.png"
+			alt=""
+			srcset=""
+		/>
 	</div>
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
 		<div class="col-span-7">
@@ -285,17 +364,32 @@
 
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12 text-center">
 		<div class="col-span-4">
-			<div class=" bg-secondary-200 h-72 mb-10" />
+			<img
+				class="mb-10 h-[300px]"
+				src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/lp11.png"
+				alt=""
+				srcset=""
+			/>
 			<div class="text-3xl font-header text-primary-500 font-bold mb-2">Open houses</div>
 			<p class="font-para text-md">Fill up open houses easier than ever before</p>
 		</div>
 		<div class="col-span-4">
-			<div class=" bg-secondary-200 h-72 mb-10" />
+			<img
+				class="mb-10 h-[300px]"
+				src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/lp12.png"
+				alt=""
+				srcset=""
+			/>
 			<div class="text-3xl font-bold mb-2 font-header text-primary-500">Busier Schedule</div>
 			<p class="font-para text-md">An easy way for clients to find time to talk to you</p>
 		</div>
 		<div class="col-span-4">
-			<div class=" bg-secondary-200 h-72 mb-10" />
+			<img
+				class="mb-10 h-[300px]"
+				src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/lp13.png"
+				alt=""
+				srcset=""
+			/>
 			<div class="text-3xl font-bold font-header mb-2 text-primary-500">Ondisplay Profile</div>
 			<p class="font-para txt-md">Let your professional and personal side shine through</p>
 		</div>
