@@ -114,7 +114,7 @@
 		/>
 	</div>
 	{#if profileData.role}
-		<div class="flex justify-around mt-[-10px] z-50 relative">
+		<div class="flex justify-around mt-[-10px] z-10 relative">
 			<button
 				on:click={() => {
 					handle_follow();

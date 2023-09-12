@@ -40,14 +40,12 @@
 		events = x;
 	});
 	function handle_join(value) {
-		if (!$userdata.role) {
-			openSignup = true;
-		}
 		if (value === 'coming') {
 		}
 		if (value === 'maybe') {
 		}
 		if (value === 'next') {
+			openevent = false;
 		}
 	}
 </script>
@@ -155,7 +153,7 @@
 <Model bind:show={openevent} width="w-fit max-md:mx-5">
 	<div slot="title" class="flex w-full justify-between">
 		<div class="my-auto text-left">You’re Invited!</div>
-		<div class="text-sm text-surface-900 dark:text-surface-100 font-normal">
+		<div class="text-sm text-right text-surface-900 dark:text-surface-100 font-normal">
 			On {events[currentIndex].date} At {events[currentIndex].time}
 		</div>
 	</div>

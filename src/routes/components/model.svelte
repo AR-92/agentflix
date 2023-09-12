@@ -16,8 +16,8 @@
 	<div class={'card m-auto align-middle ' + width}>
 		{#if closeable}
 			<div class="grid grid-cols-12">
-				<div class="p-4 font-bold my-auto col-span-10"><slot name="title" /></div>
-				<div class="my-auto col-span-2 cursor-pointer place-self-end mx-4">
+				<div class="p-4 font-bold my-auto col-span-11"><slot name="title" /></div>
+				<div class="my-auto col-span-1 cursor-pointer place-self-end mx-4">
 					<svg
 						on:click={close}
 						xmlns="http://www.w3.org/2000/svg"
