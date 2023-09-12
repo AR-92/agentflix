@@ -20,7 +20,6 @@ async function getBrokerageData() {
 
 function createBrokerageStore() {
   const { subscribe, set ,update} = writable([]);
-  // getBrokerageData().then(data => set(data));
   return {
     subscribe,
     get: () => update(async (n) => {
@@ -29,11 +28,10 @@ function createBrokerageStore() {
       .select('*');
       set(data)
     }),
-    // f: (value,id) => update(async (n) => {
-    //   return value.filter((obj) => {
-    //     return obj['id'] === id;
-    //   })[0].name;
-    // }),
+    filter: () => update((n) => {
+      console.log('this is siss ',n)
+      // return 2
+    }),
   };
 }
 

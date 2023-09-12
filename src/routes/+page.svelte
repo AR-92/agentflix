@@ -3,13 +3,10 @@
 	import NavBar from './components/navBar.svelte';
 	import AgentCard from './components/profileThum.svelte';
 	import Footer from './components/footer.svelte';
-	import { onMount } from 'svelte';
 	import { profilesData } from './store/allusersStore';
-
-
+	import { onMount } from 'svelte';
 	onMount(() => {
 		profilesData.all();
-		
 	});
 </script>
 

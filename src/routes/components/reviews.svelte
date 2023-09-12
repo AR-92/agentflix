@@ -10,11 +10,16 @@
 	import Model from './model.svelte';
 	import Events from '../icons/emptyReviews.svelte';
 	import EmptyReviews from '../icons/emptyReviews.svelte';
+
+	import { getToastStore } from '@skeletonlabs/skeleton';
+	const toastStore = getToastStore();
+
 	let rating = 1;
 	let max = 5;
 	let review;
 	let openSignup = false;
 	let openAddReview = false;
+	
 	export let profileData;
 	export let page = false;
 	function openLinkedReview(obj) {
@@ -32,10 +37,28 @@
 		}
 	}
 	if (profileData.role) {
-		reviewData.getAgentReviews(profileData.profiles_id);
+		reviewData.getAgentReviews(profileData.profiles_id,page);
 	} else {
-		reviewData.getClientReviews(profileData.profiles_id);
+		reviewData.getClientReviews(profileData.profiles_id,page);
 	}
+
+
+	function getRatingScale(rating) {
+    switch (rating) {
+        case 1:
+            return "Highly Discouraged";
+        case 2:
+            return "Discouraged";
+        case 3:
+            return "Neutral";
+        case 4:
+            return "Recommended";
+        case 5:
+            return "Highly Recommended";
+        default:
+            return "Invalid rating";
+    }
+}
 </script>
 
 <div class="text-sm card p-4">
@@ -81,13 +104,13 @@
 				on:keypress
 			>
 				<div class="flex justify-between mb-4 items-center font-semibold ">
-					<div>
+					<div class="text-left">
 						<div>From {r.client_name}</div>
 						<div>To {r.agent_name}</div>
 						<div class="text-sm text-surface-900 dark:text-surface-100 font-normal float-left">{r.date}</div>
 					</div>
 					<div>
-						<div>{r.type}</div>
+						<div>{getRatingScale(r.rating)}</div>
 						<div class="flex gap-2 float-right">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -105,17 +128,12 @@
 				<div class="flex">
 					{r.review}
 				</div>
-				{#if $profiledata}
+				{#if $profiledata.profiles_id===r.client_id}
 					<div class="flex justify-between text-error-500">
 						<div></div>
 						<button
 							on:click={() => {
-								reviewData.deleteReview(r, i);
-								if (profileData.role) {
-									reviewData.getAgentReviews(profileData.profiles_id);
-								} else {
-									reviewData.getClientReviews(profileData.profiles_id);
-								}
+								reviewData.deleteReview(r, i,toastStore);
 							}}
 						>
 							<TrashIcon />
@@ -182,8 +200,7 @@
 									agent_name: profileData.name,
 									client_id: $profiledata.profiles_id,
 									client_name: $profiledata.name,
-									type: 'Highly Recommended'
-								});
+								},toastStore);
 								openAddReview = false;
 							}}>Submit Review</button
 						>

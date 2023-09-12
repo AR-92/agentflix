@@ -11,7 +11,7 @@ function profile() {
                 .select('*')
                 .eq('auth_id', authid);
             if (!error) {
-                console.log(profile, 'profile data')
+                // console.log(profile, 'profile data')
                 set(profile[0])
             }
         }),

@@ -53,6 +53,9 @@ function profile() {
         all: () => update(async (n) => {
             set(await get())
         }),
+        up:(value)=> update(async (n) => {
+            set(value)
+        }),
     }
 }
 export const profilesData = profile();

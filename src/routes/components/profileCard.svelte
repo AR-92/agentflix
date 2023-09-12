@@ -16,6 +16,8 @@
 	export let setset = false;
 	export let profileData;
 
+	// console.log('profileData',profileData)
+
 	function OpenSettings() {
 		if (profileData.role) {
 			opensettingsAgent = true;
@@ -49,7 +51,7 @@
 		}
 	}
 	async function handle_clientUpdate() {
-		console.log(profileData.name, profileData.dob, profileData.language, profileData.location);
+		// console.log(profileData.name, profileData.dob, profileData.language, profileData.location);
 		// const { data, error } = await supabase
 		// 	.from('profile')
 		// 	.update({
@@ -62,7 +64,7 @@
 		// 	.select();
 	}
 	async function handle_agentUpdate() {
-		console.log(profileData.name, profileData.dob, profileData.language, profileData.location);
+		// console.log(profileData.name, profileData.dob, profileData.language, profileData.location);
 		// const { data, error } = await supabase
 		// 	.from('profile')
 		// 	.update({

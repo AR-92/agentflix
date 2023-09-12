@@ -3,7 +3,6 @@ import { writable } from 'svelte/store';
 import { goto } from '$app/navigation';
 import { profiledata } from './profileStore';
 
-
 async function check() {
     try {
         // Attempt to get the authenticated user's data
@@ -63,6 +62,7 @@ function user() {
                 };
                 toast.trigger(t);
                 console.log("login dataa ", data)
+
                 set(data.user);
                 profiledata.get(data.user.id)
                 goto('./your');

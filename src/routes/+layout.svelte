@@ -1,8 +1,6 @@
 <script>
 	import '../theme.postcss';
 	import '../app.postcss';
-	// import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
-	// import '@skeletonlabs/skeleton/styles/skeleton.css';
 	import { Toast } from '@skeletonlabs/skeleton';
 	import { initializeStores } from '@skeletonlabs/skeleton';
 
@@ -26,8 +24,6 @@
 	languagesData.get();
 	brokerageData.get();
 	userdata.fresh();
-
-	console.log("this is layout")
 </script>
 
 <Toast />

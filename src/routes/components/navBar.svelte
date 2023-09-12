@@ -1,12 +1,12 @@
 <script>
-	// import { browser } from '$app/environment';
 	import { getToastStore } from '@skeletonlabs/skeleton';
-	import Login from './login.svelte';
-	import Signup from './joinNow.svelte';
 	import { locationsData } from '../store/locationStore';
 	import { profilesData } from '../store/allusersStore';
 	import { userdata } from '../store/userStore';
 	import { profiledata } from '../store/profileStore';
+
+	import Login from './login.svelte';
+	import Signup from './joinNow.svelte';
 	import Loading from '../animation/loading.svelte';
 
 	import { goto } from '$app/navigation';
@@ -22,16 +22,16 @@
 	let openfilter = false;
 	let searchbar;
 	let elemList;
-
+	
 	const toastStore = getToastStore();
-
+	
 	const popupCombobox = {
 		event: 'focus-click',
 		target: 'popupCombobox',
 		placement: 'bottom',
 		closeQuery: '.listbox-item'
 	};
-
+	
 	function multiColumnLeft() {
 		let x = elemList.scrollWidth;
 		if (elemList.scrollLeft !== 0) x = elemList.scrollLeft - elemList.clientWidth;
@@ -42,7 +42,7 @@
 		let x = 0;
 		// -1 is used because different browsers use different methods to round scrollWidth pixels.
 		if (elemList.scrollLeft < elemList.scrollWidth - elemList.clientWidth - 1)
-			x = elemList.scrollLeft + elemList.clientWidth;
+		x = elemList.scrollLeft + elemList.clientWidth;
 		elemList.scroll(x, 0);
 	}
 
@@ -54,7 +54,7 @@
 	}
 </script>
 
-<!-- {#if $userdata} -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="top-0 sticky flex flex-col card rounded-none z-40 font-bitten">
 	<nav class="flex p-4 mx-8 justify-between">
 		<div>
@@ -113,7 +113,6 @@
 				>
 			</button>
 			<div class="card w-48 shadow-xl py-2 z-50" data-popup="popupCombobox">
-				<!-- svelte-ignore a11y-no-static-element-interactions -->
 				<ListBox rounded="rounded-none">
 					{#if $userdata.role}
 						<div
@@ -153,7 +152,6 @@
 						>
 							Join Now
 						</div>
-						<!-- svelte-ignore a11y-no-static-element-interactions -->
 						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							on:click={() => {
@@ -165,7 +163,6 @@
 						</div>
 					{/if}
 					<hr />
-					<!-- svelte-ignore a11y-no-static-element-interactions -->
 					<div
 						class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 						on:click={() => {
@@ -286,7 +283,6 @@
 		{/if}
 	{/await}
 </div>
-<!-- {/if} -->
 <Login bind:show={openlogin} />
 <Signup bind:show={openSignup} />
 <Filters bind:show={openfilter} />

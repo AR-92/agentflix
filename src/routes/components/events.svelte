@@ -14,7 +14,7 @@
 	let openSignup = false;
 	let currentIndex = 0;
 	function OpenEvent(i) {
-		if (!$userdata.role) {
+		if ($userdata.role) {
 			openevent = true;
 			currentIndex = i;
 		} else {
@@ -25,7 +25,14 @@
 		openAddEvent = true;
 	}
 	async function getevents() {
-		let { data: events, error } = await supabase.from('events').select('*').eq('agent_id', profile);
+		let rn = 2;
+		if (page) rn = 100;
+		let { data: events, error } = await supabase
+			.from('events')
+			.select('*')
+			.eq('agent_id', profile)
+			.order('event_id', { ascending: false })
+			.range(0, rn);
 		return events;
 	}
 	let events = [];
@@ -103,7 +110,7 @@
 					<div
 						class="group-hover:bg-primary-500 bg-surface-300 h-[100px] rounded-full w-2 m-auto"
 					/>
-					<div class="m-5">
+					<div class="m-5 w-full">
 						<div class="flex justify-between items-center">
 							<div>
 								<div class="font-semibold">{e.name}</div>
@@ -135,7 +142,7 @@
 		<hr class="mt-2" />
 		<div
 			on:click={() => {
-				goto('/eventsAll');
+				goto('/eventsAll/' + profile);
 			}}
 			on:keydown
 			class="text-sm text-primary-900 hover:text-primary-500 dark:text-primary-100 mt-4 cursor-pointer w-full text-center"

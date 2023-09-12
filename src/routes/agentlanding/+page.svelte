@@ -132,7 +132,7 @@
 					<tbody>
 						<tr>
 							<td>Calendly</td>
-							<td><b>$60</b>/month</td>
+							<td><b>$10</b>/month</td>
 							<td>Included</td>
 						</tr>
 						<tr>
@@ -157,19 +157,19 @@
 						</tr>
 						<tr>
 							<td>CRM</td>
-							<td><b>$80</b>/month</td>
+							<td><b>$70</b>/month</td>
 							<td>Coming Soon</td>
 						</tr>
 						<tr>
 							<td>Mailchimp</td>
-							<td><b>$60</b>/month</td>
+							<td><b>$20</b>/month</td>
 							<td>Coming Soon</td>
 						</tr>
 					</tbody>
 					<tfoot>
 						<tr>
 							<th class="text-center">Calculated Total</th>
-							<th class="text-center">$4700/month</th>
+							<th class="text-center">$4600/month</th>
 							<th class="text-center">$64.99/month</th>
 						</tr>
 					</tfoot>
@@ -177,10 +177,7 @@
 			</div>
 
 			<p class="mt-16 font-para">
-				Agentflix makes marketing more cost effective and easy than ever thought possible. By
-				combining and improving on existing techniques, we incorporate all our features in one
-				dedicated space online free for users to explore. It's more efficient than billboards and
-				flyers!
+				Agentflix makes your marketing more cost effective and straight forward than ever before. We improve on existing techniques and combine everything into one platform with the front end visually appealing for users and the backend effective for you to grow your career.
 			</p>
 		</div>
 	</div>
@@ -190,10 +187,7 @@
 				The modern way to market yourself in real estate
 			</div>
 			<p class="mt-16 font-para">
-				Agentflix makes marketing more cost effective and easy than ever thought possible. By
-				combining and improving on existing techniques, we incorporate all our features in one
-				dedicated space online free for users to explore. It's more efficient than billboards and
-				flyers!
+				Agentflix is joining the digital revolution by taking real estate to the online world. By existing online, your clients and future clients can have your profile and open houses at their fingertips wherever they have an internet connection.
 			</p>
 		</div>
 		<img

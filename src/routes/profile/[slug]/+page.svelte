@@ -21,8 +21,6 @@
 		return obj['id'] === data.profile.brokerage_id;
 	})[0].name;
 
-	// data.profile.brokerageName = brokerageData.f($brokerageData, data.profile.brokerage_id);
-
 	data.profile.brokerage_address = $brokerageData.filter((obj) => {
 		return obj['id'] === data.profile.brokerage_id;
 	})[0].adress;
