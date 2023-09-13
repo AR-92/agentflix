@@ -51,7 +51,7 @@ function profile() {
             set(await filter(brokerage, rating, location, languages, experience))
         }),
         all: () => update(async (n) => {
-            set(await get())
+            set(await get());
         }),
         up:(value)=> update(async (n) => {
             set(value)

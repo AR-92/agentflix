@@ -4,7 +4,7 @@
 	import Draw from './draw.svelte';
 	let showFooter = false;
 	function trigger() {
-		showFooter = true;
+		showFooter = !showFooter;
 	}
 	function close() {
 		showFooter = false;
