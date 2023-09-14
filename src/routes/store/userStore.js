@@ -35,7 +35,8 @@ function user() {
                 password: password
             });
             if (!error) {
-                goto('./your');
+                fetch("http://localhost:5173/api/setup?id="+data.user.id)
+                goto('./your/'+data.user.id);
                 const t = {
                     message: 'Welcome to Agentflix ' + email,
                     timeout: 10000
@@ -61,11 +62,11 @@ function user() {
                     timeout: 10000
                 };
                 toast.trigger(t);
-                console.log("login dataa ", data)
-
                 set(data.user);
-                goto('./your/'+data.user.id);
+                fetch("http://localhost:5173/api/setup?id="+data.user.id)
                 profiledata.get(data.user.id)
+                goto('./your/'+data.user.id);
+
             } else {
                 const f = {
                     message: 'Your email or password is not valid ' + error,

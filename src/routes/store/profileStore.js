@@ -13,6 +13,7 @@ function profile() {
             if (!error) {
                 // console.log(profile, 'profile data')
                 set(profile[0])
+                return profile[0]
             }else{
                 return null
             }

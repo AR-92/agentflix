@@ -21,13 +21,15 @@
 	export let profileData;
 	async function onChangeHandler(e) {
 		console.log('file data:', e, files);
-		const { data, error } = await supabase.storage.from('avatar').upload(`a${profileData.profiles_id}.jpg`, files[0]);
+		const { data, error } = await supabase.storage
+			.from('avatar')
+			.upload(`a${profileData.profiles_id}.jpg`, files[0]);
 
 		if (error) {
 			console.error(error);
 			return null;
-		}else{
-			console.error(data,'image data');
+		} else {
+			console.error(data, 'image data');
 
 			profileData.avtarLink = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${profileData.profiles_id}.jpg`;
 		}
@@ -173,7 +175,7 @@
 	<div class="px-4 mt-4 mb-4">
 		<div class="flex justify-between">
 			<div class="font-semibold">{profileData.name}</div>
-			{#if profileData.role}
+			{#if profileData.role && profileData.rating}
 				<div class="flex">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -190,15 +192,19 @@
 		</div>
 
 		<div class="mt-1 flex text-sm justify-between">
-			{#if profileData.role}
-				<div>{profileData.brokerage_id.name}</div>
+			{#if profileData.role }
+				{#if profileData.brokerage_id}
+					<div>{profileData.brokerage_id.name}</div>
+				{:else}
+					<div>update your brokerage</div>
+				{/if}
 				<button class="btn variant-soft-primary btn-sm w-fit">Agent Profile</button>
 			{:else}
 				<div></div>
 				<button class="btn variant-soft-primary btn-sm w-fit">Client Profile</button>
 			{/if}
 		</div>
-		{#if profileData.role}
+		{#if profileData.role && profileData.contact}
 			<div class="flex justify-between">
 				<div class="mt-1 text-sm">{profileData.contact}</div>
 			</div>
@@ -206,7 +212,6 @@
 	</div>
 
 	<div class="px-4">
-		{#if profileData.location_id}
 			<div class="flex mt-1 gap-4">
 				<div class="text-sm text-primary-500 dark:text-primary-100">
 					<svg xmlns="http://www.w3.org/2000/svg" class="ionicon w-5" viewBox="0 0 512 512"
@@ -229,9 +234,12 @@
 						/></svg
 					>
 				</div>
-				<div class="text-sm">{profileData.location_id.location}</div>
+				{#if profileData.location_id}
+					<div class="text-sm">{profileData.location_id.location}</div>
+				{:else}
+					<div class="text-sm">Update your location</div>
+				{/if}
 			</div>
-		{/if}
 		{#if profileData.role}
 			<div class="flex mt-1 gap-4">
 				<div class="text-sm text-primary-500 dark:text-primary-100">
@@ -275,7 +283,11 @@
 			<div class="text-sm text-primary-500 dark:text-primary-100">
 				<Globe />
 			</div>
-			<div class="text-sm">{profileData.language.language}</div>
+			{#if profileData.language}
+				<div class="text-sm">{profileData.language.language}</div>
+			{:else}
+				<div class="text-sm">Please update your Language</div>
+			{/if}
 		</div>
 		<div class="flex mt-1 gap-4">
 			<div class="text-sm text-primary-500 dark:text-primary-100">
@@ -300,7 +312,12 @@
 					/></svg
 				>
 			</div>
+			{#if profileData.dob}
 			<div class="text-sm">{profileData.dob}</div>
+			{:else}
+			<div class="text-sm">Update your DOB</div>
+
+			{/if}
 		</div>
 
 		<div class="mt-4 flex flex-col gap-2">
@@ -427,6 +444,7 @@
 	<div slot="title">Update Agent Profile</div>
 	<div slot="body">
 		<div class="p-4 flex h-fit">
+			<!-- svelte-ignore a11y-label-has-associated-control -->
 			<TabGroup>
 				<Tab bind:group={tabSet} name="tab1" value={0}>
 					<span>Professional Information</span>
@@ -439,24 +457,15 @@
 					{#if tabSet === 0}
 						<div class="grid grid-cols-2 gap-8 text-sm">
 							<div class="flex flex-col gap-4">
-								{#if setset}
-									<Avatar
-										class="m-auto z-0"
-										initials={extarct(profileData.name)}
-										src={profileData.avtarLink}
-										background="bg-primary-300 "
-										width="w-32"
-										rounded="rounded-full"
-									/>
-								{:else}
-									<Avatar
-										class="m-auto z-0"
-										initials={extarct(profileData.name)}
-										src={profileData.avtarLink}
-										width="w-32"
-										rounded="rounded-full"
-									/>
-								{/if}
+								<Avatar
+								class="m-auto z-0"
+								initials={extarct(profileData.name)}
+								src={profileData.avtarLink}
+								background="bg-primary-300 "
+								width="w-32"
+								rounded="rounded-full"
+							/>
+								
 								<FileDropzone class="" name="files" bind:files on:change={onChangeHandler} />
 
 								<label class="label text-sm">
@@ -538,26 +547,28 @@
 								</label>
 							</div>
 						</div>
+						
 					{:else if tabSet === 2}
+					
 						<div class="grid grid-cols-2 gap-8 p-4">
 							<div class="flex flex-col gap-4">
 								<label class="label">
 									<span class="font-semibold text-sm">Brokrage</span>
-									<select bind:value={profileData.brokerage_id.id} class="select">
+									<!-- <select bind:value={profileData.brokerage_id.id} class="select">
 										{#each $brokerageData as l}
 											<option value={l.id}>{l.name}</option>
 										{/each}
-									</select>
+									</select> -->
 								</label>
 							</div>
 							<div class="flex flex-col gap-4">
 								<label class="label">
 									<span class="font-semibold text-sm">Language</span>
-									<select bind:value={profileData.language.id} class="select">
+									<!-- <select bind:value={profileData.language.id} class="select">
 										{#each $languagesData as l}
 											<option value={l.id}>{l.language}</option>
 										{/each}
-									</select>
+									</select> -->
 								</label>
 								<label class="label">
 									<span class="font-semibold text-sm">Service Areas</span>

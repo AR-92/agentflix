@@ -7,40 +7,19 @@
 	import AgentEvents from '../../components/events.svelte';
 	import AgentInfo from '../../components/profileInfo.svelte';
 	import ReviewsReceived from '../../components/reviews.svelte';
-	import { supabase } from '$lib/supabaseClient';
-
+	export let data;
 	let sbar = false;
 	let setup = false;
-	let show = false;
-	let u;
-	export let data;
-
+	let condition=data.new && data.role
 	let yourProfile = true;
-	if (data.new) {
+	if (condition) {
 		setup = true;
 	}
 	console.log('all your data ', data);
-	async function check() {
-		let {
-			data: { user }
-		} = await supabase.auth.getUser();
-		if (user) {
-			const { data: profile, error } = await supabase
-				.from('profile')
-				.select('*')
-				.eq('auth_id', user.id);
-			if (!error) {
-				console.log(profile, 'profile data');
-				u = user.id;
-				setup = true;
-			}
-		}
-	}
-	check();
 </script>
 
 <NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
-{#if show}
+<!-- {#if show} -->
 	<Banner src={data} />
 
 	<div
@@ -63,7 +42,7 @@
 			<ReviewsReceived {yourProfile} profileData={data} />
 		</div>
 	</div>
-{/if}
+<!-- {/if} -->
 <Footer />
 
-<Setup userid={u} bind:show={setup} />
+<Setup bind:show={condition} />
