@@ -24,7 +24,8 @@
 	function onBackHandler() {}
 	function onStepHandler() {}
 	function onCompleteHandler() {
-        window.open('https://buy.stripe.com/bIY9ED8Bgczz6pWeUV', '_blank');
+        window.open('https://buy.stripe.com/test_28o3edcYYgPTbAIbII', '_blank');
+        // window.open('https://buy.stripe.com/bIY9ED8Bgczz6pWeUV', '_blank');
     }
 	async function makeClient() {
 		console.log({
