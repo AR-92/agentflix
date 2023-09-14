@@ -55,14 +55,16 @@
 		}
 	}
 	let ava;
-	if ($profiledata.avatar) {
-		ava = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${$profiledata.profiles_id}.jpg`;
-	} else {
-		ava = false;
+	if ($profiledata) {
+		if ($profiledata.avatar) {
+			ava = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${$profiledata.profiles_id}.jpg`;
+		} else {
+			ava = false;
+		}
 	}
-	console.log('$user', $userdata);
+	// console.log('$user', $userdata);
 </script>
-
+<!-- {#if $profiledata} -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="top-0 sticky flex flex-col card rounded-none z-40 font-bitten">
 	<nav class="flex p-4 mx-8 justify-between">
@@ -87,10 +89,12 @@
 			</div>
 		{/if}
 		<div class="flex gap-2">
+			{#if $profiledata}
 			{#if !$profiledata.role}
 				<a href="../agentlanding" class="btn variant-soft-primary w-fit font-bitten max-lg:hidden">
 					Are you An Agent ?
 				</a>
+			{/if}
 			{/if}
 			<button use:popup={popupCombobox} class="btn variant-ringed-primary btn-sm">
 				<svg
@@ -124,19 +128,19 @@
 			<div class="card w-48 shadow-xl py-2 z-50" data-popup="popupCombobox">
 				<ListBox rounded="rounded-none">
 					{#if $userdata.role}
-						<div
-							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
+					<div
+					class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							on:click={() => {
 								goto('../your/' + $userdata.id);
 							}}
 							on:keypress
-						>
-							<div class="flex  gap-4 justify-between ">
-								<div class="my-auto ">
+							>
+							{#if $profiledata}
+							<div class="flex gap-4 justify-between">
+								<div class="my-auto">
 									{$profiledata.name}
 								</div>
 								<div class="rounded-full w-8">
-									
 									<Avatar
 										initials={extarct($profiledata.name)}
 										src={ava}
@@ -145,8 +149,12 @@
 										rounded="rounded-lg"
 									/>
 								</div>
-							
 							</div>
+							{:else}
+							<div class="my-auto">
+								Register First
+							</div>
+							{/if}
 						</div>
 						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
@@ -155,10 +163,9 @@
 							}}
 							on:keypress
 						>
-						<div class="flex  gap-4">
-							<div>Chat</div>
-						</div>
-							
+							<div class="flex gap-4">
+								<div>Chat</div>
+							</div>
 						</div>
 						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
@@ -167,10 +174,9 @@
 							}}
 							on:keypress
 						>
-						<div class="flex gap-4">
-							<div>Logout</div>
-						</div>
-							
+							<div class="flex gap-4">
+								<div>Logout</div>
+							</div>
 						</div>
 					{:else}
 						<div
@@ -313,6 +319,7 @@
 		{/if}
 	{/await}
 </div>
+<!-- {/if} -->
 <Login bind:show={openlogin} />
 <Signup bind:show={openSignup} />
 <Filters bind:show={openfilter} />

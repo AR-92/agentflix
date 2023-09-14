@@ -1,4 +1,6 @@
 <script>
+	import { supabase } from '$lib/supabaseClient';
+
 	import { goto } from '$app/navigation';
 	import Model from './model.svelte';
 	import Signup from './joinNow.svelte';
@@ -7,7 +9,9 @@
 	import { languagesData } from '../store/languageStore';
 	import { brokerageData } from '../store/brokerageStore';
 	import { extarct } from '../../lib/utils';
-	import { TabGroup, Tab, Avatar, FileDropzone } from '@skeletonlabs/skeleton';
+	import { TabGroup, Tab, Avatar, FileDropzone, getToastStore } from '@skeletonlabs/skeleton';
+	let files;
+	const toastStore = getToastStore();
 
 	let opensettingsAgent = false;
 	let opensettingsClient = false;
@@ -15,8 +19,19 @@
 
 	export let setset = false;
 	export let profileData;
+	async function onChangeHandler(e) {
+		console.log('file data:', e, files);
+		const { data, error } = await supabase.storage.from('avatar').upload(`a${profileData.profiles_id}.jpg`, files[0]);
 
+		if (error) {
+			console.error(error);
+			return null;
+		}else{
+			console.error(data,'image data');
 
+			profileData.avtarLink = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${profileData.profiles_id}.jpg`;
+		}
+	}
 	function OpenSettings() {
 		if (profileData.role) {
 			opensettingsAgent = true;
@@ -27,7 +42,6 @@
 	function getarray(value) {
 		return value.split(',');
 	}
-
 
 	let openSignup = false;
 	function handle_chat() {
@@ -63,17 +77,46 @@
 		// 	.select();
 	}
 	async function handle_agentUpdate() {
-		// console.log(profileData.name, profileData.dob, profileData.language, profileData.location);
-		// const { data, error } = await supabase
-		// 	.from('profile')
-		// 	.update({
-		// 		name: profileData.name,
-		// 		dob: profileData.dob,
-		// 		language: profileData.language,
-		// 		location_id: profileData.location
-		// 	})
-		// 	.eq('auth_id', profileData.auth_id)
-		// 	.select();
+		opensettingsAgent = false;
+		console.log({
+			name: profileData.name,
+			dob: profileData.dob,
+			location_id: profileData.location,
+			external_link: profileData.external_link,
+			website_link: profileData.website_link,
+			about: profileData.about,
+			hobbies: profileData.hobbies,
+			service_areas: profileData.service_areas,
+			oa: profileData.oa,
+			education: profileData.education,
+			language: profileData.language.id,
+			brokerage_id: profileData.brokerage_id.id
+		});
+		const { data, error } = await supabase
+			.from('profile')
+			.update({
+				name: profileData.name,
+				dob: profileData.dob,
+				location_id: profileData.location,
+				external_link: profileData.external_link,
+				website_link: profileData.website_link,
+				about: profileData.about,
+				hobbies: profileData.hobbies,
+				service_areas: profileData.service_areas,
+				oa: profileData.oa,
+				education: profileData.education,
+				language: profileData.language.id,
+				brokerage_id: profileData.brokerage_id.id
+			})
+			.eq('auth_id', profileData.auth_id)
+			.select();
+		if (!error) {
+			const t = {
+				message: 'Your Profile is updated',
+				timeout: 10000
+			};
+			toastStore.trigger(t);
+		}
 	}
 	if (profileData.avatar) {
 		profileData.avtarLink = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${profileData.profiles_id}.jpg`;
@@ -381,7 +424,7 @@
 	</div>
 </Model>
 <Model bind:show={opensettingsAgent} width="w-[650px]">
-	<div slot="title">Update Profile</div>
+	<div slot="title">Update Agent Profile</div>
 	<div slot="body">
 		<div class="p-4 flex h-fit">
 			<TabGroup>
@@ -399,7 +442,8 @@
 								{#if setset}
 									<Avatar
 										class="m-auto z-0"
-										initials="JD"
+										initials={extarct(profileData.name)}
+										src={profileData.avtarLink}
 										background="bg-primary-300 "
 										width="w-32"
 										rounded="rounded-full"
@@ -407,12 +451,13 @@
 								{:else}
 									<Avatar
 										class="m-auto z-0"
-										src={profileData.dp}
+										initials={extarct(profileData.name)}
+										src={profileData.avtarLink}
 										width="w-32"
 										rounded="rounded-full"
 									/>
 								{/if}
-								<FileDropzone class="" name="files" />
+								<FileDropzone class="" name="files" bind:files on:change={onChangeHandler} />
 
 								<label class="label text-sm">
 									<span class="font-semibold">Display Name</span>
@@ -498,7 +543,7 @@
 							<div class="flex flex-col gap-4">
 								<label class="label">
 									<span class="font-semibold text-sm">Brokrage</span>
-									<select bind:value={profileData.brokerage_id} class="select">
+									<select bind:value={profileData.brokerage_id.id} class="select">
 										{#each $brokerageData as l}
 											<option value={l.id}>{l.name}</option>
 										{/each}
@@ -508,7 +553,7 @@
 							<div class="flex flex-col gap-4">
 								<label class="label">
 									<span class="font-semibold text-sm">Language</span>
-									<select bind:value={profileData.language} class="select">
+									<select bind:value={profileData.language.id} class="select">
 										{#each $languagesData as l}
 											<option value={l.id}>{l.language}</option>
 										{/each}
@@ -545,8 +590,15 @@
 		</div>
 		<hr />
 		<div class="flex m-5 gap-4 place-content-end">
-			<button class="btn variant-soft-surface btn-sm w-fit">Cancel</button>
-			<button class="btn variant-filled-primary btn-sm w-fit">Update</button>
+			<button
+				class="btn variant-soft-surface btn-sm w-fit"
+				on:click={() => {
+					opensettingsAgent = false;
+				}}>Cancel</button
+			>
+			<button class="btn variant-filled-primary btn-sm w-fit" on:click={handle_agentUpdate}
+				>Update</button
+			>
 		</div>
 	</div>
 </Model>

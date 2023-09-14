@@ -26,7 +26,7 @@ async function check() {
 
 function user() {
     const { subscribe, set, update } = writable({});
-    // check().then(x => set(x))
+    check().then(x => set(x))
     return {
         subscribe,
         signup: (email, password, toast) => update(async (n) => {
@@ -64,8 +64,8 @@ function user() {
                 console.log("login dataa ", data)
 
                 set(data.user);
-                profiledata.get(data.user.id)
                 goto('./your/'+data.user.id);
+                profiledata.get(data.user.id)
             } else {
                 const f = {
                     message: 'Your email or password is not valid ' + error,
