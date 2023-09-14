@@ -36,7 +36,7 @@ function user() {
             });
             if (!error) {
                 fetch("http://localhost:5173/api/setup?id="+data.user.id)
-                goto('./your/'+data.user.id);
+                goto('../your/'+data.user.id);
                 const t = {
                     message: 'Welcome to Agentflix ' + email,
                     timeout: 10000
@@ -65,7 +65,7 @@ function user() {
                 set(data.user);
                 fetch("http://localhost:5173/api/setup?id="+data.user.id)
                 profiledata.get(data.user.id)
-                goto('./your/'+data.user.id);
+                goto('../your/'+data.user.id);
 
             } else {
                 const f = {
