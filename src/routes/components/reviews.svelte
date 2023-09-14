@@ -19,7 +19,7 @@
 	let review;
 	let openSignup = false;
 	let openAddReview = false;
-	
+
 	export let profileData;
 	export let page = false;
 	function openLinkedReview(obj) {
@@ -37,47 +37,49 @@
 		}
 	}
 	if (profileData.role) {
-		reviewData.getAgentReviews(profileData.profiles_id,page);
+		reviewData.getAgentReviews(profileData.profiles_id, page);
 	} else {
-		reviewData.getClientReviews(profileData.profiles_id,page);
+		reviewData.getClientReviews(profileData.profiles_id, page);
 	}
 
-
 	function getRatingScale(rating) {
-    switch (rating) {
-        case 1:
-            return "Highly Discouraged";
-        case 2:
-            return "Discouraged";
-        case 3:
-            return "Neutral";
-        case 4:
-            return "Recommended";
-        case 5:
-            return "Highly Recommended";
-        default:
-            return "Invalid rating";
-    }
-}
+		switch (rating) {
+			case 1:
+				return 'Highly Discouraged';
+			case 2:
+				return 'Discouraged';
+			case 3:
+				return 'Neutral';
+			case 4:
+				return 'Recommended';
+			case 5:
+				return 'Highly Recommended';
+			default:
+				return 'Invalid rating';
+		}
+	}
+	export let yourProfile = false;
 </script>
 
 <div class="text-sm card p-4">
 	<div class="w-full my-4 justify-between">
-		{#if profileData.role}
-		<div class="flex justify-between w-full">
-			<div>
-				<div class="font-semibold text-lg text-left">Reviews Given By Clients</div>
-				<div class="text-sm text-surface-900 dark:text-surface-100 text-left">Leave a Review</div>
-			</div>
-			<!-- {#if $userdata.role} -->
-			<button
-			on:click={() => {
-				openAddReviewModel();
-			}}
-				class="btn variant-filled-primary btn-sm w-fit mt-4 my-auto">Give Reviews</button
+		{#if profileData.role && !yourProfile}
+			<div class="flex justify-between w-full">
+				<div>
+					<div class="font-semibold text-lg text-left">Reviews Given By Clients</div>
+					<div class="text-sm text-surface-900 dark:text-surface-100 text-left">Leave a Review</div>
+				</div>
+				<!-- {#if $userdata.role} -->
+				<button
+					on:click={() => {
+						openAddReviewModel();
+					}}
+					class="btn variant-filled-primary btn-sm w-fit mt-4 my-auto">Give Reviews</button
 				>
 				<!-- {/if} -->
 			</div>
+		{:else if yourProfile}
+			<div class="font-semibold text-lg text-left">Reviews Given To You</div>
 		{:else}
 			<div class="font-semibold text-lg text-left">Reviews Given By You</div>
 		{/if}
@@ -103,11 +105,13 @@
 				}}
 				on:keypress
 			>
-				<div class="flex justify-between mb-4 items-center font-semibold ">
+				<div class="flex justify-between mb-4 items-center font-semibold">
 					<div class="text-left">
 						<div>From {r.client_name}</div>
 						<div>To {r.agent_name}</div>
-						<div class="text-sm text-surface-900 dark:text-surface-100 font-normal float-left">{r.date}</div>
+						<div class="text-sm text-surface-900 dark:text-surface-100 font-normal float-left">
+							{r.date}
+						</div>
 					</div>
 					<div>
 						<div>{getRatingScale(r.rating)}</div>
@@ -128,12 +132,12 @@
 				<div class="flex">
 					{r.review}
 				</div>
-				{#if $profiledata.profiles_id===r.client_id}
+				{#if $profiledata.profiles_id === r.client_id}
 					<div class="flex justify-between text-error-500">
 						<div></div>
 						<button
 							on:click={() => {
-								reviewData.deleteReview(r, i,toastStore);
+								reviewData.deleteReview(r, i, toastStore);
 							}}
 						>
 							<TrashIcon />
@@ -151,7 +155,7 @@
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
 			on:click={() => {
-				goto('/reviewsAll/'+profileData.profiles_id);
+				goto('/reviewsAll/' + profileData.profiles_id);
 			}}
 			on:keydown
 			class="text-sm text-primary-900 hover:text-primary-500 dark:text-primary-100 mt-4 cursor-pointer w-full text-center"
@@ -193,14 +197,17 @@
 							type="button"
 							class="btn variant-filled-primary w-fit btn-sm"
 							on:click={() => {
-								reviewData.addReview({
-									review: review,
-									rating: rating,
-									agent_id: profileData.profiles_id,
-									agent_name: profileData.name,
-									client_id: $profiledata.profiles_id,
-									client_name: $profiledata.name,
-								},toastStore);
+								reviewData.addReview(
+									{
+										review: review,
+										rating: rating,
+										agent_id: profileData.profiles_id,
+										agent_name: profileData.name,
+										client_id: $profiledata.profiles_id,
+										client_name: $profiledata.name
+									},
+									toastStore
+								);
 								openAddReview = false;
 							}}>Submit Review</button
 						>

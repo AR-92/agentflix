@@ -6,7 +6,9 @@
 	import { goto } from '$app/navigation';
 	import Empty from '../icons/empty.svelte';
 	import Events from '../icons/events.svelte';
-	export let addeve = true;
+	import TrashIcon from '../icons/trash.svelte';
+
+	// export let addeve = true;
 	export let profile;
 	export let page = false;
 	let openevent = false;
@@ -48,13 +50,14 @@
 			openevent = false;
 		}
 	}
+	export let yourProfile=false;
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <div class="card text-sm p-4">
 	<div class="flex">
-		{#if !addeve}
+		{#if yourProfile}
 			<button
 				class="btn variant-ringed-primary h-[100px] btn-sm rounded-lg"
 				on:click={() => {
@@ -128,6 +131,12 @@
 							</div>
 						</div>
 						<div class="mt-2">{e.description}</div>
+						{#if yourProfile}
+						<div class="w-full my-4 flex justify-between text-error-500">
+						<div></div>
+							<TrashIcon />
+						</div>
+						{/if}
 					</div>
 				</div>
 				{#if i + 1 !== events.length}
@@ -196,27 +205,22 @@
 	<div slot="body">
 		<div class="grid grid-cols-12">
 			<div class="col-span-6">
-				<div class="p-4">
+				<div class="p-4 flex flex-col gap-4">
+					<div class="bg-primary-200 dark:bg-primary-500 p-4 rounded-lg my-4 w-[200px] m-auto">
+						<Events  />
+					</div>
 					<label class="label text-sm w-full">
 						<span>Date</span>
 						<input class="input rounded-md" type="date" />
 					</label>
-
-					<div class="bg-primary-200 dark:bg-primary-500 p-4 rounded-lg my-4">
-						<Events />
-					</div>
-					<!-- <label class="label text-sm">
+					<label class="label text-sm">
 						<span>Time</span>
 						<input class="input rounded-md" type="time" />
-					</label> -->
+					</label>
 				</div>
 			</div>
 			<div class="col-span-6">
 				<div class="m-4 flex flex-col gap-4">
-					<!-- <label class="label text-sm">
-						<span>City</span>
-						<input class="input rounded-md" type="text" />
-					</label> -->
 					<label class="label">
 						<span class="font-semibold text-sm">Location</span>
 						<select class="select">
@@ -237,7 +241,7 @@
 					</label>
 					<label class="label text-sm">
 						<span>Description</span>
-						<textarea class="textarea" rows="5" placeholder="Add Event Description here !" />
+						<textarea class="textarea" rows="7" placeholder="Add Event Description here !" />
 					</label>
 
 					<div class="w-full text-right">

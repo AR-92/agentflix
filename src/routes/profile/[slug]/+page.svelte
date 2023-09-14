@@ -14,54 +14,54 @@
 
 	export let data;
 	let sbar = false;
+	console.log("in poage data ",data)
+	// data.profile.userRole = $userdata.role;
 
-	data.profile.userRole = $userdata.role;
+	// data.profile.brokerageName= $brokerageData.filter((obj) => {
+	// 	return obj['id'] === data.profile.brokerage_id;
+	// })[0].name;
 
-	data.profile.brokerageName= $brokerageData.filter((obj) => {
-		return obj['id'] === data.profile.brokerage_id;
-	})[0].name;
+	// data.profile.brokerage_address = $brokerageData.filter((obj) => {
+	// 	return obj['id'] === data.profile.brokerage_id;
+	// })[0].adress;
 
-	data.profile.brokerage_address = $brokerageData.filter((obj) => {
-		return obj['id'] === data.profile.brokerage_id;
-	})[0].adress;
+	// data.profile.locationName = $locationsData.filter((obj) => {
+	// 	return obj['location_id'] === data.profile.location_id;
+	// })[0].location;
 
-	data.profile.locationName = $locationsData.filter((obj) => {
-		return obj['location_id'] === data.profile.location_id;
-	})[0].location;
+	// data.profile.languageName = $languagesData.filter((obj) => {
+	// 	return obj.id === data.profile.language;
+	// })[0].language;
 
-	data.profile.languageName = $languagesData.filter((obj) => {
-		return obj.id === data.profile.language;
-	})[0].language;
-
-	if (data.profile.avatar) {
-		data.profile.avtarLink = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${data.profile.profiles_id}.jpg`;
-	} else {
-		data.profile.avtarLink = null;
-	}
-	console.log('this is data of profile page >', data);
+	// if (data.profile.avatar) {
+	// 	data.profile.avtarLink = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${data.profile.profiles_id}.jpg`;
+	// } else {
+	// 	data.profile.avtarLink = null;
+	// }
+	// console.log('this is data of profile page >', data);
 </script>
 
 <NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
 
-<Banner src={data.profile} />
+<Banner src={data} />
 
 <div
 	class="grid max-sm:grid-cols-1 max-md:grid-cols-2 max-2xl:grid-cols-12 gap-4 m-8 pb-20 font-bitten"
 >
 	<div class="max-2xl:col-span-3">
-		<AgentProfileCard profileData={data.profile} />
+		<AgentProfileCard profileData={data} />
 	</div>
 	<div class="max-2xl:col-span-6">
 		<div class="min-lg:col-span-4 max-md:col-span-6 max-sm:col-span-12">
-			<AgentEvents profile={data.profile.profiles_id} />
+			<AgentEvents profile={data.profiles_id} />
 		</div>
 
 		<div class="">
-			<AgentInfo profileData={data.profile} />
+			<AgentInfo profileData={data} />
 		</div>
 	</div>
 	<div class="max-2xl:col-span-3">
-		<ReviewsReceived profileData={data.profile} />
+		<ReviewsReceived profileData={data} />
 	</div>
 </div>
 

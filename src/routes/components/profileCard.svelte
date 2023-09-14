@@ -16,7 +16,6 @@
 	export let setset = false;
 	export let profileData;
 
-	// console.log('profileData',profileData)
 
 	function OpenSettings() {
 		if (profileData.role) {
@@ -75,6 +74,11 @@
 		// 	})
 		// 	.eq('auth_id', profileData.auth_id)
 		// 	.select();
+	}
+	if (profileData.avatar) {
+		profileData.avtarLink = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${profileData.profiles_id}.jpg`;
+	} else {
+		profileData.avtarLink = null;
 	}
 </script>
 
@@ -144,7 +148,7 @@
 
 		<div class="mt-1 flex text-sm justify-between">
 			{#if profileData.role}
-				<div>{profileData.brokerageName}</div>
+				<div>{profileData.brokerage_id.name}</div>
 				<button class="btn variant-soft-primary btn-sm w-fit">Agent Profile</button>
 			{:else}
 				<div></div>
@@ -159,7 +163,7 @@
 	</div>
 
 	<div class="px-4">
-		{#if profileData.locationName}
+		{#if profileData.location_id}
 			<div class="flex mt-1 gap-4">
 				<div class="text-sm text-primary-500 dark:text-primary-100">
 					<svg xmlns="http://www.w3.org/2000/svg" class="ionicon w-5" viewBox="0 0 512 512"
@@ -182,7 +186,7 @@
 						/></svg
 					>
 				</div>
-				<div class="text-sm">{profileData.locationName}</div>
+				<div class="text-sm">{profileData.location_id.location}</div>
 			</div>
 		{/if}
 		{#if profileData.role}
@@ -228,7 +232,7 @@
 			<div class="text-sm text-primary-500 dark:text-primary-100">
 				<Globe />
 			</div>
-			<div class="text-sm">{profileData.languageName}</div>
+			<div class="text-sm">{profileData.language.language}</div>
 		</div>
 		<div class="flex mt-1 gap-4">
 			<div class="text-sm text-primary-500 dark:text-primary-100">
@@ -301,7 +305,7 @@
 		<div class="my-2">
 			<div class="font-semibold mb-2">OVERVIEW & AWARDS</div>
 			<div>
-				{profileData['o&a']}
+				{profileData.oa}
 			</div>
 		</div>
 	</div>
@@ -527,7 +531,7 @@
 								<label class="label text-sm">
 									<span class="font-semibold">Awards</span>
 									<textarea
-										bind:value={profileData['o&a']}
+										bind:value={profileData.oa}
 										class="textarea placeholder:text-sm"
 										rows="4"
 										placeholder="Add Event Description here !"

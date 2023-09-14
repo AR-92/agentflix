@@ -64,7 +64,8 @@
 			srcset=""
 		/>
 	</div>
-	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12">
+	<div class="my-20"></div>
+	<!-- <div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12">
 		<div class="col-span-3 bg-secondary-200 h-20" />
 		<div class="col-span-3 bg-secondary-200 h-20" />
 		<div class="col-span-3 bg-secondary-200 h-20" />
@@ -73,7 +74,7 @@
 		<div class="col-span-3 bg-secondary-200 h-20" />
 		<div class="col-span-3 bg-secondary-200 h-20" />
 		<div class="col-span-3 bg-secondary-200 h-20" />
-	</div>
+	</div> -->
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
 		<div class="col-span-7">
 			<div class="text-5xl max-md:text-4xl mt-10 font-header" id="whyus">
@@ -278,12 +279,12 @@
 			srcset=""
 		/>
 	</div>
-	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12">
+	<!-- <div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12">
 		<div class="col-span-3 bg-secondary-200 h-20" />
 		<div class="col-span-3 bg-secondary-200 h-20" />
 		<div class="col-span-3 bg-secondary-200 h-20" />
 		<div class="col-span-3 bg-secondary-200 h-20" />
-	</div>
+	</div> -->
 	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
 		<div class="col-span-7">
 			<div class="text-5xl max-md:text-4xl mt-10 font-header">Take your career to a new level</div>

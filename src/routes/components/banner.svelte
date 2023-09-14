@@ -1,6 +1,5 @@
 <script>
 	export let src;
-	// console.log(src);
 	let ban = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/banners/b${src.profiles_id}.jpg`;
 </script>
 

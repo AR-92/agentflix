@@ -10,11 +10,11 @@
 	<div class="grid grid-cols-2 gap-4">
 		<div>
 			<div class="font-semibold my-2">BROKERAGE</div>
-			<div>{profileData.brokerage_address}</div>
+			<div>{profileData.brokerage_id.adress}</div>
 		</div>
 		<div>
 			<div class="font-semibold my-2 mx-36">LANGUAGES</div>
-			<div class="mx-36">{profileData.languageName}</div>
+			<div class="mx-36">{profileData.language.language}</div>
 		</div>
 	</div>
 

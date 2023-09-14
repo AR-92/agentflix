@@ -65,7 +65,7 @@ function user() {
 
                 set(data.user);
                 profiledata.get(data.user.id)
-                goto('./your');
+                goto('./your/'+data.user.id);
             } else {
                 const f = {
                     message: 'Your email or password is not valid ' + error,

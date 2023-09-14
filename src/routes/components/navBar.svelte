@@ -4,6 +4,8 @@
 	import { profilesData } from '../store/allusersStore';
 	import { userdata } from '../store/userStore';
 	import { profiledata } from '../store/profileStore';
+	import { Avatar } from '@skeletonlabs/skeleton';
+	import { extarct } from '../../lib/utils';
 
 	import Login from './login.svelte';
 	import Signup from './joinNow.svelte';
@@ -22,16 +24,16 @@
 	let openfilter = false;
 	let searchbar;
 	let elemList;
-	
+
 	const toastStore = getToastStore();
-	
+
 	const popupCombobox = {
 		event: 'focus-click',
 		target: 'popupCombobox',
 		placement: 'bottom',
 		closeQuery: '.listbox-item'
 	};
-	
+
 	function multiColumnLeft() {
 		let x = elemList.scrollWidth;
 		if (elemList.scrollLeft !== 0) x = elemList.scrollLeft - elemList.clientWidth;
@@ -42,7 +44,7 @@
 		let x = 0;
 		// -1 is used because different browsers use different methods to round scrollWidth pixels.
 		if (elemList.scrollLeft < elemList.scrollWidth - elemList.clientWidth - 1)
-		x = elemList.scrollLeft + elemList.clientWidth;
+			x = elemList.scrollLeft + elemList.clientWidth;
 		elemList.scroll(x, 0);
 	}
 
@@ -52,6 +54,13 @@
 			searchbar = null;
 		}
 	}
+	let ava;
+	if ($profiledata.avatar) {
+		ava = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${$profiledata.profiles_id}.jpg`;
+	} else {
+		ava = false;
+	}
+	console.log('$user', $userdata);
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -118,11 +127,26 @@
 						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							on:click={() => {
-								goto('../your');
+								goto('../your/' + $userdata.id);
 							}}
 							on:keypress
 						>
-							{$userdata.email}
+							<div class="flex  gap-4 justify-between ">
+								<div class="my-auto ">
+									{$profiledata.name}
+								</div>
+								<div class="rounded-full w-8">
+									
+									<Avatar
+										initials={extarct($profiledata.name)}
+										src={ava}
+										background="bg-primary-300 "
+										width="w-full"
+										rounded="rounded-lg"
+									/>
+								</div>
+							
+							</div>
 						</div>
 						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
@@ -131,7 +155,10 @@
 							}}
 							on:keypress
 						>
-							Chat
+						<div class="flex  gap-4">
+							<div>Chat</div>
+						</div>
+							
 						</div>
 						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
@@ -140,7 +167,10 @@
 							}}
 							on:keypress
 						>
-							Logout
+						<div class="flex gap-4">
+							<div>Logout</div>
+						</div>
+							
 						</div>
 					{:else}
 						<div
