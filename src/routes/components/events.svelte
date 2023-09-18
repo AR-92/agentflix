@@ -1,20 +1,36 @@
 <script>
-	import Model from './model.svelte';
 	import { userdata } from '../store/userStore';
-	import Signup from './joinNow.svelte';
-	import { supabase } from '$lib/supabaseClient';
+	import { eventsData } from '../store/eventsStore';
 	import { goto } from '$app/navigation';
+	import { getToastStore } from '@skeletonlabs/skeleton';
+	import { locationsData } from '../store/locationStore';
+	
+	import Model from './model.svelte';
 	import Empty from '../icons/empty.svelte';
 	import Events from '../icons/events.svelte';
+	import Signup from './joinNow.svelte';
+	import Loading from '../animation/loading.svelte';
 	import TrashIcon from '../icons/trash.svelte';
 
-	// export let addeve = true;
+	locationsData.get();
+
+	const toastStore = getToastStore();
+
 	export let profile;
 	export let page = false;
+	export let agentname;
+	
 	let openevent = false;
 	let openAddEvent = false;
 	let openSignup = false;
 	let currentIndex = 0;
+
+	let addlocation;
+	let addaddress;
+	let adddescription;
+	let adddate;
+	let addtime;
+
 	function OpenEvent(i) {
 		if ($userdata.role) {
 			openevent = true;
@@ -26,21 +42,9 @@
 	function AddEvent() {
 		openAddEvent = true;
 	}
-	async function getevents() {
-		let rn = 2;
-		if (page) rn = 100;
-		let { data: events, error } = await supabase
-			.from('events')
-			.select('*')
-			.eq('agent_id', profile)
-			.order('event_id', { ascending: false })
-			.range(0, rn);
-		return events;
-	}
+
 	let events = [];
-	getevents().then((x) => {
-		events = x;
-	});
+	eventsData.getAgentEvents(profile);
 	function handle_join(value) {
 		if (value === 'coming') {
 		}
@@ -50,7 +54,25 @@
 			openevent = false;
 		}
 	}
-	export let yourProfile=false;
+	export let yourProfile = false;
+	async function handle_addevent() {
+		// console.log(addlocation, addaddress, adddescription, adddate, addtime);
+		eventsData.addEvent(
+			{
+				description: adddescription,
+				address: addaddress,
+				name: agentname,
+				date: adddate,
+				time: addtime,
+				location: addlocation,
+				agent_id: profile
+			},
+			toastStore
+		);
+	}
+	function handle_addeventcancel() {
+		openAddEvent = false;
+	}
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -86,11 +108,11 @@
 	</div>
 	<hr class="my-5" />
 	<!-- {#if events} -->
-	{#await events}
-		Loading
+	{#await $eventsData}
+		<Loading></Loading>
 	{:then}
 		{#if events}
-			{#if events.length < 1}
+			{#if $eventsData.length < 1}
 				<div class="w-full text-center">
 					<div class="bg-primary-200 dark:bg-primary-500 p-4 rounded-lg m-4">
 						<Empty />
@@ -100,7 +122,7 @@
 					</p>
 				</div>
 			{/if}
-			{#each events as e, i}
+			{#each $eventsData as e, i}
 				<div
 					class="flex group cursor-pointer"
 					on:click={() => {
@@ -127,19 +149,28 @@
 								<div class="font-semibold">Location</div>
 							</div>
 							<div class="flex gap-2 items-center">
-								<div class="text-sm text-surface-900 dark:text-surface-100">{e.location}</div>
+								<div class="text-sm text-surface-900 dark:text-surface-100">
+									{e.location.location}
+								</div>
 							</div>
 						</div>
 						<div class="mt-2">{e.description}</div>
 						{#if yourProfile}
-						<div class="w-full my-4 flex justify-between text-error-500">
-						<div></div>
-							<TrashIcon />
-						</div>
+							<div class="w-full my-4 flex justify-between text-error-500">
+								<div></div>
+								<!-- svelte-ignore a11y-click-events-have-key-events -->
+								<div
+									on:click={() => {
+										eventsData.deleteEvent(e, toastStore);
+									}}
+								>
+									<TrashIcon />
+								</div>
+							</div>
 						{/if}
 					</div>
 				</div>
-				{#if i + 1 !== events.length}
+				{#if i + 1 !== $eventsData.length}
 					<hr />
 				{/if}
 			{/each}
@@ -163,39 +194,41 @@
 	<div slot="title" class="flex w-full justify-between">
 		<div class="my-auto text-left">You’re Invited!</div>
 		<div class="text-sm text-right text-surface-900 dark:text-surface-100 font-normal">
-			On {events[currentIndex].date} At {events[currentIndex].time}
+			On {$eventsData[currentIndex].date} At {$eventsData[currentIndex].time}
 		</div>
 	</div>
 	<div slot="body">
-		<div class="flex cursor-pointer">
-			<div class="m-4">
+		<div class="flex w-full cursor-pointer">
+			<div class="m-4 w-full">
 				<div class="my-4">
-					{events[currentIndex].description}
+					{$eventsData[currentIndex].description}
 				</div>
 				<hr />
 				<div class="text-xs my-4 text-surface-900 dark:text-surface-100">
-					{events[currentIndex].address}
+					{$eventsData[currentIndex].address}
 				</div>
-				<div class="flex gap-2 float-right">
-					<button
-						on:click={() => {
-							handle_join('coming');
-						}}
-						class="btn variant-filled-primary btn-sm px-5">I'm coming</button
-					>
-					<button
-						on:click={() => {
-							handle_join('maybe');
-						}}
-						class="btn variant-filled-primary btn-sm px-5">Maybe</button
-					>
-					<button
-						on:click={() => {
-							handle_join('next');
-						}}
-						class="btn variant-filled-primary btn-sm px-5">Next Time</button
-					>
-				</div>
+				{#if !yourProfile}
+					<div class="flex gap-2 float-right">
+						<button
+							on:click={() => {
+								handle_join('coming');
+							}}
+							class="btn variant-filled-primary btn-sm px-5">I'm coming</button
+						>
+						<button
+							on:click={() => {
+								handle_join('maybe');
+							}}
+							class="btn variant-filled-primary btn-sm px-5">Maybe</button
+						>
+						<button
+							on:click={() => {
+								handle_join('next');
+							}}
+							class="btn variant-filled-primary btn-sm px-5">Next Time</button
+						>
+					</div>
+				{/if}
 			</div>
 		</div>
 	</div>
@@ -207,15 +240,15 @@
 			<div class="col-span-6">
 				<div class="p-4 flex flex-col gap-4">
 					<div class="bg-primary-200 dark:bg-primary-500 p-4 rounded-lg my-4 w-[200px] m-auto">
-						<Events  />
+						<Events />
 					</div>
 					<label class="label text-sm w-full">
 						<span>Date</span>
-						<input class="input rounded-md" type="date" />
+						<input bind:value={adddate} class="input rounded-md" type="date" />
 					</label>
 					<label class="label text-sm">
 						<span>Time</span>
-						<input class="input rounded-md" type="time" />
+						<input bind:value={addtime} class="input rounded-md" type="time" />
 					</label>
 				</div>
 			</div>
@@ -223,31 +256,41 @@
 				<div class="m-4 flex flex-col gap-4">
 					<label class="label">
 						<span class="font-semibold text-sm">Location</span>
-						<select class="select">
-							<option value="1">Location 1</option>
-							<option value="2">Location 2</option>
-							<option value="3">Location 3</option>
-							<option value="4">Location 4</option>
-							<option value="5">Location 5</option>
+						<select class="select" bind:value={addlocation}>
+							{#each $locationsData as l}
+								<option value={l.location_id}>{l.location}</option>
+							{/each}
 						</select>
 					</label>
 					<label class="label text-sm">
 						<span>Address</span>
 						<input
 							class="input rounded-md"
+							bind:value={addaddress}
 							placeholder="Please Add Address Here ... !"
 							type="text"
 						/>
 					</label>
 					<label class="label text-sm">
 						<span>Description</span>
-						<textarea class="textarea" rows="7" placeholder="Add Event Description here !" />
+						<textarea
+							bind:value={adddescription}
+							class="textarea"
+							rows="7"
+							placeholder="Add Event Description here !"
+						/>
 					</label>
 
 					<div class="w-full text-right">
-						<button type="button" class="btn variant-soft-surface btn-sm w-fit mr-2">Cancel</button>
-						<button type="button" class="btn variant-filled-primary w-fit btn-sm"
-							>Add An Event</button
+						<button
+							type="button"
+							class="btn variant-soft-surface btn-sm w-fit mr-2"
+							on:click={handle_addeventcancel}>Cancel</button
+						>
+						<button
+							type="button"
+							class="btn variant-filled-primary w-fit btn-sm"
+							on:click={handle_addevent}>Add An Event</button
 						>
 					</div>
 				</div>

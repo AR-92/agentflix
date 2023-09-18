@@ -11,6 +11,9 @@
 	import { extarct } from '../../lib/utils';
 	import { TabGroup, Tab, Avatar, FileDropzone, getToastStore } from '@skeletonlabs/skeleton';
 	let files;
+	locationsData.get();
+	languagesData.get();
+	brokerageData.get();
 	const toastStore = getToastStore();
 
 	let opensettingsAgent = false;
@@ -21,18 +24,24 @@
 	export let profileData;
 	async function onChangeHandler(e) {
 		console.log('file data:', e, files);
+		const avatarFile = e.target.files[0];
 		const { data, error } = await supabase.storage
 			.from('avatar')
-			.upload(`a${profileData.profiles_id}.jpg`, files[0]);
+			.upload(`./a${profileData.profiles_id}`, avatarFile);
+		console.log(data, error);
 
-		if (error) {
-			console.error(error);
-			return null;
-		} else {
-			console.error(data, 'image data');
-
-			profileData.avtarLink = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${profileData.profiles_id}.jpg`;
-		}
+		// if (error) {
+		// 	console.error(error);
+		// 	return null;
+		// } else {
+		// 	console.error(data, 'image data');
+		// 	profileData.avtarLink = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${profileData.profiles_id}.jpg`;
+		// 	const t = {
+		// 		message: 'Your Profile Avatar is updated',
+		// 		timeout: 10000
+		// 	};
+		// 	toastStore.trigger(t);
+		// }
 	}
 	function OpenSettings() {
 		if (profileData.role) {
@@ -192,7 +201,7 @@
 		</div>
 
 		<div class="mt-1 flex text-sm justify-between">
-			{#if profileData.role }
+			{#if profileData.role}
 				{#if profileData.brokerage_id}
 					<div>{profileData.brokerage_id.name}</div>
 				{:else}
@@ -212,34 +221,34 @@
 	</div>
 
 	<div class="px-4">
-			<div class="flex mt-1 gap-4">
-				<div class="text-sm text-primary-500 dark:text-primary-100">
-					<svg xmlns="http://www.w3.org/2000/svg" class="ionicon w-5" viewBox="0 0 512 512"
-						><path
-							d="M256 48c-79.5 0-144 61.39-144 137 0 87 96 224.87 131.25 272.49a15.77 15.77 0 0025.5 0C304 409.89 400 272.07 400 185c0-75.61-64.5-137-144-137z"
-							fill="none"
-							stroke="currentColor"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="32"
-						/><circle
-							cx="256"
-							cy="192"
-							r="48"
-							fill="none"
-							stroke="currentColor"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="32"
-						/></svg
-					>
-				</div>
-				{#if profileData.location_id}
-					<div class="text-sm">{profileData.location_id.location}</div>
-				{:else}
-					<div class="text-sm">Update your location</div>
-				{/if}
+		<div class="flex mt-1 gap-4">
+			<div class="text-sm text-primary-500 dark:text-primary-100">
+				<svg xmlns="http://www.w3.org/2000/svg" class="ionicon w-5" viewBox="0 0 512 512"
+					><path
+						d="M256 48c-79.5 0-144 61.39-144 137 0 87 96 224.87 131.25 272.49a15.77 15.77 0 0025.5 0C304 409.89 400 272.07 400 185c0-75.61-64.5-137-144-137z"
+						fill="none"
+						stroke="currentColor"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="32"
+					/><circle
+						cx="256"
+						cy="192"
+						r="48"
+						fill="none"
+						stroke="currentColor"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="32"
+					/></svg
+				>
 			</div>
+			{#if profileData.location_id}
+				<div class="text-sm">{profileData.location_id.location}</div>
+			{:else}
+				<div class="text-sm">Update your location</div>
+			{/if}
+		</div>
 		{#if profileData.role}
 			<div class="flex mt-1 gap-4">
 				<div class="text-sm text-primary-500 dark:text-primary-100">
@@ -313,10 +322,9 @@
 				>
 			</div>
 			{#if profileData.dob}
-			<div class="text-sm">{profileData.dob}</div>
+				<div class="text-sm">{profileData.dob}</div>
 			{:else}
-			<div class="text-sm">Update your DOB</div>
-
+				<div class="text-sm">Update your DOB</div>
 			{/if}
 		</div>
 
@@ -458,14 +466,14 @@
 						<div class="grid grid-cols-2 gap-8 text-sm">
 							<div class="flex flex-col gap-4">
 								<Avatar
-								class="m-auto z-0"
-								initials={extarct(profileData.name)}
-								src={profileData.avtarLink}
-								background="bg-primary-300 "
-								width="w-32"
-								rounded="rounded-full"
-							/>
-								
+									class="m-auto z-0"
+									initials={extarct(profileData.name)}
+									src={profileData.avtarLink}
+									background="bg-primary-300 "
+									width="w-32"
+									rounded="rounded-full"
+								/>
+
 								<FileDropzone class="" name="files" bind:files on:change={onChangeHandler} />
 
 								<label class="label text-sm">
@@ -547,28 +555,26 @@
 								</label>
 							</div>
 						</div>
-						
 					{:else if tabSet === 2}
-					
 						<div class="grid grid-cols-2 gap-8 p-4">
 							<div class="flex flex-col gap-4">
 								<label class="label">
 									<span class="font-semibold text-sm">Brokrage</span>
-									<!-- <select bind:value={profileData.brokerage_id.id} class="select">
+									<select bind:value={profileData.brokerage_id.id} class="select">
 										{#each $brokerageData as l}
 											<option value={l.id}>{l.name}</option>
 										{/each}
-									</select> -->
+									</select>
 								</label>
 							</div>
 							<div class="flex flex-col gap-4">
 								<label class="label">
 									<span class="font-semibold text-sm">Language</span>
-									<!-- <select bind:value={profileData.language.id} class="select">
+									<select bind:value={profileData.language.id} class="select">
 										{#each $languagesData as l}
 											<option value={l.id}>{l.language}</option>
 										{/each}
-									</select> -->
+									</select>
 								</label>
 								<label class="label">
 									<span class="font-semibold text-sm">Service Areas</span>

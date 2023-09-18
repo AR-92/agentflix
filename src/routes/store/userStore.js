@@ -35,10 +35,11 @@ function user() {
                 password: password
             });
             if (!error) {
-                fetch("http://localhost:5173/api/setup?id="+data.user.id)
-                goto('../your/'+data.user.id);
+                // console.log("http://localhost:5173/api/setup?id="+data.user.id+"&email="+data.user.email)
+                fetch("http://localhost:5173/api/setup?id="+data.user.id+"&email="+data.user.email)
+                // goto('../your/'+data.user.id);
                 const t = {
-                    message: 'Welcome to Agentflix ' + email,
+                    message: 'Welcome to Agentflix ' + email +'. Now Please go to your email and varify your account !',
                     timeout: 10000
                 };
                 toast.trigger(t);

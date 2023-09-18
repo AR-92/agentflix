@@ -64,6 +64,7 @@
 	}
 	// console.log('$user', $userdata);
 </script>
+
 <!-- {#if $profiledata} -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="top-0 sticky flex flex-col card rounded-none z-40 font-bitten">
@@ -90,11 +91,14 @@
 		{/if}
 		<div class="flex gap-2">
 			{#if $profiledata}
-			{#if !$profiledata.role}
-				<a href="../agentlanding" class="btn variant-soft-primary w-fit font-bitten max-lg:hidden">
-					Are you An Agent ?
-				</a>
-			{/if}
+				{#if !$profiledata.role}
+					<a
+						href="../agentlanding"
+						class="btn variant-soft-primary w-fit font-bitten max-lg:hidden"
+					>
+						Are you An Agent ?
+					</a>
+				{/if}
 			{/if}
 			<button use:popup={popupCombobox} class="btn variant-ringed-primary btn-sm">
 				<svg
@@ -128,32 +132,30 @@
 			<div class="card w-48 shadow-xl py-2 z-50" data-popup="popupCombobox">
 				<ListBox rounded="rounded-none">
 					{#if $userdata.role}
-					<div
-					class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
+						<div
+							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							on:click={() => {
 								goto('../your/' + $userdata.id);
 							}}
 							on:keypress
-							>
+						>
 							{#if $profiledata}
-							<div class="flex gap-4 justify-between">
-								<div class="my-auto">
-									{$profiledata.name}
+								<div class="flex gap-4 justify-between">
+									<div class="my-auto">
+										{$profiledata.name}
+									</div>
+									<div class="rounded-full w-8">
+										<Avatar
+											initials={extarct($profiledata.name)}
+											src={ava}
+											background="bg-primary-300 "
+											width="w-full"
+											rounded="rounded-lg"
+										/>
+									</div>
 								</div>
-								<div class="rounded-full w-8">
-									<Avatar
-										initials={extarct($profiledata.name)}
-										src={ava}
-										background="bg-primary-300 "
-										width="w-full"
-										rounded="rounded-lg"
-									/>
-								</div>
-							</div>
 							{:else}
-							<div class="my-auto">
-								Register First
-							</div>
+								<div class="my-auto">Register First</div>
 							{/if}
 						</div>
 						<div
@@ -229,10 +231,10 @@
 		</div>
 	</nav>
 	<hr />
-	{#await $locationsData}
-		<Loading />
-	{:then}
-		{#if showSubbar}
+	{#if showSubbar}
+		{#await $locationsData}
+			<Loading />
+		{:then}
 			<nav class="flex gap-2 px-2 justify-around">
 				<button
 					type="button"
@@ -316,8 +318,8 @@
 					>
 				</button>
 			</nav>
-		{/if}
-	{/await}
+		{/await}
+	{/if}
 </div>
 <!-- {/if} -->
 <Login bind:show={openlogin} />

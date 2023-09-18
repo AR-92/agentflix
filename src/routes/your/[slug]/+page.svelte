@@ -7,42 +7,54 @@
 	import AgentEvents from '../../components/events.svelte';
 	import AgentInfo from '../../components/profileInfo.svelte';
 	import ReviewsReceived from '../../components/reviews.svelte';
+	import { supabase } from '$lib/supabaseClient';
+
 	export let data;
 	let sbar = false;
-	let setup = false;
-	let condition=data.new && data.role
+	let condition = data.new && data.role;
 	let yourProfile = true;
-	if (condition) {
-		setup = true;
-	}
+	
 	console.log('all your data ', data);
+	async function lis() {
+		await supabase
+			.channel('any')
+			.on(
+				'postgres_changes',
+				{ event: 'UPDATE', schema: 'public', table: 'profile' },
+				(payload) => {
+					console.log('Change received!', payload, payload.new, payload.new.new, payload.new.role);
+					if (data.auth_id === payload.new.auth_id) {
+						condition = payload.new.new && payload.new.role;
+					}
+				}
+			)
+			.subscribe();
+	}
+	lis();
 </script>
 
 <NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
-<!-- {#if show} -->
-	<Banner src={data} />
-
-	<div
-		class="grid max-sm:grid-cols-1 max-md:grid-cols-2 max-2xl:grid-cols-12 gap-4 m-8 pb-20 font-bitten"
-	>
-		<div class="max-2xl:col-span-3">
-			<AgentProfileCard setset={true} profileData={data} />
-		</div>
-		<div class="max-2xl:col-span-6">
-			<div class="min-lg:col-span-4 max-md:col-span-6 max-sm:col-span-12">
-				<AgentEvents {yourProfile} profile={data.profiles_id} />
-			</div>
-			{#if data.role}
-				<div class="">
-					<AgentInfo profileData={data} />
-				</div>
-			{/if}
-		</div>
-		<div class="max-2xl:col-span-3">
-			<ReviewsReceived {yourProfile} profileData={data} />
-		</div>
+<Banner src={data} />
+<div
+	class="grid max-sm:grid-cols-1 max-md:grid-cols-2 max-2xl:grid-cols-12 gap-4 m-8 pb-20 font-bitten"
+>
+	<div class="max-2xl:col-span-3">
+		<AgentProfileCard setset={true} profileData={data} />
 	</div>
-<!-- {/if} -->
+	<div class="max-2xl:col-span-6">
+		<div class="min-lg:col-span-4 max-md:col-span-6 max-sm:col-span-12">
+			<AgentEvents {yourProfile} profile={data.profiles_id} agentname={data.name}/>
+		</div>
+		{#if data.role}
+			<div class="">
+				<AgentInfo profileData={data} />
+			</div>
+		{/if}
+	</div>
+	<div class="max-2xl:col-span-3">
+		<ReviewsReceived {yourProfile} profileData={data} />
+	</div>
+</div>
 <Footer />
 
 <Setup bind:show={condition} />

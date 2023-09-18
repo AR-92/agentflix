@@ -6,6 +6,7 @@ async function get() {
         .from('profile')
         .select('*')
         .eq('role', 'True')
+        .eq('new', 'False')
     return profile;
 }
 async function search(value) {

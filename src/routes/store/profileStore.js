@@ -14,7 +14,7 @@ function profile() {
                 // console.log(profile, 'profile data')
                 set(profile[0])
                 return profile[0]
-            }else{
+            } else {
                 return null
             }
         }),
@@ -23,7 +23,7 @@ function profile() {
                 .from('locations')
                 .select('location')
                 .eq('location_id', id);
-                // console.log(locations,error,"lo",id)
+            // console.log(locations,error,"lo",id)
             return locations
         }),
         getbrokerage: (id) => update(async (n) => {
@@ -43,6 +43,15 @@ function profile() {
             } else {
                 return '';
             }
+        }),
+        updatepayed: (email) => update(async (n) => {
+           await supabase
+                .from('profile')
+                .update({
+                  new:false,
+                })
+                .eq('email', email)
+                .select();
         }),
     }
 }
