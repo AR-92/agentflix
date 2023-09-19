@@ -42,8 +42,9 @@
 </script>
 
 <NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
-
-<Banner src={data} />
+<div class="max-md:hidden">
+	<Banner src={data} />
+</div>
 
 <div
 	class="grid max-sm:grid-cols-1 max-md:grid-cols-2 max-2xl:grid-cols-12 gap-4 m-8 pb-20 font-bitten"

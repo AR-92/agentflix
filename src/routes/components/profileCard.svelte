@@ -135,9 +135,8 @@
 		profileData.avtarLink = null;
 	}
 </script>
-
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div class="card h-fit w-auto mt-[-280px] pb-5">
+<div class="card h-fit w-auto mt-[-280px] max-md:mt-0 pb-5">
 	<div class="w-full h-32 rounded-lg bg-primary-500 flex justify-end cursor-pointer">
 		{#if setset}
 			<button

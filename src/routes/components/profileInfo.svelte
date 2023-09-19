@@ -8,7 +8,8 @@
 
 {#if profileData.role}
 	<div class="text-sm card p-4 mt-4">
-		<div class="grid grid-cols-2 gap-4">
+
+<div class="grid grid-cols-2 max-md:grid-cols-1 gap-4 ">
 			<div>
 				<div class="font-semibold my-2">BROKERAGE</div>
 				{#if profileData.brokerage_id}
@@ -17,17 +18,17 @@
 					<div>Update your brokerage details</div>
 				{/if}
 			</div>
-			<div>
-				<div class="font-semibold my-2 mx-36">LANGUAGES</div>
+			<div class="text-left">
+				<div class="font-semibold my-2">LANGUAGES</div>
 				{#if profileData.language}
-					<div class="mx-36">{profileData.language.language}</div>
+					<div class="">{profileData.language.language}</div>
 				{:else}
-					<div class="mx-36">update your language</div>
+					<div class="">update your language</div>
 				{/if}
 			</div>
 		</div>
 
-		<div class="">
+		<div class="mt-6">
 			<div>
 				<div class="font-semibold my-2">SERVICE AREAS</div>
 				<div class="grid grid-cols-4 max-md:grid-cols-2 gap-2">
