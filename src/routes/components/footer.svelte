@@ -11,7 +11,7 @@
 	}
 </script>
 
-<footer class=" flex justify-between px-6 text-sm card rounded-none fixed inset-x-0 bottom-0 font-bitten">
+<footer class=" flex justify-between px-6 text-sm card rounded-none fixed inset-x-0 bottom-0 font-bitten ">
 	<div class="flex gap-4 p-2">
 		<a class="hover:text-primary-800 dark:hover:text-primary-300 cursor-pointer" href="../"
 			>© 2023 Agentflix</a

@@ -11,7 +11,7 @@
 </script>
 
 <div
-	class="grid grid-cols-12 gap-x-16 max-lg:gap-x-1 gap-y-6 my-4 mx-20 max-md:m-1 max-md:gap-1 max-md:text-center hover:text-gray-900 dark:hover:text-white dark:text-primary-100"
+	class="grid grid-cols-12 gap-x-16 max-lg:gap-x-1 gap-y-6 my-4 mx-20 max-md:m-1 max-md:gap-1 max-md:text-center hover:text-gray-900 dark:hover:text-white dark:text-primary-100 "
 >
 	<div class="col-span-6 max-md:col-span-12 m-4 p-4 max-lg:m-1">
 		<div class="flex flex-col">
@@ -38,7 +38,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-span-3 max-md:col-span-12 m-4 p-4 max-lg:m-1">
+	<div class="col-span-3 max-md:col-span-12 m-4 p-4 max-lg:m-1 max-md:hidden">
 		<div class="text-lg font-bold mb-6 font-header">Are you an agent?</div>
 		<p class="font-para">See how we beat the odds when it comes to pricing</p>
 		<a class="btn variant-soft-primary w-fit font-bitten mt-3" href="./agentlanding#compare"
