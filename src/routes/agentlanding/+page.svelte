@@ -15,7 +15,7 @@
 			<Logo width="250px" />
 		</div>
 
-		<div class="flex gap-6">
+		<div class="flex gap-6 max-md:hidden">
 			<button
 				class="btn variant-soft-primary w-fit font-bitten"
 				on:click={() => {
