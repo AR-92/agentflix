@@ -34,9 +34,11 @@
 </script>
 
 <NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
-<Banner src={data} />
+<div class="max-md:hidden">
+	<Banner src={data} />
+</div>
 <div
-	class="grid max-sm:grid-cols-1 max-md:grid-cols-2 max-2xl:grid-cols-12 gap-4 m-8 pb-20 font-bitten"
+	class="grid max-sm:grid-cols-1 max-md:grid-cols-2 max-2xl:grid-cols-12 gap-4 max-md:gap-0 m-8 pb-20 font-bitten"
 >
 	<div class="max-2xl:col-span-3">
 		<AgentProfileCard setset={true} profileData={data} />
@@ -51,7 +53,7 @@
 			</div>
 		{/if}
 	</div>
-	<div class="max-2xl:col-span-3">
+	<div class="max-2xl:col-span-3 max-md:my-4">
 		<ReviewsReceived {yourProfile} profileData={data} />
 	</div>
 </div>

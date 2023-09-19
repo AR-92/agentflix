@@ -47,7 +47,7 @@
 </div>
 
 <div
-	class="grid max-sm:grid-cols-1 max-md:grid-cols-2 max-2xl:grid-cols-12 gap-4 m-8 pb-20 font-bitten"
+	class="grid max-sm:grid-cols-1 max-md:grid-cols-2 max-2xl:grid-cols-12 gap-4 max-md:gap-0 m-8 pb-20 font-bitten"
 >
 	<div class="max-2xl:col-span-3">
 		<AgentProfileCard profileData={data} />
@@ -61,7 +61,7 @@
 			<AgentInfo profileData={data} />
 		</div>
 	</div>
-	<div class="max-2xl:col-span-3">
+	<div class="max-2xl:col-span-3 max-md:my-4">
 		<ReviewsReceived profileData={data} />
 	</div>
 </div>
