@@ -219,12 +219,12 @@
 					>
 						Our Solution
 					</div>
-					<div
+					<!-- <div
 						class="flex justify-between hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 					>
 						Dark Mode
 						<LightSwitch />
-					</div>
+					</div> -->
 				</ListBox>
 				<div class="arrow bg-surface-100-800-token" />
 			</div>
