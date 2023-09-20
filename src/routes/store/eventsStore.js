@@ -1,6 +1,27 @@
 import { supabase } from '$lib/supabaseClient';
 import { writable } from 'svelte/store';
-
+function transformArray(inputArray) {
+    const transformedArray = inputArray.map(item => {
+      const { id, client_id, event_id, status, ...rest } = item;
+      const { name, description, address, time, date, agent_id,location } = event_id;
+      
+      return {
+        id,
+        client_id,
+        name,
+        description,
+        address,
+        time,
+        date,
+        agent_id,
+        status,
+        location,
+        list:true
+      };
+    });
+  
+    return transformedArray;
+  }
 function createEventStore() {
     const { subscribe, set, update } = writable([]);
     return {
@@ -10,7 +31,7 @@ function createEventStore() {
             if (page) ra = 100
             let { data: events, error } = await supabase
                 .from('events')
-                .select('event_id,location(location),date,time,name,description,address')
+                .select('event_id,location(location),date,time,name,description,address,agent_id')
                 .eq('agent_id', id)
                 .order('event_id', { ascending: false })
                 .range(0, ra);
@@ -25,21 +46,21 @@ function createEventStore() {
         }),
         getClientEvents: (id, page) => update(async (n) => {
             let ra = 2
-            if (page) ra = 100
+            if (page) ra = 100;
             let { data: events, error } = await supabase
-                .from('events')
-                .select('*')
-                .eq('client_id', id)
-                .order('id', { ascending: false })
+                .from('event_list')
+                .select('id,agent_id,client_id,event_id,status,event_id(name,description,address,time,date,agent_id,location(location))')
+                // .eq('client_id', id)
+                .order('created_at', { ascending: false })
                 .range(0, ra);
+                console.log("yours events",events,transformArray(events),id)
             if (!error) {
                 if (events) {
-                    set(events)
+                    set(transformArray(events))
                 } else {
                     set([])
                 }
             }
-
         }),
         addEvent: (o, t) => update(async (events) => {
             const { data, error } = await supabase
@@ -49,7 +70,7 @@ function createEventStore() {
             if (!error) {
                 if (data) {
                     const f = {
-                        mesage: 'Event Added !',
+                        message: 'Event Added !',
                         timeout: 10000
                     };
                     t.trigger(f);
@@ -66,11 +87,41 @@ function createEventStore() {
                 var filtered = n.filter(function (el) { return el.event_id != o.event_id });
                 set(filtered)
                 t.trigger({
-                    mesage: 'Event Deleted !',
+                    message: 'Event Deleted !',
                     timeout: 10000
                 });
             }
         }),
+        deleteListEvent: (o, t) => update(async (n) => {
+            const { error } = await supabase.from('event_list').delete().eq('id', o.id);
+            if (!error) {
+                var filtered = n.filter(function (el) { return el.id != o.id });
+                set(filtered)
+                t.trigger({
+                    message: 'Event Deleted !',
+                    timeout: 10000
+                });
+            }
+        }),
+        addtoEventList: async (event_id, agent_id, client_id, status, t) => {
+            console.log('event_id', event_id, "agent_id", agent_id, "client_id", client_id, status)
+            const { data, error } = await supabase
+                .from('event_list')
+                .insert([{
+                    event_id: event_id,
+                    agent_id: agent_id,
+                    client_id: client_id,
+                    status: status
+                }])
+                .select();
+                console.log(data,error);
+            if (!error) {
+                t.trigger({
+                    message: 'Event Added To Your List !',
+                    timeout: 10000
+                });
+            }
+        },
     };
 }
 

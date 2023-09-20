@@ -1,8 +1,13 @@
 <script>
 	import Model from './model.svelte';
+	import {profiledata} from '../store/profileStore'
 	let closeable = false;
 	export let show = false;
-	// window.open('https://buy.stripe.com/test_28o3edcYYgPTbAIbII', '_blank');
+	export let id;
+
+	function makeClient(){
+		profiledata.updaterole(false,id);
+	}
 </script>
 
 <Model bind:show bind:closeable width="w-1/4 max-lg:w-1/3 font-bitten">
@@ -27,7 +32,7 @@
 						<span class="flex-shrink text-gray-400">or</span>
 						<div class="flex-grow border-t border-gray-300" />
 					</div>
-					<button on:click={() => {}} class="btn variant-filled-primary w-full rounded-md"
+					<button on:click={() => {makeClient()}} class="btn variant-filled-primary w-full rounded-md"
 						>Continue as a client</button
 					>
 				</div>

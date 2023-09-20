@@ -4,6 +4,7 @@
 	import NavBar from '../components/navBar.svelte';
 	import { profiledata } from '../store/profileStore';
 	import Loading from '../animation/loading.svelte';
+	import EmptyReviews from '../icons/emptyReviews.svelte';
 
 	let sbar=false
 </script>
@@ -15,10 +16,10 @@
 {:then}
 <div class="chat w-full flex font-header">
 	<div class="flex w-1/3 flex-col border-r border-surface-500/30 max-md:hidden ">
-		<header class="border-b border-surface-500/30 p-4">
+		<!-- <header class="border-b border-surface-500/30 p-4">
 			<input class="input" type="search" placeholder="Search..." />
-		</header>
-		<div class="p-4 space-y-4 overflow-y-auto">
+		</header> -->
+		<div class="p-4 space-y-4 h-screen overflow-y-auto">
 			<small class="opacity-50">Contacts</small>
 			<div
 				class="listbox space-y-1 rounded-token"
@@ -26,7 +27,7 @@
 				aria-labelledby=""
 				data-testid="listbox"
 			>
-				<label
+				<!-- <label
 					><div
 						class="listbox-item cursor-pointer -outline-offset-[3px] rounded-token px-4 py-2 variant-filled-primary"
 						data-testid="listbox-item"
@@ -194,13 +195,16 @@
 							<div class="listbox-label-content flex-1">Melissa</div>
 						</div>
 					</div></label
-				>
+				> -->
+				<div class="my-24 bg-primary-500 p-6 rounded-lg">
+					<EmptyReviews/>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div class="w-full">
-		<section class="max-h-[470px] p-4 overflow-y-auto space-y-5 hover:overflow-y-scroll">
-			<div class="grid grid-cols-[auto_1fr] gap-2">
+		<section class="max-h-[470px] h-screen p-4 overflow-y-auto space-y-5 hover:overflow-y-scroll">
+			<!-- <div class="grid grid-cols-[auto_1fr] gap-2">
 				<figure
 					class="avatar flex aspect-square text-surface-50 font-semibold justify-center items-center overflow-hidden isolate bg-surface-400-500-token w-12 rounded-full"
 					data-testid="avatar"
@@ -291,6 +295,9 @@
 						style=""
 					/>
 				</figure>
+			</div> -->
+			<div class="m-auto mt-24 w-1/2 bg-primary-500 p-6 rounded-lg">
+				<EmptyReviews/>
 			</div>
 		</section>
 		<section class="border-t border-surface-500/30 p-4">

@@ -7,10 +7,10 @@
 	import AgentProfileCard from '../../components/profileCard.svelte';
 	import AgentInfo from '../../components/profileInfo.svelte';
 
-	import { locationsData } from '../../store/locationStore';
-	import { languagesData } from '../../store/languageStore';
-	import { brokerageData } from '../../store/brokerageStore';
-	import { userdata } from '../../store/userStore';
+	// import { locationsData } from '../../store/locationStore';
+	// import { languagesData } from '../../store/languageStore';
+	// import { brokerageData } from '../../store/brokerageStore';
+	// import { userdata } from '../../store/userStore';
 
 	export let data;
 	let sbar = false;
@@ -54,7 +54,7 @@
 	</div>
 	<div class="max-2xl:col-span-6">
 		<div class="min-lg:col-span-4 max-md:col-span-6 max-sm:col-span-12">
-			<AgentEvents profile={data.profiles_id} />
+			<AgentEvents profile={data.profiles_id} role={data.role}/>
 		</div>
 
 		<div class="">

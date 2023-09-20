@@ -4,7 +4,7 @@
 	import { goto } from '$app/navigation';
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	import { locationsData } from '../store/locationStore';
-	
+
 	import Model from './model.svelte';
 	import Empty from '../icons/empty.svelte';
 	import Events from '../icons/events.svelte';
@@ -19,7 +19,9 @@
 	export let profile;
 	export let page = false;
 	export let agentname;
-	
+	export let role;
+	export let your = false;
+
 	let openevent = false;
 	let openAddEvent = false;
 	let openSignup = false;
@@ -44,13 +46,17 @@
 	}
 
 	let events = [];
-	eventsData.getAgentEvents(profile);
-	function handle_join(value) {
-		if (value === 'coming') {
-		}
-		if (value === 'maybe') {
-		}
-		if (value === 'next') {
+	if (your) {
+		eventsData.getClientEvents($userdata.id);
+	} else {
+		eventsData.getAgentEvents(profile);
+	}
+	function handle_join(event_id, agent_id, status) {
+		// console.log($userdata)
+		if (status === 'next') {
+			openevent = false;
+		} else {
+			eventsData.addtoEventList(event_id, agent_id, $userdata.id, status, toastStore);
 			openevent = false;
 		}
 	}
@@ -79,7 +85,7 @@
 
 <div class="card text-sm p-4">
 	<div class="flex">
-		{#if yourProfile}
+		{#if yourProfile && role}
 			<button
 				class="btn variant-ringed-primary h-[100px] btn-sm rounded-lg"
 				on:click={() => {
@@ -99,12 +105,21 @@
 				>
 			</button>
 		{/if}
-		<div class="my-auto w-full ml-4 text-left">
-			<div class="font-semibold text-lg">My Open Houses</div>
-			<div class="text-sm text-surface-900 dark:text-surface-100">
-				Here you can view and attend my open houses
+		{#if role}
+			<div class="my-auto w-full ml-4 text-left">
+				<div class="font-semibold text-lg">My Open Houses</div>
+				<div class="text-sm text-surface-900 dark:text-surface-100">
+					Here you can view and attend my open houses
+				</div>
 			</div>
-		</div>
+		{:else}
+			<div class="my-auto w-full ml-4 text-left">
+				<div class="font-semibold text-lg">Open Houses</div>
+				<div class="text-sm text-surface-900 dark:text-surface-100">
+					Here you can view open houses
+				</div>
+			</div>
+		{/if}
 	</div>
 	<hr class="my-5" />
 	<!-- {#if events} -->
@@ -157,15 +172,30 @@
 						<div class="mt-2">{e.description}</div>
 						{#if yourProfile}
 							<div class="w-full my-4 flex justify-between text-error-500">
-								<div></div>
+								{#if e.list}
+									<div>
+										<button
+											class="btn variant-soft-primary btn-sm w-fit"
+											data-svelte-h="svelte-1cduw3i">Status : {e.status}</button
+										>
+									</div>
+								{:else}
+									<div></div>
+								{/if}
 								<!-- svelte-ignore a11y-click-events-have-key-events -->
-								<div
-									on:click={() => {
-										eventsData.deleteEvent(e, toastStore);
-									}}
-								>
-									<TrashIcon />
-								</div>
+								{#if !e.list}
+									<div
+										on:click={() => {
+											eventsData.deleteEvent(e, toastStore);
+										}}
+									>
+										<TrashIcon />
+									</div>
+								{:else}
+									<div on:click={() => {eventsData.deleteListEvent(e, toastStore);}}>
+										<TrashIcon />
+									</div>
+								{/if}
 							</div>
 						{/if}
 					</div>
@@ -176,7 +206,7 @@
 			{/each}
 		{/if}
 	{/await}
-	{#if !page}
+	{#if !page && role}
 		<hr class="mt-2" />
 		<div
 			on:click={() => {
@@ -211,19 +241,32 @@
 					<div class="flex gap-2 float-right">
 						<button
 							on:click={() => {
-								handle_join('coming');
+								handle_join(
+									$eventsData[currentIndex].event_id,
+									$eventsData[currentIndex].agent_id,
+									'coming'
+								);
 							}}
 							class="btn variant-filled-primary btn-sm px-5">I'm coming</button
 						>
 						<button
 							on:click={() => {
-								handle_join('maybe');
+								handle_join(
+									$eventsData[currentIndex].event_id,
+									$eventsData[currentIndex].agent_id,
+									'maybe'
+								);
 							}}
 							class="btn variant-filled-primary btn-sm px-5">Maybe</button
 						>
 						<button
 							on:click={() => {
-								handle_join('next');
+								handle_join(
+									$eventsData[currentIndex].event_id,
+									$eventsData[currentIndex].agent_id,
+									$userdata.id,
+									'next'
+								);
 							}}
 							class="btn variant-filled-primary btn-sm px-5">Next Time</button
 						>

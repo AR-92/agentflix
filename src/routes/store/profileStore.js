@@ -53,6 +53,18 @@ function profile() {
                 .eq('email', email)
                 .select();
         }),
+        updaterole: (role,id) => update(async (n) => {
+         let {data,error}=   await supabase
+                 .from('profile')
+                 .update({
+                   role:role,
+                   new:false
+                 })
+                 .eq('profiles_id', id)
+                 .select();
+
+                 console.log(data,error)
+         }),
     }
 }
 

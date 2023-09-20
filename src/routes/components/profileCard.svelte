@@ -1,5 +1,6 @@
 <script>
 	import { supabase } from '$lib/supabaseClient';
+	import { userdata } from '../store/userStore';
 
 	import { goto } from '$app/navigation';
 	import Model from './model.svelte';
@@ -56,7 +57,8 @@
 
 	let openSignup = false;
 	function handle_chat() {
-		if (!profileData.userRole) {
+		// console.log($userdata)
+		if (!$userdata.id) {
 			openSignup = true;
 		} else {
 			goto('../chat');
@@ -75,17 +77,30 @@
 		}
 	}
 	async function handle_clientUpdate() {
-		// console.log(profileData.name, profileData.dob, profileData.language, profileData.location);
-		// const { data, error } = await supabase
-		// 	.from('profile')
-		// 	.update({
-		// 		name: profileData.name,
-		// 		dob: profileData.dob,
-		// 		language: profileData.language,
-		// 		location_id: profileData.location
-		// 	})
-		// 	.eq('auth_id', profileData.auth_id)
-		// 	.select();
+		opensettingsClient = false;
+		console.log({
+			name: profileData.name,
+			dob: profileData.dob,
+			language: profileData.language,
+			location_id: profileData.location
+		});
+		const { data, error } = await supabase
+			.from('profile')
+			.update({
+				name: profileData.name,
+				dob: profileData.dob,
+				language: profileData.language,
+				location_id: profileData.location
+			})
+			.eq('auth_id', profileData.auth_id)
+			.select();
+		if (!error) {
+			const t = {
+				message: 'Your Profile is updated',
+				timeout: 10000
+			};
+			toastStore.trigger(t);
+		}
 	}
 	async function handle_agentUpdate() {
 		opensettingsAgent = false;
@@ -135,6 +150,7 @@
 		profileData.avtarLink = null;
 	}
 </script>
+
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="card h-fit w-auto mt-[-280px] max-md:mt-0 pb-5">
 	<div class="w-full h-32 rounded-lg bg-primary-500 flex justify-end cursor-pointer">
@@ -170,7 +186,7 @@
 			rounded="rounded-full"
 		/>
 	</div>
-	{#if profileData.role}
+	{#if profileData.role && false}
 		<div class="flex justify-around mt-[-10px] z-10 relative">
 			<button
 				on:click={() => {

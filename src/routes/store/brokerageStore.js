@@ -10,11 +10,7 @@ function createBrokerageStore() {
       .from('brokerage')
       .select('*');
       set(data)
-    }),
-    filter: () => update((n) => {
-      console.log('this is siss ',n)
-      // return 2
-    }),
+    })
   };
 }
 
