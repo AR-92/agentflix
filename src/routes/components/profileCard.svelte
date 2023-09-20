@@ -214,6 +214,7 @@
 				</div>
 			{/if}
 		</div>
+		<div class="text-sm mb-6">{profileData.email}</div>
 
 		<div class="mt-1 flex text-sm justify-between">
 			{#if profileData.role}

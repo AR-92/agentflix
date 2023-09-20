@@ -46,7 +46,7 @@
 	}
 
 	let events = [];
-	if (your) {
+	if (your && !$userdata.role) {
 		eventsData.getClientEvents($userdata.id);
 	} else {
 		eventsData.getAgentEvents(profile);
