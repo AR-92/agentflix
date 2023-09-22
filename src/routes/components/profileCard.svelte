@@ -653,12 +653,9 @@
 								<button
 									class="btn variant-filled-primary btn-sm w-fit"
 									on:click={() => {
-										brokerageData.add(newbro, newbroaddress).then(o=>{
-											if(!o){
-												newbro = null;
-												newbroaddress = null;
-											}
-										})
+										brokerageData.add(newbro, newbroaddress);
+										newbro = null;
+										newbroaddress = null;
 									}}>Add New Brokerage</button
 								>
 							</div>
