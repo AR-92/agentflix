@@ -247,15 +247,18 @@
 				</div>
 			{/if}
 		</div>
-		<div class="text-sm mb-6">{profileData.email}</div>
+		<div class="text-xs ">{profileData.email}</div>
+		<div class="text-xs ">Total Years Of Experience : {profileData.experience}</div>
 
-		<div class="mt-1 flex text-sm justify-between">
+
+		<div class="mt-6 flex text-sm justify-between">
 			{#if profileData.role}
 				{#if profileData.brokerage_id}
 					<div>{profileData.brokerage_id.name}</div>
 				{:else}
 					<div>update your brokerage</div>
 				{/if}
+
 				<button class="btn variant-soft-primary btn-sm w-fit">Agent Profile</button>
 			{:else}
 				<div></div>
@@ -524,7 +527,10 @@
 								/>
 
 								<FileDropzone class="" name="files" bind:files on:change={onChangeHandler} />
-
+								<label class="label text-sm flex items-center justify-between">
+									<span class="font-semibold">Show Avatar</span>
+									<SlideToggle name="slide" bind:checked={profileData.avatar} />
+								</label>
 								<label class="label text-sm">
 									<span class="font-semibold">Display Name</span>
 									<input
@@ -591,6 +597,10 @@
 										on:change={onChangeBannerHandler}
 									/>
 								</div>
+								<label class="label text-sm flex items-center justify-between">
+									<span class="font-semibold">Show Banner</span>
+									<SlideToggle name="slide" bind:checked={profileData.banner} />
+								</label>
 							</div>
 							<div class="flex flex-col gap-4">
 								<label class="label text-sm">
@@ -612,14 +622,23 @@
 										type="text"
 									/>
 								</label>
-								<label class="label text-sm flex justify-between">
-									<span class="font-semibold">Show Banner</span>
+								<label class="label text-sm">
+									<span class="font-semibold">Experience</span>
+									<input
+										bind:value={profileData.experience}
+										class="input rounded-md placeholder:text-sm"
+										placeholder="Please Enter Your Experience Here .... !"
+										type="text"
+									/>
+								</label>
+								<!-- <label class="label text-sm flex items-center justify-between"> -->
+									<!-- <span class="font-semibold">Show Banner</span>
 									<SlideToggle name="slide" bind:checked={profileData.banner} />
 								</label>
-								<label class="label text-sm flex justify-between">
+								<label class="label text-sm flex items-center justify-between">
 									<span class="font-semibold">Show Avatar</span>
 									<SlideToggle name="slide" bind:checked={profileData.avatar} />
-								</label>
+								</label> -->
 							</div>
 						</div>
 					{:else if tabSet === 2}

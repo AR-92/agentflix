@@ -17,6 +17,7 @@ async function getdata(id,email) {
             rating:'0',
             brokerage_id:'30f9e8db-3230-48e0-b4da-bcf1734fef8b',
             language:'431ecce7-ddd7-4741-a3de-a8e8c1b0290e',
+            experience:'0',
             location_id:'1a61ad53-f547-4c1c-ae9f-03ca321ca7f7'
         }])
         .select();

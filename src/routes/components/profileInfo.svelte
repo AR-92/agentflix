@@ -13,6 +13,7 @@
 			<div>
 				<div class="font-semibold my-2">BROKERAGE</div>
 				{#if profileData.brokerage_id}
+					<div>{profileData.brokerage_id.name}</div>
 					<div>{profileData.brokerage_id.address}</div>
 				{:else}
 					<div>Update your brokerage details</div>
