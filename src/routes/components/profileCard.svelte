@@ -10,8 +10,16 @@
 	import { languagesData } from '../store/languageStore';
 	import { brokerageData } from '../store/brokerageStore';
 	import { extarct } from '../../lib/utils';
-	import { TabGroup, Tab, Avatar, FileDropzone, getToastStore } from '@skeletonlabs/skeleton';
+	import {
+		TabGroup,
+		Tab,
+		Avatar,
+		FileDropzone,
+		getToastStore,
+		SlideToggle
+	} from '@skeletonlabs/skeleton';
 	let files;
+	let banners;
 	locationsData.get();
 	languagesData.get();
 	brokerageData.get();
@@ -20,15 +28,37 @@
 	let opensettingsAgent = false;
 	let opensettingsClient = false;
 	let tabSet = 0;
-
+	let newbro;
+	let newbroaddress;
 	export let setset = false;
 	export let profileData;
+	// function handle_addBrokerage()
+	async function onChangeBannerHandler(e) {
+		console.log('file data:', e, banners, e.target.files[0]);
+
+		const { data, error } = await supabase.storage
+			.from('banners')
+			.upload(`./${profileData.profiles_id}.jpg`, e.target.files[0], {
+				cacheControl: '3600',
+				upsert: true
+			});
+		console.log(data, error);
+	}
 	async function onChangeHandler(e) {
-		console.log('file data:', e, files);
-		const avatarFile = e.target.files[0];
+		console.log('file data:', e, files, e.target.files[0]);
+		const avatarFile = files[0];
+		console.log('avatarFile:', avatarFile);
 		const { data, error } = await supabase.storage
 			.from('avatar')
-			.upload(`./a${profileData.profiles_id}`, avatarFile);
+			.upload(`./${profileData.profiles_id}.jpg`, avatarFile, {
+				cacheControl: '3600',
+				upsert: true
+			});
+
+		// const avatarFile = event.target.files[0];
+		// const { data, error } = await supabase.storage
+		// 	.from('avatars')
+		// 	.upload('public/avatar1.png', avatarFile);
 		console.log(data, error);
 
 		// if (error) {
@@ -116,7 +146,8 @@
 			oa: profileData.oa,
 			education: profileData.education,
 			language: profileData.language.id,
-			brokerage_id: profileData.brokerage_id.id
+			brokerage_id: profileData.brokerage_id.id,
+			banner: profileData.banner
 		});
 		const { data, error } = await supabase
 			.from('profile')
@@ -132,7 +163,9 @@
 				oa: profileData.oa,
 				education: profileData.education,
 				language: profileData.language.id,
-				brokerage_id: profileData.brokerage_id.id
+				brokerage_id: profileData.brokerage_id.id,
+				banner: profileData.banner,
+				avatar: profileData.avatar
 			})
 			.eq('auth_id', profileData.auth_id)
 			.select();
@@ -144,8 +177,8 @@
 			toastStore.trigger(t);
 		}
 	}
-	if (profileData.avatar) {
-		profileData.avtarLink = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${profileData.profiles_id}.jpg`;
+	if (profileData.avatar === true) {
+		profileData.avtarLink = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/${profileData.profiles_id}.jpg`;
 	} else {
 		profileData.avtarLink = null;
 	}
@@ -548,6 +581,16 @@
 										placeholder="Add Event Description here !"
 									/>
 								</label>
+								<div>
+									<span class="font-semibold">Upload Banner</span>
+
+									<FileDropzone
+										class=""
+										name="files"
+										bind:files={banners}
+										on:change={onChangeBannerHandler}
+									/>
+								</div>
 							</div>
 							<div class="flex flex-col gap-4">
 								<label class="label text-sm">
@@ -569,6 +612,14 @@
 										type="text"
 									/>
 								</label>
+								<label class="label text-sm flex justify-between">
+									<span class="font-semibold">Show Banner</span>
+									<SlideToggle name="slide" bind:checked={profileData.banner} />
+								</label>
+								<label class="label text-sm flex justify-between">
+									<span class="font-semibold">Show Avatar</span>
+									<SlideToggle name="slide" bind:checked={profileData.avatar} />
+								</label>
 							</div>
 						</div>
 					{:else if tabSet === 2}
@@ -582,6 +633,34 @@
 										{/each}
 									</select>
 								</label>
+								<label class="label">
+									<span class="font-semibold text-sm">Add Brokrage</span>
+									<br />
+									<span class="text-xs">If you don't find your brokrage name add from here !</span>
+									<input
+										bind:value={newbro}
+										class="input rounded-md placeholder:text-sm"
+										placeholder="Please Enter Your Brokrage Name Here .... !"
+										type="text"
+									/>
+									<input
+										bind:value={newbroaddress}
+										class="input rounded-md placeholder:text-sm"
+										placeholder="Please Enter Your Brokrage Address Here .... !"
+										type="text"
+									/>
+								</label>
+								<button
+									class="btn variant-filled-primary btn-sm w-fit"
+									on:click={() => {
+										brokerageData.add(newbro, newbroaddress).then(o=>{
+											if(!o){
+												newbro = null;
+												newbroaddress = null;
+											}
+										})
+									}}>Add New Brokerage</button
+								>
 							</div>
 							<div class="flex flex-col gap-4">
 								<label class="label">

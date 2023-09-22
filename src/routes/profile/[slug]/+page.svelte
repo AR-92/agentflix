@@ -23,7 +23,7 @@
 
 	// data.profile.brokerage_address = $brokerageData.filter((obj) => {
 	// 	return obj['id'] === data.profile.brokerage_id;
-	// })[0].adress;
+	// })[0].address;
 
 	// data.profile.locationName = $locationsData.filter((obj) => {
 	// 	return obj['location_id'] === data.profile.location_id;

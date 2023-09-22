@@ -10,7 +10,7 @@
 	let url = './profile/' + profiles_id;
 	let ava;
 	if (avatar) {
-		ava = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${profiles_id}.jpg`;
+		ava = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/${profiles_id}.jpg`;
 	} else {
 		ava = false;
 	}

@@ -57,7 +57,7 @@
 	let ava;
 	if ($profiledata) {
 		if ($profiledata.avatar) {
-			ava = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${$profiledata.profiles_id}.jpg`;
+			ava = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/${$profiledata.profiles_id}.jpg`;
 		} else {
 			ava = false;
 		}
