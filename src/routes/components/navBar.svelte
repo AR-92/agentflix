@@ -170,6 +170,18 @@
 							</div>
 						</div>
 						<div
+						on:click={() => {
+							window.open("http://billing.stripe.com/p/login/test_dR68xf3M76tm2rueUU" ,'_blank');
+						}}
+						on:keypress
+							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
+						>
+						<!-- svelte-ignore a11y-missing-content -->
+							<div class="flex gap-4">
+								<div>Customer Portal</div>
+							</div>
+						</div>
+						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							on:click={() => {
 								userdata.logout(toastStore);
