@@ -336,7 +336,7 @@
 				<a
 					href={profileData.website_link}
 					target="_blank"
-					class="text-sm text-primary-500 dark:text-primary-300">Personal website Link</a
+					class="text-sm text-primary-500 dark:text-primary-300 cursor-pointer hover:text-primary-100" >Personal website Link</a
 				>
 			</div>
 		{/if}

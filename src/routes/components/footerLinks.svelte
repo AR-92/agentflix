@@ -1,7 +1,6 @@
 <script>
 	import Logo from './logo.svelte';
 	import Signup from './joinNow.svelte';
-	import Model from '../components/model.svelte';
 	import Contact from '../components/contactus.svelte';
 
 	let openSignup = false;
@@ -41,7 +40,7 @@
 	<div class="col-span-3 max-md:col-span-12 m-4 p-4 max-lg:m-1 max-md:hidden">
 		<div class="text-lg font-bold mb-6 font-header">Are you an agent?</div>
 		<p class="font-para">See how we beat the odds when it comes to pricing</p>
-		<a class="btn variant-soft-primary w-fit font-bitten mt-3" href="./agentlanding#compare"
+		<a class="btn variant-soft-primary w-fit font-bitten mt-3" href="../agentlanding#compare"
 			>Compare Agentflix</a
 		>
 	</div>
@@ -49,19 +48,19 @@
 		<div class="text-lg font-bold mb-6 font-header">Learn More</div>
 		<ul class="flex flex-col gap-y-2">
 			<li class="hover:text-primary-500 dark:hover:text-primary-300 cursor-pointer">
-				<a href="./agentlanding#whyus">About Us</a>
+				<a href="../agentlanding#whyus">About Us</a>
 			</li>
 			<li class="hover:text-primary-500 dark:hover:text-primary-300 cursor-pointer">
-				<a href="./agentlanding#compare">Why Us ?</a>
+				<a href="../agentlanding#compare">Why Us ?</a>
 			</li>
 			<li class="hover:text-primary-500 dark:hover:text-primary-300 cursor-pointer">
-				<a href="./sitemap">Site Map</a>
+				<a href="../sitemap">Site Map</a>
 			</li>
 			<li class="hover:text-primary-500 dark:hover:text-primary-300 cursor-pointer">
-				<a href="./termsofuse">Terms of Use</a>
+				<a href="../termsofuse">Terms of Use</a>
 			</li>
 			<li class="hover:text-primary-500 dark:hover:text-primary-300 cursor-pointer">
-				<a href="./privacypolicy">Privacy Policy</a>
+				<a href="../privacypolicy">Privacy Policy</a>
 			</li>
 		</ul>
 	</div>

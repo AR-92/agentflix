@@ -18,19 +18,19 @@
 		>
 		<a
 			class="hover:text-primary-800 dark:hover:text-primary-300 cursor-pointer max-lg:hidden"
-			href="./termsofuse">Terms</a
+			href="../termsofuse">Terms</a
 		>
 		<a
 			class="hover:text-primary-800 dark:hover:text-primary-300 cursor-pointer max-lg:hidden"
-			href="./sitemap">Sitemap</a
+			href="../sitemap">Sitemap</a
 		>
 		<a
 			class="hover:text-primary-800 dark:hover:text-primary-300 cursor-pointer max-lg:hidden"
-			href="./privacypolicy">Privacy</a
+			href="../privacypolicy">Privacy</a
 		>
 		<a
 			class="hover:text-primary-800 dark:hover:text-primary-300 cursor-pointer flex gap-x-2 max-lg:hidden"
-			href="./privacyOptions"
+			href="../privacyOptions"
 			>Your Privacy Choices
 			<span class=" m-auto">
 				<svg width="26" height="12" fill="none"
