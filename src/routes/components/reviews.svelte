@@ -22,6 +22,7 @@
 
 	export let profileData;
 	export let page = false;
+	export let chat = true;
 	function openLinkedReview(obj) {
 		if (!profileData.role) {
 			goto('/profile/' + obj.agent_id);
@@ -59,7 +60,9 @@
 		}
 	}
 	export let yourProfile = false;
-	reviewData.getRattings(profileData.profiles_id);
+	if(!page && chat){
+		reviewData.getRattings(profileData.profiles_id);
+	}
 </script>
 
 <div class="text-sm card p-4">

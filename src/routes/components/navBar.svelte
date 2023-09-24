@@ -161,7 +161,7 @@
 						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							on:click={() => {
-								goto('../chat');
+								goto('../chat/'+$profiledata.profiles_id);
 							}}
 							on:keypress
 						>

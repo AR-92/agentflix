@@ -45,7 +45,7 @@ function profile() {
             }
         }),
         updatepayed: (email) => update(async (n) => {
-           await supabase
+            await supabase
                 .from('profile')
                 .update({
                   new:false,
@@ -53,18 +53,40 @@ function profile() {
                 .eq('email', email)
                 .select();
         }),
-        updaterole: (role,id) => update(async (n) => {
-         let {data,error}=   await supabase
-                 .from('profile')
-                 .update({
-                   role:role,
-                   new:false
-                 })
-                 .eq('profiles_id', id)
-                 .select();
+        updaterole: (role, id) => update(async (n) => {
+            let { data, error } = await supabase
+                .from('profile')
+                .update({
+                    role: role,
+                    new: false
+                })
+                .eq('profiles_id', id)
+                .select();
 
-                 console.log(data,error)
-         }),
+            console.log(data, error)
+        }),
+        getChatHead: async (id,user) => {
+            const { data: conversation, error } = await supabase
+                .from('conversation')
+                .select('*')
+                .eq('receiver', id);
+            if (!error) {
+                if(conversation.length>0){
+                    return conversation[0]
+                }else{
+                    const { cdata: conversation, error } = await supabase
+                    .from('conversation')
+                    .insert([{
+                        receiver:id,
+                        sender:user
+                    }])
+                    .select();
+                    return  conversation
+                }
+            }else{
+                return error
+            }
+        }
     }
 }
 

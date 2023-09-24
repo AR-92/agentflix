@@ -91,7 +91,8 @@
 		if (!$userdata.id) {
 			openSignup = true;
 		} else {
-			goto('../chat');
+			console.log('user>',$userdata,profileData)
+			goto('../chat/'+profileData.profiles_id);
 		}
 	}
 	function handle_listing(url) {
@@ -184,6 +185,9 @@
 	} else {
 		profileData.avtarLink = null;
 	}
+	// if(profileData.auth_id === $userdata.id){
+	// 	goto('../your/'+$userdata.id)
+	// }
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -385,6 +389,7 @@
 		</div>
 
 		<div class="mt-4 flex flex-col gap-2">
+			{#if profileData.auth_id!==$userdata.id}
 			<button
 				class="btn variant-filled-primary btn-sm flex w-full px-5"
 				on:click={() => {
@@ -393,6 +398,7 @@
 			>
 				<img class="w-4" src="../chatbox.svg" alt="" srcset="" /><span> Lets Chat</span>
 			</button>
+			{/if}
 			{#if profileData.role}
 				<button
 					on:click={() => {
