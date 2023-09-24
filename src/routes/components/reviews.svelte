@@ -59,6 +59,7 @@
 		}
 	}
 	export let yourProfile = false;
+	reviewData.getRattings(profileData.profiles_id);
 </script>
 
 <div class="text-sm card p-4">

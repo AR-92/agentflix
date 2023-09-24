@@ -5,9 +5,9 @@ function createReviewStore() {
     const { subscribe, set, update } = writable([]);
     return {
         subscribe,
-        getAgentReviews: (id,page) => update(async (n) => {
-            let ra=2
-            if(page)ra=100
+        getAgentReviews: (id, page) => update(async (n) => {
+            let ra = 2
+            if (page) ra = 100
             let { data: reviews, error } = await supabase
                 .from('reviews')
                 .select('*')
@@ -23,9 +23,9 @@ function createReviewStore() {
             }
 
         }),
-        getClientReviews: (id,page) => update(async (n) => {
-            let ra=2
-            if(page)ra=100
+        getClientReviews: (id, page) => update(async (n) => {
+            let ra = 2
+            if (page) ra = 100
             let { data: reviews, error } = await supabase
                 .from('reviews')
                 .select('*')
@@ -41,7 +41,7 @@ function createReviewStore() {
             }
 
         }),
-        addReview: (o,t) => update(async (reviews) => {
+        addReview: (o, t) => update(async (reviews) => {
             const { data, error } = await supabase
                 .from('reviews')
                 .insert([o])
@@ -60,9 +60,9 @@ function createReviewStore() {
                 }
             }
         }),
-        deleteReview: (o, i,t) => update(async (n) => {
+        deleteReview: (o, i, t) => update(async (n) => {
             const { error } = await supabase.from('reviews').delete().eq('id', o.id);
-            var filtered = n.filter(function(el) { return el.id != o.id }); 
+            var filtered = n.filter(function (el) { return el.id != o.id });
             set(filtered)
             const f = {
                 message: 'Review Deleted !',
@@ -71,6 +71,35 @@ function createReviewStore() {
             t.trigger(f);
 
         }),
+        getRattings: async (id) => {
+            let { data: reviews, error } = await supabase
+                .from('reviews')
+                .select('rating')
+                .eq('agent_id', id)
+            if (reviews.length>0) {
+                let totalRating = 0;
+                for (let i = 0; i < reviews.length; i++) {
+                    totalRating += reviews[i].rating;
+                }
+                const averageRating = totalRating / reviews.length;
+               await supabase
+                .from('profile')
+                .update({
+                    rating: averageRating
+                })
+                .eq('profiles_id', id)
+                .select();
+                console.log('this is test rating upload ',averageRating,id)
+            }else{
+                await supabase
+                .from('profile')
+                .update({
+                    rating: 0
+                })
+                .eq('profiles_id', id)
+                .select();
+            }
+        }
     };
 }
 

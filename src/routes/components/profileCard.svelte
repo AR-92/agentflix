@@ -134,21 +134,22 @@
 	}
 	async function handle_agentUpdate() {
 		opensettingsAgent = false;
-		console.log({
-			name: profileData.name,
-			dob: profileData.dob,
-			location_id: profileData.location,
-			external_link: profileData.external_link,
-			website_link: profileData.website_link,
-			about: profileData.about,
-			hobbies: profileData.hobbies,
-			service_areas: profileData.service_areas,
-			oa: profileData.oa,
-			education: profileData.education,
-			language: profileData.language.id,
-			brokerage_id: profileData.brokerage_id.id,
-			banner: profileData.banner
-		});
+		// console.log({
+		// 	name: profileData.name,
+		// 	dob: profileData.dob,
+		// 	location_id: profileData.location,
+		// 	external_link: profileData.external_link,
+		// 	website_link: profileData.website_link,
+		// 	about: profileData.about,
+		// 	hobbies: profileData.hobbies,
+		// 	service_areas: profileData.service_areas,
+		// 	oa: profileData.oa,
+		// 	education: profileData.education,
+		// 	language: profileData.language.id,
+		// 	brokerage_id: profileData.brokerage_id.id,
+		// 	banner: profileData.banner,
+		// 	contact: profileData.contact
+		// });
 		const { data, error } = await supabase
 			.from('profile')
 			.update({
@@ -165,7 +166,8 @@
 				language: profileData.language.id,
 				brokerage_id: profileData.brokerage_id.id,
 				banner: profileData.banner,
-				avatar: profileData.avatar
+				avatar: profileData.avatar,
+				contact: profileData.contact
 			})
 			.eq('auth_id', profileData.auth_id)
 			.select();
@@ -213,7 +215,7 @@
 		<Avatar
 			class="m-auto z-0"
 			initials={extarct(profileData.name)}
-			src={profileData.avtarLink}
+			bind:src={profileData.avtarLink}
 			background="bg-primary-300 "
 			width="w-40"
 			rounded="rounded-full"
@@ -247,9 +249,10 @@
 				</div>
 			{/if}
 		</div>
-		<div class="text-xs ">{profileData.email}</div>
-		<div class="text-xs ">Total Years Of Experience : {profileData.experience}</div>
-
+		<div class="text-xs">{profileData.email}</div>
+		{#if profileData.role}
+		<div class="text-xs">Total Years Of Experience : {profileData.experience}</div>
+		{/if}
 
 		<div class="mt-6 flex text-sm justify-between">
 			{#if profileData.role}
@@ -336,7 +339,8 @@
 				<a
 					href={profileData.website_link}
 					target="_blank"
-					class="text-sm text-primary-500 dark:text-primary-300 cursor-pointer hover:text-primary-100" >Personal website Link</a
+					class="text-sm text-primary-500 dark:text-primary-300 cursor-pointer hover:text-primary-100"
+					>Personal website Link</a
 				>
 			</div>
 		{/if}
@@ -527,10 +531,7 @@
 								/>
 
 								<FileDropzone class="" name="files" bind:files on:change={onChangeHandler} />
-								<label class="label text-sm flex items-center justify-between">
-									<span class="font-semibold">Show Avatar</span>
-									<SlideToggle name="slide" bind:checked={profileData.avatar} />
-								</label>
+
 								<label class="label text-sm">
 									<span class="font-semibold">Display Name</span>
 									<input
@@ -539,6 +540,10 @@
 										placeholder="Please Enter Your Display Name Here .... !"
 										type="text"
 									/>
+								</label>
+								<label class="label text-sm flex items-center justify-between">
+									<span class="font-semibold">Show Avatar</span>
+									<SlideToggle name="slide" bind:checked={profileData.avatar} />
 								</label>
 							</div>
 							<div class="flex flex-col gap-4">
@@ -568,6 +573,15 @@
 									<span class="font-semibold">Website</span>
 									<input
 										bind:value={profileData.website_link}
+										class="input rounded-md placeholder:text-sm"
+										placeholder="Please Enter Your Website Link Here .... !"
+										type="text"
+									/>
+								</label>
+								<label class="label text-sm">
+									<span class="font-semibold">Contact</span>
+									<input
+										bind:value={profileData.contact}
 										class="input rounded-md placeholder:text-sm"
 										placeholder="Please Enter Your Website Link Here .... !"
 										type="text"
@@ -605,21 +619,20 @@
 							<div class="flex flex-col gap-4">
 								<label class="label text-sm">
 									<span class="font-semibold">Education</span>
-
-									<input
+									<textarea
 										bind:value={profileData.education}
-										class="input rounded-md placeholder:text-sm"
+										class="textarea placeholder:text-sm"
+										rows="4"
 										placeholder="Please Enter Your Education details Here .... !"
-										type="text"
 									/>
 								</label>
 								<label class="label text-sm">
 									<span class="font-semibold">Hobbies</span>
-									<input
+									<textarea
 										bind:value={profileData.hobbies}
-										class="input rounded-md placeholder:text-sm"
+										class="textarea placeholder:text-sm"
+										rows="4"
 										placeholder="Please Enter Your Hobbies Here .... !"
-										type="text"
 									/>
 								</label>
 								<label class="label text-sm">
@@ -632,7 +645,7 @@
 									/>
 								</label>
 								<!-- <label class="label text-sm flex items-center justify-between"> -->
-									<!-- <span class="font-semibold">Show Banner</span>
+								<!-- <span class="font-semibold">Show Banner</span>
 									<SlideToggle name="slide" bind:checked={profileData.banner} />
 								</label>
 								<label class="label text-sm flex items-center justify-between">
@@ -689,11 +702,11 @@
 								</label>
 								<label class="label">
 									<span class="font-semibold text-sm">Service Areas</span>
-									<input
+									<textarea
 										bind:value={profileData.service_areas}
-										class="input rounded-md placeholder:text-sm"
+										class="textarea placeholder:text-sm"
+										rows="6"
 										placeholder="Please Enter Your Service Areas Here .... !"
-										type="text"
 									/>
 								</label>
 							</div>
