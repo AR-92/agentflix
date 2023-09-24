@@ -5,8 +5,8 @@
 
 	const toastStore = getToastStore();
 	export let show = false;
-	let username;
-	let password;
+	let username=null;
+	let password=null;
 	let enable = true;
 	let message = false;
 	function isEmailAllowed(email) {
@@ -47,12 +47,13 @@
 				message = false;
 			} else {
 				message = true;
+				enable = true;
 			}
 		}
 	}
 	function handle_joinnow() {
 		if (username && password) {
-			// userdata.signup(username, password, toastStore);
+			userdata.signup(username, password, toastStore);
 			show = false;
 			username = null;
 			password = null;
