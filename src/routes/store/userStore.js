@@ -40,13 +40,13 @@ function user() {
                 // goto('../your/'+data.user.id);
                 const t = {
                     message: 'Welcome to Agentflix ' + email +'. Now Please go to your email and varify your account !',
-                    timeout: 10000
+                    timeout: 5000
                 };
                 toast.trigger(t);
             } else {
                 const t = {
                     message: 'Sorry your are unable to Join ' + error,
-                    timeout: 10000
+                    timeout: 5000
                 };
                 toast.trigger(t);
             }
@@ -60,7 +60,7 @@ function user() {
             if (!error) {
                 const t = {
                     message: 'Welcome to Agentflix ' + email,
-                    timeout: 10000
+                    timeout: 5000
                 };
                 toast.trigger(t);
                 set(data.user);
@@ -71,7 +71,7 @@ function user() {
             } else {
                 const f = {
                     message: 'Your email or password is not valid ' + error,
-                    timeout: 10000
+                    timeout: 5000
                 };
                 toast.trigger(f);
             }
@@ -85,14 +85,14 @@ function user() {
             if (!error) {
                 const t = {
                     message: 'Email is sent to ' + email + '. Login from there !',
-                    timeout: 10000
+                    timeout: 5000
                 };
                 toast.trigger(t);
                 set(false)
             } else {
                 const f = {
                     message: 'Your email is not valid ' + error,
-                    timeout: 10000
+                    timeout: 5000
                 };
                 toast.trigger(f);
             }
@@ -104,14 +104,14 @@ function user() {
             if (!error) {
                 const t = {
                     message: 'Email is sent to ' + email,
-                    timeout: 10000
+                    timeout: 5000
                 };
                 toast.trigger(t);
                 // set(false)
             } else {
                 const f = {
                     message: 'Your email is not valid ' + error,
-                    timeout: 10000
+                    timeout: 5000
                 };
                 toast.trigger(f);
             }
@@ -123,7 +123,7 @@ function user() {
                 goto('/');
                 const f = {
                     message: 'You are now logged out !',
-                    timeout: 10000
+                    timeout: 5000
                 };
                 toast.trigger(f);
             }

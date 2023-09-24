@@ -50,7 +50,7 @@ function createReviewStore() {
                 if (data) {
                     const f = {
                         message: 'Review Added !',
-                        timeout: 10000
+                        timeout: 5000
                     };
                     t.trigger(f);
                     const updatedReviews = [...data, ...reviews];
@@ -66,7 +66,7 @@ function createReviewStore() {
             set(filtered)
             const f = {
                 message: 'Review Deleted !',
-                timeout: 10000
+                timeout: 5000
             };
             t.trigger(f);
 

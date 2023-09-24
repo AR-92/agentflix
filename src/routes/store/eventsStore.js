@@ -71,7 +71,7 @@ function createEventStore() {
                 if (data) {
                     const f = {
                         message: 'Event Added !',
-                        timeout: 10000
+                        timeout: 5000
                     };
                     t.trigger(f);
                     const updatedEvents = [...data, ...events];
@@ -88,7 +88,7 @@ function createEventStore() {
                 set(filtered)
                 t.trigger({
                     message: 'Event Deleted !',
-                    timeout: 10000
+                    timeout: 5000
                 });
             }
         }),
@@ -99,7 +99,7 @@ function createEventStore() {
                 set(filtered)
                 t.trigger({
                     message: 'Event Deleted !',
-                    timeout: 10000
+                    timeout: 5000
                 });
             }
         }),
@@ -118,7 +118,7 @@ function createEventStore() {
             if (!error) {
                 t.trigger({
                     message: 'Event Added To Your List !',
-                    timeout: 10000
+                    timeout: 5000
                 });
             }
         },

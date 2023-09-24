@@ -69,7 +69,7 @@
 		// 	profileData.avtarLink = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${profileData.profiles_id}.jpg`;
 		// 	const t = {
 		// 		message: 'Your Profile Avatar is updated',
-		// 		timeout: 10000
+		// 		timeout: 5000
 		// 	};
 		// 	toastStore.trigger(t);
 		// }
@@ -127,7 +127,7 @@
 		if (!error) {
 			const t = {
 				message: 'Your Profile is updated',
-				timeout: 10000
+				timeout: 5000
 			};
 			toastStore.trigger(t);
 		}
@@ -174,7 +174,7 @@
 		if (!error) {
 			const t = {
 				message: 'Your Profile is updated',
-				timeout: 10000
+				timeout: 5000
 			};
 			toastStore.trigger(t);
 		}
