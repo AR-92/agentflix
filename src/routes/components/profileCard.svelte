@@ -91,15 +91,16 @@
 		if (!$userdata.id) {
 			openSignup = true;
 		} else {
-			console.log('user>',$userdata,profileData)
-			goto('../chat/'+profileData.profiles_id);
+			console.log('user>', $userdata, profileData);
+			goto('../chat/' + profileData.profiles_id);
 		}
 	}
 	function handle_listing(url) {
-		if (!profileData.userRole) {
+		if (profileData.userRole) {
 			openSignup = true;
 		} else {
-			window.location.href = url;
+			// window.location.href = url;
+			window.open(url, '_blank');
 		}
 	}
 	function handle_follow() {
@@ -255,7 +256,7 @@
 		</div>
 		<div class="text-xs">{profileData.email}</div>
 		{#if profileData.role}
-		<div class="text-xs">Total Years Of Experience : {profileData.experience}</div>
+			<div class="text-xs">Total Years Of Experience : {profileData.experience}</div>
 		{/if}
 
 		<div class="mt-6 flex text-sm justify-between">
@@ -389,15 +390,15 @@
 		</div>
 
 		<div class="mt-4 flex flex-col gap-2">
-			{#if profileData.auth_id!==$userdata.id}
-			<button
-				class="btn variant-filled-primary btn-sm flex w-full px-5"
-				on:click={() => {
-					handle_chat();
-				}}
-			>
-				<img class="w-4" src="../chatbox.svg" alt="" srcset="" /><span> Lets Chat</span>
-			</button>
+			{#if profileData.auth_id !== $userdata.id}
+				<button
+					class="btn variant-filled-primary btn-sm flex w-full px-5"
+					on:click={() => {
+						handle_chat();
+					}}
+				>
+					<img class="w-4" src="../chatbox.svg" alt="" srcset="" /><span> Lets Chat</span>
+				</button>
 			{/if}
 			{#if profileData.role}
 				<button
