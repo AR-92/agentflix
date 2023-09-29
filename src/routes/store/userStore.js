@@ -39,7 +39,7 @@ function user() {
                 fetch("http://localhost:5173/api/setup?id="+data.user.id+"&email="+data.user.email)
                 // goto('../your/'+data.user.id);
                 const t = {
-                    message: 'Welcome to Agentflix ' + email +'. Now Please go to your email and varify your account !',
+                    message: 'Welcome to Agentflix ' + email +'. Now Please go to your email and verify your account !',
                     timeout: 5000
                 };
                 toast.trigger(t);
