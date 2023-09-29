@@ -43,7 +43,7 @@
 		}
 		if (asanagent && username.length > 5) {
 			if ( isEmailAllowed(username)) {
-				console.log('handle_validation>', username, isEmailAllowed(username), asanagent);
+				// console.log('handle_validation>', username, isEmailAllowed(username), asanagent);
 				message = false;
 			} else {
 				message = true;
@@ -53,7 +53,7 @@
 	}
 	function handle_joinnow() {
 		if (username && password) {
-			userdata.signup(username, password, toastStore);
+			userdata.signup(username, password, toastStore,asanagent);
 			show = false;
 			username = null;
 			password = null;

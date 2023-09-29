@@ -29,17 +29,17 @@ function user() {
     check().then(x => set(x))
     return {
         subscribe,
-        signup: (email, password, toast) => update(async (n) => {
+        signup: (email, password, toast, type) => update(async (n) => {
             let { data, error } = await supabase.auth.signUp({
                 email: email,
                 password: password
             });
             if (!error) {
                 // console.log("http://localhost:5173/api/setup?id="+data.user.id+"&email="+data.user.email)
-                fetch("http://localhost:5173/api/setup?id="+data.user.id+"&email="+data.user.email)
+                fetch("http://localhost:5173/api/setup?id=" + data.user.id + "&email=" + data.user.email + "&role=" + type)
                 // goto('../your/'+data.user.id);
                 const t = {
-                    message: 'Welcome to Agentflix ' + email +'. Now Please go to your email and verify your account !',
+                    message: 'Welcome to Agentflix ' + email + '. Now Please go to your email and verify your account !',
                     timeout: 5000
                 };
                 toast.trigger(t);
@@ -64,9 +64,9 @@ function user() {
                 };
                 toast.trigger(t);
                 set(data.user);
-                fetch("http://localhost:5173/api/setup?id="+data.user.id)
+                fetch("http://localhost:5173/api/setup?id=" + data.user.id)
                 profiledata.get(data.user.id)
-                goto('../your/'+data.user.id);
+                goto('../your/' + data.user.id);
 
             } else {
                 const f = {

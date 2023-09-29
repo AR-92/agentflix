@@ -1,6 +1,6 @@
 import { supabase } from '$lib/supabaseClient';
 // import { json } from '@sveltejs/kit';
-async function getdata(id,email) {
+async function getdata(id,email,type) {
     const { data, error } = await supabase
         .from('profile')
         .insert([{
@@ -13,7 +13,7 @@ async function getdata(id,email) {
             oa: 'Add overview',
             education: 'Add education',
             new: true,
-            role: true,
+            role: type,
             rating:'0',
             brokerage_id:'30f9e8db-3230-48e0-b4da-bcf1734fef8b',
             language:'431ecce7-ddd7-4741-a3de-a8e8c1b0290e',
@@ -26,7 +26,7 @@ async function getdata(id,email) {
     return data
 }
 export async function GET({ url }) {
-    const data = await getdata(url.searchParams.get('id'),url.searchParams.get('email'));
+    const data = await getdata(url.searchParams.get('id'),url.searchParams.get('email'),url.searchParams.get('type'));
     return new Response(JSON.stringify(data))
 }
 // export async function POST({ request }) {
