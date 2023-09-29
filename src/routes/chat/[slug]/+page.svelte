@@ -3,13 +3,13 @@
 	import ReviewsReceived from '../../components/reviews.svelte';
 	import NavBar from '../../components/navBar.svelte';
 	import { profiledata } from '../../store/profileStore';
-	import { userdata } from '../../store/userStore';
+	// import { userdata } from '../../store/userStore';
 	import Loading from '../../animation/loading.svelte';
 	import EmptyReviews from '../../icons/emptyReviews.svelte';
 
 	let sbar = false;
 	let chatHeads = [];
-	export let data;
+	// export let data;
 	// console.log('chat data page load', data, profiledata.getChatHead(data.id, $userdata.id),$userdata);
 </script>
 

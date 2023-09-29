@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "agentflix",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,7 +7,11 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
-    "format": "prettier --plugin-search-dir . --write ."
+    "format": "prettier --plugin-search-dir . --write .",
+    "docker-build":"sudo docker build . -t agentflix",
+    "docker-run":"sudo docker run -p 80:3000 --name agentflix-container agentflix",
+    "docker-stop":"sudo docker stop agentflix-container",
+    "remove-container":""
   },
   "devDependencies": {
     "@skeletonlabs/skeleton": "2.0.0",
