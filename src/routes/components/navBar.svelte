@@ -169,7 +169,7 @@
 								<div>Chat</div>
 							</div>
 						</div>
-						{#if $userdata.role}
+						{#if $userdata.role===true}
 							<div
 								on:click={() => {
 									window.open(
