@@ -220,7 +220,7 @@
 	{/if}
 </div>
 
-<Model bind:show={openevent} width="w-fit max-md:mx-5">
+<Model bind:show={openevent} width="w-fit max-md:mx-5 mx-2">
 	<div slot="title" class="flex w-full justify-between">
 		<div class="my-auto text-left">You’re Invited!</div>
 		<div class="text-sm text-right text-surface-900 dark:text-surface-100 font-normal">
