@@ -1,0 +1,39 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker
+        uses: docker/setup-docker@v2
+
+      - name: Build Docker image
+        run: docker build -t agentflix .
+
+      - name: Push Docker image to Docker Hub (or your container registry)
+        run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker tag my-svelte-app ${{ secrets.DOCKER_REGISTRY }}/my-svelte-app:latest
+          docker push ${{ secrets.DOCKER_REGISTRY }}/my-svelte-app:latest
+
+      - name: SSH into VPS and deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.VPS_SSH_PORT }}
+          script: |
+            docker stop my-svelte-app || true
+            docker rm my-svelte-app || true
+            docker pull ${{ secrets.DOCKER_REGISTRY }}/my-svelte-app:latest
+            docker run -d -p 3000:3000 --name my-svelte-app ${{ secrets.DOCKER_REGISTRY }}/my-svelte-app:latest
