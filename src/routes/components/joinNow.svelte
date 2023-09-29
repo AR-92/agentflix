@@ -130,7 +130,7 @@
 				<div class="relative flex py-2 items-center">
 					<div class="flex-grow border-t border-primary-500 dark:border-primary-100" />
 					<span
-						class="flex-shrink mx-4 text-primary-500 dark:border-primary-100 dark:text-primary-100 text-primary-100"
+						class="flex-shrink mx-4 dark:border-primary-100 dark:text-primary-100 text-primary-100"
 						>or</span
 					>
 					<div class="flex-grow border-t border-primary-500 dark:border-primary-100" />

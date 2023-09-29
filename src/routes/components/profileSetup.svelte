@@ -32,7 +32,7 @@
 						<span class="flex-shrink text-gray-400">or</span>
 						<div class="flex-grow border-t border-gray-300" />
 					</div>
-					<button on:click={() => {makeClient()}} class="btn variant-filled-primary w-full rounded-md"
+					<button on:click={() => {makeClient()}} class="btn variant-filled-primary w-full inline rounded-md"
 						>Continue as a client</button
 					>
 				</div>
