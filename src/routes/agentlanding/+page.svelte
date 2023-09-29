@@ -42,12 +42,16 @@
 						openSignup = true;
 					}}>Join Now</button
 				>
-				<button
+				<!-- <button
 					class="btn variant-soft-primary w-fit font-bitten"
 					on:click={() => {
 						openContact = true;
 					}}>Contact Us</button
-				>
+				> -->
+				<a href = "mailto: mustafa.u@agentflix.ca"
+				class="btn variant-soft-primary w-fit font-bitten"
+				>Contact Us</a
+			>
 			</div>
 		</div>
 		<!-- <div class="col-span-5 bg-secondary-200 max-md:hidden" style="height: 500px;"></div> -->
@@ -239,12 +243,16 @@
 						openSignup = true;
 					}}>Join Now</button
 				>
-				<button
+				<!-- <button
 					class="btn variant-soft-primary w-fit font-bitten"
 					on:click={() => {
 						openContact = true;
 					}}>Contact Us</button
-				>
+				> -->
+				<a href = "mailto: mustafa.u@agentflix.ca"
+				class="btn variant-soft-primary w-fit font-bitten"
+				>Contact Us</a
+			>
 			</div>
 		</div>
 	</div>

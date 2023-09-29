@@ -51,7 +51,11 @@
 				<button on:click={() => {
 					show = false;
 				}} type="button" class="btn variant-soft-surface btn-sm w-fit mr-2">Cancel</button>
-				<button type="button" class="btn variant-filled-primary w-fit btn-sm">Send Message</button>
+				<!-- <button type="button" class="btn variant-filled-primary w-fit btn-sm">Send Message</button> -->
+				<a href = "mailto: mustafa.u@agentflix.ca"
+				class="btn variant-filled-primary w-fit btn-sm"
+				>Send Message</a
+			>
 			</div>
 		</div>
 	</div>

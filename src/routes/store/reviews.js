@@ -76,7 +76,7 @@ function createReviewStore() {
                 .from('reviews')
                 .select('rating')
                 .eq('agent_id', id)
-            if (review) {
+            if (reviews) {
                 if (reviews.length > 0) {
                     let totalRating = 0;
                     for (let i = 0; i < reviews.length; i++) {
