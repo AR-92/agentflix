@@ -11,7 +11,8 @@
     "docker-build": "sudo docker build . -t agentflix",
     "docker-run": "sudo docker run -p 3000:3000 --name agentflix-container agentflix",
     "docker-stop": "sudo docker stop agentflix-container",
-    "docker-deploy":"npm-run-all sudo sudo docker stop agentflix-container docker rm agentflix-container sudo docker build . -t agentflix sudo docker run -p 3000:3000 --name agentflix-container agentflix"
+    "docker-rm": "sudo docker rm agentflix-container",
+    "docker-deploy":"npm-run-all docker-stop docker-rm docker-build docker-run"
   },
   "devDependencies": {
     "@skeletonlabs/skeleton": "2.0.0",
