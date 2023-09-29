@@ -76,28 +76,30 @@ function createReviewStore() {
                 .from('reviews')
                 .select('rating')
                 .eq('agent_id', id)
-            if (reviews.length>0) {
-                let totalRating = 0;
-                for (let i = 0; i < reviews.length; i++) {
-                    totalRating += reviews[i].rating;
+            if (review) {
+                if (reviews.length > 0) {
+                    let totalRating = 0;
+                    for (let i = 0; i < reviews.length; i++) {
+                        totalRating += reviews[i].rating;
+                    }
+                    const averageRating = totalRating / reviews.length;
+                    await supabase
+                        .from('profile')
+                        .update({
+                            rating: averageRating
+                        })
+                        .eq('profiles_id', id)
+                        .select();
+                    console.log('this is test rating upload ', averageRating, id)
+                } else {
+                    await supabase
+                        .from('profile')
+                        .update({
+                            rating: 0
+                        })
+                        .eq('profiles_id', id)
+                        .select();
                 }
-                const averageRating = totalRating / reviews.length;
-               await supabase
-                .from('profile')
-                .update({
-                    rating: averageRating
-                })
-                .eq('profiles_id', id)
-                .select();
-                console.log('this is test rating upload ',averageRating,id)
-            }else{
-                await supabase
-                .from('profile')
-                .update({
-                    rating: 0
-                })
-                .eq('profiles_id', id)
-                .select();
             }
         }
     };
