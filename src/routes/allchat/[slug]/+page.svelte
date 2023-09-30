@@ -73,7 +73,7 @@
 								<div class="listbox-label flex items-center space-x-4">
 									<div class="listbox-label-lead">
 										<figure
-											class="avatar flex aspect-square text-surface-50 font-semibold justify-center items-center overflow-hidden isolate bg-surface-400-500-token w-10 rounded-full"
+											class="avatar flex aspect-square text-surface-50 font-semibold justify-center items-center overflow-hidden isolate bg-surface-400-500-token w-8 rounded-full"
 											data-testid="avatar"
 										>
 											<Avatar
@@ -86,7 +86,7 @@
 									</div>
 									<div class="flex flex-col">
 										<div class="listbox-label-content">{h.rname}</div>
-										<div class="text-xs text-primary-100">{formatDateTime(h.created_at) }</div>
+										<div class="text-xs text-primary-100">{formatDateTime(h.created_at)}</div>
 									</div>
 								</div>
 							</div></label

@@ -5,17 +5,17 @@ import { profiledata } from './profileStore';
 
 async function check() {
     try {
-                let { data: { user } } = await supabase.auth.getUser();
+        let { data: { user } } = await supabase.auth.getUser();
 
         if (user) {
-                        profiledata.get(user.id);
+            profiledata.get(user.id);
         } else {
-                        user = { role: false };
+            user = { role: false };
         }
 
         return user;
     } catch (error) {
-                console.error('Error in check:', error);
+        console.error('Error in check:', error);
         return { role: false };
     }
 }
@@ -26,11 +26,9 @@ function user() {
     return {
         subscribe,
         google: () => {
-                        supabase.auth.signInWithOAuth({
+            supabase.auth.signInWithOAuth({
                 provider: 'google'
-            }).then(x=>{
-                                localStorage.setItem('googleauth',JSON.stringify(x))
-                            })
+            })
         },
         signup: (email, password, toast, type) => update(async (n) => {
             let { data, error } = await supabase.auth.signUp({
@@ -38,8 +36,8 @@ function user() {
                 password: password
             });
             if (!error) {
-                                fetch("https://www.agentflix.ca/api/setup?id=" + data.user.id + "&email=" + data.user.email + "&role=" + type)
-                                const t = {
+                fetch("https://www.agentflix.ca/api/setup?id=" + data.user.id + "&email=" + data.user.email + "&role=" + type)
+                const t = {
                     message: 'Welcome to Agentflix ' + email + '. Now Please go to your email and verify your account !',
                     timeout: 5000
                 };
@@ -108,7 +106,7 @@ function user() {
                     timeout: 5000
                 };
                 toast.trigger(t);
-                            } else {
+            } else {
                 const f = {
                     message: 'Your email is not valid ' + error,
                     timeout: 5000

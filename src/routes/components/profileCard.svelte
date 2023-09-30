@@ -9,6 +9,7 @@
 	import { locationsData } from '../store/locationStore';
 	import { languagesData } from '../store/languageStore';
 	import { brokerageData } from '../store/brokerageStore';
+	import { chatdata } from '../store/chatStore';
 	import { extarct } from '../../lib/utils';
 	import {
 		TabGroup,
@@ -24,7 +25,7 @@
 	languagesData.get();
 	brokerageData.get();
 	const toastStore = getToastStore();
-
+	let checkmsg = true;
 	let opensettingsAgent = false;
 	let opensettingsClient = false;
 	let tabSet = 0;
@@ -32,26 +33,23 @@
 	let newbroaddress;
 	export let setset = false;
 	export let profileData;
-		async function onChangeBannerHandler(e) {
-		
+	async function onChangeBannerHandler(e) {
 		const { data, error } = await supabase.storage
 			.from('banners')
 			.upload(`./${profileData.profiles_id}.jpg`, e.target.files[0], {
 				cacheControl: '3600',
 				upsert: true
 			});
-			}
+	}
 	async function onChangeHandler(e) {
-				const avatarFile = files[0];
-				const { data, error } = await supabase.storage
+		const avatarFile = files[0];
+		const { data, error } = await supabase.storage
 			.from('avatar')
 			.upload(`./${profileData.profiles_id}.jpg`, avatarFile, {
 				cacheControl: '3600',
 				upsert: true
 			});
-
-										
-																									}
+	}
 	function OpenSettings() {
 		if (profileData.role) {
 			opensettingsAgent = true;
@@ -65,17 +63,18 @@
 
 	let openSignup = false;
 	function handle_chat() {
-				if (!$userdata.id) {
+		if (!$userdata.id) {
 			openSignup = true;
 		} else {
-						goto('../chat/' + profileData.profiles_id);
+			goto('../chat/' + profileData.auth_id);
+			chatdata.createChatHeads($userdata.id,profileData.auth_id,$userdata.email,profileData.name)
 		}
 	}
 	function handle_listing(url) {
 		if (profileData.userRole) {
 			openSignup = true;
 		} else {
-						window.open(url, '_blank');
+			window.open(url, '_blank');
 		}
 	}
 	function handle_follow() {
@@ -85,7 +84,7 @@
 	}
 	async function handle_clientUpdate() {
 		opensettingsClient = false;
-														const { data, error } = await supabase
+		const { data, error } = await supabase
 			.from('profile')
 			.update({
 				name: profileData.name,
@@ -105,7 +104,7 @@
 	}
 	async function handle_agentUpdate() {
 		opensettingsAgent = false;
-																																		const { data, error } = await supabase
+		const { data, error } = await supabase
 			.from('profile')
 			.update({
 				name: profileData.name,
@@ -139,7 +138,7 @@
 	} else {
 		profileData.avtarLink = null;
 	}
-			</script>
+</script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="card h-fit w-auto mt-[-280px] max-md:mt-0 pb-5">
@@ -340,7 +339,7 @@
 		</div>
 
 		<div class="mt-4 flex flex-col gap-2">
-			{#if profileData.auth_id !== $userdata.id}
+			{#if profileData.auth_id !== $userdata.id && $userdata.role !== checkmsg}
 				<button
 					class="btn variant-filled-primary btn-sm flex w-full px-5"
 					on:click={() => {

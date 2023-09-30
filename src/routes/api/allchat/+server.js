@@ -4,7 +4,8 @@ async function getdata(id) {
     const { data: conversation, error } = await supabase
         .from('conversation')
         .select('*')
-        .eq('receiver', id);
+        .order('created_at', { ascending: false })
+        .eq('sender', id);
     if (error) console.log(error)
     return conversation
 }

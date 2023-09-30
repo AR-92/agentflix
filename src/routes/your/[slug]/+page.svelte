@@ -14,7 +14,7 @@
 	const r=data;
 	
 	if (!r.new) {
-				fetch("https://www.agentflix.ca/api/setup?id=" + $userdata.id + "&email=" + $userdata.email + "&role=" + false).then(x=>{
+				fetch("https://www.agentflix.ca/api/setup?id=" + $userdata.id + "&email=" + $userdata.email + "&role=" + 'false').then(x=>{
 					})
 	}
 	let sbar = false;

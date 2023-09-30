@@ -161,12 +161,12 @@
 						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							on:click={() => {
-								goto('../chat/' + $profiledata.profiles_id);
+								goto('../allchat/' + $userdata.id);
 							}}
 							on:keypress
 						>
 							<div class="flex gap-4">
-								<div>Chat</div>
+								<div>All Chats</div>
 							</div>
 						</div>
 						{#if $userdata.role===true}
