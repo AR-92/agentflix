@@ -50,7 +50,7 @@ function createEventStore() {
             let { data: events, error } = await supabase
                 .from('event_list')
                 .select('id,agent_id,client_id,event_id,status,event_id(name,description,address,time,date,agent_id,location(location))')
-                // .eq('client_id', id)
+                .eq('client_id', id)
                 .order('created_at', { ascending: false })
                 .range(0, ra);
                 console.log("yours events",events,transformArray(events),id)

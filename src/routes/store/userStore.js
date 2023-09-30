@@ -45,8 +45,8 @@ function user() {
                 password: password
             });
             if (!error) {
-                // console.log("http://localhost:5173/api/setup?id="+data.user.id+"&email="+data.user.email)
-                fetch("http://localhost:5173/api/setup?id=" + data.user.id + "&email=" + data.user.email + "&role=" + type)
+                // console.log("https://www.agentflix.ca/api/setup?id="+data.user.id+"&email="+data.user.email)
+                fetch("https://www.agentflix.ca/api/setup?id=" + data.user.id + "&email=" + data.user.email + "&role=" + type)
                 // goto('../your/'+data.user.id);
                 const t = {
                     message: 'Welcome to Agentflix ' + email + '. Now Please go to your email and verify your account !',
@@ -74,7 +74,7 @@ function user() {
                 };
                 toast.trigger(t);
                 set(data.user);
-                fetch("http://localhost:5173/api/setup?id=" + data.user.id)
+                fetch("https://www.agentflix.ca/api/setup?id=" + data.user.id)
                 profiledata.get(data.user.id)
                 goto('../your/' + data.user.id);
 

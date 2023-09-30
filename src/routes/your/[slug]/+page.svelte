@@ -5,17 +5,25 @@
 	import Banner from '../../components/banner.svelte';
 	import AgentProfileCard from '../../components/profileCard.svelte';
 	import AgentEvents from '../../components/events.svelte';
+	import { userdata } from '../../store/userStore';
 	// import ClientEvents from '../../components/clientEvents.svelte';
 	import AgentInfo from '../../components/profileInfo.svelte';
 	import ReviewsReceived from '../../components/reviews.svelte';
 	import { supabase } from '$lib/supabaseClient';
 
 	export let data;
+	const r=data;
+	// console.log('data profile founded > ', r);
+
+	if (!r.new) {
+		console.log('no profile founded > ', $userdata);
+		fetch("https://www.agentflix.ca/api/setup?id=" + $userdata.id + "&email=" + $userdata.email + "&role=" + false).then(x=>{
+			console.log(x)
+		})
+	}
 	let sbar = false;
 	let condition = data.new && data.role;
 	let yourProfile = true;
-
-	console.log('all your data ', data);
 	async function lis() {
 		await supabase
 			.channel('any')
@@ -23,7 +31,7 @@
 				'postgres_changes',
 				{ event: 'UPDATE', schema: 'public', table: 'profile' },
 				(payload) => {
-					console.log('Change received!', payload, payload.new, payload.new.new, payload.new.role);
+					// console.log('Change received!', payload, payload.new, payload.new.new, payload.new.role);
 					if (data.auth_id === payload.new.auth_id) {
 						condition = payload.new.new && payload.new.role;
 						data.role = payload.new.role;
@@ -47,7 +55,13 @@
 	</div>
 	<div class="max-2xl:col-span-6">
 		<div class="min-lg:col-span-4 max-md:col-span-6 max-sm:col-span-12">
-			<AgentEvents {yourProfile} profile={data.profiles_id} agentname={data.name} role={data.role} your={true}/>
+			<AgentEvents
+				{yourProfile}
+				profile={data.profiles_id}
+				agentname={data.name}
+				role={data.role}
+				your={true}
+			/>
 			<!-- {#if data.role}
 			{:else}
 			<ClientEvents></ClientEvents>
