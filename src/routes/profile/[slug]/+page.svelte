@@ -9,8 +9,7 @@
 
 	export let data;
 	let sbar = false;
-	//console.log('in poage data ', data);
-</script>
+	</script>
 
 <NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
 <div class="max-md:hidden">

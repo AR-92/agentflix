@@ -12,8 +12,7 @@
 	let openContact = false;
 
 	const sitemap = [
-		// First array of objects
-		[
+				[
 			{
 				name: 'About Us',
 				link: './agentlanding#whyus',
@@ -63,8 +62,7 @@
 			}
 		],
 
-		// Second array of objects
-		[
+				[
 			{
 				name: 'Are You An Agent ?',
 				link: './',

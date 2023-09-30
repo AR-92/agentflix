@@ -1,5 +1,4 @@
 import { supabase } from '$lib/supabaseClient';
-// import { json } from '@sveltejs/kit';
 async function getdata(id,email,type) {
     const { data, error } = await supabase
         .from('profile')
@@ -22,16 +21,11 @@ async function getdata(id,email,type) {
         }])
         .select();
 
-    if (error) //console.log(error);
+    if (error) console.log(error);
     return data
 }
 export async function GET({ url }) {
     const data = await getdata(url.searchParams.get('id'),url.searchParams.get('email'),url.searchParams.get('type'));
     return new Response(JSON.stringify(data))
 }
-// export async function POST({ request }) {
-// 	const { data } = await request.json();
-//     //console.log(data,request,'setup data')
-// 	return json(data);
-// }
 

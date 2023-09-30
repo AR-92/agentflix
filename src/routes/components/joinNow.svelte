@@ -10,28 +10,23 @@
 	let enable = true;
 	let message = false;
 	function isEmailAllowed(email) {
-		// Define an array of domains to exclude
-		const excludedDomains = [
+				const excludedDomains = [
 			'gmail.com',
-			'googlemail.com', // Gmail's alternative domain
-			'hotmail.com',
+			'googlemail.com', 			'hotmail.com',
 			'outlook.com',
 			'yahoo.com',
 			'aol.com',
 			'icloud.com'
 		];
 
-		// Extract the domain from the email address
-		const emailParts = email.split('@');
+				const emailParts = email.split('@');
 		if (emailParts.length !== 2) {
-			// Email format is invalid
-			return false;
+						return false;
 		}
 
 		const emailDomain = emailParts[1].toLowerCase();
 
-		// Check if the email domain is in the excludedDomains array
-		return !excludedDomains.includes(emailDomain);
+				return !excludedDomains.includes(emailDomain);
 	}
 	function handle_validation() {
 		if (username && password) {
@@ -43,8 +38,7 @@
 		}
 		if (asanagent && username.length > 5) {
 			if ( isEmailAllowed(username)) {
-				// //console.log('handle_validation>', username, isEmailAllowed(username), asanagent);
-				message = false;
+								message = false;
 			} else {
 				message = true;
 				enable = true;
@@ -65,8 +59,7 @@
 	function agent(e) {
 		asanagent = e.target.checked;
 		handle_validation();
-		// //console.log('as an agent ', e.target.checked);
-	}
+			}
 	function handle_google() {
 		userdata.google();
 	}

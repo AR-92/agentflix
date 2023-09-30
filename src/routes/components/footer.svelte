@@ -1,6 +1,5 @@
 <script>
-	// import { drawerStore, Drawer } from '@skeletonlabs/skeleton';
-	import FooterLinks from './footerLinks.svelte';
+		import FooterLinks from './footerLinks.svelte';
 	import Draw from './draw.svelte';
 	let showFooter = false;
 	function trigger() {

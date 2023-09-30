@@ -1,8 +1,7 @@
 <script>
 	export let src;
 	let ban = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/banners/${src.profiles_id}.jpg`;
-	//console.log(src ,'this  banenr',ban)
-</script>
+	</script>
 
 
 {#if src.banner}

@@ -6,20 +6,16 @@
 	import AgentProfileCard from '../../components/profileCard.svelte';
 	import AgentEvents from '../../components/events.svelte';
 	import { userdata } from '../../store/userStore';
-	// import ClientEvents from '../../components/clientEvents.svelte';
-	import AgentInfo from '../../components/profileInfo.svelte';
+		import AgentInfo from '../../components/profileInfo.svelte';
 	import ReviewsReceived from '../../components/reviews.svelte';
 	import { supabase } from '$lib/supabaseClient';
 
 	export let data;
 	const r=data;
-	// //console.log('data profile founded > ', r);
-
+	
 	if (!r.new) {
-		//console.log('no profile founded > ', $userdata);
-		fetch("https://www.agentflix.ca/api/setup?id=" + $userdata.id + "&email=" + $userdata.email + "&role=" + false).then(x=>{
-			//console.log(x)
-		})
+				fetch("https://www.agentflix.ca/api/setup?id=" + $userdata.id + "&email=" + $userdata.email + "&role=" + false).then(x=>{
+					})
 	}
 	let sbar = false;
 	let condition = data.new && data.role;
@@ -31,8 +27,7 @@
 				'postgres_changes',
 				{ event: 'UPDATE', schema: 'public', table: 'profile' },
 				(payload) => {
-					// //console.log('Change received!', payload, payload.new, payload.new.new, payload.new.role);
-					if (data.auth_id === payload.new.auth_id) {
+										if (data.auth_id === payload.new.auth_id) {
 						condition = payload.new.new && payload.new.role;
 						data.role = payload.new.role;
 					}

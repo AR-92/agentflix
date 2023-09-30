@@ -38,8 +38,7 @@ function createEventStore() {
             if (!error) {
                 if (events) {
                     set(events)
-                    //console.log('events', events)
-                } else {
+                                    } else {
                     set([])
                 }
             }
@@ -53,8 +52,7 @@ function createEventStore() {
                 .eq('client_id', id)
                 .order('created_at', { ascending: false })
                 .range(0, ra);
-                //console.log("yours events",events,transformArray(events),id)
-            if (!error) {
+                            if (!error) {
                 if (events) {
                     set(transformArray(events))
                 } else {
@@ -104,8 +102,7 @@ function createEventStore() {
             }
         }),
         addtoEventList: async (event_id, agent_id, client_id, status, t) => {
-            //console.log('event_id', event_id, "agent_id", agent_id, "client_id", client_id, status)
-            const { data, error } = await supabase
+                        const { data, error } = await supabase
                 .from('event_list')
                 .insert([{
                     event_id: event_id,
@@ -114,8 +111,7 @@ function createEventStore() {
                     status: status
                 }])
                 .select();
-                //console.log(data,error);
-            if (!error) {
+                            if (!error) {
                 t.trigger({
                     message: 'Event Added To Your List !',
                     timeout: 5000

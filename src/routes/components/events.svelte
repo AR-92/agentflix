@@ -47,27 +47,18 @@
 
 	let events = [];
 	if (your && !$userdata.role) {
-		//console.log("getClientEvents",profile)
-		eventsData.getClientEvents(profile);
+				eventsData.getClientEvents(profile);
 	} else {
-		//console.log("getAgentEvents",profile)
-
+		
 		eventsData.getAgentEvents(profile);
 	}
 	function handle_join(event_id, agent_id, status) {
-		//console.log('add eventsss to the list ',{
-		// 	event_id:event_id,
-		// 	agent_id:agent_id,
-		// 	profile:profile,
-		// 	status:status
-		// })
-		eventsData.addtoEventList(event_id, agent_id, $userdata.id, status, toastStore);
+														eventsData.addtoEventList(event_id, agent_id, $userdata.id, status, toastStore);
 		openevent = false;
 	}
 	export let yourProfile = false;
 	async function handle_addevent() {
-		// //console.log(addlocation, addaddress, adddescription, adddate, addtime);
-		eventsData.addEvent(
+				eventsData.addEvent(
 			{
 				description: adddescription,
 				address: addaddress,

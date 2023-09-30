@@ -1,23 +1,17 @@
 function extractInitials(name) {
-    // Split the name into words
-    var words=''
+        var words=''
     if(name){
          words = name.split(' ');
     }
 
-    // Initialize an array to store initials
-    const initials = [];
+        const initials = [];
 
-    // Iterate through the words and extract the first letter of each
-    for (let i = 0; i < words.length; i++) {
+        for (let i = 0; i < words.length; i++) {
         if (words[i]) {
-            // Check if the word is not empty
-            initials.push(words[i][0].toUpperCase()); // Convert to uppercase for consistency
-        }
+                        initials.push(words[i][0].toUpperCase());         }
     }
 
-    // Join the initials and return as a string
-    return initials.join('');
+        return initials.join('');
 }
 
 export const extarct=extractInitials

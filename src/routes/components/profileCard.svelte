@@ -32,48 +32,26 @@
 	let newbroaddress;
 	export let setset = false;
 	export let profileData;
-	// function handle_addBrokerage()
-	async function onChangeBannerHandler(e) {
-		//console.log('file data:', e, banners, e.target.files[0]);
-
+		async function onChangeBannerHandler(e) {
+		
 		const { data, error } = await supabase.storage
 			.from('banners')
 			.upload(`./${profileData.profiles_id}.jpg`, e.target.files[0], {
 				cacheControl: '3600',
 				upsert: true
 			});
-		//console.log(data, error);
-	}
+			}
 	async function onChangeHandler(e) {
-		//console.log('file data:', e, files, e.target.files[0]);
-		const avatarFile = files[0];
-		//console.log('avatarFile:', avatarFile);
-		const { data, error } = await supabase.storage
+				const avatarFile = files[0];
+				const { data, error } = await supabase.storage
 			.from('avatar')
 			.upload(`./${profileData.profiles_id}.jpg`, avatarFile, {
 				cacheControl: '3600',
 				upsert: true
 			});
 
-		// const avatarFile = event.target.files[0];
-		// const { data, error } = await supabase.storage
-		// 	.from('avatars')
-		// 	.upload('public/avatar1.png', avatarFile);
-		//console.log(data, error);
-
-		// if (error) {
-		// 	console.error(error);
-		// 	return null;
-		// } else {
-		// 	console.error(data, 'image data');
-		// 	profileData.avtarLink = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/avatar/a${profileData.profiles_id}.jpg`;
-		// 	const t = {
-		// 		message: 'Your Profile Avatar is updated',
-		// 		timeout: 5000
-		// 	};
-		// 	toastStore.trigger(t);
-		// }
-	}
+										
+																									}
 	function OpenSettings() {
 		if (profileData.role) {
 			opensettingsAgent = true;
@@ -87,20 +65,17 @@
 
 	let openSignup = false;
 	function handle_chat() {
-		// //console.log($userdata)
-		if (!$userdata.id) {
+				if (!$userdata.id) {
 			openSignup = true;
 		} else {
-			//console.log('user>', $userdata, profileData);
-			goto('../chat/' + profileData.profiles_id);
+						goto('../chat/' + profileData.profiles_id);
 		}
 	}
 	function handle_listing(url) {
 		if (profileData.userRole) {
 			openSignup = true;
 		} else {
-			// window.location.href = url;
-			window.open(url, '_blank');
+						window.open(url, '_blank');
 		}
 	}
 	function handle_follow() {
@@ -110,13 +85,7 @@
 	}
 	async function handle_clientUpdate() {
 		opensettingsClient = false;
-		//console.log({
-		// 	name: profileData.name,
-		// 	dob: profileData.dob,
-		// 	language: profileData.language,
-		// 	location_id: profileData.location
-		// });
-		const { data, error } = await supabase
+														const { data, error } = await supabase
 			.from('profile')
 			.update({
 				name: profileData.name,
@@ -136,23 +105,7 @@
 	}
 	async function handle_agentUpdate() {
 		opensettingsAgent = false;
-		// //console.log({
-		// 	name: profileData.name,
-		// 	dob: profileData.dob,
-		// 	location_id: profileData.location,
-		// 	external_link: profileData.external_link,
-		// 	website_link: profileData.website_link,
-		// 	about: profileData.about,
-		// 	hobbies: profileData.hobbies,
-		// 	service_areas: profileData.service_areas,
-		// 	oa: profileData.oa,
-		// 	education: profileData.education,
-		// 	language: profileData.language.id,
-		// 	brokerage_id: profileData.brokerage_id.id,
-		// 	banner: profileData.banner,
-		// 	contact: profileData.contact
-		// });
-		const { data, error } = await supabase
+																																		const { data, error } = await supabase
 			.from('profile')
 			.update({
 				name: profileData.name,
@@ -186,10 +139,7 @@
 	} else {
 		profileData.avtarLink = null;
 	}
-	// if(profileData.auth_id === $userdata.id){
-	// 	goto('../your/'+$userdata.id)
-	// }
-</script>
+			</script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="card h-fit w-auto mt-[-280px] max-md:mt-0 pb-5">

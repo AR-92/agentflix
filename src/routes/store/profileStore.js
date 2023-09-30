@@ -11,8 +11,7 @@ function profile() {
                 .select('*')
                 .eq('auth_id', authid);
             if (!error) {
-                // //console.log(profile, 'profile data')
-                set(profile[0])
+                                set(profile[0])
                 return profile[0]
             } else {
                 return null
@@ -23,8 +22,7 @@ function profile() {
                 .from('locations')
                 .select('location')
                 .eq('location_id', id);
-            // //console.log(locations,error,"lo",id)
-            return locations
+                        return locations
         }),
         getbrokerage: (id) => update(async (n) => {
             let { data: brokerage, error } = await supabase
@@ -63,8 +61,7 @@ function profile() {
                 .eq('profiles_id', id)
                 .select();
 
-            //console.log(data, error)
-        }),
+                    }),
         getChatHead: async (id,user) => {
             const { data: conversation, error } = await supabase
                 .from('conversation')

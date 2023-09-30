@@ -5,21 +5,17 @@ import { profiledata } from './profileStore';
 
 async function check() {
     try {
-        // Attempt to get the authenticated user's data
-        let { data: { user } } = await supabase.auth.getUser();
+                let { data: { user } } = await supabase.auth.getUser();
 
         if (user) {
-            // If the user is authenticated, fetch their profile data
-            profiledata.get(user.id);
+                        profiledata.get(user.id);
         } else {
-            // If the user is not authenticated, create a role-less user object
-            user = { role: false };
+                        user = { role: false };
         }
 
         return user;
     } catch (error) {
-        // Handle errors gracefully, e.g., log the error and return a role-less user object
-        console.error('Error in check:', error);
+                console.error('Error in check:', error);
         return { role: false };
     }
 }
@@ -30,14 +26,11 @@ function user() {
     return {
         subscribe,
         google: () => {
-            // debugger;
-            supabase.auth.signInWithOAuth({
+                        supabase.auth.signInWithOAuth({
                 provider: 'google'
             }).then(x=>{
-                // debugger;
-                localStorage.setItem('googleauth',JSON.stringify(x))
-                //console.log(x,'googloe auth')
-            })
+                                localStorage.setItem('googleauth',JSON.stringify(x))
+                            })
         },
         signup: (email, password, toast, type) => update(async (n) => {
             let { data, error } = await supabase.auth.signUp({
@@ -45,10 +38,8 @@ function user() {
                 password: password
             });
             if (!error) {
-                // //console.log("https://www.agentflix.ca/api/setup?id="+data.user.id+"&email="+data.user.email)
-                fetch("https://www.agentflix.ca/api/setup?id=" + data.user.id + "&email=" + data.user.email + "&role=" + type)
-                // goto('../your/'+data.user.id);
-                const t = {
+                                fetch("https://www.agentflix.ca/api/setup?id=" + data.user.id + "&email=" + data.user.email + "&role=" + type)
+                                const t = {
                     message: 'Welcome to Agentflix ' + email + '. Now Please go to your email and verify your account !',
                     timeout: 5000
                 };
@@ -117,8 +108,7 @@ function user() {
                     timeout: 5000
                 };
                 toast.trigger(t);
-                // set(false)
-            } else {
+                            } else {
                 const f = {
                     message: 'Your email is not valid ' + error,
                     timeout: 5000

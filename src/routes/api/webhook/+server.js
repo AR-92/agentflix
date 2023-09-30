@@ -1,14 +1,10 @@
-import { stripeWebhookSecret, stripeSecretKey } from '$lib/config'; // Import the webhook secret
-import { Stripe } from 'stripe';
+import { stripeWebhookSecret, stripeSecretKey } from '$lib/config'; import { Stripe } from 'stripe';
 import { supabase } from '$lib/supabaseClient';
-// function getuserfromemail(email){
 
-// }
 
 export async function POST(request) {
   const sig = request.request.headers.get('stripe-signature');
-  const stripe = new Stripe(stripeSecretKey); // Create a Stripe instance
-
+  const stripe = new Stripe(stripeSecretKey); 
   let event;
   const chunks = [];
 
@@ -24,28 +20,20 @@ export async function POST(request) {
   } catch (err) {
     return new Response({ message: `Webhook Error: ${err.message}` })
   }
-  // Handle the event
-  switch (event.type) {
+    switch (event.type) {
     case 'payment_intent.succeeded':
-      // const paymentIntentSucceeded = event.data.object;
-      // Then define and call a function to handle the event payment_intent.succeeded
-      // //console.log("paymentIntentSucceeded ",paymentIntentSucceeded);
-      break;
+                        break;
     case 'customer.created':
       const chargecaptured = event.data.object;
-      // Then define and call a function to handle the event payment_intent.succeeded
-      //console.log("customer.created ", chargecaptured);
-      await supabase
+                  await supabase
         .from('profile')
         .update({new: false})
         .eq('email', chargecaptured.email)
         .select();
 
       break;
-    // ... handle other event types
-    default:
-      //console.log(`Unhandled event type ${event.type}`);
-  }
+        default:
+        }
 
   return new Response()
 

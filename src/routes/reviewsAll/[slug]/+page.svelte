@@ -5,9 +5,7 @@
 	import Footer from '../../components/footer.svelte';
 	export let data;
 	let sbar = false;
-	// let profile = false;
-	// if (browser) profile = JSON.parse(localStorage.getItem('profile'));
-
+		
 </script>
 
 <NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
