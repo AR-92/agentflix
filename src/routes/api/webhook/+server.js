@@ -29,12 +29,12 @@ export async function POST(request) {
     case 'payment_intent.succeeded':
       // const paymentIntentSucceeded = event.data.object;
       // Then define and call a function to handle the event payment_intent.succeeded
-      // console.log("paymentIntentSucceeded ",paymentIntentSucceeded);
+      // //console.log("paymentIntentSucceeded ",paymentIntentSucceeded);
       break;
     case 'customer.created':
       const chargecaptured = event.data.object;
       // Then define and call a function to handle the event payment_intent.succeeded
-      console.log("customer.created ", chargecaptured);
+      //console.log("customer.created ", chargecaptured);
       await supabase
         .from('profile')
         .update({new: false})
@@ -44,7 +44,7 @@ export async function POST(request) {
       break;
     // ... handle other event types
     default:
-      console.log(`Unhandled event type ${event.type}`);
+      //console.log(`Unhandled event type ${event.type}`);
   }
 
   return new Response()

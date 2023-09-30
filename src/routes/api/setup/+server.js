@@ -22,7 +22,7 @@ async function getdata(id,email,type) {
         }])
         .select();
 
-    if (error) console.log(error);
+    if (error) //console.log(error);
     return data
 }
 export async function GET({ url }) {
@@ -31,7 +31,7 @@ export async function GET({ url }) {
 }
 // export async function POST({ request }) {
 // 	const { data } = await request.json();
-//     console.log(data,request,'setup data')
+//     //console.log(data,request,'setup data')
 // 	return json(data);
 // }
 

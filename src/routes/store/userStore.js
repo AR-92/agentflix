@@ -36,7 +36,7 @@ function user() {
             }).then(x=>{
                 // debugger;
                 localStorage.setItem('googleauth',JSON.stringify(x))
-                console.log(x,'googloe auth')
+                //console.log(x,'googloe auth')
             })
         },
         signup: (email, password, toast, type) => update(async (n) => {
@@ -45,7 +45,7 @@ function user() {
                 password: password
             });
             if (!error) {
-                // console.log("https://www.agentflix.ca/api/setup?id="+data.user.id+"&email="+data.user.email)
+                // //console.log("https://www.agentflix.ca/api/setup?id="+data.user.id+"&email="+data.user.email)
                 fetch("https://www.agentflix.ca/api/setup?id=" + data.user.id + "&email=" + data.user.email + "&role=" + type)
                 // goto('../your/'+data.user.id);
                 const t = {

@@ -10,7 +10,7 @@
 	let sbar = false;
 	let chatHeads = [];
 	// export let data;
-	// console.log('chat data page load', data, profiledata.getChatHead(data.id, $userdata.id),$userdata);
+	// //console.log('chat data page load', data, profiledata.getChatHead(data.id, $userdata.id),$userdata);
 </script>
 
 <NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>

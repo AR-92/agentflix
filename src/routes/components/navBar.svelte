@@ -62,7 +62,7 @@
 			ava = false;
 		}
 	}
-	console.log('$user', $userdata);
+	//console.log('$user', $userdata);
 </script>
 
 <!-- {#if $profiledata} -->

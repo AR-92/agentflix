@@ -43,7 +43,7 @@
 		}
 		if (asanagent && username.length > 5) {
 			if ( isEmailAllowed(username)) {
-				// console.log('handle_validation>', username, isEmailAllowed(username), asanagent);
+				// //console.log('handle_validation>', username, isEmailAllowed(username), asanagent);
 				message = false;
 			} else {
 				message = true;
@@ -65,7 +65,7 @@
 	function agent(e) {
 		asanagent = e.target.checked;
 		handle_validation();
-		// console.log('as an agent ', e.target.checked);
+		// //console.log('as an agent ', e.target.checked);
 	}
 	function handle_google() {
 		userdata.google();

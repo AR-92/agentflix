@@ -9,7 +9,7 @@
 
 	export let data;
 	let sbar = false;
-	console.log('in poage data ', data);
+	//console.log('in poage data ', data);
 </script>
 
 <NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>

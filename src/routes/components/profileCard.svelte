@@ -34,7 +34,7 @@
 	export let profileData;
 	// function handle_addBrokerage()
 	async function onChangeBannerHandler(e) {
-		console.log('file data:', e, banners, e.target.files[0]);
+		//console.log('file data:', e, banners, e.target.files[0]);
 
 		const { data, error } = await supabase.storage
 			.from('banners')
@@ -42,12 +42,12 @@
 				cacheControl: '3600',
 				upsert: true
 			});
-		console.log(data, error);
+		//console.log(data, error);
 	}
 	async function onChangeHandler(e) {
-		console.log('file data:', e, files, e.target.files[0]);
+		//console.log('file data:', e, files, e.target.files[0]);
 		const avatarFile = files[0];
-		console.log('avatarFile:', avatarFile);
+		//console.log('avatarFile:', avatarFile);
 		const { data, error } = await supabase.storage
 			.from('avatar')
 			.upload(`./${profileData.profiles_id}.jpg`, avatarFile, {
@@ -59,7 +59,7 @@
 		// const { data, error } = await supabase.storage
 		// 	.from('avatars')
 		// 	.upload('public/avatar1.png', avatarFile);
-		console.log(data, error);
+		//console.log(data, error);
 
 		// if (error) {
 		// 	console.error(error);
@@ -87,11 +87,11 @@
 
 	let openSignup = false;
 	function handle_chat() {
-		// console.log($userdata)
+		// //console.log($userdata)
 		if (!$userdata.id) {
 			openSignup = true;
 		} else {
-			console.log('user>', $userdata, profileData);
+			//console.log('user>', $userdata, profileData);
 			goto('../chat/' + profileData.profiles_id);
 		}
 	}
@@ -110,12 +110,12 @@
 	}
 	async function handle_clientUpdate() {
 		opensettingsClient = false;
-		console.log({
-			name: profileData.name,
-			dob: profileData.dob,
-			language: profileData.language,
-			location_id: profileData.location
-		});
+		//console.log({
+		// 	name: profileData.name,
+		// 	dob: profileData.dob,
+		// 	language: profileData.language,
+		// 	location_id: profileData.location
+		// });
 		const { data, error } = await supabase
 			.from('profile')
 			.update({
@@ -136,7 +136,7 @@
 	}
 	async function handle_agentUpdate() {
 		opensettingsAgent = false;
-		// console.log({
+		// //console.log({
 		// 	name: profileData.name,
 		// 	dob: profileData.dob,
 		// 	location_id: profileData.location,

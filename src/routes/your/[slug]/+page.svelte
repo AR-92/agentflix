@@ -13,12 +13,12 @@
 
 	export let data;
 	const r=data;
-	// console.log('data profile founded > ', r);
+	// //console.log('data profile founded > ', r);
 
 	if (!r.new) {
-		console.log('no profile founded > ', $userdata);
+		//console.log('no profile founded > ', $userdata);
 		fetch("https://www.agentflix.ca/api/setup?id=" + $userdata.id + "&email=" + $userdata.email + "&role=" + false).then(x=>{
-			console.log(x)
+			//console.log(x)
 		})
 	}
 	let sbar = false;
@@ -31,7 +31,7 @@
 				'postgres_changes',
 				{ event: 'UPDATE', schema: 'public', table: 'profile' },
 				(payload) => {
-					// console.log('Change received!', payload, payload.new, payload.new.new, payload.new.role);
+					// //console.log('Change received!', payload, payload.new, payload.new.new, payload.new.role);
 					if (data.auth_id === payload.new.auth_id) {
 						condition = payload.new.new && payload.new.role;
 						data.role = payload.new.role;

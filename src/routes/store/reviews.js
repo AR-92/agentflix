@@ -90,7 +90,7 @@ function createReviewStore() {
                         })
                         .eq('profiles_id', id)
                         .select();
-                    console.log('this is test rating upload ', averageRating, id)
+                    //console.log('this is test rating upload ', averageRating, id)
                 } else {
                     await supabase
                         .from('profile')
