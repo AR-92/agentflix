@@ -46,12 +46,12 @@
 	<Loading />
 {:then}
 	<div class="chat w-full flex font-header">
-		<div class="flex w-1/3 flex-col border-r border-surface-500/30 max-md:hidden">
+		<div class="flex w-2/4 flex-col border-r border-surface-500/30 max-md:hidden">
 			<!-- <header class="border-b border-surface-500/30 p-4">
 			<input class="input" type="search" placeholder="Search..." />
 		</header> -->
 			<div class="p-4 space-y-4 h-screen overflow-y-auto">
-				<small class="opacity-50">Contacts</small>
+				<small class="opacity-50">Chat Sessions</small>
 				<div
 					class="listbox space-y-3 rounded-token"
 					role="listbox"
@@ -61,7 +61,7 @@
 					{#each chatHeads.data as h}
 						<label
 							><div
-								class="listbox-item cursor-pointer -outline-offset-[3px] rounded-token px-4 py-2 hover:variant-filled-primary variant-ringed-primary"
+								class="listbox-item cursor-pointer -outline-offset-[3px] rounded-lg px-4 py-2 hover:variant-filled-primary variant-ringed-primary"
 								data-testid="listbox-item"
 								role="option"
 								aria-selected="true"
@@ -73,7 +73,7 @@
 								<div class="listbox-label flex items-center space-x-4">
 									<div class="listbox-label-lead">
 										<figure
-											class="avatar flex aspect-square text-surface-50 font-semibold justify-center items-center overflow-hidden isolate bg-surface-400-500-token w-10 rounded-full"
+											class="avatar flex aspect-square text-surface-50 font-semibold justify-center items-center overflow-hidden isolate bg-surface-400-500-token w-12 rounded-full"
 											data-testid="avatar"
 										>
 											<Avatar
@@ -394,7 +394,7 @@
 				</div>
 			</section>
 		</div>
-		<div class="m-4 w-1/3 max-lg:hidden">
+		<div class="m-4 w-2/4 max-h-[calc(100vh-150px)] overflow-y-auto p-2 max-lg:hidden">
 			<ReviewsReceived chat={false} profileData={$profiledata} />
 		</div>
 	</div>

@@ -155,7 +155,7 @@
 									</div>
 								</div>
 							{:else}
-								<div class="my-auto">Register First</div>
+								<div class="my-auto">Complete Your Profile First</div>
 							{/if}
 						</div>
 						<div
