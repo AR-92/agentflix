@@ -30,9 +30,12 @@ function user() {
     return {
         subscribe,
         google: () => {
+            // debugger;
             supabase.auth.signInWithOAuth({
                 provider: 'google'
             }).then(x=>{
+                // debugger;
+                localStorage.setItem('googleauth',JSON.stringify(x))
                 console.log(x,'googloe auth')
             })
         },
