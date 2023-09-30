@@ -2,9 +2,9 @@ import adapter from '@sveltejs/adapter-node';
 
 
 const config = {
-				
-				kit: {
-										adapter: adapter()
+
+	kit: {
+		adapter: adapter()
 	}
 };
 export default config;
