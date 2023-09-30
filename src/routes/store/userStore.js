@@ -29,6 +29,13 @@ function user() {
     check().then(x => set(x))
     return {
         subscribe,
+        google: () => {
+            supabase.auth.signInWithOAuth({
+                provider: 'google'
+            }).then(x=>{
+                console.log(x,'googloe auth')
+            })
+        },
         signup: (email, password, toast, type) => update(async (n) => {
             let { data, error } = await supabase.auth.signUp({
                 email: email,

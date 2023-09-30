@@ -131,11 +131,11 @@
 				</div>
 			</form>
 			{#if !forgotpass}
-				<div class="relative flex py-2 items-center">
+				<!-- <div class="relative flex py-2 items-center">
 					<div class="flex-grow border-t border-gray-300" />
 					<span class="flex-shrink mx-4 text-gray-400">or</span>
 					<div class="flex-grow border-t border-gray-300" />
-				</div>
+				</div> -->
 				<div class="flex flex-col gap-2 m-4 items-center">
 					<button type="button" class="btn variant-ringed-primary btn-sm w-full py-2 rounded-md">
 						<svg
@@ -174,7 +174,7 @@
 						</svg>
 						<span>Continue with Google</span>
 					</button>
-					<button type="button" class="btn variant-ringed-primary btn-sm w-full py-2 rounded-md">
+					<!-- <button type="button" class="btn variant-ringed-primary btn-sm w-full py-2 rounded-md">
 						<svg
 							class="h-6 w-6 mr-2"
 							xmlns="http://www.w3.org/2000/svg"
@@ -193,7 +193,7 @@
 						</svg>
 
 						<span>Continue with Facebook</span>
-					</button>
+					</button> -->
 				</div>
 			{/if}
 		</div>
