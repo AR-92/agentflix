@@ -47,11 +47,20 @@
 
 	let events = [];
 	if (your && !$userdata.role) {
-		eventsData.getClientEvents($userdata.id);
+		console.log("getClientEvents",profile)
+		eventsData.getClientEvents(profile);
 	} else {
+		console.log("getAgentEvents",profile)
+
 		eventsData.getAgentEvents(profile);
 	}
 	function handle_join(event_id, agent_id, status) {
+		console.log('add eventsss to the list ',{
+			event_id:event_id,
+			agent_id:agent_id,
+			profile:profile,
+			status:status
+		})
 		eventsData.addtoEventList(event_id, agent_id, $userdata.id, status, toastStore);
 		openevent = false;
 	}

@@ -57,7 +57,7 @@
 		<div class="min-lg:col-span-4 max-md:col-span-6 max-sm:col-span-12">
 			<AgentEvents
 				{yourProfile}
-				profile={data.profiles_id}
+				profile={data.auth_id}
 				agentname={data.name}
 				role={data.role}
 				your={true}
