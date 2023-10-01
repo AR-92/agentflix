@@ -11,7 +11,7 @@ function profile() {
                 .select('*')
                 .eq('auth_id', authid);
             if (!error) {
-                                set(profile[0])
+                set(profile[0])
                 return profile[0]
             } else {
                 return null
@@ -22,7 +22,7 @@ function profile() {
                 .from('locations')
                 .select('location')
                 .eq('location_id', id);
-                        return locations
+            return locations
         }),
         getbrokerage: (id) => update(async (n) => {
             let { data: brokerage, error } = await supabase
@@ -46,7 +46,7 @@ function profile() {
             await supabase
                 .from('profile')
                 .update({
-                  new:false,
+                    new: false,
                 })
                 .eq('email', email)
                 .select();
@@ -61,26 +61,26 @@ function profile() {
                 .eq('profiles_id', id)
                 .select();
 
-                    }),
-        getChatHead: async (id,user) => {
+        }),
+        getChatHead: async (id, user) => {
             const { data: conversation, error } = await supabase
                 .from('conversation')
                 .select('*')
                 .eq('receiver', id);
             if (!error) {
-                if(conversation.length>0){
+                if (conversation.length > 0) {
                     return conversation[0]
-                }else{
+                } else {
                     const { cdata: conversation, error } = await supabase
-                    .from('conversation')
-                    .insert([{
-                        receiver:id,
-                        sender:user
-                    }])
-                    .select();
-                    return  conversation
+                        .from('conversation')
+                        .insert([{
+                            receiver: id,
+                            sender: user
+                        }])
+                        .select();
+                    return conversation
                 }
-            }else{
+            } else {
                 return error
             }
         }

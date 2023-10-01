@@ -64,7 +64,7 @@ function user() {
                 toast.trigger(t);
                 set(data.user);
                 fetch("https://www.agentflix.ca/api/setup?id=" + data.user.id)
-                profiledata.get(data.user.id)
+                profiledata.get(data.user.id);
                 goto('../your/' + data.user.id);
 
             } else {

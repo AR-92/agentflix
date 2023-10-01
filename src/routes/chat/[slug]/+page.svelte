@@ -90,6 +90,7 @@
 		return date.toLocaleDateString(undefined, options);
 	}
 </script>
+
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
@@ -99,7 +100,7 @@
 {:then}
 	<div class="chat w-full flex font-header">
 		<div class="flex w-2/4 flex-col border-r border-surface-500/30 max-md:hidden">
-						<div class="p-4 space-y-4 max-h-[calc(100vh-120px)] overflow-y-auto">
+			<div class="p-4 space-y-4 max-h-[calc(100vh-120px)] overflow-y-auto">
 				<small class="opacity-50">Chat Sessions</small>
 				<div
 					class="listbox space-y-3 rounded-token"
@@ -156,20 +157,20 @@
 		{#if currentChatHeadID}
 			<div class="w-full">
 				<section
-					class="max-h-[470px] h-screen p-4 overflow-y-auto space-y-5 hover:overflow-y-scroll"
+					class="max-h-[470px] h-screen px-16  py-6  overflow-y-auto space-y-5 hover:overflow-y-scroll"
 				>
 					{#each currentChat as c}
 						{#if c.type}
 							<div class="grid grid-cols-[auto_1fr] gap-2">
 								<Avatar
-									initials={extractInitials('you')}
+									initials={extractInitials($profiledata.name)}
 									background="bg-primary-300 "
 									width="w-12"
 									rounded="rounded-full"
 								/>
 								<div class="card p-4 variant-soft rounded-tl-none space-y-2">
 									<header class="flex justify-between items-center">
-										<p class="font-bold">Client</p>
+										<p class="font-bold">{$profiledata.name}</p>
 										<small class="opacity-50">{formatDate(c.created_at)}</small>
 									</header>
 									<p>
@@ -181,16 +182,15 @@
 							<div class="grid grid-cols-[1fr_auto] gap-2">
 								<div class="card p-4 rounded-tr-none space-y-2 variant-soft-primary">
 									<header class="flex justify-between items-center">
-										<p class="font-bold">Agent</p>
+										<p class="font-bold">{$profiledata.name}</p>
 										<small class="opacity-50">{formatDate(c.created_at)}</small>
-										
 									</header>
 									<p>
 										{c.msg}
 									</p>
 								</div>
 								<Avatar
-									initials={extractInitials('Agent')}
+									initials={extractInitials($profiledata.name)}
 									background="bg-primary-300 "
 									width="w-12"
 									rounded="rounded-full"
@@ -235,12 +235,14 @@
 			</div>
 		{:else}
 			<div class="m-20 mt-24 w-full bg-primary-500 p-6 rounded-lg">
-				<EmptyReviews />
+				<div class="w-1/4 m-auto">
+					<EmptyReviews />
+				</div>
 			</div>
 		{/if}
-		<div class="m-4 w-2/4 max-h-[calc(100vh-150px)] overflow-y-auto p-2 max-lg:hidden">
+		<!-- <div class="m-4 w-2/4 max-h-[calc(100vh-150px)] overflow-y-auto p-2 max-lg:hidden">
 			<ReviewsReceived chat={false} profileData={$profiledata} />
-		</div>
+		</div> -->
 	</div>
 {/await}
 <Footer />

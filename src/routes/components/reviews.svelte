@@ -68,7 +68,7 @@
 
 <div class="text-sm card p-4">
 	<div class="w-full my-4 justify-between">
-		{#if profileData.role && !yourProfile}
+		{#if profileData.role===false && !yourProfile}
 			<div class="flex justify-between w-full">
 				<div>
 					<div class="font-semibold text-lg text-left">Reviews Given By Clients</div>

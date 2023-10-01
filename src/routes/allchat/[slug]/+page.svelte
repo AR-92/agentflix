@@ -5,7 +5,7 @@
 	import Loading from '../../animation/loading.svelte';
 	import EmptyReviews from '../../icons/emptyReviews.svelte';
 	import { profiledata } from '../../store/profileStore';
-	
+
 	import { userdata } from '../../store/userStore';
 	import { chatdata } from '../../store/chatStore';
 	import { Avatar } from '@skeletonlabs/skeleton';
@@ -91,6 +91,7 @@
 		return date.toLocaleDateString(undefined, options);
 	}
 </script>
+
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
@@ -100,7 +101,7 @@
 {:then}
 	<div class="chat w-full flex font-header">
 		<div class="flex w-2/4 flex-col border-r border-surface-500/30 max-md:hidden">
-						<div class="p-4 space-y-4 max-h-[calc(100vh-120px)] overflow-y-auto">
+			<div class="p-4 space-y-4 max-h-[calc(100vh-120px)] overflow-y-auto">
 				<small class="opacity-50">Chat Sessions</small>
 				<div
 					class="listbox space-y-3 rounded-token"
@@ -157,7 +158,7 @@
 		{#if currentChatHeadID}
 			<div class="w-full">
 				<section
-					class="max-h-[470px] h-screen p-4 overflow-y-auto space-y-5 hover:overflow-y-scroll"
+					class="max-h-[470px] h-screen px-16 py-6 overflow-y-auto space-y-2 hover:overflow-y-scroll"
 				>
 					{#each currentChat as c}
 						{#if c.type}
@@ -184,7 +185,6 @@
 									<header class="flex justify-between items-center">
 										<p class="font-bold">Agent</p>
 										<small class="opacity-50">{formatDate(c.created_at)}</small>
-										
 									</header>
 									<p>
 										{c.msg}
@@ -236,12 +236,14 @@
 			</div>
 		{:else}
 			<div class="m-20 mt-24 w-full bg-primary-500 p-6 rounded-lg">
-				<EmptyReviews />
+				<div class="w-1/4 m-auto">
+					<EmptyReviews />
+				</div>
 			</div>
 		{/if}
-		<div class="m-4 w-2/4 max-h-[calc(100vh-150px)] overflow-y-auto p-2 max-lg:hidden">
+		<!-- <div class="m-4 w-2/4 max-h-[calc(100vh-150px)] overflow-y-auto p-2 max-lg:hidden">
 			<ReviewsReceived chat={false} profileData={$profiledata} />
-		</div>
+		</div> -->
 	</div>
 {/await}
 <Footer />

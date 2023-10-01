@@ -1,11 +1,11 @@
 <script>
-	import { supabase } from '$lib/supabaseClient';
-	import { userdata } from '../store/userStore';
-
-	import { goto } from '$app/navigation';
 	import Model from './model.svelte';
 	import Signup from './joinNow.svelte';
 	import Globe from '../icons/globe.svelte';
+	import { supabase } from '$lib/supabaseClient';
+	import { userdata } from '../store/userStore';
+	import { profiledata } from '../store/profileStore';
+	import { goto } from '$app/navigation';
 	import { locationsData } from '../store/locationStore';
 	import { languagesData } from '../store/languageStore';
 	import { brokerageData } from '../store/brokerageStore';
@@ -19,20 +19,20 @@
 		getToastStore,
 		SlideToggle
 	} from '@skeletonlabs/skeleton';
+
+	export let setset = false;
+	export let profileData;
 	let files;
 	let banners;
 	locationsData.get();
 	languagesData.get();
 	brokerageData.get();
 	const toastStore = getToastStore();
-	let checkmsg = true;
 	let opensettingsAgent = false;
 	let opensettingsClient = false;
 	let tabSet = 0;
 	let newbro;
 	let newbroaddress;
-	export let setset = false;
-	export let profileData;
 	async function onChangeBannerHandler(e) {
 		const { data, error } = await supabase.storage
 			.from('banners')
@@ -67,7 +67,12 @@
 			openSignup = true;
 		} else {
 			goto('../chat/' + profileData.auth_id);
-			chatdata.createChatHeads($userdata.id,profileData.auth_id,$userdata.email,profileData.name)
+			chatdata.createChatHeads(
+				$userdata.id,
+				profileData.auth_id,
+				$userdata.email,
+				profileData.name
+			);
 		}
 	}
 	function handle_listing(url) {
@@ -77,11 +82,7 @@
 			window.open(url, '_blank');
 		}
 	}
-	function handle_follow() {
-		if (!profileData.userRole) {
-			openSignup = true;
-		}
-	}
+
 	async function handle_clientUpdate() {
 		opensettingsClient = false;
 		const { data, error } = await supabase
@@ -138,9 +139,10 @@
 	} else {
 		profileData.avtarLink = null;
 	}
+	console.log($userdata);
 </script>
-<!-- svelte-ignore a11y-no-static-element-interactions -->
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <div class="card h-fit w-auto mt-[-280px] max-md:mt-0 pb-5">
 	<div class="w-full h-32 rounded-lg bg-primary-500 flex justify-end cursor-pointer">
@@ -176,20 +178,10 @@
 			rounded="rounded-full"
 		/>
 	</div>
-	{#if profileData.role && false}
-		<div class="flex justify-around mt-[-10px] z-10 relative">
-			<button
-				on:click={() => {
-					handle_follow();
-				}}
-				class="btn variant-filled-primary btn-sm w-fit">Follow Me</button
-			>
-		</div>
-	{/if}
 	<div class="px-4 mt-4 mb-4">
 		<div class="flex justify-between">
 			<div class="font-semibold">{profileData.name}</div>
-			{#if profileData.role && profileData.rating}
+			{#if profileData.role === true && profileData.rating}
 				<div class="flex">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -205,7 +197,7 @@
 			{/if}
 		</div>
 		<div class="text-xs">{profileData.email}</div>
-		{#if profileData.role}
+		{#if profileData.role === true}
 			<div class="text-xs">Total Years Of Experience : {profileData.experience}</div>
 		{/if}
 
@@ -340,14 +332,14 @@
 		</div>
 
 		<div class="mt-4 flex flex-col gap-2">
-			{#if profileData.auth_id !== $userdata.id && $userdata.role !== checkmsg}
+			{#if profileData.auth_id !== $userdata.id && profileData.role !== $profiledata.role}
 				<button
 					class="btn variant-filled-primary btn-sm flex w-full px-5"
 					on:click={() => {
 						handle_chat();
 					}}
 				>
-					<img class="w-4" src="../chatbox.svg" alt="" srcset="" /><span> Lets Chat</span>
+					<img class="w-4" src="../chatbox.svg" alt="" srcset="" /><span> Lets Chat </span>
 				</button>
 			{/if}
 			{#if profileData.role}
@@ -461,11 +453,12 @@
 		</div>
 	</div>
 </Model>
+
 <Model bind:show={opensettingsAgent} width="w-[650px]">
 	<div slot="title">Update Agent Profile</div>
 	<div slot="body">
 		<div class="p-4 flex h-fit">
-			
+			<!-- svelte-ignore a11y-label-has-associated-control -->
 			<TabGroup>
 				<Tab bind:group={tabSet} name="tab1" value={0}>
 					<span>Professional Information</span>
@@ -473,7 +466,7 @@
 				<Tab bind:group={tabSet} name="tab2" value={1}>About</Tab>
 				<Tab bind:group={tabSet} name="tab3" value={2}>Service Areas</Tab>
 				<Tab bind:group={tabSet} name="tab3" value={3}>Specialties & Awards</Tab>
-				
+
 				<svelte:fragment slot="panel">
 					{#if tabSet === 0}
 						<div class="grid grid-cols-2 gap-8 text-sm">
@@ -601,8 +594,7 @@
 										type="text"
 									/>
 								</label>
-								
-															</div>
+							</div>
 						</div>
 					{:else if tabSet === 2}
 						<div class="grid grid-cols-2 gap-8 p-4">
