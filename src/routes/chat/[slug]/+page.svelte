@@ -157,20 +157,20 @@
 		{#if currentChatHeadID}
 			<div class="w-full">
 				<section
-					class="max-h-[470px] h-screen px-16  py-6  overflow-y-auto space-y-5 hover:overflow-y-scroll"
+					class="max-h-[470px] h-screen px-16 py-6 overflow-y-auto space-y-5 hover:overflow-y-scroll"
 				>
 					{#each currentChat as c}
 						{#if c.type}
 							<div class="grid grid-cols-[auto_1fr] gap-2">
 								<Avatar
-									initials={extractInitials($profiledata.name)}
+									initials={extractInitials('Client')}
 									background="bg-primary-300 "
 									width="w-12"
 									rounded="rounded-full"
 								/>
 								<div class="card p-4 variant-soft rounded-tl-none space-y-2">
 									<header class="flex justify-between items-center">
-										<p class="font-bold">{$profiledata.name}</p>
+										<p class="font-bold">Client</p>
 										<small class="opacity-50">{formatDate(c.created_at)}</small>
 									</header>
 									<p>
@@ -182,7 +182,7 @@
 							<div class="grid grid-cols-[1fr_auto] gap-2">
 								<div class="card p-4 rounded-tr-none space-y-2 variant-soft-primary">
 									<header class="flex justify-between items-center">
-										<p class="font-bold">{$profiledata.name}</p>
+										<p class="font-bold">{'Agent'}</p>
 										<small class="opacity-50">{formatDate(c.created_at)}</small>
 									</header>
 									<p>
@@ -190,7 +190,7 @@
 									</p>
 								</div>
 								<Avatar
-									initials={extractInitials($profiledata.name)}
+									initials={extractInitials('Agent')}
 									background="bg-primary-300 "
 									width="w-12"
 									rounded="rounded-full"

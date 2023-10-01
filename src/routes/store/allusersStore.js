@@ -33,8 +33,8 @@ async function filter(brokerage, rating, location, languages, experience) {
         .eq('location_id', location)
         .eq('language', languages)
         .eq('brokerage_id', brokerage)
-        .gt('rating', rating)
-        .gt('experience', experience)
+        .gt('rating', rating-1)
+        .gt('experience', experience-1)
         .eq('role', 'True')
     return profile
 }
