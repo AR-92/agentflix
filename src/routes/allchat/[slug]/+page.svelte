@@ -114,7 +114,7 @@
 							on:click={() => {
 								openChatHeads(h);
 							}}
-							class="text-left"
+							class="text-left w-full"
 							><div
 								class="listbox-item cursor-pointer -outline-offset-[3px] rounded-lg px-4 py-2 hover:variant-filled-primary variant-ringed-primary"
 								data-testid="listbox-item"
