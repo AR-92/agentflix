@@ -40,11 +40,11 @@
 					</li>
 				</ul>
 			</nav>
-			<!-- /nav -->
+			
 		</div>
-		<!-- /.widget -->
+		
 	</aside>
-	<!-- /column -->
+	
 	<div class="">
 		<section id="terms-conditions" class="wrapper pt-16">
 			<div class="card">
@@ -123,9 +123,9 @@
 						</p>
 					</div>
 				</div>
-				<!--/.card-body -->
+				
 			</div>
-			<!--/.card -->
+			
 		</section>
 		<section id="privacy-policy" class="wrapper pt-16">
 			<div class="card">
@@ -195,9 +195,9 @@
 						</div>
 					</div>
 				</div>
-				<!--/.card-body -->
+				
 			</div>
-			<!--/.card -->
+			
 		</section>
 		<section id="user-policy" class="wrapper pt-16">
 			<div class="card">
@@ -288,9 +288,9 @@
 						</p>
 					</div>
 				</div>
-				<!--/.card-body -->
+				
 			</div>
-			<!--/.card -->
+			
 		</section>
 		<section id="copyrights" class="wrapper pt-16">
 			<div class="card">
@@ -360,9 +360,9 @@
 						</p>
 					</div>
 				</div>
-				<!--/.card-body -->
+				
 			</div>
-			<!--/.card -->
+			
 		</section>
 		<section id="accountsBilling" class="wrapper pt-16">
 			<div class="card">
@@ -446,13 +446,13 @@
 						</p>
 					</div>
 				</div>
-				<!--/.card-body -->
+				
 			</div>
-			<!--/.card -->
+			
 		</section>
 		<div class="flex mt-20" />
 	</div>
-	<!-- /column -->
+	
 </div>
 
 <Footer />

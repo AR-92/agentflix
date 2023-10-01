@@ -28,13 +28,7 @@
 						openSignup = true;
 					}}>Join Now</button
 				>
-				<!-- <button
-					class="btn variant-soft-primary w-fit font-bitten"
-					on:click={() => {
-						openContact = true;
-					}}>Contact Us</button
-				> -->
-				<a href = "mailto: mustafa.u@agentflix.ca"
+								<a href = "mailto: mustafa.u@agentflix.ca"
 					class="btn variant-soft-primary w-fit font-bitten"
 					>Contact Us</a
 				>

@@ -42,19 +42,13 @@
 						openSignup = true;
 					}}>Join Now</button
 				>
-				<!-- <button
-					class="btn variant-soft-primary w-fit font-bitten"
-					on:click={() => {
-						openContact = true;
-					}}>Contact Us</button
-				> -->
-				<a href = "mailto: mustafa.u@agentflix.ca"
+								<a href = "mailto: mustafa.u@agentflix.ca"
 				class="btn variant-soft-primary w-fit font-bitten"
 				>Contact Us</a
 			>
 			</div>
 		</div>
-		<!-- <div class="col-span-5 bg-secondary-200 max-md:hidden" style="height: 500px;"></div> -->
+		
 		<img
 			class="col-span-5 max-md:hidden dark:hidden"
 			src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/lp2.png"
@@ -69,17 +63,7 @@
 		/>
 	</div>
 	<div class="my-20"></div>
-	<!-- <div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12">
-		<div class="col-span-3 bg-secondary-200 h-20" />
-		<div class="col-span-3 bg-secondary-200 h-20" />
-		<div class="col-span-3 bg-secondary-200 h-20" />
-		<div class="col-span-3 bg-secondary-200 h-20" />
-		<div class="col-span-3 bg-secondary-200 h-20" />
-		<div class="col-span-3 bg-secondary-200 h-20" />
-		<div class="col-span-3 bg-secondary-200 h-20" />
-		<div class="col-span-3 bg-secondary-200 h-20" />
-	</div> -->
-	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
+		<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
 		<div class="col-span-7">
 			<div class="text-5xl max-md:text-4xl mt-10 font-header" id="whyus">
 				An all in one suite of inbound marketing for agents to display themselves online
@@ -122,9 +106,9 @@
 				dedicated space online free for users to explore. It's more efficient than billboards and
 				flyers!
 			</p>
-			<!-- Responsive Container (recommended) -->
+			
 			<div class="table-container mt-16 w-2/3 mx-auto">
-				<!-- Native Table Element -->
+				
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -243,20 +227,14 @@
 						openSignup = true;
 					}}>Join Now</button
 				>
-				<!-- <button
-					class="btn variant-soft-primary w-fit font-bitten"
-					on:click={() => {
-						openContact = true;
-					}}>Contact Us</button
-				> -->
-				<a href = "mailto: mustafa.u@agentflix.ca"
+								<a href = "mailto: mustafa.u@agentflix.ca"
 				class="btn variant-soft-primary w-fit font-bitten"
 				>Contact Us</a
 			>
 			</div>
 		</div>
 	</div>
-	<div class="grid grid-cols-12 max-md:grid-cols-1 max-md:grid-cols-1 gap-4 m-8 h-full">
+	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
 		<div class="col-span-3">
 			<div class="flex flex-col gap-12 my-20">
 				<div>
@@ -273,27 +251,19 @@
 				</div>
 			</div>
 		</div>
-		<!-- <div class="col-span-9 bg-secondary-200 max-md:hidden" style="height: 500px;" /> -->
+		
 		<img
 			class="col-span-9 max-md:hidden dark:hidden"
 			src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/lp5.png"
 			alt=""
-			srcset=""
 		/>
 		<img
 			class="col-span-9 max-md:hidden hidden dark:block"
 			src="https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/landingpage/dlp5.png"
 			alt=""
-			srcset=""
 		/>
 	</div>
-	<!-- <div class="grid grid-cols-12 max-md:grid-cols-1 gap-x-16 gap-y-6 mx-8 my-12">
-		<div class="col-span-3 bg-secondary-200 h-20" />
-		<div class="col-span-3 bg-secondary-200 h-20" />
-		<div class="col-span-3 bg-secondary-200 h-20" />
-		<div class="col-span-3 bg-secondary-200 h-20" />
-	</div> -->
-	<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
+		<div class="grid grid-cols-12 max-md:grid-cols-1 gap-4 m-8 h-full">
 		<div class="col-span-7">
 			<div class="text-5xl max-md:text-4xl mt-10 font-header">Take your career to a new level</div>
 			<p class="mt-16 font-para">

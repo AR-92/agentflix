@@ -65,8 +65,8 @@
 	//console.log('$user', $userdata);
 </script>
 
-<!-- {#if $profiledata} -->
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+
+
 <div class="top-0 sticky flex flex-col card rounded-none z-40 font-bitten">
 	<nav class="flex p-4 mx-8 justify-between">
 		<div>
@@ -180,7 +180,7 @@
 								on:keypress
 								class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							>
-								<!-- svelte-ignore a11y-missing-content -->
+								
 								<div class="flex gap-4">
 									<div>Customer Portal</div>
 								</div>
@@ -236,13 +236,7 @@
 					>
 						Our Solution
 					</div>
-					<!-- <div
-						class="flex justify-between hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
-					>
-						Dark Mode
-						<LightSwitch />
-					</div> -->
-				</ListBox>
+									</ListBox>
 				<div class="arrow bg-surface-100-800-token" />
 			</div>
 		</div>
@@ -338,7 +332,7 @@
 		{/await}
 	{/if}
 </div>
-<!-- {/if} -->
+
 <Login bind:show={openlogin} />
 <Signup bind:show={openSignup} />
 <Filters bind:show={openfilter} />

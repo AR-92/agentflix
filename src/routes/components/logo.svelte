@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	export let width='150px'
 </script>
-					<!-- svelte-ignore a11y-no-static-element-interactions -->
+					
 
 <svg
 	on:click={() => {

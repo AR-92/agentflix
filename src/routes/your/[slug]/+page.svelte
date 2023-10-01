@@ -63,11 +63,7 @@
 				role={data.role}
 				your={true}
 			/>
-			<!-- {#if data.role}
-			{:else}
-			<ClientEvents></ClientEvents>
-			{/if} -->
-		</div>
+					</div>
 		{#if data.role}
 			<div class="">
 				<AgentInfo profileData={data} />

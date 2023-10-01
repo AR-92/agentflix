@@ -16,7 +16,7 @@
 	}
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+
 
 <button
 	on:click={() => {

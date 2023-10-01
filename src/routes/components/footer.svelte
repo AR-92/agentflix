@@ -49,7 +49,7 @@
 			</span>
 		</a>
 	</div>
-	<!-- svelte-ignore missing-declaration -->
+	
 	<button
 		on:click={() => {
 			trigger();
@@ -70,7 +70,7 @@
 	</button>
 </footer>
 <Draw bind:show={showFooter}>
-	<!-- svelte-ignore a11y-no-static-element-interactions -->
+	
 	<div class="m-6 absolute hover:scale-150" on:click={close} on:keypress>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"

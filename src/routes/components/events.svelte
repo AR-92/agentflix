@@ -76,7 +76,7 @@
 	}
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+
 
 <div class="card text-sm p-4">
 	<div class="flex">
@@ -117,7 +117,7 @@
 		{/if}
 	</div>
 	<hr class="my-5" />
-	<!-- {#if events} -->
+	
 	{#await $eventsData}
 		<Loading></Loading>
 	{:then}
@@ -177,7 +177,7 @@
 								{:else}
 									<div></div>
 								{/if}
-								<!-- svelte-ignore a11y-click-events-have-key-events -->
+								
 								{#if !e.list}
 									<div
 										on:click={() => {

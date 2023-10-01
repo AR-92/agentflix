@@ -123,15 +123,7 @@
 				</div>
 			</form>
 			{#if !asanagent}
-				<!-- <div class="relative flex py-2 items-center">
-					<div class="flex-grow border-t border-primary-500 dark:border-primary-100" />
-					<span
-						class="flex-shrink mx-4 dark:border-primary-100 dark:text-primary-100 text-primary-100"
-						>or</span
-					>
-					<div class="flex-grow border-t border-primary-500 dark:border-primary-100" />
-				</div> -->
-				<div class="flex flex-col gap-2 m-4 items-center">
+								<div class="flex flex-col gap-2 m-4 items-center">
 					<button on:click={handle_google} type="button" class="btn variant-ringed-primary btn-sm w-full py-2 rounded-md">
 						<svg
 							class="h-6 w-6 mr-2"

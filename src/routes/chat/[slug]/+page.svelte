@@ -92,16 +92,13 @@
 </script>
 
 <NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
-<!-- <hr /> -->
+
 {#await $profiledata}
 	<Loading />
 {:then}
 	<div class="chat w-full flex font-header">
 		<div class="flex w-2/4 flex-col border-r border-surface-500/30 max-md:hidden">
-			<!-- <header class="border-b border-surface-500/30 p-4">
-			<input class="input" type="search" placeholder="Search..." />
-		</header> -->
-			<div class="p-4 space-y-4 max-h-[calc(100vh-120px)] overflow-y-auto">
+						<div class="p-4 space-y-4 max-h-[calc(100vh-120px)] overflow-y-auto">
 				<small class="opacity-50">Chat Sessions</small>
 				<div
 					class="listbox space-y-3 rounded-token"
@@ -171,7 +168,7 @@
 								/>
 								<div class="card p-4 variant-soft rounded-tl-none space-y-2">
 									<header class="flex justify-between items-center">
-										<p class="font-bold">you</p>
+										<p class="font-bold">Client</p>
 										<small class="opacity-50">{formatDate(c.created_at)}</small>
 									</header>
 									<p>
@@ -185,7 +182,7 @@
 									<header class="flex justify-between items-center">
 										<p class="font-bold">Agent</p>
 										<small class="opacity-50">{formatDate(c.created_at)}</small>
-										<!-- <small class="opacity-50">Yesterday @ 2:45pm</small> -->
+										
 									</header>
 									<p>
 										{c.msg}

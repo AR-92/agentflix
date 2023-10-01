@@ -140,7 +140,7 @@
 	}
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+
 <div class="card h-fit w-auto mt-[-280px] max-md:mt-0 pb-5">
 	<div class="w-full h-32 rounded-lg bg-primary-500 flex justify-end cursor-pointer">
 		{#if setset}
@@ -464,7 +464,7 @@
 	<div slot="title">Update Agent Profile</div>
 	<div slot="body">
 		<div class="p-4 flex h-fit">
-			<!-- svelte-ignore a11y-label-has-associated-control -->
+			
 			<TabGroup>
 				<Tab bind:group={tabSet} name="tab1" value={0}>
 					<span>Professional Information</span>
@@ -472,7 +472,7 @@
 				<Tab bind:group={tabSet} name="tab2" value={1}>About</Tab>
 				<Tab bind:group={tabSet} name="tab3" value={2}>Service Areas</Tab>
 				<Tab bind:group={tabSet} name="tab3" value={3}>Specialties & Awards</Tab>
-				<!-- Tab Panels --->
+				
 				<svelte:fragment slot="panel">
 					{#if tabSet === 0}
 						<div class="grid grid-cols-2 gap-8 text-sm">
@@ -600,15 +600,8 @@
 										type="text"
 									/>
 								</label>
-								<!-- <label class="label text-sm flex items-center justify-between"> -->
-								<!-- <span class="font-semibold">Show Banner</span>
-									<SlideToggle name="slide" bind:checked={profileData.banner} />
-								</label>
-								<label class="label text-sm flex items-center justify-between">
-									<span class="font-semibold">Show Avatar</span>
-									<SlideToggle name="slide" bind:checked={profileData.avatar} />
-								</label> -->
-							</div>
+								
+															</div>
 						</div>
 					{:else if tabSet === 2}
 						<div class="grid grid-cols-2 gap-8 p-4">

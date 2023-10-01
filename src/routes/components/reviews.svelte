@@ -73,14 +73,14 @@
 					<div class="font-semibold text-lg text-left">Reviews Given By Clients</div>
 					<div class="text-sm text-surface-900 dark:text-surface-100 text-left">Leave a Review</div>
 				</div>
-				<!-- {#if $userdata.role} -->
+				
 				<button
 					on:click={() => {
 						openAddReviewModel();
 					}}
 					class="btn variant-filled-primary btn-sm w-fit mt-4 my-auto">Give Reviews</button
 				>
-				<!-- {/if} -->
+				
 			</div>
 		{:else if yourProfile}
 			<div class="font-semibold text-lg text-left">Reviews Given To You</div>
@@ -101,7 +101,7 @@
 			</div>
 		{/if}
 		{#each $reviewData as r, i}
-			<!-- svelte-ignore a11y-no-static-element-interactions -->
+			
 			<div
 				class="my-4 cursor-pointer"
 				on:click={() => {
@@ -156,7 +156,7 @@
 	{/await}
 	{#if !page}
 		<hr />
-		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		
 		<div
 			on:click={() => {
 				goto('/reviewsAll/' + profileData.profiles_id);
@@ -196,7 +196,7 @@
 					</RangeSlider>
 					<div class="w-full text-right">
 						<button type="button" class="btn variant-soft-surface btn-sm w-fit mr-2">Cancel</button>
-						<!-- {#if your} -->
+						
 						<button
 							type="button"
 							class="btn variant-filled-primary w-fit btn-sm"
@@ -215,7 +215,7 @@
 								openAddReview = false;
 							}}>Submit Review</button
 						>
-						<!-- {/if} -->
+						
 					</div>
 				</div>
 			</div>

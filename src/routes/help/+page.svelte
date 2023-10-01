@@ -12,7 +12,7 @@
 	</h2>
 
 	<div class="input-group input-group-divider grid-cols-12 w-1/3 m-auto h-16">
-		<!-- <div class="input-group-shim" /> -->
+		
 		<input type="search" class="col-span-10 placeholder:px-6" placeholder="Search..." />
 		<button class="variant-filled-primary col-span-2">
 			<img class="w-8 text-white" src="./search-outline.svg" alt="" srcset="" />

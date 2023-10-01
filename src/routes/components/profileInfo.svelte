@@ -41,7 +41,7 @@
 		</div>
 
 		<div class="mt-4">
-			<!-- <img src={data.map} alt="" srcset="" /> -->
+			
 		</div>
 	</div>
 {/if}
