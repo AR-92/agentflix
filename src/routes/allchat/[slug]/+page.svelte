@@ -1,11 +1,11 @@
 <script>
 	import Footer from '../../components/footer.svelte';
-	import { Avatar } from '@skeletonlabs/skeleton';
 	import ReviewsReceived from '../../components/reviews.svelte';
 	import NavBar from '../../components/navBar.svelte';
-	import { profiledata } from '../../store/profileStore';
 	import Loading from '../../animation/loading.svelte';
 	import EmptyReviews from '../../icons/emptyReviews.svelte';
+	import { profiledata } from '../../store/profileStore';
+	import { Avatar } from '@skeletonlabs/skeleton';
 	export let data;
 	let sbar = false;
 	let chatHeads = data;
