@@ -6,15 +6,20 @@ async function get() {
         .from('profile')
         .select('*')
         .eq('role', 'True')
-        .eq('new', 'False')
+        .eq('new', 'False');
     return profile;
 }
 async function search(value) {
     const { data: profile, error } = await supabase
         .from('profile')
         .select("*")
+        // .textSearch('name', value, {
+        //     config: 'english'
+        //   })
         .ilike('name', value)
         .eq('role', 'True')
+
+        console.log(profile, error ,'from search feild',value)
     return profile
 }
 async function city(value) {

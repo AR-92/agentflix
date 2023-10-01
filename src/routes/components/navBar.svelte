@@ -161,7 +161,7 @@
 						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							on:click={() => {
-								goto('../allchat/' + $userdata.id);
+								goto('../allchat/' + $userdata.id +'@'+$profiledata.role);
 							}}
 							on:keypress
 						>
@@ -169,7 +169,7 @@
 								<div>All Chats</div>
 							</div>
 						</div>
-						{#if $userdata.role===true}
+						{#if $profiledata.role === true}
 							<div
 								on:click={() => {
 									window.open(
@@ -265,7 +265,7 @@
 					class="snap-x snap-mandatory scroll-px-4 scroll-smooth flex gap-4 overflow-hidden"
 				>
 					<button
-						on:click={profilesData.all()}
+						on:click={()=>{profilesData.all()}}
 						class="snap-start shrink-0 p-2 hover:border-b-2 hover:border-primary-500 hover:text-primary-700 dark:hover:border-primary-200 dark:hover:text-primary-200 cursor-pointer"
 					>
 						All
