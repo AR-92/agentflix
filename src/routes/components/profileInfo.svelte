@@ -5,6 +5,7 @@
 		return value.split(',');
 	}
 </script>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 {#if profileData.role}
 	<div class="text-sm card p-4 mt-4">

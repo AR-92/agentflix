@@ -7,6 +7,7 @@
 		show = false;
 	}
 </script>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 {#if show}
 	<div

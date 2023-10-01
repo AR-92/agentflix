@@ -9,6 +9,7 @@
 		showFooter = false;
 	}
 </script>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <footer class=" flex justify-between px-6 text-sm card rounded-none fixed inset-x-0 bottom-0 font-bitten ">
 	<div class="flex gap-4 p-2">

@@ -7,6 +7,7 @@
 	let sbar = false;
 		
 </script>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
 <main class="flex flex-col gap-4 p-10 text-center my-16 mx-60">

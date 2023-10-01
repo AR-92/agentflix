@@ -91,6 +91,7 @@
 		return date.toLocaleDateString(undefined, options);
 	}
 </script>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
 

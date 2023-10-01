@@ -12,23 +12,18 @@ function chat() {
                 .neq("sender", sender)
                 .neq("receiver", receiver)
                 .select();
-            // console.log("chat heads", data, error)
         }),
         getMyMsg: (head) => update(async (n) => {
-            let { data: chat, error } = await supabase
-            .from('chat')
-            .select('*')
-            .eq('head', head);
-            console.log("chat msges", chat, error);
-            // set(chat)
+            await supabase
+                .from('chat')
+                .select('*')
+                .eq('head', head);
         }),
         addMsg: (o) => update(async (n) => {
-            const { data, error } = await supabase
+            await supabase
                 .from('chat')
                 .upsert(o)
                 .select();
-            // if (!error) {}
-            console.log("addMsg", data, error)
         }),
     }
 }

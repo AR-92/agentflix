@@ -8,6 +8,7 @@
 	let openSignup = false;
 	let openContact = false;
 </script>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <div class="pb-20 px-10">
 	<div class="flex px-4 font-semibold justify-between items-center">

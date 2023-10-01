@@ -64,6 +64,7 @@
 		userdata.google();
 	}
 </script>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <Model bind:show width="w-1/4 max-lg:w-1/2 font-bitten">
 	<span slot="title">Join Now</span>

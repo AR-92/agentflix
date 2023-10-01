@@ -2,6 +2,7 @@
 	export let src;
 	let ban = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/banners/${src.profiles_id}.jpg`;
 	</script>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 
 {#if src.banner}

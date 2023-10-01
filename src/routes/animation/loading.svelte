@@ -1,6 +1,7 @@
 <script>
     export let size="h-8 w-8"
 </script>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="flex w-full justify-center">
     <svg
         class="animate-spin  m-10 {size} text-white"

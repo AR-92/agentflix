@@ -23,6 +23,7 @@
 	brokerageData.get();
 	userdata.fresh();
 </script>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <Toast />
 

@@ -8,6 +8,7 @@
 	let openContact = false;
 	
 </script>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <div
 	class="grid grid-cols-12 gap-x-16 max-lg:gap-x-1 gap-y-6 my-4 mx-20 max-md:m-1 max-md:gap-1 max-md:text-center hover:text-gray-900 dark:hover:text-white dark:text-primary-100 "

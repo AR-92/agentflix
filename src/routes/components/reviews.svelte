@@ -64,6 +64,7 @@
 		reviewData.getRattings(profileData.profiles_id);
 	}
 </script>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <div class="text-sm card p-4">
 	<div class="w-full my-4 justify-between">

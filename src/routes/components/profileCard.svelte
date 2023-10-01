@@ -139,6 +139,7 @@
 		profileData.avtarLink = null;
 	}
 </script>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 
 <div class="card h-fit w-auto mt-[-280px] max-md:mt-0 pb-5">

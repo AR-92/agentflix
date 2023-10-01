@@ -62,8 +62,8 @@
 			ava = false;
 		}
 	}
-	//console.log('$user', $userdata);
 </script>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 
 

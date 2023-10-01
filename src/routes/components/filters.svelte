@@ -20,6 +20,7 @@
 		profilesData.filter(brokerage,rating,location,languages,experience)
 	}
 </script>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <Model width="w-1/2  max-lg:w-fit max-lg:mx-10 font-bitten" bind:show>
 	<div slot="title">Filter</div>

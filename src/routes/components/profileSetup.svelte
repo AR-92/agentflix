@@ -9,6 +9,7 @@
 		profiledata.updaterole(false,id);
 	}
 </script>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <Model bind:show bind:closeable width="w-1/4 max-lg:w-1/3 font-bitten">
 	<div slot="body">

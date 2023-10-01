@@ -2,6 +2,7 @@
 	import Model from '../components/model.svelte';
     export let show=false
 </script>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <Model bind:show={show} width="w-1/2 max-lg:w-1/2 font-bitten">
 	<span slot="title">Contact Us</span>

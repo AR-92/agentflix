@@ -122,6 +122,7 @@
 		value=!value
 	}
 </script>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <NavBar showSearchbar={sbar} showSubbar={sbar}></NavBar>
 <main class="flex flex-col gap-4 px-10 mx-20 my-12">

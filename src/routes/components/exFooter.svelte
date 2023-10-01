@@ -1,6 +1,7 @@
 <script>
 	import FooterLinks from './footerLinks.svelte';
 </script>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <div class="p-14 card rounded-none">
 	<FooterLinks />
