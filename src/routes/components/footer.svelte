@@ -72,7 +72,7 @@
 </footer>
 <Draw bind:show={showFooter}>
 	
-	<div class="m-6 absolute hover:scale-150" on:click={close} on:keypress>
+	<button class="m-6 absolute hover:scale-150" on:click={close}>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 0 32 32"
@@ -82,7 +82,7 @@
 			style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;"
 			><path d="m6 6 20 20M26 6 6 26" /></svg
 		>
-	</div>
+	</button>
 
 	<FooterLinks />
 </Draw>

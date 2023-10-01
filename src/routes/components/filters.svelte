@@ -28,7 +28,7 @@
 		<div class="grid grid-cols-12 p-4 h-[500px] overflow-y-auto">
 			<div class="col-span-6 m-6 max-md:col-span-12">
 				<div
-					class="p-4 bg-primary-200 dark:bg-primary-500 p-4 rounded-lg grid place-items-center h-full"
+					class="p-4 bg-primary-200 dark:bg-primary-500 rounded-lg grid place-items-center h-full"
 				>
 					<FilterIcon />
 				</div>
