@@ -63,9 +63,8 @@
 		}
 	}
 </script>
+
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-
-
 
 <div class="top-0 sticky flex flex-col card rounded-none z-40 font-bitten">
 	<nav class="flex p-4 mx-8 justify-between">
@@ -100,144 +99,145 @@
 					</a>
 				{/if}
 			{/if}
-			<button use:popup={popupCombobox} class="btn variant-ringed-primary btn-sm">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					class="ionicon w-6 text-primary-500 dark:text-primary-100"
-					viewBox="0 0 512 512"
-					><path
-						fill="none"
-						stroke="currentColor"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="32"
-						d="M96 304h320M96 208h320M96 112h320M96 400h320"
-					/></svg
-				>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					class="ionicon w-6 text-primary-500 dark:text-primary-100"
-					viewBox="0 0 512 512"
-					><path
-						fill="currentColor"
-						stroke="currentColor"
-						d="M258.9 48C141.92 46.42 46.42 141.92 48 258.9c1.56 112.19 92.91 203.54 205.1 205.1 117 1.6 212.48-93.9 210.88-210.88C462.44 140.91 371.09 49.56 258.9 48zm126.42 327.25a4 4 0 01-6.14-.32 124.27 124.27 0 00-32.35-29.59C321.37 329 289.11 320 256 320s-65.37 9-90.83 25.34a124.24 124.24 0 00-32.35 29.58 4 4 0 01-6.14.32A175.32 175.32 0 0180 259c-1.63-97.31 78.22-178.76 175.57-179S432 158.81 432 256a175.32 175.32 0 01-46.68 119.25z"
-					/><path
-						fill="currentColor"
-						stroke="currentColor"
-						d="M256 144c-19.72 0-37.55 7.39-50.22 20.82s-19 32-17.57 51.93C191.11 256 221.52 288 256 288s64.83-32 67.79-71.24c1.48-19.74-4.8-38.14-17.68-51.82C293.39 151.44 275.59 144 256 144z"
-					/></svg
-				>
-			</button>
-			<div class="card w-48 shadow-xl py-2 z-50" data-popup="popupCombobox">
-				<ListBox rounded="rounded-none">
-					{#if $userdata.role}
-						<div
-							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
-							on:click={() => {
-								goto('../your/' + $userdata.id);
-							}}
-							on:keypress
-						>
-							{#if $profiledata}
-								<div class="flex gap-4 justify-between">
-									<div class="my-auto">
-										{$profiledata.name}
-									</div>
-									<div class="rounded-full w-8">
-										<Avatar
-											initials={extarct($profiledata.name)}
-											src={ava}
-											background="bg-primary-300 "
-											width="w-full"
-											rounded="rounded-lg"
-										/>
-									</div>
-								</div>
-							{:else}
-								<div class="my-auto">Complete Your Profile First</div>
-							{/if}
-						</div>
-						<div
-							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
-							on:click={() => {
-								goto('../allchat/' + $userdata.id +'@'+$profiledata.role);
-							}}
-							on:keypress
-						>
-							<div class="flex gap-4">
-								<div>All Chats</div>
-							</div>
-						</div>
-						{#if $profiledata.role === true}
+			<div class="group">
+				<button class="btn h-10 variant-ringed-primary btn-sm">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="ionicon w-6 text-primary-500 dark:text-primary-100"
+						viewBox="0 0 512 512"
+						><path
+							fill="none"
+							stroke="currentColor"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="32"
+							d="M96 304h320M96 208h320M96 112h320M96 400h320"
+						/></svg
+					>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="ionicon w-6 text-primary-500 dark:text-primary-100"
+						viewBox="0 0 512 512"
+						><path
+							fill="currentColor"
+							stroke="currentColor"
+							d="M258.9 48C141.92 46.42 46.42 141.92 48 258.9c1.56 112.19 92.91 203.54 205.1 205.1 117 1.6 212.48-93.9 210.88-210.88C462.44 140.91 371.09 49.56 258.9 48zm126.42 327.25a4 4 0 01-6.14-.32 124.27 124.27 0 00-32.35-29.59C321.37 329 289.11 320 256 320s-65.37 9-90.83 25.34a124.24 124.24 0 00-32.35 29.58 4 4 0 01-6.14.32A175.32 175.32 0 0180 259c-1.63-97.31 78.22-178.76 175.57-179S432 158.81 432 256a175.32 175.32 0 01-46.68 119.25z"
+						/><path
+							fill="currentColor"
+							stroke="currentColor"
+							d="M256 144c-19.72 0-37.55 7.39-50.22 20.82s-19 32-17.57 51.93C191.11 256 221.52 288 256 288s64.83-32 67.79-71.24c1.48-19.74-4.8-38.14-17.68-51.82C293.39 151.44 275.59 144 256 144z"
+						/></svg
+					>
+				</button>
+				<div class="card w-48 shadow-xl py-2 z-50 hidden group-hover:block absolute right-6 mt-1">
+					<ListBox rounded="rounded-none">
+						{#if $userdata.role}
 							<div
+								class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 								on:click={() => {
-									window.open(
-										'http://billing.stripe.com/p/login/test_dR68xf3M76tm2rueUU',
-										'_blank'
-									);
+									goto('../your/' + $userdata.id);
 								}}
 								on:keypress
-								class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							>
-								
+								{#if $profiledata}
+									<div class="flex gap-4 justify-between">
+										<div class="my-auto">
+											{$profiledata.name}
+										</div>
+										<div class="rounded-full w-8">
+											<Avatar
+												initials={extarct($profiledata.name)}
+												src={ava}
+												background="bg-primary-300 "
+												width="w-full"
+												rounded="rounded-lg"
+											/>
+										</div>
+									</div>
+								{:else}
+									<div class="my-auto">Complete Your Profile First</div>
+								{/if}
+							</div>
+							<div
+								class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
+								on:click={() => {
+									goto('../allchat/' + $userdata.id + '@' + $profiledata.role);
+								}}
+								on:keypress
+							>
 								<div class="flex gap-4">
-									<div>Customer Portal</div>
+									<div>All Chats</div>
 								</div>
 							</div>
-						{/if}
-						<div
-							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
-							on:click={() => {
-								userdata.logout(toastStore);
-							}}
-							on:keypress
-						>
-							<div class="flex gap-4">
-								<div>Logout</div>
+							{#if $profiledata.role === true}
+								<div
+									on:click={() => {
+										window.open(
+											'http://billing.stripe.com/p/login/test_dR68xf3M76tm2rueUU',
+											'_blank'
+										);
+									}}
+									on:keypress
+									class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
+								>
+									<div class="flex gap-4">
+										<div>Customer Portal</div>
+									</div>
+								</div>
+							{/if}
+							<div
+								class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
+								on:click={() => {
+									userdata.logout(toastStore);
+								}}
+								on:keypress
+							>
+								<div class="flex gap-4">
+									<div>Logout</div>
+								</div>
 							</div>
-						</div>
-					{:else}
+						{:else}
+							<div
+								class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
+								on:click={() => {
+									openSignup = true;
+								}}
+								on:keypress
+							>
+								Join Now
+							</div>
+							<div
+								class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
+								on:click={() => {
+									openlogin = true;
+								}}
+								on:keypress
+							>
+								Login
+							</div>
+						{/if}
+						<hr />
 						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							on:click={() => {
-								openSignup = true;
+								goto('../agentlanding');
 							}}
 							on:keypress
 						>
-							Join Now
+							I am an Agent
 						</div>
 						<div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							on:click={() => {
-								openlogin = true;
+								goto('../help');
 							}}
 							on:keypress
 						>
-							Login
+							Our Solution
 						</div>
-					{/if}
-					<hr />
-					<div
-						class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
-						on:click={() => {
-							goto('../agentlanding');
-						}}
-						on:keypress
-					>
-						I am an Agent
-					</div>
-					<div
-						class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
-						on:click={() => {
-							goto('../help');
-						}}
-						on:keypress
-					>
-						Our Solution
-					</div>
-									</ListBox>
-				<div class="arrow bg-surface-100-800-token" />
+					</ListBox>
+					<div class="arrow bg-surface-100-800-token" />
+				</div>
 			</div>
 		</div>
 	</nav>
@@ -259,7 +259,9 @@
 					class="snap-x snap-mandatory scroll-px-4 scroll-smooth flex gap-4 overflow-hidden"
 				>
 					<button
-						on:click={()=>{profilesData.all()}}
+						on:click={() => {
+							profilesData.all();
+						}}
 						class="snap-start shrink-0 p-2 hover:border-b-2 hover:border-primary-500 hover:text-primary-700 dark:hover:border-primary-200 dark:hover:text-primary-200 cursor-pointer"
 					>
 						All
