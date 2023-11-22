@@ -226,7 +226,7 @@
 						>
 							I am an Agent
 						</div>
-						<div
+						<!-- <div
 							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 							on:click={() => {
 								goto('../help');
@@ -234,7 +234,7 @@
 							on:keypress
 						>
 							Our Solution
-						</div>
+						</div> -->
 					</ListBox>
 					<div class="arrow bg-surface-100-800-token" />
 				</div>

@@ -131,7 +131,7 @@
 					{/if}
 				</div>
 			</form>
-			{#if !forgotpass}
+			<!-- {#if !forgotpass}
 								<div class="flex flex-col gap-2 m-4 items-center">
 					<button on:click={userdata.google} type="button" class="btn variant-ringed-primary btn-sm w-full py-2 rounded-md">
 						<svg
@@ -171,7 +171,7 @@
 						<span>Continue with Google</span>
 					</button>
 									</div>
-			{/if}
+			{/if} -->
 		</div>
 	</div>
 </Model>

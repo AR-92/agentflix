@@ -123,7 +123,7 @@
 					>
 				</div>
 			</form>
-			{#if !asanagent}
+			<!-- {#if !asanagent}
 								<div class="flex flex-col gap-2 m-4 items-center">
 					<button on:click={handle_google} type="button" class="btn variant-ringed-primary btn-sm w-full py-2 rounded-md">
 						<svg
@@ -164,7 +164,7 @@
 					</button>
 				
 				</div>
-			{/if}
+			{/if} -->
 		</div>
 	</div>
 </Model>
