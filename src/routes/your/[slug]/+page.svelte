@@ -55,7 +55,7 @@
 	<div class="md:col-span-3">
 		<AgentProfileCard setset={true} profileData={data} />
 	</div>
-	<div class="md:col-span-6">
+	<div class="md:col-span-9">
 		<div class="min-lg:col-span-4 max-md:col-span-6 max-sm:col-span-12">
 			<AgentEvents
 				{yourProfile}
@@ -71,9 +71,9 @@
 			</div>
 		{/if}
 	</div>
-	<div class="md:col-span-3 max-md:my-4">
+	<!-- <div class="md:col-span-3 max-md:my-4">
 		<ReviewsReceived {yourProfile} profileData={data} />
-	</div>
+	</div> -->
 </div>
 <Footer />
 

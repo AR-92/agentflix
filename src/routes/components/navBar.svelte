@@ -158,7 +158,7 @@
 									<div class="my-auto">Complete Your Profile First</div>
 								{/if}
 							</div>
-							<div
+							<!-- <div
 								class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
 								on:click={() => {
 									goto('../allchat/' + $userdata.id + '@' + $profiledata.role);
@@ -168,7 +168,14 @@
 								<div class="flex gap-4">
 									<div>All Chats</div>
 								</div>
+							</div> -->
+							<div
+							class="hover:text-primary-500 px-5 py-3 hover:bg-primary-100 cursor-pointer"
+						>
+							<div class="flex gap-4">
+								<div>Reset Password</div>
 							</div>
+						</div>
 							{#if $profiledata.role === true}
 								<div
 									on:click={() => {

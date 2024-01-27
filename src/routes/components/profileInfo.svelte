@@ -33,7 +33,7 @@
 		<div class="mt-6">
 			<div>
 				<div class="font-semibold my-2">SERVICE AREAS</div>
-				<div class="grid grid-cols-4 max-md:grid-cols-2 gap-2">
+				<div class="grid grid-cols-5 max-md:grid-cols-2 gap-2">
 					{#each getarray(profileData.service_areas) as l}
 						<div class="rounded-full px-2 py-1 bg-primary-500 text-white text-center">{l}</div>
 					{/each}

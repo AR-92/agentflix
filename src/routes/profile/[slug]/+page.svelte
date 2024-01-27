@@ -23,7 +23,7 @@
 	<div class="md:col-span-3">
 		<AgentProfileCard profileData={data} />
 	</div>
-	<div class="md:col-span-6">
+	<div class="md:col-span-9">
 		<div class="min-lg:col-span-4 max-md:col-span-6 max-sm:col-span-12">
 			<AgentEvents profile={data.profiles_id} role={data.role} />
 		</div>
@@ -32,9 +32,9 @@
 			<AgentInfo profileData={data} />
 		</div>
 	</div>
-	<div class="md:col-span-3 max-md:my-4">
+	<!-- <div class="md:col-span-3 max-md:my-4">
 		<ReviewsReceived profileData={data} />
-	</div>
+	</div> -->
 </div>
 
 <Footer />
