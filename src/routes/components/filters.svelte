@@ -1,6 +1,6 @@
 <script>
 	import FilterIcon from '../icons/filterIcon.svelte';
-	import { RangeSlider } from '@skeletonlabs/skeleton';
+	// import { RangeSlider } from '@skeletonlabs/skeleton';
 	import Model from './model.svelte';
 	import { locationsData } from '../store/locationStore';
 	import { languagesData } from '../store/languageStore';
@@ -8,9 +8,9 @@
 	import { profilesData } from '../store/allusersStore';
 
 
-	let max = 5;
+	// let max = 5;
 	let brokerage;
-	let rating=2;
+	// let rating=2;
 	let location;
 	let languages;
 	let experience=5;
@@ -43,12 +43,12 @@
 							{/each}
 						</select>
 					</label>
-					<RangeSlider name="range-slider" bind:value={rating} max={5} step={1} ticked>
+					<!-- <RangeSlider name="range-slider" bind:value={rating} max={5} step={1} ticked>
 						<div class="flex justify-between items-center">
 							<div class="font-semibold text-sm">Select Rating</div>
 							<div class="text-xs">{rating} / {max}</div>
 						</div>
-					</RangeSlider>
+					</RangeSlider> -->
 					<label class="label">
 						<span class="font-semibold text-sm">Location</span>
 						<select bind:value={location} class="select">

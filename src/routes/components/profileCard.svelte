@@ -40,6 +40,15 @@
 				cacheControl: '3600',
 				upsert: true
 			});
+			// setTimeout(() => {
+			// 	console.log('image uploaded',`https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/banners/${profileData.profiles_id}.jpg`,e.target.files[0])
+			// }, 1000);
+			var image = document.getElementById('bannerImage');
+			var imageUrl = image.src;
+
+			// Add a random query parameter to the image URL
+			var timestamp = new Date().getTime();
+			image.src = imageUrl + '?timestamp=' + timestamp;
 	}
 	async function onChangeHandler(e) {
 		const avatarFile = files[0];
@@ -101,6 +110,7 @@
 				timeout: 5000
 			};
 			toastStore.trigger(t);
+		
 		}
 	}
 	async function handle_agentUpdate() {
@@ -132,6 +142,7 @@
 				timeout: 5000
 			};
 			toastStore.trigger(t);
+		
 		}
 	}
 	if (profileData.avatar === true) {
@@ -140,6 +151,15 @@
 		profileData.avtarLink = null;
 	}
 	console.log($userdata);
+	function getagainb(){
+		// console.log($brokerageData)
+		setTimeout(() => {
+			
+			brokerageData.get()
+		}, 1000);
+		// console.log($brokerageData)
+
+	}
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -181,7 +201,7 @@
 	<div class="px-4 mt-4 mb-4">
 		<div class="flex justify-between">
 			<div class="font-semibold">{profileData.name}</div>
-			{#if profileData.role === true && profileData.rating}
+			<!-- {#if profileData.role === true && profileData.rating}
 				<div class="flex">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -194,7 +214,7 @@
 					>
 					<div class="m-auto">{profileData.rating}</div>
 				</div>
-			{/if}
+			{/if} -->
 		</div>
 		<div class="text-xs">{profileData.email}</div>
 		{#if profileData.role === true}
@@ -420,17 +440,21 @@
 					<label class="label">
 						<span class="font-semibold text-sm">City</span>
 						<select bind:value={profileData.location} class="select">
-							{#each $locationsData as l}
-								<option value={l.location_id}>{l.location}</option>
+							{#await $locationsData then value}
+							{#each value as l}
+							<option value={l.location_id}>{l.location}</option>
 							{/each}
+							{/await}
 						</select>
 					</label>
 					<label>
 						<span class="font-semibold text-sm">Language</span>
 						<select bind:value={profileData.language} class="select">
-							{#each $languagesData as l}
-								<option value={l.id}>{l.language}</option>
+							{#await $languagesData then value}
+							{#each value as l}
+							<option value={l.id}>{l.language}</option>
 							{/each}
+							{/await}
 						</select></label
 					>
 				</div>
@@ -505,13 +529,15 @@
 								<label class="label">
 									<span class="font-semibold text-sm">City</span>
 									<select bind:value={profileData.location} class="select">
-										{#each $locationsData as l}
-											<option value={l.location_id}>{l.location}</option>
+										{#await $locationsData then value}
+										{#each value as l}
+										<option value={l.location_id}>{l.location}</option>
 										{/each}
+										{/await}
 									</select>
 								</label>
 								<label class="label text-sm">
-									<span class="font-semibold">External Index Link</span>
+									<span class="font-semibold">View My Listings Link</span>
 									<input
 										bind:value={profileData.external_link}
 										class="input rounded-md placeholder:text-sm"
@@ -519,7 +545,7 @@
 										placeholder="Please Enter Your External Listing Link Here .... !"
 									/>
 								</label>
-								<label class="label text-sm">
+								<!-- <label class="label text-sm">
 									<span class="font-semibold">Website</span>
 									<input
 										bind:value={profileData.website_link}
@@ -527,7 +553,7 @@
 										placeholder="Please Enter Your Website Link Here .... !"
 										type="text"
 									/>
-								</label>
+								</label> -->
 								<label class="label text-sm">
 									<span class="font-semibold">Contact</span>
 									<input
@@ -602,9 +628,11 @@
 								<label class="label">
 									<span class="font-semibold text-sm">Brokrage</span>
 									<select bind:value={profileData.brokerage_id.id} class="select">
-										{#each $brokerageData as l}
-											<option value={l.id}>{l.name}</option>
+										{#await $brokerageData then value}
+										{#each value as l}
+										<option value={l.id}>{l.name}</option>
 										{/each}
+										{/await}
 									</select>
 								</label>
 								<label class="label">
@@ -628,6 +656,7 @@
 									class="btn variant-filled-primary btn-sm w-fit"
 									on:click={() => {
 										brokerageData.add(newbro, newbroaddress);
+										getagainb()
 										newbro = null;
 										newbroaddress = null;
 									}}>Add New Brokerage</button
@@ -637,9 +666,11 @@
 								<label class="label">
 									<span class="font-semibold text-sm">Language</span>
 									<select bind:value={profileData.language.id} class="select">
-										{#each $languagesData as l}
-											<option value={l.id}>{l.language}</option>
+										{#await $languagesData then value}
+										{#each value as l}
+										<option value={l.id}>{l.language}</option>
 										{/each}
+										{/await}
 									</select>
 								</label>
 								<label class="label">

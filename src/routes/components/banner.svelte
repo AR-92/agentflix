@@ -1,12 +1,12 @@
 <script>
 	export let src;
-	let ban = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/banners/${src.profiles_id}.jpg`;
+	let ban = `https://zjhfywemboaxpglmjpaq.supabase.co/storage/v1/object/public/banners/${src.profiles_id}.jpg?${performance.now()}`;
 	</script>
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 
 
 {#if src.banner}
-	<img src={ban} class="w-full h-80" alt="" srcset="" />
+	<img src={ban} class="w-full h-80" alt="" srcset="" id="bannerImage" />
 {:else}
 	<div class="w-full h-80 card rounded-none font-bitten">
 		<div class="grid grid-cols-12 py-11">

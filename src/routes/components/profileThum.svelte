@@ -37,7 +37,7 @@
 	<div class="px-4 mt-4 mb-4">
 		<div class="flex justify-between">
 			<div>{name}</div>
-			<div class="flex gap-2">
+			<!-- <div class="flex gap-2">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					class="ionicon w-4 text-primary-500 dark:text-surface-300"
@@ -48,7 +48,7 @@
 					/></svg
 				>
 				{rating}
-			</div>
+			</div> -->
 		</div>
 	</div>
 </button>
